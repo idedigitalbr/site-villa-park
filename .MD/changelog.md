@@ -2,6 +2,14 @@
 
 ## 2026-09-16
 
+- **Remoção da Barra de Categorias Circulares do Site Principal e Arquivamento no Design System**:
+  - Removida a seção de stories/categorias circulares (`#categorias`) de `index.html` e `index2.html`.
+  - Removido o item de navegação correspondente no drawer menu mobile.
+  - Ajustado o link do Card 01 do slider de ofertas para abrir o modal de atendimento em vez de apontar para a âncora inexistente.
+  - Preservado o componente completo (markup HTML, fotos circulares com badges SVG, responsividade e bloco para cópia) na seção 4.4 de `design-system-preview.html`.
+  - Estilos canônicos do componente arquivado integrados a `src/css/design-system.css`.
+  - Commit `b45ae67` enviado para `https://github.com/idedigitalbr/site-villa-park.git`.
+
 - **Padronização Integral e Canônica do Design System no Site Oficial (`index.html` e `index2.html`)**:
   - Padronização de todas as tags de seção (`.ds-tag`): formato pílula horizontal (`border-radius: 9999px !important; transform: none !important;`), tipografia `Fredoka 700` uppercase com ícone temático à esquerda (variantes Verde `#e1f3e7`/`#05712b` e Laranja `#fef4e3`/`#fb4f02`).
   - Padronização de todas as headlines principais com `.ds-duotone-title`: tipografia Marvin Round 800, efeito duotone (`text-green` / `#FFFFFF` + `text-orange`) e raios de 3 feixes lúdicos SVGs canônicos em `#EF7A2B`.
