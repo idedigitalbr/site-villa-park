@@ -178,9 +178,9 @@ function updateCarousel() {
   });
   dots.forEach((d, idx) => {
     if (idx === currentSlide) {
-      d.className = 'slide-dot w-6 sm:w-8 md:w-9 h-2 sm:h-2.5 rounded-full bg-brand-red transition-all duration-300 flex-shrink-0';
+      d.className = 'slide-dot w-6 sm:w-8 md:w-9 h-2 sm:h-2.5 rounded-full bg-white transition-all duration-300 flex-shrink-0 shadow-sm';
     } else {
-      d.className = 'slide-dot w-2 sm:w-2.5 h-2 sm:h-2.5 rounded-full bg-white/50 hover:bg-white transition-all duration-300 flex-shrink-0';
+      d.className = 'slide-dot w-2 sm:w-2.5 h-2 sm:h-2.5 rounded-full bg-white/40 hover:bg-white/70 transition-all duration-300 flex-shrink-0';
     }
   });
 }
@@ -623,4 +623,32 @@ document.addEventListener('DOMContentLoaded', () => {
       this.classList.add('is-active');
     });
   });
+
+  /* ----------------------------------------------------------------------------
+     13. PARALLAX SUTIL PARA ELEMENTOS 3D (DESLOCAMENTO VERTICAL CONTROLADO)
+     ---------------------------------------------------------------------------- */
+  const prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const parallaxItems = document.querySelectorAll('[data-parallax]');
+  if (parallaxItems.length && !prefersReducedMotion) {
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const scrollY = window.pageYOffset || document.documentElement.scrollTop;
+          parallaxItems.forEach(item => {
+            const speed = parseFloat(item.getAttribute('data-parallax')) || 0.05;
+            const parent = item.closest('section') || item.parentElement;
+            const parentTop = parent ? parent.offsetTop : 0;
+            const relativeScroll = scrollY - parentTop;
+            const yOffset = -(relativeScroll * speed);
+            item.style.transform = `translate3d(0, ${yOffset.toFixed(1)}px, 0)`;
+          });
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }, { passive: true });
+  }
 });
+
+

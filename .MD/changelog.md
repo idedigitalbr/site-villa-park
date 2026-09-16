@@ -2,6 +2,14 @@
 
 ## 2026-09-16
 
+- **Refatoração Visual de Alta Fidelidade das 2 Primeiras Dobras (Hero S1, Transição e Destaques S2)**:
+  - Header: Barra superior verde compacta (`#0D5E24`), navbar simétrica e botões de ação em gradiente laranja vibrante (`#FF6F26` -> `#EF5A24`) com microinterações.
+  - S1 — Topo / Hero Verde: Cenário temático verde (`#0B6E2A`) com banner panorâmico centralizado (`rounded-[32px]`), indicadores de 3 dots brancos abaixo do banner, e composição lúdica de elementos 3D (Sol Sorridente 3D transbordando no topo direito, Nuvem 3D na borda esquerda e Nuvem 3D na borda direita).
+  - Transição Orgânica em Nuvens/Bolhas: Divisor vetorial SVG de dupla camada (sombra e preenchimento sólido `#F15A24`) unindo S1 e S2 perfeitamente.
+  - S2 — Destaques Laranja: Cenário temático laranja vibrante (`#F15A24`), headline estilizada "CONFIRA OS NOSSOS / DESTAQUES", grid de 4 cards promocionais 3:4 com hover sutil, decoração 3D lateral (Balão de ar quente 3D, Nuvem 3D e Brinquedão Modular 3D) e card horizontal inferior de conversão com megafone e botão direto para WhatsApp.
+  - Animações & Parallax: Implementação de microinteração parallax suave em `requestAnimationFrame` (`data-parallax`) e animações ambientes (`floatGentle`, `sunFloat`), respeitando estritamente `prefers-reduced-motion`.
+  - Sincronização entre `index.html` e `index2.html`.
+
 - **Remoção da Barra de Categorias Circulares do Site Principal e Arquivamento no Design System**:
   - Removida a seção de stories/categorias circulares (`#categorias`) de `index.html` e `index2.html`.
   - Removido o item de navegação correspondente no drawer menu mobile.
