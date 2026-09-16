@@ -1,14 +1,12 @@
-﻿# Deploy
+# Deploy
 
-atualizado: 2026-07-08
+atualizado: 2026-09-16
 
-## Ambiente
+## Ambiente de Produção / Preview
+- **GitHub Pages (Ativo)**: [https://idedigitalbr.github.io/site-villa-park/](https://idedigitalbr.github.io/site-villa-park/)
+- **Repositório GitHub**: [https://github.com/idedigitalbr/site-villa-park](https://github.com/idedigitalbr/site-villa-park)
+- **Branch de Deploy**: `main` (path: `/`)
+- **Status**: Ativo com HTTPS automático
 
-- Local (Desenvolvimento)
-
-## Processo
-
-- A definir.
-
-## Cuidados
-- A definir.
+## Processo de Deploy
+- Qualquer push na branch `main` dispara o build automático do GitHub Pages.
