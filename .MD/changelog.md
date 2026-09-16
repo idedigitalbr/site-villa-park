@@ -2,6 +2,12 @@
 
 ## 2026-09-16
 
+- **Unificação para Arquivo Único (`index.html`) e Remoção da Seção de Depoimentos**:
+  - Removido o arquivo duplicado `index2.html` da raiz, mantendo estritamente apenas o arquivo principal canônico `index.html`.
+  - Removida integralmente a seção de avaliações do Google em formato marquee com cards escuros (`#depoimentos`).
+  - Removidos os links correspondentes à âncora `#depoimentos` na barra superior institucional e no drawer menu mobile.
+  - Ajustada a transição da seção seguinte (`#filiais`), aplicando topo arredondado (`rounded-t-[28px] sm:rounded-t-[36px]`) e espaçamento proporcional para conexão visual perfeita com a seção FAQ.
+
 - **Refatoração Visual de Alta Fidelidade das 2 Primeiras Dobras (Hero S1, Transição e Destaques S2)**:
   - Header: Barra superior verde compacta (`#0D5E24`), navbar simétrica e botões de ação em gradiente laranja vibrante (`#FF6F26` -> `#EF5A24`) com microinterações.
   - S1 — Topo / Hero Verde: Cenário temático verde (`#0B6E2A`) com banner panorâmico centralizado (`rounded-[32px]`), indicadores de 3 dots brancos abaixo do banner, e composição lúdica de elementos 3D (Sol Sorridente 3D transbordando no topo direito, Nuvem 3D na borda esquerda e Nuvem 3D na borda direita).
