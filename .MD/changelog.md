@@ -2,6 +2,13 @@
 
 ## 2026-09-16
 
+- **Calibração Visual 100% Fiel ao Mockup Aprovado (Hero S1, Transição e Destaques S2)**:
+  - Hero S1: Banner com proporção imersiva vertical (~1.85:1, min-height 480px no desktop), eliminando excesso de vazio verde; indicadores de 3 dots brancos colados à base do banner; Sol 3D ampliado transbordando com presença no topo direito; Nuvens 3D laterais em escala proporcional conectando a transição.
+  - Transição em Nuvens (*Puffy Cartoon Clouds*): Substituída a onda simples por sucessão de arcos circulares volumosos em gomos com camada de profundidade e preenchimento sólido laranja (`#F15A24`).
+  - Destaques S2: Formato dos 4 cards ajustado para proporção harmônica (~4:4.85) com cantos ultra arredondados (`rounded-[26px]`), overlay gradiente e botões pílula interativos integrados na base de cada card (`APROVEITE >`, `SAIBA MAIS >`, `FAÇA SUA FESTA >`, `CONHEÇA >`).
+  - Decoração 3D de Grande Escala: Balão 3D e Brinquedão Modular 3D ampliados para emoldurar o grid de cards com riqueza visual e profundidade.
+  - Card Inferior CTA: Formato pílula contínuo (`rounded-full`) com ícone de megafone e botão laranja de alta conversão.
+
 - **Unificação para Arquivo Único (`index.html`) e Remoção da Seção de Depoimentos**:
   - Removido o arquivo duplicado `index2.html` da raiz, mantendo estritamente apenas o arquivo principal canônico `index.html`.
   - Removida integralmente a seção de avaliações do Google em formato marquee com cards escuros (`#depoimentos`).

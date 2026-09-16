@@ -507,29 +507,31 @@
       }
     }
 
-    /* Hero Carrossel — Card Contido com Cantos Arredondados (Fiel ao Design System +B) */
+    /* Hero Carrossel — Proporção Imersiva e Cantos Ultra Arredondados (Fiel ao Mockup) */
     .hero-carousel {
       position: relative;
       width: 100%;
-      aspect-ratio: 2.56 / 1;
-      min-height: 165px;
+      aspect-ratio: 16 / 10;
+      min-height: 230px;
       overflow: hidden;
       background-color: #141519;
-      border-radius: 18px;
+      border-radius: 20px;
       isolation: isolate;
-      box-shadow: 0 10px 30px -8px rgba(0, 0, 0, 0.12), 0 2px 6px -1px rgba(0, 0, 0, 0.06);
+      box-shadow: 0 16px 40px -8px rgba(0, 0, 0, 0.25), 0 4px 14px -1px rgba(0, 0, 0, 0.12);
     }
     @media (min-width: 640px) {
       .hero-carousel {
-        min-height: 280px;
-        border-radius: 26px;
+        aspect-ratio: 1.85 / 1;
+        min-height: 380px;
+        border-radius: 28px;
       }
     }
     @media (min-width: 1024px) {
       .hero-carousel {
-        min-height: 420px;
-        max-height: 540px;
-        border-radius: 32px;
+        aspect-ratio: 1.85 / 1;
+        min-height: 480px;
+        max-height: 560px;
+        border-radius: 36px;
       }
     }
     .hero-slide {
@@ -555,7 +557,7 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: left center;
+      object-position: center center;
       display: block;
     }
     /* As artes do hero já contêm textos e CTAs; não sobrepor HTML adicional. */
@@ -1248,21 +1250,21 @@
     <!-- ==========================================================================
          S1 — HERO SECTION / CENÁRIO VERDE IMERSIVO COM OBJETOS 3D E CARROSSEL CENTRAL
          ========================================================================== -->
-    <section id="home" class="hero-stage-green w-full pt-6 sm:pt-8 md:pt-10 pb-4 sm:pb-6 md:pb-8 scroll-mt-24 md:scroll-mt-28 relative overflow-hidden" aria-label="Carrossel Principal de Atrações e Lazer Infantil">
+    <section id="home" class="hero-stage-green w-full pt-5 sm:pt-6 md:pt-8 pb-2 sm:pb-3 scroll-mt-24 md:scroll-mt-28 relative overflow-hidden" aria-label="Carrossel Principal de Atrações e Lazer Infantil">
       
-      <!-- Elementos Decorativos 3D da Hero com Parallax Sutil e Animação Ambiente -->
-      <!-- 1. Sol 3D Sorridente (canto superior direito ultrapassando as margens) -->
-      <div class="decor-3d-item anim-sun-glow" data-parallax="0.07" style="top: -15px; right: -25px; width: clamp(130px, 18vw, 250px); z-index: 15;">
+      <!-- Elementos Decorativos 3D da Hero com Parallax Sutil e Animação Ambiente (Fiel ao Mockup) -->
+      <!-- 1. Sol 3D Sorridente (canto superior direito transbordando com presença) -->
+      <div class="decor-3d-item anim-sun-glow" data-parallax="0.07" style="top: -25px; right: -20px; width: clamp(170px, 23vw, 320px); z-index: 15;">
         <img src="assets/3DObjetos/sol-sorridente-3d.webp" alt="Sol 3D Sorridente Villa Plaza Park" class="w-full h-auto drop-shadow-2xl select-none pointer-events-none" loading="eager" decoding="async">
       </div>
 
-      <!-- 2. Nuvem 3D Sorridente (lateral esquerda entrando no cenário) -->
-      <div class="decor-3d-item anim-float-gentle" data-parallax="0.04" style="top: 42%; left: -30px; width: clamp(110px, 15vw, 210px); z-index: 15;">
+      <!-- 2. Nuvem 3D Sorridente (lateral esquerda com maior volume) -->
+      <div class="decor-3d-item anim-float-gentle" data-parallax="0.04" style="bottom: 25px; left: -35px; width: clamp(130px, 18vw, 240px); z-index: 15;">
         <img src="assets/3DObjetos/nuvem-sorridente-3d.webp" alt="Nuvem 3D Sorridente" class="w-full h-auto drop-shadow-xl select-none pointer-events-none" loading="lazy" decoding="async">
       </div>
 
-      <!-- 3. Nuvem 3D (canto inferior direito sobreposta à transição verde-laranja) -->
-      <div class="decor-3d-item anim-float-reverse" data-parallax="0.05" style="bottom: -15px; right: -25px; width: clamp(120px, 16vw, 220px); z-index: 22;">
+      <!-- 3. Nuvem 3D (canto inferior direito ancorada na transição verde-laranja) -->
+      <div class="decor-3d-item anim-float-reverse" data-parallax="0.05" style="bottom: -35px; right: -20px; width: clamp(160px, 21vw, 270px); z-index: 25;">
         <img src="assets/3DObjetos/nuvem-sorridente-3d.webp" alt="Nuvem 3D" class="w-full h-auto drop-shadow-xl select-none pointer-events-none" loading="lazy" decoding="async">
       </div>
 
@@ -1367,7 +1369,7 @@
         </div>
 
         <!-- Indicadores de Pontos (3 Dots) centralizados abaixo do banner sobre o fundo verde -->
-        <div class="flex items-center justify-center gap-2 sm:gap-2.5 mt-3 sm:mt-4 md:mt-5" id="heroDotsNav">
+        <div class="flex items-center justify-center gap-2 sm:gap-2.5 mt-2.5 sm:mt-3 mb-0" id="heroDotsNav">
           <button type="button" onclick="setSlide(0); resetAutoplay();" class="slide-dot w-7 sm:w-9 h-2 sm:h-2.5 rounded-full bg-white transition-all duration-300 flex-shrink-0 shadow-sm focus:outline-none" aria-label="Slide 1"></button>
           <button type="button" onclick="setSlide(1); resetAutoplay();" class="slide-dot w-2 sm:w-2.5 h-2 sm:h-2.5 rounded-full bg-white/40 hover:bg-white/70 transition-all duration-300 flex-shrink-0 focus:outline-none" aria-label="Slide 2"></button>
           <button type="button" onclick="setSlide(2); resetAutoplay();" class="slide-dot w-2 sm:w-2.5 h-2 sm:h-2.5 rounded-full bg-white/40 hover:bg-white/70 transition-all duration-300 flex-shrink-0 focus:outline-none" aria-label="Slide 3"></button>
@@ -1379,33 +1381,33 @@
     <!-- ==========================================================================
          TRANSIÇÃO ORGÂNICA EM NUVENS (VERDE FLORESTA → LARANJA DESTAQUES)
          ========================================================================== -->
-    <div class="relative w-full overflow-hidden leading-none z-10 pointer-events-none select-none -mt-1 bg-[#0B6E2A]">
-      <svg viewBox="0 0 1440 130" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" class="w-full h-14 sm:h-20 md:h-28 lg:h-32 block">
-        <!-- Camada de sombra e profundidade (laranja queimado suave) -->
-        <path d="M0,82 C45,45 125,40 175,75 C230,30 350,22 405,65 C465,15 635,8 705,54 C770,15 930,12 990,56 C1045,22 1165,18 1220,66 C1275,34 1375,38 1440,76 L1440,130 L0,130 Z" fill="#DC4714" opacity="0.45"/>
-        <!-- Camada frontal contínua com a seção Destaques -->
-        <path d="M0,88 C45,52 125,48 175,80 C230,38 350,30 405,72 C465,24 635,18 705,62 C770,24 930,22 990,64 C1045,30 1165,26 1220,74 C1275,42 1375,46 1440,84 L1440,130 L0,130 Z" fill="#F15A24"/>
+    <div class="relative w-full overflow-hidden leading-none z-20 pointer-events-none select-none -mt-1 bg-[#0B6E2A]">
+      <svg viewBox="0 0 1440 140" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" class="w-full h-16 sm:h-24 md:h-32 lg:h-36 block">
+        <!-- Camada de sombra e profundidade volumétrica 3D -->
+        <path d="M-20,95 C40,40 120,38 180,90 C230,30 330,25 390,85 C450,20 570,15 630,80 C690,15 810,12 870,82 C930,25 1030,20 1090,85 C1150,30 1250,28 1310,88 C1370,40 1430,45 1460,95 L1460,140 L-20,140 Z" fill="#DC4714" opacity="0.38"/>
+        <!-- Nuvens volumosas frontais em gomos rechonchudos (Puffy Cartoon Clouds) na cor laranja oficial -->
+        <path d="M-20,102 C40,48 120,46 180,98 C230,38 330,33 390,93 C450,28 570,23 630,88 C690,23 810,20 870,90 C930,33 1030,28 1090,93 C1150,38 1250,36 1310,96 C1370,48 1430,53 1460,102 L1460,140 L-20,140 Z" fill="#F15A24"/>
       </svg>
     </div>
 
     <!-- ==========================================================================
          S2 — SEÇÃO DESTAQUES LARANJA COM 4 CARDS E DECORAÇÃO 3D
          ========================================================================== -->
-    <section id="ofertas" class="destaques-stage-orange w-full pt-3 sm:pt-5 md:pt-6 pb-12 sm:pb-16 md:pb-20 scroll-mt-24 md:scroll-mt-28 relative" aria-label="Destaques e Ofertas do Parque">
+    <section id="ofertas" class="destaques-stage-orange w-full pt-4 sm:pt-6 md:pt-8 pb-14 sm:pb-18 md:pb-22 scroll-mt-24 md:scroll-mt-28 relative" aria-label="Destaques e Ofertas do Parque">
       
-      <!-- Elementos Decorativos 3D de Destaques com Parallax -->
-      <!-- 1. Balão de Ar Quente 3D (lateral esquerda saindo da tela) -->
-      <div class="decor-3d-item anim-float-gentle hidden sm:block" data-parallax="0.06" style="top: 80px; left: -35px; width: clamp(140px, 17vw, 240px);">
+      <!-- Elementos Decorativos 3D de Destaques com Parallax (Escala Fiel ao Mockup) -->
+      <!-- 1. Balão de Ar Quente 3D (lateral esquerda com volume expressivo) -->
+      <div class="decor-3d-item anim-float-gentle hidden sm:block" data-parallax="0.06" style="top: 20px; left: -50px; width: clamp(200px, 24vw, 340px); z-index: 15;">
         <img src="assets/3DObjetos/balao-ar-quente-nuvens-3d.webp" alt="Balão 3D Villa Plaza Park" class="w-full h-auto drop-shadow-2xl select-none pointer-events-none" loading="lazy" decoding="async">
       </div>
 
       <!-- 2. Nuvem 3D decorativa inferior esquerda -->
-      <div class="decor-3d-item anim-float-reverse hidden sm:block" data-parallax="0.04" style="bottom: 25px; left: -20px; width: clamp(100px, 13vw, 180px); z-index: 10;">
+      <div class="decor-3d-item anim-float-reverse hidden sm:block" data-parallax="0.04" style="bottom: 15px; left: -30px; width: clamp(140px, 17vw, 240px); z-index: 20;">
         <img src="assets/3DObjetos/nuvem-sorridente-3d.webp" alt="Nuvem 3D" class="w-full h-auto drop-shadow-xl select-none pointer-events-none" loading="lazy" decoding="async">
       </div>
 
-      <!-- 3. Brinquedão Modular / Tobogã 3D (lateral direita emoldurando a seção) -->
-      <div class="decor-3d-item anim-float-gentle hidden sm:block" data-parallax="0.05" style="top: 50px; right: -40px; width: clamp(180px, 24vw, 360px); z-index: 10;">
+      <!-- 3. Brinquedão Modular / Tobogã 3D (lateral direita emoldurando os cards) -->
+      <div class="decor-3d-item anim-float-gentle hidden sm:block" data-parallax="0.05" style="top: 0px; right: -50px; width: clamp(260px, 32vw, 440px); z-index: 15;">
         <img src="assets/3DObjetos/brinquedao-modular-escorregador-3d.webp" alt="Brinquedão Modular 3D" class="w-full h-auto drop-shadow-2xl select-none pointer-events-none" loading="lazy" decoding="async">
       </div>
 
@@ -1413,36 +1415,60 @@
         
         <!-- Headline Central: "CONFIRA OS NOSSOS / DESTAQUES" -->
         <div class="text-center mb-6 sm:mb-8 md:mb-10">
-          <span class="destaques-eyebrow block">Confira os nossos</span>
-          <h2 class="destaques-title uppercase">Destaques</h2>
+          <span class="destaques-eyebrow block">CONFIRA OS NOSSOS</span>
+          <h2 class="destaques-title uppercase">DESTAQUES</h2>
         </div>
 
-        <!-- Grid de 4 Cards Oficiais (S3 BANNERZINHOS) -->
+        <!-- Grid de 4 Cards Oficiais Estilo UI com Botões Pílula Integrados -->
         <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-5 lg:gap-6 max-w-6xl mx-auto">
           
           <!-- Card 01: Comprou R$300, Ganhou 1 Hora Extra -->
-          <div class="destaque-card-wrap aspect-[3/4]" onclick="openOrderModal()" role="button" tabindex="0" aria-label="Comprou R$300, Ganhou 1 Hora Extra">
-            <img src="assets/Pagina/S3%20BANNERZINHOS/1-card-promo-3-4.jpg" alt="Comprou R$300, Ganhou 1 Hora Extra — Villa Plaza Park" loading="lazy" decoding="async">
+          <div class="destaque-card-wrap group" onclick="openOrderModal()" role="button" tabindex="0" aria-label="Comprou R$300, Ganhou 1 Hora Extra">
+            <img src="assets/Pagina/S3%20BANNERZINHOS/1-card-promo-3-4.jpg" alt="Comprou R$300, Ganhou 1 Hora Extra — Villa Plaza Park" class="destaque-card-bg" loading="lazy" decoding="async">
+            <div class="destaque-card-overlay"></div>
+            <div class="destaque-card-footer">
+              <span class="destaque-pill-btn bg-[#0D6E2A]">
+                <span>APROVEITE</span> <span class="text-xs font-bold">&gt;</span>
+              </span>
+            </div>
           </div>
 
           <!-- Card 02: Venha com seu Pet -->
-          <div class="destaque-card-wrap aspect-[3/4]" onclick="openOrderModal()" role="button" tabindex="0" aria-label="Venha com seu Pet">
-            <img src="assets/Pagina/S3%20BANNERZINHOS/2-card-promo-3-4.jpg" alt="Venha com seu Pet — Diversão também para os melhores amigos" loading="lazy" decoding="async">
+          <div class="destaque-card-wrap group" onclick="openOrderModal()" role="button" tabindex="0" aria-label="Venha com seu Pet">
+            <img src="assets/Pagina/S3%20BANNERZINHOS/3-card-promo-3-4.jpg" alt="Venha com seu Pet — Diversão também para os melhores amigos" class="destaque-card-bg" loading="lazy" decoding="async">
+            <div class="destaque-card-overlay"></div>
+            <div class="destaque-card-footer">
+              <span class="destaque-pill-btn bg-[#FF7A2B]">
+                <span>SAIBA MAIS</span> <span class="text-xs font-bold">&gt;</span>
+              </span>
+            </div>
           </div>
 
           <!-- Card 03: Aniversário do seu pequeno -->
-          <div class="destaque-card-wrap aspect-[3/4]" onclick="openOrderModal()" role="button" tabindex="0" aria-label="Aniversário do seu pequeno merece ser inesquecível">
-            <img src="assets/Pagina/S3%20BANNERZINHOS/3-card-promo-3-4.jpg" alt="O aniversário do seu pequeno merece ser inesquecível — Faça sua festa" loading="lazy" decoding="async">
+          <div class="destaque-card-wrap group" onclick="openOrderModal()" role="button" tabindex="0" aria-label="Aniversário do seu pequeno merece ser inesquecível">
+            <img src="assets/Pagina/S3%20BANNERZINHOS/2-card-promo-3-4.jpg" alt="O aniversário do seu pequeno merece ser inesquecível — Faça sua festa" class="destaque-card-bg" loading="lazy" decoding="async">
+            <div class="destaque-card-overlay"></div>
+            <div class="destaque-card-footer">
+              <span class="destaque-pill-btn bg-[#0D6E2A]">
+                <span>FAÇA SUA FESTA</span> <span class="text-xs font-bold">&gt;</span>
+              </span>
+            </div>
           </div>
 
           <!-- Card 04: Seu pequeno vive grandes aventuras aqui -->
-          <div class="destaque-card-wrap aspect-[3/4]" onclick="openOrderModal()" role="button" tabindex="0" aria-label="Seu pequeno vive grandes aventuras aqui">
-            <img src="assets/Pagina/S3%20BANNERZINHOS/4-card-promo-3-4.jpg" alt="Seu pequeno vive grandes aventuras aqui — Conheça" loading="lazy" decoding="async">
+          <div class="destaque-card-wrap group" onclick="openOrderModal()" role="button" tabindex="0" aria-label="Seu pequeno vive grandes aventuras aqui">
+            <img src="assets/Pagina/S3%20BANNERZINHOS/4-card-promo-3-4.jpg" alt="Seu pequeno vive grandes aventuras aqui — Conheça" class="destaque-card-bg" loading="lazy" decoding="async">
+            <div class="destaque-card-overlay"></div>
+            <div class="destaque-card-footer">
+              <span class="destaque-pill-btn bg-[#0D6E2A]">
+                <span>CONHEÇA</span> <span class="text-xs font-bold">&gt;</span>
+              </span>
+            </div>
           </div>
 
         </div>
 
-        <!-- CTA Horizontal Inferior Branco (Megafone + Texto + Botão Laranja) -->
+        <!-- CTA Horizontal Inferior Branco em Pílula (Megafone + Texto + Botão Laranja) -->
         <div class="destaques-bottom-cta">
           <div class="flex items-center gap-3.5 sm:gap-4 text-left">
             <!-- Ícone Megafone Estilizado -->
@@ -1464,7 +1490,7 @@
           <!-- Botão Laranja arredondado -->
           <button type="button" onclick="openOrderModal()" class="flex-shrink-0 bg-gradient-to-r from-[#FF6A1A] to-[#EF5A24] hover:from-[#EF5A24] hover:to-[#D94514] text-white font-extrabold font-btn uppercase tracking-wide text-xs sm:text-sm px-6 sm:px-7 py-3 sm:py-3.5 rounded-full shadow-md hover:shadow-lg transition-all duration-200 flex items-center gap-2 cursor-pointer" aria-label="Comprar Ingressos">
             <span>COMPRAR INGRESSOS</span>
-            <span class="w-5 h-5 rounded-full bg-white/20 flex items-center justify-center text-xs font-bold">&gt;</span>
+            <span class="w-5 h-5 rounded-full bg-white/25 flex items-center justify-center text-xs font-bold">&gt;</span>
           </button>
         </div>
 
