@@ -1,23 +1,15 @@
 ---
-project_id: site-maisb-farma
-notion_page_id: 3bab42b6-c517-8035-ad51-ecd9d1327add
-notion_title: "[SITE] +B FARMA"
+project_id: site-villa-plaza-park-infantil
+notion_page_id: 3793cb39-b15c-815a-a267-c0d813b1628e
+notion_title: "[SITE] Villa Plaza Park"
 sync_status: synced
-last_synced_at: 2026-08-31T17:05:00-03:00
+last_synced_at: 2026-07-23T11:00:00Z
 ---
 
-# Integração Notion — [SITE] +B FARMA
+# Integração Notion - [SITE] Villa Plaza Park
 
-- **Slug do Projeto:** `site-maisb-farma`
-- **ID da Página no Notion:** `3bab42b6-c517-8035-ad51-ecd9d1327add`
-- **Título no Notion:** `[SITE] +B FARMA`
-- **Fonte Primária de Verdade:** Obsidian ([`.MD/`](./README.md)) & [`DESIGN-maisbfarma.md`](../DESIGN-maisbfarma.md)
-- **Painel Visual Operacional:** Notion (`DB_IDE`)
-
----
-
-## Módulos e Entregáveis Sincronizados
-
-1. **Documentação Viva:** Sincronização direta dos arquivos `.MD/` locais com a base de conhecimento.
-2. **Design System:** Contrato visual oficial documentado e linkado para consultas de design e engenharia.
-3. **Mídias e Assets:** Inventário completo de fotografias WebP das unidades Plaza e Tapanã e logotipos oficiais.
+- **Slug do Projeto**: `site-villa-plaza-park-infantil`
+- **ID da Página no Notion**: `3793cb39-b15c-815a-a267-c0d813b1628e`
+- **Título no Notion**: `[SITE] Villa Plaza Park`
+- **Fonte Primária de Verdade**: Obsidian (`.MD/`)
+- **Painel Visual Operacional**: Notion (`IDE Tecnica Space`)

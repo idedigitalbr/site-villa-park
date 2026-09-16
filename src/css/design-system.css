@@ -1,0 +1,3048 @@
+/**
+ * ============================================================================
+ * VILLA PLAZA PARK DESIGN SYSTEM — FOLHA DE ESTILOS CENTRAL & CANÔNICA
+ * ============================================================================
+ * Versão: 2.0.0
+ * Fonte oficial de verdade para cores, tipografia, componentes e espaçamentos
+ * do complexo infantil VILLA PLAZA PARK (Grupo Mais Barato).
+ *
+ * Conceito da Marca: "Celebrar a diversão"
+ * Slogan Oficial: "O complexo de muita diversão para os pequenos"
+ * Pilares Cromáticos: Verde (#228137) e Laranja (#ef7a2b)
+ * Tipografia: Marvin Round (Títulos/Manchetes) + Comfortaa (Corpo/Leitura fluida)
+ *
+ * FLUXO: Design System -> padrão reutilizável -> componente -> página
+ * ============================================================================
+ */
+
+/* ----------------------------------------------------------------------------
+   1. DEFINIÇÃO DA TIPOGRAFIA OFICIAL (MANUAL DE MARCA)
+   ----------------------------------------------------------------------------
+   - Manchetes e Títulos: Marvin Round (Ousadia, dinamismo e ludicidade).
+     Ponto de extensão: Quando o arquivo licenciado for adicionado em src/fonts/,
+     ele será automaticamente carregado via @font-face abaixo.
+   - Textos Secundários e Leitura: Comfortaa (Leitura fluida e amigável).
+   ---------------------------------------------------------------------------- */
+@font-face {
+  font-family: 'Marvin Round';
+  src: url('../fonts/Marvin-Round.woff2') format('woff2'),
+       local('Marvin Round'), local('Marvin-Round');
+  font-weight: 400 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ----------------------------------------------------------------------------
+   2. DESIGN TOKENS OFICIAIS (:root)
+   ---------------------------------------------------------------------------- */
+:root {
+  /* Pilares Cromáticos Oficiais da Marca */
+  --color-primary: #228137;           /* Verde Oficial Villa Plaza Park (RGB: 34, 129, 55) */
+  --color-primary-hover: #1b682c;
+  --color-primary-active: #165424;
+  --color-primary-light: #eaf5ec;
+  --color-primary-soft: #d1ebd6;
+  --color-primary-disabled: #c4e5cb;
+
+  --color-secondary: #ef7a2b;         /* Laranja Oficial Villa Plaza Park (RGB: 239, 122, 43) */
+  --color-secondary-hover: #d9651a;
+  --color-secondary-active: #bf5412;
+  --color-secondary-light: #fef1e8;
+  --color-secondary-soft: #fcd6bd;
+
+  --color-accent: #ef7a2b;
+
+  /* Cores Neutras e Textos */
+  --color-ink: #1C1D22;               /* Títulos, H1, H2, H3, menus principais */
+  --color-body: #4A4D59;              /* Parágrafos, textos descritivos */
+  --color-muted: #757885;             /* Metadados, legendas, horários */
+  --color-muted-light: #9EA2B0;       /* Textos secundários em superfícies escuras */
+  --color-muted-soft: #B2B5C2;
+
+  /* Superfícies e Fundos */
+  --color-canvas: #F8FAF9;            /* Fundo geral da página */
+  --color-surface-card: #FFFFFF;      /* Cards em superfície clara */
+  --color-surface-soft: #F1F5F2;      /* Seções alternadas suaves */
+  --color-surface-strong: #E8EEE9;    /* Fundos de placeholders / botões de ícone */
+  --color-surface-dark: #142217;      /* Fundo escuro verde-floresta profundo */
+  --color-surface-dark-card: #1C2D21; /* Cards em superfícies escuras */
+
+  /* Linhas e Divisores */
+  --color-hairline: #E2E8E4;          /* Divisores de 1px, bordas padrão */
+  --color-hairline-soft: #EDF2EF;     /* Divisores muito sutis */
+  --color-border-strong: #CBD5CE;     /* Bordas com ênfase (botões outline) */
+
+  /* Semânticos e Lúdicos */
+  --color-on-primary: #FFFFFF;
+  --color-on-secondary: #FFFFFF;
+  --color-on-dark: #FFFFFF;
+  --color-success: #10B981;
+  --color-star: #F59E0B;
+  --color-fun-blue: #0284C7;
+  --color-fun-yellow: #FBBF24;
+  --color-fun-purple: #8B5CF6;
+  --color-scrim: rgba(20, 34, 23, 0.65);
+
+  /* Tokens Específicos do Figma — Festas & Estadia */
+  --color-party-cream: #FDFBF7;       /* Fundo suave e acolhedor de festas */
+  --color-party-card-bg: #FFFFFF;     /* Base branca para cards de pacotes */
+  --color-party-border-dashed: #ef7a2b; /* Borda tracejada lúdica */
+  --color-ticket-bg: #145424;         /* Verde profundo do container de estadia */
+  --color-ticket-cream: #FFF4E6;      /* Creme dos tickets de passaporte */
+  --color-ticket-orange: #ef7a2b;     /* Laranja vibrante dos tickets */
+  --color-doodle: #ef7a2b;            /* Cor dos sparks e rabiscos */
+
+  /* Tipografia Canônica Oficial */
+  --font-display: 'Marvin Round', 'Comfortaa', cursive, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-sans: 'Comfortaa', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-btn: 'Fredoka', cursive, sans-serif;
+  --font-handwritten: 'Caveat', 'Comfortaa', cursive;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* Sombras Oficiais */
+  --shadow-subtle: 0 1px 3px 0 rgba(34, 129, 55, 0.05);
+  --shadow-sm: 0 2px 8px 0 rgba(34, 129, 55, 0.07), 0 0 1px 0 rgba(34, 129, 55, 0.1);
+  --shadow-card: 0 4px 16px -2px rgba(34, 129, 55, 0.08), 0 0 1px 0 rgba(34, 129, 55, 0.12);
+  --shadow-floating: 0 20px 35px -10px rgba(34, 129, 55, 0.12), 0 1px 3px 0 rgba(0, 0, 0, 0.04);
+  --shadow-elevated: 0 25px 50px -12px rgba(20, 34, 23, 0.2);
+
+  /* Raios de Arredondamento (Lúdicos e Acolhedores) */
+  --radius-xs: 6px;
+  --radius-sm: 10px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+  --radius-2xl: 36px;
+  --radius-full: 9999px;
+
+  /* Espaçamentos Canônicos */
+  --spacing-xxs: 2px;
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 12px;
+  --spacing-base: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --spacing-2xl: 48px;
+  --spacing-3xl: 64px;
+  --spacing-section: 80px;
+
+  /* Aliases diretos para máxima compatibilidade */
+  --primary: var(--color-primary);
+  --primary-hover: var(--color-primary-hover);
+  --primary-active: var(--color-primary-active);
+  --primary-disabled: var(--color-primary-disabled);
+  --primary-light: var(--color-primary-light);
+
+  --secondary: var(--color-secondary);
+  --secondary-hover: var(--color-secondary-hover);
+  --secondary-active: var(--color-secondary-active);
+  --secondary-light: var(--color-secondary-light);
+
+  --brand-green: var(--color-primary);
+  --brand-orange: var(--color-secondary);
+
+  --ink: var(--color-ink);
+  --body: var(--color-body);
+  --muted: var(--color-muted);
+  --muted-soft: var(--color-muted-soft);
+
+  --hairline: var(--color-hairline);
+  --hairline-soft: var(--color-hairline-soft);
+  --border-strong: var(--color-border-strong);
+
+  --canvas: var(--color-canvas);
+  --surface-soft: var(--color-surface-soft);
+  --surface-card: var(--color-surface-card);
+  --surface-strong: var(--color-surface-strong);
+  --surface-dark: var(--color-surface-dark);
+  --surface-dark-card: var(--color-surface-dark-card);
+
+  --on-primary: var(--color-on-primary);
+  --on-dark: var(--color-on-dark);
+  --star-rating: var(--color-star);
+  --success: var(--color-success);
+  --scrim: var(--color-scrim);
+
+  --shadow: var(--shadow-sm);
+
+  --display: var(--font-display);
+  --text: var(--font-sans);
+  --mono: var(--font-mono);
+}
+
+/* ----------------------------------------------------------------------------
+   3. PADRÕES TIPOGRÁFICOS REUTILIZÁVEIS (CANÔNICOS)
+   ---------------------------------------------------------------------------- */
+
+/**
+ * EYEBROW / OVERLINE PADRÃO OFICIAL
+ * Laranja Oficial #ef7a2b · Comfortaa Bold · 12px · Tracking 0.1em · Uppercase
+ */
+.ds-eyebrow {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 700;
+  color: var(--color-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  display: block;
+  margin-bottom: 8px;
+}
+
+/**
+ * HEADLINE / H2 / TÍTULO DE SEÇÃO PADRÃO OFICIAL
+ * Marvin Round Bold · Cor #1C1D22 · Destaques em Laranja #ef7a2b ou Verde #228137
+ */
+.ds-headline,
+h2.ds-headline {
+  font-family: var(--font-display);
+  font-size: clamp(24px, 4vw, 38px);
+  line-height: 1.18;
+  font-weight: 700;
+  color: var(--color-ink);
+  letter-spacing: -0.01em;
+  margin-top: 0;
+  margin-bottom: 12px;
+  word-break: break-word;
+}
+
+@media (min-width: 768px) {
+  .ds-headline,
+  h2.ds-headline {
+    font-size: 38px;
+    line-height: 1.18;
+  }
+}
+
+.ds-headline .highlight,
+.ds-headline span.text-brand-orange,
+.ds-headline span.text-highlight {
+  color: var(--color-secondary);
+}
+
+.ds-headline span.text-brand-green {
+  color: var(--color-primary);
+}
+
+.ds-headline.text-white,
+h2.ds-headline.text-white {
+  color: #FFFFFF !important;
+}
+
+/**
+ * TÍTULO PRINCIPAL HERO (H1)
+ * Marvin Round Bold · 48px Desktop / 28-34px Mobile · Line-height 1.15
+ */
+.ds-h1,
+h1.ds-h1 {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 5vw, 48px);
+  line-height: 1.15;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  color: var(--color-ink);
+  margin-top: 0;
+  margin-bottom: 16px;
+}
+
+h1.ds-h1.text-white {
+  color: #FFFFFF !important;
+}
+
+/**
+ * SUBTÍTULOS E TEXTOS DE APOIO
+ * Comfortaa Regular · Leitura limpa e acolhedora
+ */
+.ds-subtitle {
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 1.6;
+  font-weight: 400;
+  color: var(--color-body);
+  margin-top: 0;
+  margin-bottom: 16px;
+}
+
+@media (min-width: 768px) {
+  .ds-subtitle {
+    font-size: 16px;
+    line-height: 1.6;
+  }
+}
+
+.ds-subtitle.text-muted-light {
+  color: var(--color-muted-light);
+}
+
+/* ----------------------------------------------------------------------------
+   4. COMPONENTES PADRONIZADOS
+   ---------------------------------------------------------------------------- */
+
+/* BOTÕES PADRÃO DO DESIGN SYSTEM */
+.ds-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1;
+  padding: 12px 24px;
+  border-radius: var(--radius-full);
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid transparent;
+  user-select: none;
+}
+
+.ds-btn:active {
+  transform: scale(0.97);
+}
+
+/* Botão Primário: Verde Oficial #228137 */
+.ds-btn-primary {
+  background-color: var(--color-primary);
+  color: var(--color-on-primary);
+  border-color: var(--color-primary);
+}
+
+.ds-btn-primary:hover {
+  background-color: var(--color-primary-hover);
+  border-color: var(--color-primary-hover);
+  box-shadow: 0 6px 16px rgba(34, 129, 55, 0.3);
+  transform: translateY(-1px);
+}
+
+/* Botão Secundário: Laranja Oficial #ef7a2b */
+.ds-btn-secondary {
+  background-color: var(--color-secondary);
+  color: var(--color-on-secondary);
+  border-color: var(--color-secondary);
+}
+
+.ds-btn-secondary:hover {
+  background-color: var(--color-secondary-hover);
+  border-color: var(--color-secondary-hover);
+  box-shadow: 0 6px 16px rgba(239, 122, 43, 0.3);
+  transform: translateY(-1px);
+}
+
+/* Botão Outline */
+.ds-btn-outline {
+  background-color: transparent;
+  color: var(--color-ink);
+  border-color: var(--color-border-strong);
+}
+
+.ds-btn-outline:hover {
+  background-color: var(--color-primary-light);
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+.ds-btn-tertiary {
+  background-color: transparent;
+  color: var(--color-ink);
+  padding: 8px 12px;
+  font-size: 14px;
+  border: none;
+}
+
+.ds-btn-tertiary:hover {
+  color: var(--color-primary);
+}
+
+.ds-btn-disabled {
+  background-color: var(--color-primary-disabled);
+  color: var(--color-on-primary);
+  cursor: not-allowed;
+  border-color: var(--color-primary-disabled);
+  transform: none !important;
+}
+
+/* CARDS PADRONIZADOS */
+.ds-card {
+  background-color: #FFFFFF;
+  border: 1px solid var(--color-hairline);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-subtle);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.ds-card:hover {
+  box-shadow: var(--shadow-card);
+  transform: translateY(-3px);
+  border-color: var(--color-primary-soft);
+}
+
+.ds-card-dark {
+  background-color: var(--color-surface-dark-card);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-xl);
+  color: #FFFFFF;
+}
+
+/* BADGES E SELOS */
+.ds-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+}
+
+.ds-badge-primary {
+  background-color: var(--color-primary-light);
+  color: var(--color-primary);
+  border: 1px solid var(--color-primary-soft);
+}
+
+.ds-badge-secondary {
+  background-color: var(--color-secondary-light);
+  color: var(--color-secondary);
+  border: 1px solid var(--color-secondary-soft);
+}
+
+/* CAMPOS DE FORMULÁRIO (INPUTS) */
+.ds-input-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+}
+
+.ds-input-label {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-ink);
+}
+
+.ds-input {
+  border: 1px solid var(--color-hairline);
+  border-radius: var(--radius-md);
+  padding: 12px 16px;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  color: var(--color-ink);
+  background-color: #FFFFFF;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.ds-input:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-primary-light);
+}
+
+/* ----------------------------------------------------------------------------
+   5. DIRETRIZES DE LAYOUT — TRANSIÇÕES CONTÍNUAS ENTRE SEÇÕES
+   ---------------------------------------------------------------------------- */
+section,
+.ds-section {
+  border-top: none !important;
+  border-bottom: none !important;
+}
+
+/* Suavização de Rolagem */
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Ocultar barra de rolagem em trilhos horizontais */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* ----------------------------------------------------------------------------
+   6. COMPONENTES FIGMA OFICIAIS (PACOTES DE FESTA, ESTRUTURA & ESTADIA)
+   ---------------------------------------------------------------------------- */
+
+/* Grafismos Lúdicos & Sparks */
+.ds-doodle-spark {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ds-handwritten {
+  font-family: var(--font-handwritten);
+  color: #228137;
+  font-size: 1.25rem;
+  line-height: 1.2;
+}
+
+/* Badge Pílula de Categoria / Tag Superior */
+.ds-pill-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background-color: #eaf5ec;
+  color: #228137;
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+}
+
+.ds-pill-badge.badge-orange {
+  background-color: #fef1e8;
+  color: #ef7a2b;
+}
+
+/* ==========================================================================
+   PACOTES — FAÇA SUA FESTA (FIDELIDADE TOTAL FIGMA)
+   ========================================================================== */
+.ds-party-section-wrapper {
+  background-color: #FEFAEE;
+  position: relative;
+  overflow: hidden;
+  padding: 60px 24px 80px;
+  border-radius: 36px;
+  margin-bottom: 3rem;
+}
+
+.ds-party-wave-tl {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 140px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.ds-party-wave-br {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 130px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.ds-party-note-tr {
+  position: absolute;
+  top: 24px;
+  right: 28px;
+  font-family: var(--font-handwritten, 'Caveat', cursive);
+  color: #3b6645;
+  font-size: 1.45rem;
+  line-height: 1.15;
+  text-align: right;
+  transform: rotate(-6deg);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.ds-party-note-bl {
+  position: absolute;
+  bottom: 24px;
+  left: 28px;
+  font-family: var(--font-handwritten, 'Caveat', cursive);
+  color: #3b6645;
+  font-size: 1.4rem;
+  line-height: 1.15;
+  transform: rotate(4deg);
+  pointer-events: none;
+  z-index: 2;
+}
+
+@media (max-width: 768px) {
+  .ds-party-note-tr, .ds-party-note-bl, .ds-party-wave-tl, .ds-party-wave-br {
+    display: none;
+  }
+  .ds-party-section-wrapper {
+    padding: 40px 14px 50px;
+    border-radius: 24px;
+  }
+}
+
+.ds-festas-top-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background-color: #e2f2e5;
+  color: #165424;
+  font-family: var(--font-sans);
+  font-size: 11.5px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 6px 18px;
+  border-radius: 9999px;
+  margin-bottom: 12px;
+}
+
+.ds-festas-title {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  font-family: var(--font-display, 'Marvin Round', cursive, sans-serif);
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  line-height: 1.1;
+  margin: 0 auto 10px;
+  text-align: center;
+}
+
+.ds-festas-title .title-pacotes {
+  color: #165424;
+}
+
+.ds-festas-title .title-festa {
+  color: #ef7a2b;
+}
+
+.ds-title-sparks {
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+}
+
+.ds-party-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+  gap: 24px;
+  width: 100%;
+  position: relative;
+  z-index: 2;
+  margin-top: 20px;
+}
+
+.ds-party-card {
+  background: transparent;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.35s ease;
+  position: relative;
+  overflow: visible;
+  filter: drop-shadow(0 14px 24px rgba(0, 0, 0, 0.08));
+  margin-top: 48px;
+}
+
+.ds-party-card:hover {
+  transform: translateY(-8px);
+  filter: drop-shadow(0 22px 36px rgba(22, 84, 36, 0.22));
+}
+
+.ds-party-card.card-featured:hover {
+  filter: drop-shadow(0 22px 36px rgba(239, 122, 43, 0.25));
+}
+
+/* CABEÇALHO 100% PURO HTML/CSS (SEM RECORTE DE IMAGEM MONOLÍTICA) */
+.ds-party-card {
+  background: #FFFFFF;
+  border-radius: 28px;
+  box-shadow: 0 14px 34px -4px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  overflow: visible;
+  position: relative;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+  border: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.ds-party-card.card-featured {
+  box-shadow: 0 16px 36px -4px rgba(239, 122, 43, 0.22);
+}
+
+.ds-party-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 22px 42px -6px rgba(0, 0, 0, 0.12);
+}
+
+.ds-party-card.card-featured:hover {
+  box-shadow: 0 22px 44px -4px rgba(239, 122, 43, 0.32);
+}
+
+.ds-party-header-pure {
+  position: relative;
+  border-radius: 28px 28px 0 0;
+  padding: 85px 18px 22px;
+  text-align: center;
+  color: #FFFFFF;
+  overflow: visible;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  min-height: 185px;
+  box-sizing: border-box;
+}
+
+.ds-party-header-pure.theme-green {
+  background: #0d7335;
+  background: radial-gradient(circle at 50% 30%, #169345 0%, #0d7335 85%);
+}
+
+.ds-party-header-pure.theme-orange {
+  background: #f06c1c;
+  background: radial-gradient(circle at 50% 30%, #f78438 0%, #f06c1c 85%);
+}
+
+/* Nuvens decorativas de fundo do cabeçalho */
+.ds-header-cloud-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 28px 28px 0 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.ds-header-cloud-bg::before {
+  content: "";
+  position: absolute;
+  top: 25px;
+  left: -20px;
+  width: 140px;
+  height: 90px;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 50% 50% 0 0;
+}
+
+.ds-header-cloud-bg::after {
+  content: "";
+  position: absolute;
+  top: 15px;
+  right: -25px;
+  width: 160px;
+  height: 100px;
+  background: rgba(255, 255, 255, 0.10);
+  border-radius: 50% 50% 0 0;
+}
+
+/* Estágio do Objeto 3D Flutuante */
+.ds-party-3d-stage {
+  position: absolute;
+  top: -55px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 150px;
+  height: 135px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.ds-party-3d-stage img {
+  width: 135px;
+  height: 135px;
+  object-fit: contain;
+  filter: drop-shadow(0 14px 20px rgba(0, 0, 0, 0.28));
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.ds-party-card:hover .ds-party-3d-stage img {
+  transform: translateY(-8px) scale(1.08);
+}
+
+/* Faíscas / Doodle ao lado do objeto 3D */
+.ds-3d-sparkles {
+  position: absolute;
+  top: -10px;
+  width: 32px;
+  height: 32px;
+  pointer-events: none;
+  z-index: 4;
+}
+
+.ds-3d-sparkles.sparkle-left {
+  left: 48px;
+}
+
+.ds-3d-sparkles.sparkle-right {
+  right: 48px;
+}
+
+/* Tipografia Oficial do Cabeçalho Puro */
+.ds-party-header-pure .ds-party-card-title {
+  font-family: var(--font-display, 'Marvin Round', cursive, sans-serif);
+  font-size: 24px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  margin: 0 0 6px;
+  color: #FFFFFF;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.22);
+  position: relative;
+  z-index: 2;
+  line-height: 1.1;
+}
+
+.ds-party-header-pure .ds-party-card-desc {
+  font-family: var(--font-sans);
+  font-size: 11.5px;
+  font-weight: 500;
+  color: #FFFFFF;
+  margin: 0 auto;
+  line-height: 1.35;
+  max-width: 235px;
+  position: relative;
+  z-index: 2;
+  opacity: 0.95;
+}
+
+/* Transição curva orgânica entre cabeçalho e corpo */
+.ds-header-curve-bottom {
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  height: 18px;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.ds-party-card-inner {
+  background: #FFFFFF;
+  border-radius: 20px 20px 28px 28px;
+  margin-top: -8px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  position: relative;
+  z-index: 3;
+  box-shadow: 0 -4px 14px rgba(0, 0, 0, 0.04);
+}
+
+.ds-party-hero-wrap {
+  width: 100%;
+  position: relative;
+  overflow: visible;
+  margin-top: -12px;
+}
+
+.ds-party-hero-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  pointer-events: none;
+}
+
+.ds-party-body {
+  padding: 20px 20px 14px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.ds-party-item {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #f0f4f1;
+}
+
+.ds-party-item:last-child {
+  padding-bottom: 0;
+  margin-bottom: 0;
+  border-bottom: none;
+}
+
+.ds-party-item-icon {
+  width: 34px;
+  height: 34px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ds-party-item-icon img,
+.ds-party-item-icon svg {
+  width: 32px;
+  height: 32px;
+  display: block;
+}
+
+.ds-party-item-content {
+  flex: 1;
+  font-family: var(--font-sans);
+  font-size: 11px;
+  line-height: 1.4;
+  color: #374151;
+}
+
+.ds-party-item-title {
+  font-family: var(--font-sans);
+  font-size: 11.5px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: #0f4a25; /* Verde pinho escuro do Figma */
+  margin-bottom: 2px;
+}
+
+.ds-party-subtext {
+  display: block;
+  font-size: 9.5px;
+  color: #6b7280;
+  margin-top: 3px;
+  line-height: 1.35;
+}
+
+.ds-party-footer {
+  padding: 4px 20px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* COMPOUND DUAL PRICING BADGE */
+.ds-dual-badge {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 16px;
+  padding: 3px 3px 3px 14px;
+  box-sizing: border-box;
+  font-family: var(--font-sans);
+}
+
+.ds-dual-badge.badge-green {
+  background-color: #d7efe1;
+}
+
+.ds-dual-badge.badge-green .ds-badge-cap {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  color: #0f5e2b;
+}
+
+.ds-dual-badge.badge-green .ds-badge-divider {
+  color: #0f5e2b;
+  font-weight: 700;
+  opacity: 0.7;
+}
+
+.ds-dual-badge.badge-green .ds-badge-price {
+  background-color: #0c5c29;
+  color: #FFFFFF;
+  border-radius: 12px;
+  padding: 6px 16px;
+  font-family: var(--font-display, 'Marvin Round', sans-serif);
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+}
+
+.ds-dual-badge.badge-orange {
+  background-color: #fee8d6;
+}
+
+.ds-dual-badge.badge-orange .ds-badge-cap {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  color: #d85e13;
+}
+
+.ds-dual-badge.badge-orange .ds-badge-divider {
+  color: #d85e13;
+  font-weight: 700;
+  opacity: 0.7;
+}
+
+.ds-dual-badge.badge-orange .ds-badge-price {
+  background-color: #f16719;
+  color: #FFFFFF;
+  border-radius: 12px;
+  padding: 6px 16px;
+  font-family: var(--font-display, 'Marvin Round', sans-serif);
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+}
+
+/* ============================================================================
+   PADRÃO OFICIAL DE BOTÕES DE AÇÃO (CTA / BUTTON SYSTEM) - VILLA PLAZA PARK
+   ============================================================================
+   Regra de Ouro Oficial da Agência / Figma:
+   - TODOS OS BOTÕES seguem estritamente este padrão canônico:
+   1. Formato Pílula Contínua: border-radius: 9999px.
+   2. Hierarquia Tipográfica no Rótulo:
+      - Primeira(s) palavra(s) (verbo/ação principal) em NEGRITO DESTACADO (Bold 800)
+        via Comfortaa Ultra Bold / .btn-bold / .cta-bold / <strong>.
+      - Complemento da frase em peso REGULAR / MÉDIO 500.
+   3. Seta / Chevron direcional ">" no final (.ds-cta-arrow / .btn-arrow)
+      com microinteração suave de avanço no hover (transform: translateX(3px)).
+   4. Glow Shadow: sombra colorida projetada (drop-shadow suave na cor da marca).
+   ============================================================================ */
+
+.btn,
+.ds-btn,
+.ds-party-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 13px 26px;
+  border-radius: 9999px;
+  font-family: var(--font-btn, 'Fredoka', sans-serif);
+  font-size: 16px;
+  font-weight: 400;
+  color: #FFFFFF;
+  text-decoration: none;
+  transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-sizing: border-box;
+  cursor: pointer;
+  border: 2px solid transparent;
+  line-height: 1.2;
+}
+
+.ds-party-cta {
+  width: 100%;
+}
+
+.btn strong,
+.btn b,
+.btn .btn-bold,
+.btn .cta-bold,
+.ds-btn strong,
+.ds-btn b,
+.ds-btn .btn-bold,
+.ds-btn .cta-bold,
+.ds-party-cta strong,
+.ds-party-cta b,
+.ds-party-cta .cta-bold {
+  font-family: var(--font-btn, 'Fredoka', sans-serif);
+  font-weight: 700;
+  font-size: 16px;
+  letter-spacing: 0.01em;
+}
+
+.btn .ds-cta-arrow,
+.btn .btn-arrow,
+.ds-btn .ds-cta-arrow,
+.ds-btn .btn-arrow,
+.ds-party-cta .ds-cta-arrow {
+  font-family: var(--font-btn, 'Fredoka', sans-serif);
+  font-size: 16px;
+  line-height: 1;
+  font-weight: 600;
+  transition: transform 0.2s ease;
+  display: inline-block;
+  margin-left: 2px;
+}
+
+.btn:hover .ds-cta-arrow,
+.btn:hover .btn-arrow,
+.ds-btn:hover .ds-cta-arrow,
+.ds-btn:hover .btn-arrow,
+.ds-party-cta:hover .ds-cta-arrow {
+  transform: translateX(4px);
+}
+
+/* Variantes Primárias e Secundárias */
+.btn-primary,
+.cta-green,
+.btn-green {
+  background-color: #0c6830;
+  border-color: #0c6830;
+  color: #FFFFFF;
+  box-shadow: 0 8px 20px rgba(12, 104, 48, 0.38);
+}
+
+.btn-primary:hover,
+.cta-green:hover,
+.btn-green:hover {
+  background-color: #084e23;
+  border-color: #084e23;
+  color: #FFFFFF;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 26px rgba(12, 104, 48, 0.48);
+}
+
+.btn-secondary,
+.cta-orange,
+.btn-orange {
+  background-color: #f16719;
+  border-color: #f16719;
+  color: #FFFFFF;
+  box-shadow: 0 8px 20px rgba(241, 103, 25, 0.38);
+}
+
+.btn-secondary:hover,
+.cta-orange:hover,
+.btn-orange:hover {
+  background-color: #d6540c;
+  border-color: #d6540c;
+  color: #FFFFFF;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 26px rgba(241, 103, 25, 0.48);
+}
+
+.btn-outline-green {
+  background: transparent;
+  border-color: #0c6830;
+  color: #0c6830;
+}
+
+.btn-outline-green:hover {
+  background-color: #0c6830;
+  color: #FFFFFF;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(12, 104, 48, 0.3);
+}
+
+.btn-outline-orange {
+  background: transparent;
+  border-color: #f16719;
+  color: #f16719;
+}
+
+.btn-outline-orange:hover {
+  background-color: #f16719;
+  color: #FFFFFF;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(241, 103, 25, 0.3);
+}
+
+.btn-outline-white {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-color: rgba(255, 255, 255, 0.45);
+  color: #FFFFFF;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+}
+
+.btn-outline-white:hover {
+  background: rgba(255, 255, 255, 0.28);
+  border-color: rgba(255, 255, 255, 0.75);
+  color: #FFFFFF;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+.btn-whatsapp {
+  background-color: #25D366;
+  border-color: #25D366;
+  color: #FFFFFF;
+  box-shadow: 0 8px 20px rgba(37, 211, 102, 0.35);
+}
+
+.btn-whatsapp:hover {
+  background-color: #1ea952;
+  border-color: #1ea952;
+  color: #FFFFFF;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 26px rgba(37, 211, 102, 0.45);
+}
+
+/* Padronização de botões específicos em index.html */
+.nav-btn-order,
+.category-cta-button,
+.btn-drawer-cta {
+  font-family: var(--font-btn, 'Fredoka', 'Comfortaa', cursive, sans-serif) !important;
+  border-radius: 9999px !important;
+}
+
+.nav-btn-order strong,
+.category-cta-button strong,
+.btn-drawer-cta strong {
+  font-family: var(--font-btn, 'Fredoka', 'Comfortaa', cursive, sans-serif) !important;
+  font-weight: 700 !important;
+}
+
+/* ESTRUTURA COMPLETA DA FESTA (GRID DE COMODIDADES) */
+.ds-features-box {
+  background: #228137;
+  border-radius: 32px;
+  padding: 36px 28px;
+  color: #FFFFFF;
+}
+
+.ds-features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+  gap: 14px;
+  margin: 24px 0;
+}
+
+.ds-feature-item {
+  background: #FFFFFF;
+  border-radius: 18px;
+  padding: 14px 10px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: #165424;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.ds-feature-item i,
+.ds-feature-item svg {
+  font-size: 22px;
+  color: #228137;
+}
+
+.ds-feature-item span {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1.25;
+  color: #1C1D22;
+}
+
+.ds-capacity-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #ef7a2b;
+  color: #FFFFFF;
+  padding: 8px 18px;
+  border-radius: var(--radius-full);
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* CARD RESUMO "AGORA SÓ FALTA ESCOLHER A FESTA!" */
+.ds-party-summary-card {
+  background: #FFFDF9;
+  border: 2px dashed #ef7a2b;
+  border-radius: 28px;
+  padding: 32px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.ds-summary-title {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: #ef7a2b;
+  margin: 0;
+  text-align: center;
+}
+
+.ds-summary-step {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: #1C1D22;
+}
+
+.ds-summary-step-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #fef1e8;
+  color: #ef7a2b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  flex-shrink: 0;
+}
+
+/* INGRESSOS & ESTADIA (PASSAPORTES) */
+.ds-tickets-bar {
+  background: #165424;
+  border-radius: 28px;
+  padding: 32px 24px;
+  color: #FFFFFF;
+}
+
+.ds-tickets-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 14px;
+  margin: 20px 0;
+}
+
+.ds-ticket-item {
+  background: #FFF9F3;
+  border-radius: 18px;
+  padding: 16px 12px;
+  text-align: center;
+  color: #1C1D22;
+  position: relative;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.ds-ticket-header {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: #ef7a2b;
+  margin-bottom: 4px;
+}
+
+.ds-ticket-price {
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 800;
+  color: #1C1D22;
+}
+
+.ds-ticket-price small {
+  font-size: 13px;
+  font-weight: 700;
+}
+
+/* HORÁRIOS DE FUNCIONAMENTO */
+.ds-hours-pills {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 16px;
+}
+
+.ds-hour-pill {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #FFFFFF;
+  padding: 8px 16px;
+  border-radius: var(--radius-full);
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* BANNER DE URGÊNCIA (MEGAPHONE BAR) */
+.ds-urgency-callout {
+  background: #FFFFFF;
+  border-radius: var(--radius-full);
+  padding: 10px 16px 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  box-shadow: var(--shadow-card);
+  border: 1px solid var(--color-hairline);
+}
+
+
+/* ============================================================================
+   PADRÃO OFICIAL DE HEADLINES DUOTONE & RAIOS LÚDICOS (VILLA PLAZA PARK)
+   ============================================================================
+   Regra de Ouro:
+   - Títulos de seção principais usam Marvin Round 800 em caixa alta (UPPERCASE).
+   - Combinação Duotone: Verde Oficial (#228137 ou #165424) + Destaque Laranja (#EF7A2B).
+   - Acentos visuais ("sparks" / raios de energia) emolduram o título.
+   - Badge pill opcional no topo indicando contexto/categoria.
+   - Subtítulo em Comfortaa (peso 500/600) para leitura amigável.
+   ============================================================================ */
+
+.ds-headline-wrapper {
+  text-align: center;
+  margin-bottom: 2.5rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ============================================================================
+   BADGES OFICIAIS PARA HEADLINES E SEÇÕES (PADRÃO OURO FIGMA)
+   ============================================================================ */
+
+/* 1. Base Canônica de Tags & Badges de Headline (Independente da cor: Pílula 9999px + Ícone + Fredoka 700) */
+.ds-tag,
+.ds-headline-badge,
+.ds-festas-top-badge,
+.ds-badge-headline-green {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background-color: #e1f3e7;
+  color: #05712b;
+  border: none;
+  border-radius: 9999px !important;
+  padding: 8px 22px;
+  font-family: var(--font-btn, 'Fredoka', 'Comfortaa', sans-serif);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  line-height: 1;
+  margin-bottom: 0.75rem;
+  box-shadow: none;
+  transform: none !important;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.ds-tag i,
+.ds-tag svg,
+.ds-headline-badge i,
+.ds-festas-top-badge i,
+.ds-badge-headline-green i {
+  color: #05712b;
+  font-size: 15px;
+  line-height: 1;
+}
+
+/* Variante Verde (Festas, Aniversários, Natureza) */
+.ds-tag-green,
+.ds-headline-badge.badge-green,
+.ds-badge-headline-green {
+  background-color: #e1f3e7;
+  color: #05712b;
+}
+
+.ds-tag-green i,
+.ds-headline-badge.badge-green i,
+.ds-badge-headline-green i {
+  color: #05712b;
+}
+
+/* 2. Variante Laranja (Unidades, Localização, Informações) */
+.ds-tag-orange,
+.ds-headline-badge.badge-orange,
+.ds-headline-badge-orange,
+.ds-badge-headline-orange {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background-color: #fef4e3;
+  color: #fb4f02;
+  border: none;
+  border-radius: 9999px !important;
+  padding: 8px 22px;
+  font-family: var(--font-btn, 'Fredoka', 'Comfortaa', sans-serif);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  transform: none !important;
+  line-height: 1;
+  margin-bottom: 0.75rem;
+  box-shadow: none;
+  transition: transform 0.2s ease;
+}
+
+.ds-tag-orange i,
+.ds-tag-orange svg,
+.ds-headline-badge.badge-orange i,
+.ds-headline-badge-orange i,
+.ds-badge-headline-orange i {
+  color: #fb4f02;
+  font-size: 15px;
+  line-height: 1;
+}
+
+/* Reset absoluto de inclinação legada */
+.ds-badge-tilted {
+  transform: none !important;
+  display: inline-flex;
+}
+
+/* Container do Título com Raios Laterais */
+.ds-title-container {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.85rem;
+  position: relative;
+  max-width: 100%;
+}
+
+/* Tipografia do Título Duotone */
+.ds-duotone-title {
+  font-family: var(--font-display, 'Marvin Round', 'Comfortaa', sans-serif);
+  font-weight: 800;
+  font-size: clamp(1.85rem, 4vw, 2.75rem);
+  line-height: 1.15;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  margin: 0;
+  color: #228137; /* Verde Primário */
+}
+
+.ds-duotone-title.title-deep-green {
+  color: #165424;
+}
+
+/* Palavra ou trecho em Laranja */
+.ds-duotone-title .text-orange,
+.ds-duotone-title .highlight-orange,
+.text-orange {
+  color: #EF7A2B !important; /* Laranja Oficial */
+}
+
+.ds-duotone-title .text-green,
+.text-green {
+  color: #228137 !important;
+}
+
+/* Raios de Energia / Sparks Laterais */
+.ds-spark-rays {
+  display: inline-block;
+  flex-shrink: 0;
+  width: 38px;
+  height: 38px;
+  transition: transform 0.3s ease;
+}
+
+.ds-title-container:hover .ds-spark-rays {
+  transform: scale(1.1);
+}
+
+@media (max-width: 640px) {
+  .ds-spark-rays {
+    width: 28px;
+    height: 28px;
+  }
+  .ds-title-container {
+    gap: 0.4rem;
+  }
+}
+
+@media (max-width: 420px) {
+  .ds-spark-rays {
+    display: none; /* Em telas ultracompactas, oculta os raios para não quebrar texto */
+  }
+}
+
+/* Subtítulo da Headline */
+.ds-headline-sub {
+  font-family: var(--font-body, 'Comfortaa', cursive, sans-serif);
+  font-size: clamp(0.95rem, 2vw, 1.1rem);
+  font-weight: 500;
+  color: #2C3E50;
+  max-width: 680px;
+  margin: 0.75rem auto 0 auto;
+  line-height: 1.55;
+  text-align: center;
+}
+
+/* ==========================================================================
+   ACERVO CANÔNICO DE OBJETOS 3D OFICIAIS (CLAY / BLENDER STYLE)
+   ========================================================================== */
+.ds-3d-catalog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+  margin-top: 24px;
+}
+
+.ds-3d-card {
+  background: #FFFFFF;
+  border-radius: 24px;
+  padding: 22px 18px 18px;
+  box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.06);
+  border: 1px solid var(--color-hairline);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.ds-3d-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 32px -8px rgba(34, 129, 55, 0.16);
+}
+
+.ds-3d-card-preview {
+  width: 120px;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 14px;
+  background: radial-gradient(circle, rgba(239, 122, 43, 0.08) 0%, rgba(34, 129, 55, 0.04) 70%, transparent 100%);
+  border-radius: 20px;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.ds-3d-card-preview img {
+  width: 100px;
+  height: 100px;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 8px 14px rgba(0, 0, 0, 0.16));
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  display: block;
+}
+
+.ds-3d-card:hover .ds-3d-card-preview img {
+  transform: scale(1.1) translateY(-4px);
+}
+
+.ds-3d-card-name {
+  font-family: var(--font-display, 'Marvin Round', cursive, sans-serif);
+  font-size: 15px;
+  font-weight: 800;
+  color: #165424;
+  margin: 0 0 4px;
+  line-height: 1.25;
+}
+
+.ds-3d-card-usage {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  color: #757885;
+  margin: 0 0 10px;
+  line-height: 1.35;
+}
+
+.ds-3d-card-tag {
+  display: inline-block;
+  font-size: 9.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 3px 10px;
+  border-radius: 9999px;
+  background-color: #f1f8f3;
+  color: #165424;
+  margin-top: auto;
+}
+
+.ds-3d-card-tag.tag-orange {
+  background-color: #fef1e8;
+  color: #bf5412;
+}
+
+/* ============================================================================
+   DESIGN SYSTEM DOCUMENTATION PORTAL — LAYOUT, SIDEBAR & UI TOKENS
+   ============================================================================ */
+
+.ds-app-layout {
+  display: flex;
+  min-height: 100vh;
+  background-color: #F8FAF9;
+  position: relative;
+}
+
+/* SIDEBAR FIXA (DESKTOP) */
+.ds-sidebar {
+  width: 290px;
+  flex-shrink: 0;
+  background: #FFFFFF;
+  border-right: 1px solid #E2E8F0;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+  padding: 1.5rem 1.25rem 2rem;
+  display: flex;
+  flex-direction: column;
+  z-index: 100;
+  box-sizing: border-box;
+  scrollbar-width: thin;
+  scrollbar-color: #CBD5E1 transparent;
+}
+
+.ds-sidebar::-webkit-scrollbar {
+  width: 5px;
+}
+.ds-sidebar::-webkit-scrollbar-thumb {
+  background-color: #CBD5E1;
+  border-radius: 4px;
+}
+
+.ds-sidebar-brand {
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid #EDF2F7;
+  margin-bottom: 1.25rem;
+}
+
+.ds-sidebar-logo-wrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+}
+
+.ds-sidebar-logo {
+  height: 48px;
+  width: auto;
+  object-fit: contain;
+}
+
+.ds-sidebar-brand-title {
+  font-family: var(--font-display, 'Marvin Round', cursive, sans-serif);
+  font-size: 15px;
+  font-weight: 800;
+  color: #165424;
+  line-height: 1.2;
+}
+
+.ds-sidebar-ver {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 6px;
+  background: #eaf5ec;
+  color: #228137;
+  font-size: 10px;
+  font-weight: 800;
+  padding: 3px 8px;
+  border-radius: 9999px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.ds-sidebar-search {
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+.ds-sidebar-search i {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #94A3B8;
+  font-size: 12px;
+}
+
+.ds-sidebar-search input {
+  width: 100%;
+  padding: 8px 12px 8px 34px;
+  border-radius: 10px;
+  border: 1px solid #E2E8F0;
+  background: #F8FAFC;
+  font-family: var(--font-sans, 'Comfortaa', cursive, sans-serif);
+  font-size: 12px;
+  color: #1C1D22;
+  box-sizing: border-box;
+  transition: all 0.2s;
+  outline: none;
+}
+
+.ds-sidebar-search input:focus {
+  border-color: #228137;
+  background: #FFFFFF;
+  box-shadow: 0 0 0 3px rgba(34, 129, 55, 0.12);
+}
+
+.ds-sidebar-nav {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.ds-nav-group-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11.5px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #64748B;
+  text-decoration: none;
+  padding: 4px 6px;
+  margin-bottom: 6px;
+  transition: color 0.2s;
+}
+
+.ds-nav-group-title:hover {
+  color: #228137;
+}
+
+.ds-num-pill {
+  background: #F1F5F9;
+  color: #475569;
+  font-size: 9.5px;
+  font-weight: 800;
+  padding: 2px 6px;
+  border-radius: 6px;
+  letter-spacing: 0;
+}
+
+.ds-nav-group-title:hover .ds-num-pill {
+  background: #eaf5ec;
+  color: #228137;
+}
+
+.ds-nav-sub {
+  list-style: none;
+  margin: 0;
+  padding: 0 0 0 8px;
+  border-left: 2px solid #F1F5F9;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.ds-nav-sub li a {
+  display: block;
+  padding: 5px 10px;
+  border-radius: 8px;
+  font-size: 12.5px;
+  color: #475569;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.18s ease;
+  line-height: 1.35;
+}
+
+.ds-nav-sub li a:hover {
+  color: #165424;
+  background: #F1F5F2;
+  transform: translateX(2px);
+}
+
+.ds-nav-sub li a.active {
+  color: #228137;
+  background: #eaf5ec;
+  font-weight: 800;
+}
+
+.ds-sidebar-footer {
+  padding-top: 1.25rem;
+  border-top: 1px solid #EDF2F7;
+  margin-top: 1rem;
+}
+
+.ds-sidebar-site-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: #eaf5ec;
+  color: #228137;
+  text-decoration: none;
+  padding: 10px 14px;
+  border-radius: 12px;
+  font-size: 12.5px;
+  font-weight: 700;
+  transition: all 0.2s;
+  border: 1px solid #d1ebd6;
+}
+
+.ds-sidebar-site-link:hover {
+  background: #228137;
+  color: #FFFFFF;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(34, 129, 55, 0.25);
+}
+
+/* ÁREA PRINCIPAL DE CONTEÚDO */
+.ds-main-wrap {
+  flex: 1;
+  min-width: 0;
+  padding: 3rem 4rem 6rem;
+  background: #F8FAF9;
+  box-sizing: border-box;
+}
+
+/* TOPBAR MOBILE */
+.ds-mobile-topbar {
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.25rem;
+  background: #FFFFFF;
+  border-bottom: 1px solid #E2E8F0;
+  position: sticky;
+  top: 0;
+  z-index: 95;
+}
+
+.ds-mobile-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.ds-mobile-brand img {
+  height: 38px;
+}
+
+.ds-mobile-brand span {
+  font-family: var(--font-display, 'Marvin Round', cursive, sans-serif);
+  font-size: 14px;
+  font-weight: 800;
+  color: #165424;
+}
+
+.ds-mobile-menu-btn {
+  background: #eaf5ec;
+  color: #228137;
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+/* MÓDULO HEADERS (01, 02, 03, 04, 05) */
+.ds-module-header {
+  background: linear-gradient(135deg, #165424 0%, #0c6830 100%);
+  color: #FFFFFF;
+  border-radius: 28px;
+  padding: 2.5rem 2.5rem;
+  margin-bottom: 3.5rem;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 12px 32px rgba(22, 84, 36, 0.18);
+}
+
+.ds-module-header.module-orange {
+  background: linear-gradient(135deg, #f16719 0%, #bf5412 100%);
+  box-shadow: 0 12px 32px rgba(241, 103, 25, 0.2);
+}
+
+.ds-module-header.module-dark {
+  background: linear-gradient(135deg, #1C1D22 0%, #2D3139 100%);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+}
+
+.ds-module-num {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(8px);
+  color: #FFFFFF;
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 5px 14px;
+  border-radius: 9999px;
+  margin-bottom: 0.75rem;
+}
+
+.ds-module-title {
+  font-family: var(--font-display, 'Marvin Round', cursive, sans-serif);
+  font-size: clamp(2rem, 3.5vw, 2.8rem);
+  font-weight: 800;
+  margin: 0 0 0.5rem;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+
+.ds-module-desc {
+  font-size: 1.05rem;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0;
+  max-width: 760px;
+  line-height: 1.5;
+}
+
+/* SEÇÃO INDIVIDUAL */
+.ds-doc-section {
+  background: #FFFFFF;
+  border-radius: 24px;
+  padding: 2.5rem;
+  margin-bottom: 3rem;
+  border: 1px solid #E2E8F0;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+}
+
+.ds-doc-section-head {
+  border-bottom: 1px solid #F1F5F9;
+  padding-bottom: 1.25rem;
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.ds-doc-title {
+  font-family: var(--font-display, 'Marvin Round', cursive, sans-serif);
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #1C1D22;
+  margin: 0 0 0.35rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.ds-doc-title i {
+  color: #228137;
+  font-size: 1.25rem;
+}
+
+.ds-doc-desc {
+  color: #64748B;
+  font-size: 0.92rem;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* COMPONENT PREVIEW BOX */
+.ds-preview-box {
+  background: #F8FAF9;
+  border-radius: 18px;
+  padding: 2rem;
+  border: 1px solid #E2E8F0;
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+.ds-preview-label {
+  display: inline-block;
+  font-size: 10.5px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #64748B;
+  background: #FFFFFF;
+  padding: 4px 10px;
+  border-radius: 6px;
+  border: 1px solid #E2E8F0;
+  margin-bottom: 1.25rem;
+}
+
+/* BOTÃO DE COPIAR TOKEN */
+.ds-token-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #F1F5F9;
+  color: #334155;
+  font-family: var(--font-mono, monospace);
+  font-size: 11px;
+  padding: 4px 9px;
+  border-radius: 6px;
+  cursor: pointer;
+  border: 1px solid #CBD5E1;
+  transition: all 0.2s;
+  user-select: all;
+}
+
+.ds-token-badge:hover {
+  background: #228137;
+  color: #FFFFFF;
+  border-color: #228137;
+}
+
+.ds-token-badge i {
+  font-size: 10px;
+  opacity: 0.7;
+}
+
+/* TOAST FEEDBACK */
+.ds-toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: #1C1D22;
+  color: #FFFFFF;
+  padding: 12px 20px;
+  border-radius: 12px;
+  font-size: 13px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  transform: translateY(100px);
+  opacity: 0;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  pointer-events: none;
+}
+
+.ds-toast.show {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.ds-toast i {
+  color: #10B981;
+}
+
+/* RÉGUA VISUAL DE ESPAÇAMENTO */
+.ds-spacing-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.ds-spacing-table th,
+.ds-spacing-table td {
+  padding: 10px 14px;
+  text-align: left;
+  border-bottom: 1px solid #EDF2F7;
+  font-size: 13px;
+}
+
+.ds-spacing-table th {
+  font-weight: 800;
+  color: #475569;
+  text-transform: uppercase;
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  background: #F8FAFC;
+}
+
+.ds-spacing-bar-wrap {
+  display: flex;
+  align-items: center;
+  height: 24px;
+}
+
+.ds-spacing-bar {
+  height: 18px;
+  background: #228137;
+  border-radius: 4px;
+  opacity: 0.85;
+}
+
+/* BORDER RADIUS CARDS */
+.ds-radius-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 1.25rem;
+}
+
+.ds-radius-card {
+  background: #F8FAF9;
+  border: 2px dashed #CBD5E1;
+  padding: 1.5rem 1rem;
+  text-align: center;
+  transition: all 0.2s;
+}
+
+.ds-radius-card:hover {
+  border-color: #228137;
+  background: #eaf5ec;
+}
+
+.ds-radius-box {
+  width: 70px;
+  height: 70px;
+  background: #228137;
+  margin: 0 auto 12px;
+  box-shadow: 0 4px 12px rgba(34, 129, 55, 0.2);
+}
+
+.ds-radius-name {
+  font-weight: 800;
+  font-size: 13px;
+  color: #1C1D22;
+  margin-bottom: 2px;
+}
+
+.ds-radius-val {
+  font-family: var(--font-mono, monospace);
+  font-size: 11px;
+  color: #64748B;
+}
+
+/* ELEVATION / SHADOW CARDS */
+.ds-elevation-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1.5rem;
+}
+
+.ds-elevation-card {
+  background: #FFFFFF;
+  border-radius: 18px;
+  padding: 2rem 1.25rem;
+  text-align: center;
+  border: 1px solid #E2E8F0;
+  transition: transform 0.2s ease;
+}
+
+.ds-elevation-card:hover {
+  transform: translateY(-4px);
+}
+
+.ds-elevation-title {
+  font-weight: 800;
+  font-size: 14px;
+  color: #1C1D22;
+  margin-bottom: 4px;
+}
+
+.ds-elevation-desc {
+  font-size: 11px;
+  color: #64748B;
+  line-height: 1.4;
+}
+
+/* FORM ELEMENTS */
+.ds-form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
+
+.ds-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.ds-form-label {
+  font-size: 13px;
+  font-weight: 700;
+  color: #1C1D22;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.ds-input,
+.ds-select,
+.ds-textarea {
+  width: 100%;
+  padding: 12px 16px;
+  border-radius: 14px;
+  border: 1.5px solid #CBD5CE;
+  background: #FFFFFF;
+  font-family: var(--font-sans, 'Comfortaa', cursive, sans-serif);
+  font-size: 14px;
+  color: #1C1D22;
+  outline: none;
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+}
+
+.ds-input:focus,
+.ds-select:focus,
+.ds-textarea:focus {
+  border-color: #228137;
+  box-shadow: 0 0 0 3px rgba(34, 129, 55, 0.15);
+}
+
+.ds-input.is-error {
+  border-color: #EF4444;
+  background: #FEF2F2;
+}
+
+.ds-form-error-msg {
+  color: #DC2626;
+  font-size: 11.5px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.ds-input:disabled {
+  background: #F1F5F9;
+  border-color: #E2E8F0;
+  color: #94A3B8;
+  cursor: not-allowed;
+}
+
+/* TOGGLES, CHECKBOXES & RADIOS */
+.ds-toggle-wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.ds-toggle {
+  position: relative;
+  width: 48px;
+  height: 26px;
+  background: #CBD5E1;
+  border-radius: 9999px;
+  transition: background 0.25s;
+}
+
+.ds-toggle.active {
+  background: #228137;
+}
+
+.ds-toggle-handle {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 20px;
+  height: 20px;
+  background: #FFFFFF;
+  border-radius: 50%;
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+}
+
+.ds-toggle.active .ds-toggle-handle {
+  transform: translateX(22px);
+}
+
+/* MATRIZ DE ESTADOS DE BOTÕES */
+.ds-state-matrix {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+.ds-state-matrix th,
+.ds-state-matrix td {
+  padding: 12px 14px;
+  text-align: center;
+  border: 1px solid #E2E8F0;
+  font-size: 12.5px;
+}
+
+.ds-state-matrix th {
+  background: #F8FAFC;
+  font-weight: 800;
+  color: #475569;
+}
+
+.ds-state-matrix td:first-child {
+  text-align: left;
+  font-weight: 700;
+  background: #FAFAFA;
+}
+
+/* DIRETRIZES: FAÇA & EVITE (DO's & DON'Ts) */
+.ds-guidelines-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+}
+
+.ds-guideline-card {
+  border-radius: 20px;
+  padding: 2rem;
+  box-sizing: border-box;
+}
+
+.ds-guideline-card.do {
+  background: #F0FDF4;
+  border: 2px solid #86EFAC;
+}
+
+.ds-guideline-card.dont {
+  background: #FEF2F2;
+  border: 2px solid #FCA5A5;
+}
+
+.ds-guideline-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.25rem;
+  font-weight: 800;
+  margin-bottom: 1.25rem;
+}
+
+.ds-guideline-card.do .ds-guideline-head {
+  color: #166534;
+}
+
+.ds-guideline-card.dont .ds-guideline-head {
+  color: #991B1B;
+}
+
+.ds-guideline-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.ds-guideline-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 13.5px;
+  line-height: 1.45;
+  color: #334155;
+}
+
+.ds-guideline-card.do .ds-guideline-list li i {
+  color: #16A34A;
+  margin-top: 3px;
+  font-size: 15px;
+}
+
+.ds-guideline-card.dont .ds-guideline-list li i {
+  color: #DC2626;
+  margin-top: 3px;
+  font-size: 15px;
+}
+
+/* RESPONSIVIDADE DO PORTAL */
+@media (max-width: 1024px) {
+  .ds-sidebar {
+    position: fixed;
+    left: -310px;
+    top: 0;
+    bottom: 0;
+    transition: left 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
+  }
+
+  .ds-sidebar.is-open {
+    left: 0;
+  }
+
+  .ds-sidebar-backdrop {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 99;
+  }
+
+  .ds-sidebar-backdrop.is-open {
+    display: block;
+  }
+
+  .ds-mobile-topbar {
+    display: flex;
+  }
+
+  .ds-main-wrap {
+    padding: 1.5rem 1.25rem 4rem;
+  }
+
+  .ds-module-header {
+    padding: 1.75rem 1.5rem;
+    border-radius: 20px;
+    margin-bottom: 2rem;
+  }
+
+  .ds-doc-section {
+    padding: 1.5rem;
+    border-radius: 18px;
+    margin-bottom: 2rem;
+  }
+}
+
+/* ==========================================================================
+   VILLA PLAZA PARK — COMPONENTES ESPECÍFICOS & SEÇÕES DO DESIGN SYSTEM
+   ========================================================================== */
+
+/* PALETA & SWATCHES */
+.ds-palette-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.ds-color-card {
+  background: #ffffff;
+  border: 1px solid var(--color-border, #E2E8F0);
+  border-radius: var(--radius-md, 14px);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm, 0 2px 8px rgba(0,0,0,0.04));
+  display: flex;
+  flex-direction: column;
+}
+
+.ds-color-swatch {
+  height: 90px;
+  padding: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  position: relative;
+}
+
+.ds-color-copy-btn {
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(0,0,0,0.1);
+  border-radius: 9999px;
+  padding: 4px 10px;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.ds-color-copy-btn:hover {
+  background: #ffffff;
+  transform: scale(1.05);
+}
+
+.ds-color-info {
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.ds-color-name {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--color-ink, #1C1D22);
+  margin: 0;
+}
+
+.ds-color-role {
+  font-size: 12px;
+  color: var(--color-muted, #64748B);
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* ACERVO DE OBJETOS 3D */
+.ds-3d-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.ds-3d-card {
+  background: #ffffff;
+  border: 1px solid var(--color-border, #E2E8F0);
+  border-radius: var(--radius-lg, 20px);
+  padding: 18px 14px;
+  text-align: center;
+  box-shadow: var(--shadow-sm, 0 2px 8px rgba(0,0,0,0.04));
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.ds-3d-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md, 0 8px 24px rgba(0,0,0,0.08));
+}
+
+.ds-3d-thumb {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  margin-bottom: 12px;
+  filter: drop-shadow(0 6px 12px rgba(0,0,0,0.15));
+}
+
+.ds-3d-name {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--color-ink, #1C1D22);
+  margin: 0 0 4px;
+}
+
+.ds-3d-path {
+  font-size: 10px;
+  color: var(--color-muted, #64748B);
+  font-family: var(--font-mono, monospace);
+  word-break: break-all;
+}
+
+/* PACOTES FAÇA SUA FESTA (4.1) */
+.ds-party-section-wrapper {
+  background: var(--color-party-cream, #FEFAEE);
+  border-radius: 28px;
+  padding: 60px 40px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-card, 0 8px 30px rgba(0,0,0,0.06));
+}
+
+.ds-party-wave-tl {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 140px;
+  pointer-events: none;
+}
+
+.ds-party-wave-br {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 140px;
+  pointer-events: none;
+}
+
+.ds-party-note-tr {
+  position: absolute;
+  top: 30px;
+  right: 40px;
+  font-family: 'Caveat', cursive;
+  font-size: 26px;
+  font-weight: 700;
+  color: #165424;
+  line-height: 1.1;
+  transform: rotate(5deg);
+}
+
+.ds-party-note-bl {
+  position: absolute;
+  bottom: 30px;
+  left: 40px;
+  font-family: 'Caveat', cursive;
+  font-size: 26px;
+  font-weight: 700;
+  color: #ef7a2b;
+  line-height: 1.1;
+  transform: rotate(-5deg);
+}
+
+
+.ds-festas-title {
+  font-family: var(--font-display, 'Marvin Round', cursive);
+  font-size: 38px;
+  line-height: 1.1;
+  margin: 0;
+}
+
+.ds-festas-title .title-pacotes {
+  color: #228137;
+}
+
+.ds-festas-title .title-festa {
+  color: #ef7a2b;
+}
+
+.ds-party-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  position: relative;
+  z-index: 2;
+  margin-top: 50px;
+}
+
+@media (max-width: 992px) {
+  .ds-party-grid {
+    grid-template-columns: 1fr;
+  }
+  .ds-party-note-tr, .ds-party-note-bl {
+    display: none;
+  }
+}
+
+.ds-party-card {
+  background: #ffffff;
+  border-radius: 24px;
+  overflow: visible;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.06);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  position: relative;
+  margin-top: 60px;
+}
+
+.ds-party-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+}
+
+.ds-party-header-pure {
+  position: relative;
+  padding: 65px 24px 22px;
+  text-align: center;
+  color: #ffffff;
+  border-radius: 24px 24px 0 0;
+}
+
+.ds-party-header-pure.theme-green {
+  background: linear-gradient(180deg, #228137 0%, #165424 100%);
+}
+
+.ds-party-header-pure.theme-orange {
+  background: linear-gradient(180deg, #ef7a2b 0%, #d85c10 100%);
+}
+
+.ds-topper-3d-wrapper {
+  position: absolute;
+  top: -65px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 130px;
+  height: 130px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.ds-topper-3d-img {
+  width: 100%;
+  height: 100%;
+  max-width: 130px;
+  max-height: 130px;
+  object-fit: contain;
+  filter: drop-shadow(0 12px 16px rgba(0,0,0,0.25));
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.ds-party-card:hover .ds-topper-3d-img {
+  transform: scale(1.12) translateY(-4px);
+}
+
+.ds-card-title-pure {
+  font-family: var(--font-display, 'Marvin Round', cursive);
+  font-size: 22px;
+  margin: 0 0 6px;
+  letter-spacing: 0.5px;
+}
+
+.ds-card-subtitle-pure {
+  font-family: var(--font-sans, 'Comfortaa', sans-serif);
+  font-size: 13px;
+  margin: 0;
+  opacity: 0.92;
+  line-height: 1.4;
+}
+
+.ds-party-body-white {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  justify-content: space-between;
+}
+
+.ds-party-items-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.ds-menu-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.ds-item-ico {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.ds-item-texts {
+  display: flex;
+  flex-direction: column;
+}
+
+.ds-item-name {
+  font-size: 12px;
+  font-weight: 800;
+  color: #165424;
+  letter-spacing: 0.5px;
+}
+
+.ds-item-desc {
+  font-size: 12px;
+  color: #555;
+  margin: 2px 0 0;
+  line-height: 1.4;
+}
+
+.ds-party-cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  border-radius: 9999px;
+  padding: 13px 24px;
+  font-family: var(--font-btn, 'Fredoka', sans-serif);
+  font-size: 16px;
+  font-weight: 400;
+  color: #ffffff;
+  transition: all 0.25s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.ds-party-cta.cta-green {
+  background: #0c6830;
+  box-shadow: 0 6px 18px rgba(12, 104, 48, 0.35);
+}
+
+.ds-party-cta.cta-orange {
+  background: #f16719;
+  box-shadow: 0 6px 18px rgba(241, 103, 25, 0.35);
+}
+
+.ds-party-cta:hover {
+  filter: brightness(1.08);
+  transform: translateY(-2px);
+}
+
+.ds-party-cta .cta-bold {
+  font-family: var(--font-btn, 'Fredoka', sans-serif);
+  font-weight: 700;
+}
+
+/* ESTRUTURA DA FESTA (11 ITENS) */
+.ds-features-side-box {
+  background: linear-gradient(135deg, #228137 0%, #165424 100%);
+  border-radius: 28px;
+  padding: 44px 40px;
+  color: #ffffff;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 16px 36px rgba(22, 84, 36, 0.2);
+}
+
+.ds-side-cake-img {
+  position: absolute;
+  bottom: -30px;
+  right: -20px;
+  width: 260px;
+  height: auto;
+  opacity: 0.2;
+  pointer-events: none;
+  filter: drop-shadow(0 10px 20px rgba(0,0,0,0.3));
+}
+
+.ds-features-header {
+  margin-bottom: 28px;
+  position: relative;
+  z-index: 2;
+}
+
+.ds-features-title {
+  font-family: var(--font-display, 'Marvin Round', cursive);
+  font-size: 30px;
+  margin: 0 0 8px;
+}
+
+.ds-features-subtitle {
+  font-family: var(--font-sans, 'Comfortaa', sans-serif);
+  font-size: 14px;
+  opacity: 0.9;
+  margin: 0;
+  max-width: 600px;
+  line-height: 1.5;
+}
+
+.ds-features-grid-layout {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+  position: relative;
+  z-index: 2;
+}
+
+.ds-features-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.ds-feature-check {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(6px);
+  padding: 10px 16px;
+  border-radius: 9999px;
+  font-size: 13px;
+  font-weight: 600;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.ds-feature-check i {
+  color: #86EFAC;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+/* 10 ATRAÇÕES CIRCULARES */
+.ds-attractions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 20px;
+  text-align: center;
+}
+
+.ds-attraction-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.ds-attraction-circle {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid #228137;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.ds-attraction-card:hover .ds-attraction-circle {
+  transform: scale(1.08);
+  box-shadow: 0 10px 24px rgba(34, 129, 55, 0.3);
+}
+
+.ds-attraction-circle img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ds-attraction-name {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--color-ink, #1C1D22);
+  margin: 0;
+}
+
+.ds-attraction-tag {
+  font-size: 10px;
+  color: var(--color-muted, #64748B);
+}
+
+/* FIGMA GALLERY */
+.ds-figma-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 24px;
+}
+
+.ds-figma-card {
+  background: #ffffff;
+  border: 1px solid var(--color-border, #E2E8F0);
+  border-radius: var(--radius-lg, 20px);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm, 0 2px 8px rgba(0,0,0,0.04));
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.ds-figma-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md, 0 8px 24px rgba(0,0,0,0.08));
+}
+
+.ds-figma-img-wrap {
+  width: 100%;
+  height: 220px;
+  overflow: hidden;
+  background: #f1f5f9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ds-figma-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.ds-figma-card:hover .ds-figma-img-wrap img {
+  transform: scale(1.03);
+}
+
+.ds-figma-body {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ds-figma-badge {
+  align-self: flex-start;
+  font-size: 11px;
+  font-weight: 700;
+  color: #228137;
+  background: #EAF5ED;
+  padding: 3px 10px;
+  border-radius: 9999px;
+}
+
+/* UNIDADES */
+.ds-units-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+}
+
+.ds-unit-card {
+  background: #ffffff;
+  border: 1px solid var(--color-border, #E2E8F0);
+  border-radius: var(--radius-lg, 20px);
+  padding: 24px;
+  box-shadow: var(--shadow-sm, 0 2px 8px rgba(0,0,0,0.04));
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.ds-unit-title {
+  font-family: var(--font-display, 'Marvin Round', cursive);
+  font-size: 18px;
+  color: #228137;
+  margin: 0;
+}
+
+/* FOOTER PREVIEW */
+.ds-footer {
+  background: #111b13;
+  color: #ffffff;
+  border-radius: 24px;
+  padding: 48px 36px;
+  position: relative;
+  overflow: hidden;
+}

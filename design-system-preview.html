@@ -1,1116 +1,2209 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>+B FARMA Design System — Especificação Visual Completa</title>
-
-<!-- Favicon & Touch Icons -->
-<link rel="icon" type="image/x-icon" href="favicon.ico" />
-<link rel="icon" type="image/png" sizes="32x32" href="favicon.png" />
-<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
-
-<!-- Fontes Locais Lufga e Fallbacks -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-
-<!-- Design System CSS Canônico & Centralizado -->
-<link rel="stylesheet" href="assets/css/design-system.css">
-
-<style>
-  /* ==========================================================================
-     1. DEFINIÇÃO DA TIPOGRAFIA LUFGA (ARQUIVOS LOCAIS EM assets/fonts/)
-     ========================================================================== */
-  @font-face {
-    font-family: 'Lufga';
-    src: url('assets/fonts/Lufga-Regular.otf') format('opentype'),
-         local('Lufga Regular'), local('Lufga-Regular');
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap;
-  }
-  @font-face {
-    font-family: 'Lufga';
-    src: url('assets/fonts/Lufga-Medium.otf') format('opentype'),
-         local('Lufga Medium'), local('Lufga-Medium');
-    font-weight: 500;
-    font-style: normal;
-    font-display: swap;
-  }
-  @font-face {
-    font-family: 'Lufga';
-    src: url('assets/fonts/Lufga-MediumItalic.otf') format('opentype'),
-         local('Lufga Medium Italic'), local('Lufga-MediumItalic');
-    font-weight: 500;
-    font-style: italic;
-    font-display: swap;
-  }
-  @font-face {
-    font-family: 'Lufga';
-    src: url('assets/fonts/Lufga-SemiBold.otf') format('opentype'),
-         local('Lufga SemiBold'), local('Lufga-SemiBold');
-    font-weight: 600;
-    font-style: normal;
-    font-display: swap;
-  }
-  @font-face {
-    font-family: 'Lufga';
-    src: url('assets/fonts/Lufga-Bold.otf') format('opentype'),
-         local('Lufga Bold'), local('Lufga-Bold');
-    font-weight: 700;
-    font-style: normal;
-    font-display: swap;
-  }
-
-  /* ==========================================================================
-     2. DESIGN TOKENS OFICIAIS (+B FARMA)
-     ========================================================================== */
-  :root {
-    --primary: #E92125;
-    --primary-active: #C8161A;
-    --primary-disabled: #FBD1D3;
-    --primary-light: #FDE8E9;
-    --primary-error-text: #C8161A;
-    --primary-error-text-hover: #A81014;
-    
-    --ink: #32343D;
-    --body: #555866;
-    --muted: #7B7E8C;
-    --muted-soft: #A0A3B1;
-    
-    --hairline: #E7E7E7;
-    --hairline-soft: #F0F2F5;
-    --border-strong: #D4D5DC;
-    
-    --canvas: #edf5fd;
-    --surface-soft: #edf5fd;
-    --surface-card: #edf5fd;
-    --surface-strong: #F0F2F5;
-    --surface-dark: #1C1D22;
-    --surface-dark-card: #25272E;
-    
-    --on-primary: #FFFFFF;
-    --on-dark: #FFFFFF;
-    --legal-link: #E92125;
-    --star-rating: #F59E0B;
-    --success: #10B981;
-    --scrim: rgba(28, 29, 34, 0.5);
-    
-    --shadow: rgba(50, 52, 61, 0.04) 0 0 0 1px, rgba(50, 52, 61, 0.06) 0 2px 6px 0, rgba(50, 52, 61, 0.1) 0 4px 12px 0;
-    --shadow-elevated: 0 20px 35px -10px rgba(50, 52, 61, 0.1), 0 1px 3px 0 rgba(50, 52, 61, 0.05);
-    
-    --display: 'Lufga', 'Plus Jakarta Sans', -apple-system, system-ui, Roboto, sans-serif;
-    --text: 'Lufga', 'Plus Jakarta Sans', -apple-system, system-ui, Roboto, sans-serif;
-    --mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
-  }
-
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  html, body { background: var(--canvas); color: var(--ink); font-family: var(--text); font-size: 16px; line-height: 1.5; font-weight: 400; scroll-behavior: smooth; }
-
-  /* TOP STICKY NAV */
-  .nav { position: sticky; top: 0; z-index: 100; background: rgba(255, 255, 255, 0.96); backdrop-filter: blur(10px); border-bottom: none; padding: 0 48px; height: 80px; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; }
-  .nav > .nav-left { justify-self: start; }
-  .nav > .nav-links { justify-self: center; }
-  .nav > :last-child { justify-self: end; }
-
-  .nav-left { display: flex; align-items: center; gap: 20px; }
-  .nav-brand-link { text-decoration: none; color: inherit; }
-  .nav-brand { font-family: var(--display); font-weight: 700; font-size: 16px; color: var(--ink); display: flex; align-items: center; gap: 10px; }
-  .nav-brand-logo { height: 38px; width: auto; object-fit: contain; }
-  .nav-badge {
-    display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 700;
-    color: var(--primary); background: var(--primary-light); text-decoration: none; padding: 4px 10px;
-    border: 1px solid var(--primary-disabled); border-radius: 6px;
-    font-family: inherit; line-height: 1; white-space: nowrap;
-  }
-
-  .nav-links { list-style: none; display: flex; gap: 28px; align-items: center; }
-  .nav-links a { color: var(--muted); text-decoration: none; font-size: 15px; font-weight: 600; transition: color 0.2s; }
-  .nav-links a:hover { color: var(--primary); }
-  .nav-cta { background: var(--primary); color: #FFFFFF; border: none; padding: 10px 20px; font-weight: 600; font-size: 14px; cursor: pointer; font-family: inherit; border-radius: 9999px; transition: background-color 0.2s; text-decoration: none; }
-  .nav-cta:hover { background: var(--primary-active); }
-
-  /* HERO BANNER */
-  .hero-block { padding: 64px 80px 48px; max-width: 1360px; margin: 0 auto; display: grid; grid-template-columns: 1fr 380px; gap: 64px; align-items: center; border-bottom: none; }
-  .hero-title { font-family: var(--display); font-size: 40px; font-weight: 700; line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 16px; color: var(--ink); }
-  .hero-title span { color: var(--primary); }
-  .hero-desc { font-size: 17px; color: var(--body); line-height: 1.6; max-width: 680px; margin-bottom: 24px; }
-  .hero-pills { display: flex; gap: 12px; flex-wrap: wrap; }
-  .hero-pill { background: var(--surface-soft); border: 1px solid var(--hairline); padding: 8px 16px; border-radius: 9999px; font-size: 13px; font-weight: 600; color: var(--ink); display: flex; align-items: center; gap: 8px; }
-  .hero-pill .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--primary); }
-
-  .hero-card-preview { background: #FFFFFF; border: 1px solid var(--hairline); border-radius: 20px; padding: 24px; box-shadow: var(--shadow-elevated); }
-  .preview-badge { display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; background: var(--primary-light); color: var(--primary); border-radius: 9999px; font-size: 11px; font-weight: 700; text-transform: uppercase; margin-bottom: 16px; }
-
-  /* MAIN SECTIONS */
-  .content { max-width: 1360px; margin: 0 auto; padding: 0 80px; }
-  .section, section { padding: 64px 0; border-top: none !important; border-bottom: none !important; }
-  .section-tag, .ds-eyebrow { font-family: var(--text); font-size: 12px; font-weight: 700; color: var(--primary); text-transform: uppercase; letter-spacing: 0.1em; line-height: 16px; display: block; margin-bottom: 8px; }
-  .section-title, .ds-headline { font-family: var(--display); font-size: clamp(24px, 4vw, 38px); font-weight: 700; line-height: 1.12; letter-spacing: -0.02em; margin-bottom: 12px; color: var(--ink); }
-  @media (min-width: 768px) {
-    .section-title, .ds-headline { font-size: 38px; line-height: 36px; }
-  }
-  .section-lead, .ds-subtitle { font-size: 16px; color: var(--body); max-width: 780px; line-height: 1.6; margin-bottom: 36px; }
-  @media (min-width: 768px) {
-    .section-lead, .ds-subtitle { font-size: 17px; }
-  }
-
-  /* COLOR SWATCHES */
-  .color-group-title { font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); margin: 32px 0 16px; }
-  .color-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 16px; }
-  .swatch { border: 1px solid var(--hairline); border-radius: 14px; overflow: hidden; background: #FFFFFF; box-shadow: 0 1px 3px rgba(0,0,0,0.02); transition: transform 0.2s, box-shadow 0.2s; }
-  .swatch:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
-  .swatch-color { height: 90px; width: 100%; position: relative; }
-  .swatch-meta { padding: 14px; }
-  .swatch-name { font-size: 13px; font-weight: 700; color: var(--ink); margin-bottom: 2px; }
-  .swatch-hex { font-family: var(--mono); font-size: 12px; color: var(--body); }
-  .swatch-role { font-size: 11px; color: var(--muted); margin-top: 6px; line-height: 1.35; }
-
-  /* TYPOGRAPHY TABLE */
-  .type-table { width: 100%; border-collapse: collapse; margin-top: 16px; }
-  .type-table th { text-align: left; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); padding: 12px 16px; border-bottom: 2px solid var(--hairline); background: var(--surface-soft); }
-  .type-table td { padding: 16px; border-bottom: 1px solid var(--hairline); vertical-align: middle; }
-  .type-token { font-family: var(--mono); font-size: 12px; font-weight: 600; color: var(--primary); background: var(--primary-light); padding: 3px 8px; border-radius: 6px; display: inline-block; }
-  .type-spec { font-family: var(--mono); font-size: 12px; color: var(--muted); }
-  .type-preview { color: var(--ink); }
-
-  /* RATING DISPLAY SPECIAL */
-  .rating-hero-specimen { display: flex; align-items: center; justify-content: center; gap: 16px; padding: 32px 0; background: var(--surface-soft); border-radius: 16px; margin: 24px 0; border: 1px solid var(--hairline); }
-  .rating-hero-num { font-size: 64px; font-weight: 700; line-height: 1; color: var(--ink); }
-  .laurel-leaf { font-size: 40px; color: var(--muted-soft); user-select: none; }
-
-  /* STAT BARS */
-  .stat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin: 24px 0; }
-  .stat-item { border-left: 2px solid var(--hairline); padding-left: 16px; }
-  .stat-item-label { font-size: 13px; color: var(--muted); font-weight: 500; }
-  .stat-item-val { font-size: 16px; font-weight: 700; color: var(--ink); margin-top: 2px; }
-
-  /* COMPONENTS SHOWCASE GRID */
-  .comp-showcase { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 28px; }
-  .comp-panel { border: 1px solid var(--hairline); border-radius: 16px; padding: 24px; background: #FFFFFF; box-shadow: 0 1px 4px rgba(0,0,0,0.03); }
-  .comp-panel-title { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin-bottom: 20px; display: flex; justify-content: space-between; }
-
-  /* BUTTONS STYLING */
-  .btn-stack { display: flex; flex-direction: column; gap: 14px; }
-  .btn-row { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
-  .btn-primary { background: var(--primary); color: #FFFFFF; border: none; border-radius: 12px; padding: 14px 24px; font-size: 15px; font-weight: 600; cursor: pointer; transition: all 0.2s; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; }
-  .btn-primary:hover { background: var(--primary-active); transform: translateY(-1px); }
-  .btn-secondary { background: #FFFFFF; color: var(--ink); border: 1px solid var(--border-strong); border-radius: 12px; padding: 13px 23px; font-size: 15px; font-weight: 600; cursor: pointer; transition: all 0.2s; display: inline-flex; align-items: center; gap: 8px; }
-  .btn-secondary:hover { background: var(--surface-soft); border-color: var(--ink); }
-  .btn-tertiary { background: transparent; color: var(--ink); border: none; padding: 8px 12px; font-size: 14px; font-weight: 600; cursor: pointer; text-decoration: underline; }
-  .btn-pill { border-radius: 9999px; padding: 10px 22px; font-size: 14px; }
-  .btn-disabled { background: var(--primary-disabled); color: #FFFFFF; cursor: not-allowed; border: none; border-radius: 12px; padding: 14px 24px; font-size: 15px; font-weight: 600; }
-
-  /* SEARCH PILL (SIGNATURE COMPONENT) */
-  .search-pill-bar { display: grid; grid-template-columns: 1.5fr 1fr 1fr auto; align-items: center; background: #FFFFFF; border: 1px solid var(--hairline); border-radius: 9999px; padding: 6px 10px 6px 24px; box-shadow: var(--shadow); }
-  .search-seg { display: flex; flex-direction: column; padding: 8px 16px; border-right: 1px solid var(--hairline); }
-  .search-seg:last-of-type { border-right: none; }
-  .search-seg-lbl { font-size: 11px; font-weight: 700; text-transform: uppercase; color: var(--ink); }
-  .search-seg-input { font-size: 14px; color: var(--muted); font-weight: 400; border: none; outline: none; background: transparent; }
-  .search-orb-btn { width: 48px; height: 48px; border-radius: 50%; background: var(--primary); color: #FFFFFF; border: none; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: transform 0.2s, background 0.2s; }
-  .search-orb-btn:hover { background: var(--primary-active); transform: scale(1.04); }
-
-  /* CATEGORY STRIP */
-  .cat-strip { display: flex; gap: 24px; overflow-x: auto; padding: 12px 0; border-bottom: 1px solid var(--hairline); margin-bottom: 24px; }
-  .cat-item { display: flex; flex-direction: column; align-items: center; gap: 6px; color: var(--muted); text-decoration: none; font-size: 12px; font-weight: 600; white-space: nowrap; padding-bottom: 8px; border-bottom: 2px solid transparent; }
-  .cat-item.active { color: var(--ink); border-bottom-color: var(--ink); }
-  .cat-icon { font-size: 20px; }
-
-  /* PRODUCT / PROPERTY CARD */
-  .prop-card { border-radius: 14px; overflow: hidden; background: #FFFFFF; transition: transform 0.2s, box-shadow 0.2s; position: relative; }
-  .prop-card:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
-  .prop-img-wrap { width: 100%; aspect-ratio: 16/11; border-radius: 14px; overflow: hidden; position: relative; background: var(--surface-strong); }
-  .prop-img { width: 100%; height: 100%; object-fit: cover; }
-  .badge-floating { position: absolute; top: 12px; left: 12px; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(4px); padding: 4px 10px; border-radius: 9999px; font-size: 11px; font-weight: 700; color: var(--ink); box-shadow: 0 2px 6px rgba(0,0,0,0.08); }
-  .heart-btn { position: absolute; top: 12px; right: 12px; width: 32px; height: 32px; border-radius: 50%; background: rgba(0, 0, 0, 0.3); color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-size: 16px; border: none; cursor: pointer; }
-  .heart-btn.saved { background: #FFFFFF; color: var(--primary); }
-  .prop-meta { padding: 12px 2px 4px; }
-  .prop-title-row { display: flex; justify-content: space-between; align-items: baseline; font-weight: 700; font-size: 15px; color: var(--ink); }
-  .prop-sub { font-size: 14px; color: var(--muted); margin-top: 2px; }
-  .prop-price { font-size: 14px; font-weight: 700; color: var(--ink); margin-top: 6px; }
-
-  /* RESERVATION / COMPRE E RETIRE STICKY CARD */
-  .reservation-card { border: 1px solid var(--hairline); border-radius: 16px; padding: 24px; box-shadow: var(--shadow-elevated); background: #FFFFFF; }
-  .res-price-row { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 20px; }
-  .res-price { font-size: 24px; font-weight: 700; color: var(--ink); }
-  .res-grid-box { border: 1px solid var(--hairline); border-radius: 10px; overflow: hidden; margin-bottom: 16px; }
-  .res-grid-row { display: grid; grid-template-columns: 1fr 1fr; }
-  .res-cell { padding: 10px 14px; }
-  .res-cell:first-child { border-right: 1px solid var(--hairline); }
-  .res-cell-full { padding: 10px 14px; border-top: 1px solid var(--hairline); }
-  .res-lbl { font-size: 10px; font-weight: 700; text-transform: uppercase; color: var(--ink); }
-  .res-val { font-size: 13px; color: var(--body); margin-top: 2px; }
-  .res-fee-stack { margin-top: 16px; display: flex; flex-direction: column; gap: 8px; font-size: 14px; color: var(--body); }
-  .res-fee-row { display: flex; justify-content: space-between; }
-  .res-fee-total { display: flex; justify-content: space-between; font-weight: 700; color: var(--ink); border-top: 1px solid var(--hairline); padding-top: 12px; margin-top: 4px; }
-
-  /* FORM INPUTS */
-  .text-input-wrap { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
-  .text-input-lbl { font-size: 13px; font-weight: 600; color: var(--ink); }
-  .text-input-field { border: 1px solid var(--hairline); border-radius: 8px; padding: 14px 14px; font-family: var(--text); font-size: 15px; color: var(--ink); outline: none; transition: border-color 0.2s, box-shadow 0.2s; }
-  .text-input-field:focus { border-color: var(--ink); box-shadow: 0 0 0 1px var(--ink); }
-  .text-input-field.error { border-color: var(--primary-error-text); background: var(--primary-light); }
-
-  /* SPACING BARS & RADIUS SHOWCASE */
-  .spacing-row { display: flex; align-items: center; gap: 16px; margin-bottom: 10px; font-size: 13px; font-family: var(--mono); }
-  .spacing-bar { background: var(--ink); height: 16px; border-radius: 3px; }
-
-  /* CITY / BRANCH LINK GRID (HOMEPAGE FOOTER STYLE) */
-  .city-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 20px; margin-top: 24px; }
-  .city-item { text-decoration: none; color: inherit; }
-  .city-title { font-size: 14px; font-weight: 600; color: var(--ink); }
-  .city-sub { font-size: 13px; color: var(--muted); margin-top: 2px; }
-
-  /* RAW TOKENS VIEWER */
-  .code-viewer { background: var(--surface-dark); border: 1px solid #373A45; border-radius: 14px; padding: 24px; color: #E2E8F0; font-family: var(--mono); font-size: 13px; line-height: 1.6; overflow-x: auto; }
-
-  /* FOOTER */
-  .footer-light { padding: 48px 0; border-top: none; background: #FFFFFF; }
-  .footer-cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-bottom: 40px; }
-  .footer-col-title { font-size: 14px; font-weight: 700; color: var(--ink); margin-bottom: 16px; }
-  .footer-links { list-style: none; display: flex; flex-direction: column; gap: 12px; }
-  .footer-links a { color: var(--ink); text-decoration: none; font-size: 14px; }
-  .footer-links a:hover { text-decoration: underline; color: var(--primary); }
-  .legal-band { border-top: none; padding-top: 24px; display: flex; justify-content: space-between; font-size: 13px; color: var(--muted); }
-  .legal-links { display: flex; gap: 16px; }
-  .legal-links a { color: var(--muted); text-decoration: none; }
-  .legal-links a:hover { color: var(--ink); }
-
-  /* RESPONSIVIDADE ULTRA-ROBUSTA (MOBILE & TABLET) */
-  @media (max-width: 1024px) {
-    .hero-block { grid-template-columns: 1fr; padding: 48px 24px; gap: 32px; }
-    .content { padding: 0 24px; }
-    .nav { padding: 0 24px; }
-    .city-grid { grid-template-columns: repeat(3, 1fr); }
-    .stat-grid { grid-template-columns: 1fr; }
-    .footer-cols { grid-template-columns: 1fr; }
-  }
-
-  @media (max-width: 768px) {
-    .nav { padding: 0 16px; height: 68px; }
-    .nav-links { display: none; }
-    .nav-badge { display: none; }
-    .hero-block { padding: 32px 16px; }
-    .hero-title { font-size: 28px; }
-    .hero-desc { font-size: 15px; }
-    .content { padding: 0 16px; }
-    .section { padding: 40px 0; }
-    .section-title, .ds-headline { font-size: 26px; line-height: 1.2; }
-    
-    /* Search Bar Mobile */
-    .search-pill-bar {
-      display: flex;
-      flex-direction: column;
-      border-radius: 16px;
-      padding: 12px;
-      gap: 8px;
-    }
-    .search-seg {
-      border-right: none;
-      border-bottom: 1px solid var(--hairline);
-      padding: 6px 4px;
-      width: 100%;
-    }
-    .search-orb-btn {
-      width: 100%;
-      height: 44px;
-      border-radius: 10px;
-      margin-top: 4px;
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Villa Plaza Park — Design System & Documentação Oficial</title>
+  
+  <!-- Favicons -->
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/Logos/monograma-vp.png">
+  <link rel="apple-touch-icon" href="assets/Logos/monograma-vp.png">
+  
+  <!-- Fontes Oficiais: Google Fonts (Comfortaa + Fredoka + Caveat) & Font-face Marvin Round -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Comfortaa:wght@400;500;600;700;800&family=Fredoka:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  
+  <!-- CSS Canônico do Design System -->
+  <link rel="stylesheet" href="src/css/design-system.css">
+  
+  <!-- Font Awesome 6 Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <style>
+    @font-face {
+      font-family: 'Marvin Round';
+      src: url('src/fonts/Marvin-Round.woff2') format('woff2'),
+           local('Marvin Round'), local('Marvin-Round');
+      font-weight: 400 900;
+      font-style: normal;
+      font-display: swap;
     }
 
-    /* Grids no Mobile */
-    .color-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
-    .city-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
-    .scale-grid { grid-template-columns: repeat(2, 1fr); }
-    .comp-showcase { grid-template-columns: 1fr; }
-    .rating-hero-num { font-size: 44px; }
-    .laurel-leaf { font-size: 28px; }
-    .legal-band { flex-direction: column; gap: 12px; }
-  }
+    html {
+      scroll-behavior: smooth;
+    }
 
-  @media (max-width: 480px) {
-    .color-grid { grid-template-columns: 1fr; }
-    .city-grid { grid-template-columns: 1fr; }
-    .btn-row { flex-direction: column; width: 100%; }
-    .btn-row .btn { width: 100%; }
-  }
-</style>
+    body {
+      background-color: var(--color-canvas, #F8FAF9);
+      color: var(--color-ink, #1C1D22);
+      font-family: var(--font-sans, 'Comfortaa', cursive, sans-serif);
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+      overflow-x: hidden;
+      max-width: 100vw;
+    }
+  </style>
 </head>
 <body>
 
-  <!-- ==========================================================================
-       TOP NAVIGATION BAR
-       ========================================================================== -->
-  <header class="nav">
-    <div class="nav-left">
-      <a href="index.html" class="nav-brand-link">
-        <div class="nav-brand">
-          <img src="assets/Logos/logo-maisb-farma.webp" alt="+B FARMA" class="nav-brand-logo">
-        </div>
-      </a>
-      <span class="nav-badge">Design System v1.0.0</span>
+  <!-- TOPBAR MOBILE -->
+  <div class="ds-mobile-topbar">
+    <div class="ds-mobile-brand">
+      <img src="assets/Logos/logo-villa-plaza-park.png" alt="Villa Plaza Park">
+      <span>Design System</span>
     </div>
+    <button type="button" class="ds-mobile-menu-btn" onclick="toggleSidebar()" aria-label="Abrir Menu">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+  </div>
 
-    <ul class="nav-links">
-      <li><a href="#overview">Overview</a></li>
-      <li><a href="#colors">Colors</a></li>
-      <li><a href="#typography">Typography</a></li>
-      <li><a href="#components">Components</a></li>
-      <li><a href="#layout">Layout</a></li>
-      <li><a href="#tokens">Tokens</a></li>
-    </ul>
+  <!-- BACKDROP MOBILE -->
+  <div class="ds-sidebar-backdrop" id="dsSidebarBackdrop" onclick="toggleSidebar()"></div>
 
-    <div>
-      <a href="index.html" class="nav-cta">Acessar Site Oficial →</a>
-    </div>
-  </header>
+  <!-- LAYOUT PRINCIPAL: SIDEBAR + CONTEÚDO -->
+  <div class="ds-app-layout">
 
-
-  <!-- ==========================================================================
-       HERO OVERVIEW
-       ========================================================================== -->
-  <section id="overview" class="hero-block">
-    <div>
-      <h1 class="hero-title">+B FARMA <span>Design System Analysis</span></h1>
-      <p class="hero-desc">
-        A clean, high-trust healthcare and pharmacy design system anchored on a pure white canvas (<code>#FFFFFF</code>) with deep graphite ink (<code>#32343D</code>) and the vibrant brand voltage of <strong>+B Red (<code>#E92125</code>)</strong> that carries every primary CTA, search orb, and critical conversion moment. Typography runs the geometric family <strong>Lufga</strong> with soft rounded geometry (8px to 32px radii) across all surfaces.
-      </p>
-
-      <div class="hero-pills">
-        <div class="hero-pill"><span class="dot"></span> Primary: #E92125 (+B Red)</div>
-        <div class="hero-pill"><span class="dot" style="background: #32343D;"></span> Ink: #32343D</div>
-        <div class="hero-pill"><span class="dot" style="background: #E7E7E7;"></span> Hairline: #E7E7E7</div>
-        <div class="hero-pill"><span class="dot" style="background: #10B981;"></span> Type: Lufga OTF Local</div>
-      </div>
-    </div>
-
-    <!-- Preview Card Lateral -->
-    <div class="hero-card-preview">
-      <div class="preview-badge">Preview Interativo</div>
-      <div style="font-size: 20px; font-weight: 700; color: var(--ink); margin-bottom: 6px;">Unidade Plaza</div>
-      <div style="font-size: 13px; color: var(--muted); margin-bottom: 16px;">Av. Nazaré, 1234 — Belém / PA</div>
-      <div style="display: flex; align-items: center; justify-content: space-between; padding-top: 14px; border-top: 1px solid var(--hairline);">
-        <div>
-          <span style="font-size: 11px; color: var(--muted); display: block;">STATUS</span>
-          <span style="font-size: 13px; font-weight: 700; color: var(--success);">● Aberto até 22h</span>
-        </div>
-        <a href="index.html#filiais" class="btn-primary btn-pill" style="padding: 6px 14px; font-size: 12px;">Ver Filiais</a>
-      </div>
-    </div>
-  </section>
-
-
-  <main class="content">
-
-    <!-- ==========================================================================
-         SEÇÃO 1: CORES (COLORS)
-         ========================================================================== -->
-    <section id="colors" class="section">
-      <span class="section-tag">01 · Tokens Cromáticos</span>
-      <h2 class="section-title">Color Palette & Surfaces</h2>
-      <p class="section-lead">A paleta cromática utiliza o Vermelho +B (#E92125) como voltagem de marca, contrastando com canvas branco puro e tipografia grafite.</p>
-
-      <!-- Brand & Accent -->
-      <div class="color-group-title">Brand & Accent (Conversão e Ações)</div>
-      <div class="color-grid">
-        <div class="swatch">
-          <div class="swatch-color" style="background: #E92125;"></div>
-          <div class="swatch-meta">
-            <div class="swatch-name">primary (Brand Red)</div>
-            <div class="swatch-hex">#E92125</div>
-            <div class="swatch-role">CTAs principais, search orb, faixas e logo</div>
+    <!-- ====================================================================
+         SIDEBAR FIXA (DESKTOP)
+         ==================================================================== -->
+    <aside class="ds-sidebar" id="dsSidebar">
+      <div class="ds-sidebar-brand">
+        <a href="#inicio" class="ds-sidebar-logo-wrap">
+          <img src="assets/Logos/logo-villa-plaza-park.png" alt="Villa Plaza Park" class="ds-sidebar-logo">
+          <div>
+            <div class="ds-sidebar-brand-title">Villa Plaza Park</div>
+            <span class="ds-sidebar-ver"><i class="fa-solid fa-shield-check"></i> Design System v2.5</span>
           </div>
-        </div>
-        <div class="swatch">
-          <div class="swatch-color" style="background: #C8161A;"></div>
-          <div class="swatch-meta">
-            <div class="swatch-name">primary-active</div>
-            <div class="swatch-hex">#C8161A</div>
-            <div class="swatch-role">Estado hover / pressed de botões primários</div>
-          </div>
-        </div>
-        <div class="swatch">
-          <div class="swatch-color" style="background: #FBD1D3; border-bottom: 1px solid #E7E7E7;"></div>
-          <div class="swatch-meta">
-            <div class="swatch-name">primary-disabled</div>
-            <div class="swatch-hex">#FBD1D3</div>
-            <div class="swatch-role">Tint para botões e controles inativos</div>
-          </div>
-        </div>
-        <div class="swatch">
-          <div class="swatch-color" style="background: #FDE8E9; border-bottom: 1px solid #E7E7E7;"></div>
-          <div class="swatch-meta">
-            <div class="swatch-name">primary-light</div>
-            <div class="swatch-hex">#FDE8E9</div>
-            <div class="swatch-role">Fundos suaves de ícones e badges de destaque</div>
-          </div>
-        </div>
+        </a>
       </div>
 
-      <!-- Surfaces -->
-      <div class="color-group-title">Surfaces & Canvas</div>
-      <div class="color-grid">
-        <div class="swatch">
-          <div class="swatch-color" style="background: #edf5fd; border-bottom: 1px solid #E7E7E7;"></div>
-          <div class="swatch-meta">
-            <div class="swatch-name">canvas</div>
-            <div class="swatch-hex">#edf5fd</div>
-            <div class="swatch-role">Superfície base do site e cards padrão</div>
-          </div>
-        </div>
-        <div class="swatch">
-          <div class="swatch-color" style="background: #edf5fd; border-bottom: 1px solid #E7E7E7;"></div>
-          <div class="swatch-meta">
-            <div class="swatch-name">surface-soft</div>
-            <div class="swatch-hex">#edf5fd</div>
-            <div class="swatch-role">Fundo de seções alternadas e campos</div>
-          </div>
-        </div>
-        <div class="swatch">
-          <div class="swatch-color" style="background: #F0F2F5; border-bottom: 1px solid #E7E7E7;"></div>
-          <div class="swatch-meta">
-            <div class="swatch-name">surface-strong</div>
-            <div class="swatch-hex">#F0F2F5</div>
-            <div class="swatch-role">Fundos de placeholders e botões de ícones</div>
-          </div>
-        </div>
-        <div class="swatch">
-          <div class="swatch-color" style="background: #1C1D22;"></div>
-          <div class="swatch-meta">
-            <div class="swatch-name" style="color: var(--ink);">surface-dark</div>
-            <div class="swatch-hex">#1C1D22</div>
-            <div class="swatch-role">Fundo do rodapé e bloco de prova social</div>
-          </div>
-        </div>
+      <!-- BUSCA RÁPIDA -->
+      <div class="ds-sidebar-search">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" id="dsSearchInput" placeholder="Buscar no Design System..." oninput="filterDesignSystem(this.value)">
       </div>
 
-      <!-- Hairlines & Borders -->
-      <div class="color-group-title">Hairlines & Borders</div>
-      <div class="color-grid">
-        <div class="swatch">
-          <div class="swatch-color" style="background: #E7E7E7; border-bottom: 1px solid #D4D5DC;"></div>
-          <div class="swatch-meta">
-            <div class="swatch-name">hairline</div>
-            <div class="swatch-hex">#E7E7E7</div>
-            <div class="swatch-role">Divisores de 1px, bordas de cards e inputs</div>
-          </div>
-        </div>
-        <div class="swatch">
-          <div class="swatch-color" style="background: #F0F2F5; border-bottom: 1px solid #D4D5DC;"></div>
-          <div class="swatch-meta">
-            <div class="swatch-name">hairline-soft</div>
-            <div class="swatch-hex">#F0F2F5</div>
-            <div class="swatch-role">Separadores sutis de tabelas e listas</div>
-          </div>
-        </div>
-        <div class="swatch">
-          <div class="swatch-color" style="background: #D4D5DC;"></div>
-          <div class="swatch-meta">
-            <div class="swatch-name">border-strong</div>
-            <div class="swatch-hex">#D4D5DC</div>
-            <div class="swatch-role">Bordas de botões outline secundários</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Text -->
-      <div class="color-group-title">Text & Ink</div>
-      <div class="color-grid">
-        <div class="swatch">
-          <div class="swatch-color" style="background: #32343D;"></div>
-          <div class="swatch-meta">
-            <div class="swatch-name">ink</div>
-            <div class="swatch-hex">#32343D</div>
-            <div class="swatch-role">Títulos principais, H1-H3, links de navegação</div>
-          </div>
-        </div>
-        <div class="swatch">
-          <div class="swatch-color" style="background: #555866;"></div>
-          <div class="swatch-meta">
-            <div class="swatch-name">body</div>
-            <div class="swatch-hex">#555866</div>
-            <div class="swatch-role">Parágrafos corridos e descrições</div>
-          </div>
-        </div>
-        <div class="swatch">
-          <div class="swatch-color" style="background: #7B7E8C;"></div>
-          <div class="swatch-meta">
-            <div class="swatch-name">muted</div>
-            <div class="swatch-hex">#7B7E8C</div>
-            <div class="swatch-role">Labels secundários, horários e legendas</div>
-          </div>
-        </div>
-        <div class="swatch">
-          <div class="swatch-color" style="background: #A0A3B1;"></div>
-          <div class="swatch-meta">
-            <div class="swatch-name">muted-soft</div>
-            <div class="swatch-hex">#A0A3B1</div>
-            <div class="swatch-role">Textos secundários sobre fundos escuros</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-
-    <!-- ==========================================================================
-         SEÇÃO 2: TIPOGRAFIA (TYPOGRAPHY SPEC)
-         ========================================================================== -->
-    <section id="typography" class="section">
-      <span class="section-tag">02 · Escala Tipográfica</span>
-      <h2 class="section-title">Typography & Lufga Hierarchy</h2>
-      <p class="section-lead">A família tipográfica <strong>Lufga</strong> foi instalada localmente em <code>assets/fonts/</code> com pesos de 400 a 700. O sistema equilibra sobriedade médica e acolhimento.</p>
-
-      <!-- Rating Display Specimen -->
-      <div class="rating-hero-specimen">
-        <span class="laurel-leaf">‹</span>
-        <div style="text-align: center;">
-          <div class="rating-hero-num">4.91</div>
-          <div style="font-size: 15px; font-weight: 700; color: var(--ink); margin-top: 4px;">Classificação no Google Meu Negócio</div>
-          <div style="font-size: 13px; color: var(--muted);">Mais de 500 avaliações 5 estrelas verificadas</div>
-        </div>
-        <span class="laurel-leaf">›</span>
-      </div>
-
-      <!-- Stat Bars de Reputação -->
-      <div class="stat-grid">
-        <div class="stat-item">
-          <div class="stat-item-label">Atendimento Farmacêutico</div>
-          <div class="stat-item-val">4.9 ★★★★★</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-item-label">Preço & Economia</div>
-          <div class="stat-item-val">4.9 ★★★★★</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-item-label">Variedade de Produtos</div>
-          <div class="stat-item-val">4.8 ★★★★★</div>
-        </div>
-      </div>
-
-      <!-- Vitrine Oficial do Padrão de Títulos e Eyebrows (Referência Canônica do Site) -->
-      <div style="background: #FFFFFF; border: 1px solid var(--hairline); border-radius: 20px; padding: 36px 24px; margin: 28px 0; text-align: center; box-shadow: var(--shadow-elevated);">
-        <span class="ds-eyebrow" style="margin-bottom: 8px;">NÃO PERCA</span>
-        <h2 class="ds-headline" style="margin-bottom: 0;">
-          Ofertas que <span class="highlight" style="color: var(--primary);">rendem mais</span> pra você.
-        </h2>
-        <div style="margin-top: 20px; display: inline-flex; flex-wrap: wrap; justify-content: center; gap: 12px; font-family: var(--mono); font-size: 11.5px;">
-          <span style="background: var(--surface-soft); color: var(--primary); padding: 6px 12px; border-radius: 8px; border: 1px solid var(--hairline); font-weight: 700;">Eyebrow Oficial: 12px · Bold 700 · LH 16px · #E92125 · UPPERCASE · 0.1em</span>
-          <span style="background: var(--surface-soft); color: var(--ink); padding: 6px 12px; border-radius: 8px; border: 1px solid var(--hairline); font-weight: 700;">Headline Oficial (H2): 38px · Bold 700 · LH 36px · #32343D · -0.02em</span>
-        </div>
-      </div>
-
-      <!-- Tabela Completa de Tipografia (com container responsivo) -->
-      <div style="overflow-x: auto; -webkit-overflow-scrolling: touch; width: 100%; border: 1px solid var(--hairline); border-radius: 14px; margin-top: 16px; background: #FFFFFF;">
-        <table class="type-table" style="margin-top: 0; min-width: 680px;">
-          <thead>
-            <tr>
-              <th>Token</th>
-              <th>Specs</th>
-              <th>Sample Render</th>
-              <th>Uso no Produto</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><span class="type-token">eyebrow-standard</span></td>
-              <td><span class="type-spec">12px · 700 · 16px</span></td>
-              <td><span class="ds-eyebrow" style="margin-bottom: 0;">NÃO PERCA</span></td>
-              <td>Eyebrows e overlines de todas as seções</td>
-            </tr>
-            <tr>
-              <td><span class="type-token">headline-h2</span></td>
-              <td><span class="type-spec">38px · 700 · 36px</span></td>
-              <td><span class="ds-headline" style="font-size: 26px; line-height: 28px; margin-bottom: 0;">Ofertas que <span style="color: var(--primary);">rendem mais</span></span></td>
-              <td>Headlines oficiais e títulos de seção (H2)</td>
-            </tr>
-            <tr>
-              <td><span class="type-token">display-h1</span></td>
-              <td><span class="type-spec">48px · 700 · 1.15</span></td>
-              <td><span style="font-family: var(--display); font-size: 26px; font-weight: 700; line-height: 1.15;">Todos os dias cuidando de você.</span></td>
-              <td>Hero H1 na Home</td>
-            </tr>
-            <tr>
-              <td><span class="type-token">title-h3</span></td>
-              <td><span class="type-spec">20px · 600 · 1.3</span></td>
-              <td><span style="font-family: var(--display); font-size: 18px; font-weight: 600;">Unidade Plaza — Atendimento</span></td>
-              <td>Títulos de filiais, cards e modais</td>
-            </tr>
-            <tr>
-              <td><span class="type-token">subtitle-lead</span></td>
-              <td><span class="type-spec">17px · 400 · 1.6</span></td>
-              <td><span style="font-size: 15px; font-weight: 400; color: var(--body);">Cuidado que está presente no seu dia a dia.</span></td>
-              <td>Subtítulos e parágrafos introdutórios</td>
-            </tr>
-            <tr>
-              <td><span class="type-token">body-regular</span></td>
-              <td><span class="type-spec">15px · 400 · 1.5</span></td>
-              <td><span style="font-size: 15px; font-weight: 400; color: var(--body);">Somos a rede de farmácias do Grupo Mais Barato.</span></td>
-              <td>Texto corrido padrão</td>
-            </tr>
-            <tr>
-              <td><span class="type-token">body-sm</span></td>
-              <td><span class="type-spec">14px · 400 · 1.5</span></td>
-              <td><span style="font-size: 14px; font-weight: 400; color: var(--body);">Av. Gov. José Malcher, 2388 — Aberto até 22h</span></td>
-              <td>Endereços e legendas</td>
-            </tr>
-            <tr>
-              <td><span class="type-token">caption</span></td>
-              <td><span class="type-spec">13px · 400 · 1.4</span></td>
-              <td><span style="font-size: 13px; font-weight: 400; color: var(--muted);">Mais de 500 avaliações 5 estrelas verificadas</span></td>
-              <td>Metadados, legendas e notas</td>
-            </tr>
-            <tr>
-              <td><span class="type-token">quote-italic</span></td>
-              <td><span class="type-spec">14px · 500i · 1.5</span></td>
-              <td><span style="font-size: 14px; font-weight: 500; font-style: italic; color: var(--body);">"Melhor atendimento da cidade!"</span></td>
-              <td>Depoimentos e citações</td>
-            </tr>
-            <tr>
-              <td><span class="type-token">button-action</span></td>
-              <td><span class="type-spec">15px · 600 · 1.25</span></td>
-              <td><span style="font-size: 14px; font-weight: 600; color: var(--primary);">Conhecer Ofertas →</span></td>
-              <td>Botões de conversão e CTAs</td>
-            </tr>
-            <tr>
-              <td><span class="type-token">rating-display</span></td>
-              <td><span class="type-spec">64px · 700 · 1.0</span></td>
-              <td><span style="font-size: 32px; font-weight: 700; line-height: 1; color: var(--ink);">4.91</span></td>
-              <td>Nota de avaliação Google</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
-
-
-    <!-- ==========================================================================
-         SEÇÃO 3: COMPONENTES AO VIVO (COMPONENTS)
-         ========================================================================== -->
-    <section id="components" class="section">
-      <span class="section-tag">03 · UI Kit Interativo</span>
-      <h2 class="section-title">Components Library</h2>
-      <p class="section-lead">Padrões de componentes oficiais implementados em toda a plataforma institucional.</p>
-
-      <!-- Signature Search Bar -->
-      <div class="color-group-title">Global Search Bar (Signature Pill)</div>
-      <div class="search-pill-bar" style="margin-bottom: 32px;">
-        <div class="search-seg">
-          <span class="search-seg-lbl">O que você procura?</span>
-          <input type="text" class="search-seg-input" placeholder="Medicamento, vitamina ou marca...">
-        </div>
-        <div class="search-seg">
-          <span class="search-seg-lbl">Qual Filial?</span>
-          <input type="text" class="search-seg-input" placeholder="Plaza ou Tapanã">
-        </div>
-        <div class="search-seg">
-          <span class="search-seg-lbl">Receita Médica</span>
-          <input type="text" class="search-seg-input" placeholder="Enviar foto via WhatsApp">
-        </div>
-        <button class="search-orb-btn" aria-label="Buscar">
-          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
-        </button>
-      </div>
-
-      <!-- Category Strip -->
-      <div class="color-group-title">Category Strip / Filtros</div>
-      <div class="cat-strip">
-        <a href="#" class="cat-item active"><span class="cat-icon">💊</span> Medicamentos</a>
-        <a href="#" class="cat-item"><span class="cat-icon">👶</span> Mamãe & Bebê</a>
-        <a href="#" class="cat-item"><span class="cat-icon">✨</span> Dermocosméticos</a>
-        <a href="#" class="cat-item"><span class="cat-icon">🛡️</span> Vitaminas & Imunidade</a>
-        <a href="#" class="cat-item"><span class="cat-icon">🧴</span> Higiene & Cuidados</a>
-        <a href="#" class="cat-item"><span class="cat-icon">🏷️</span> Clube +B Ofertas</a>
-      </div>
-
-      <!-- Grid de Componentes -->
-      <div class="comp-showcase">
+      <!-- NAVEGAÇÃO DOS 5 MÓDULOS -->
+      <nav class="ds-sidebar-nav">
         
-        <!-- Painel de Botões -->
-        <div class="comp-panel">
-          <div class="comp-panel-title">
-            <span>Botões de Ação</span>
-            <span class="type-token">button-*</span>
-          </div>
-          <div class="btn-stack">
-            <button class="btn-primary">Pedir no WhatsApp →</button>
-            <button class="btn-secondary">Conhecer Nossas Filiais</button>
-            <div class="btn-row">
-              <button class="btn-primary btn-pill">Clube +B</button>
-              <button class="btn-tertiary">Ver Horários</button>
-              <button class="btn-disabled" disabled>Esgotado</button>
-            </div>
-          </div>
+        <!-- 01 FUNDAMENTOS -->
+        <div class="ds-nav-group">
+          <a href="#mod-fundamentos" class="ds-nav-group-title">
+            <span class="ds-num-pill">01</span> Fundamentos
+          </a>
+          <ul class="ds-nav-sub">
+            <li><a href="#identidade" class="ds-sub-link">Identidade & Conceito</a></li>
+            <li><a href="#cores" class="ds-sub-link">Cores & Tokens</a></li>
+            <li><a href="#tipografia" class="ds-sub-link">Tipografia Canônica</a></li>
+            <li><a href="#espacamento" class="ds-sub-link">Espaçamento</a></li>
+            <li><a href="#raios" class="ds-sub-link">Border Radius</a></li>
+            <li><a href="#sombras" class="ds-sub-link">Sombras & Elevação</a></li>
+            <li><a href="#bordas" class="ds-sub-link">Bordas & Divisores</a></li>
+            <li><a href="#icones" class="ds-sub-link">Linguagem de Ícones</a></li>
+            <li><a href="#objetos-3d" class="ds-sub-link">Objetos 3D Oficiais</a></li>
+          </ul>
         </div>
 
-        <!-- Painel de Card de Filial -->
-        <div class="comp-panel">
-          <div class="comp-panel-title">
-            <span>Card de Filial</span>
-            <span class="type-token">property-card</span>
+        <!-- 02 COMPONENTES -->
+        <div class="ds-nav-group">
+          <a href="#mod-componentes" class="ds-nav-group-title">
+            <span class="ds-num-pill">02</span> Componentes
+          </a>
+          <ul class="ds-nav-sub">
+            <li><a href="#botoes" class="ds-sub-link">Botões Padrão Ouro</a></li>
+            <li><a href="#links" class="ds-sub-link">Links & Hipertextos</a></li>
+            <li><a href="#inputs" class="ds-sub-link">Formulários & Inputs</a></li>
+            <li><a href="#badges" class="ds-sub-link">Tags & Badges</a></li>
+            <li><a href="#cards" class="ds-sub-link">Catálogo de Cards</a></li>
+            <li><a href="#navegacao" class="ds-sub-link">Navegação & Header</a></li>
+            <li><a href="#outros-componentes" class="ds-sub-link">Accordion, Carrossel & Modal</a></li>
+          </ul>
+        </div>
+
+        <!-- 03 APLICAÇÕES -->
+        <div class="ds-nav-group">
+          <a href="#mod-aplicacoes" class="ds-nav-group-title">
+            <span class="ds-num-pill">03</span> Aplicações
+          </a>
+          <ul class="ds-nav-sub">
+            <li><a href="#blocos-cta" class="ds-sub-link">Composições de CTA</a></li>
+            <li><a href="#card-groups" class="ds-sub-link">Grupos de Cards</a></li>
+            <li><a href="#titulos-secao" class="ds-sub-link">Títulos de Seção Duotone</a></li>
+            <li><a href="#duas-colunas" class="ds-sub-link">Conteúdo em Duas Colunas</a></li>
+            <li><a href="#bloco-precos" class="ds-sub-link">Preços & Estadia</a></li>
+            <li><a href="#bloco-depoimentos" class="ds-sub-link">Depoimentos & Avaliações</a></li>
+            <li><a href="#bloco-localizacao" class="ds-sub-link">Cards de Unidades</a></li>
+          </ul>
+        </div>
+
+        <!-- 04 SEÇÕES DO SITE -->
+        <div class="ds-nav-group">
+          <a href="#mod-secoes" class="ds-nav-group-title">
+            <span class="ds-num-pill">04</span> Seções do Site
+          </a>
+          <ul class="ds-nav-sub">
+            <li><a href="#secao-hero" class="ds-sub-link">Hero Carousel</a></li>
+            <li><a href="#secao-categorias" class="ds-sub-link">10 Atrações Circulares</a></li>
+            <li><a href="#secao-festas" class="ds-sub-link">Pacotes Faça Sua Festa</a></li>
+            <li><a href="#secao-estrutura" class="ds-sub-link">Estrutura da Festa (11 Itens)</a></li>
+            <li><a href="#secao-estadia" class="ds-sub-link">Valores por Estadia</a></li>
+            <li><a href="#secao-figma" class="ds-sub-link">Galeria de Telas do Figma</a></li>
+            <li><a href="#secao-footer" class="ds-sub-link">Footer Oficial</a></li>
+          </ul>
+        </div>
+
+        <!-- 05 DIRETRIZES -->
+        <div class="ds-nav-group">
+          <a href="#mod-diretrizes" class="ds-nav-group-title">
+            <span class="ds-num-pill">05</span> Diretrizes
+          </a>
+          <ul class="ds-nav-sub">
+            <li><a href="#faca" class="ds-sub-link">Faça (Do's)</a></li>
+            <li><a href="#evite" class="ds-sub-link">Evite (Don'ts)</a></li>
+            <li><a href="#tokens-tabela" class="ds-sub-link">Tabela de Tokens CSS</a></li>
+          </ul>
+        </div>
+
+      </nav>
+
+      <div class="ds-sidebar-footer">
+        <a href="index.html" target="_blank" class="ds-sidebar-site-link">
+          <i class="fa-solid fa-arrow-up-right-from-square"></i> Ver Site ao Vivo
+        </a>
+      </div>
+    </aside>
+
+    <!-- ====================================================================
+         CONTEÚDO PRINCIPAL DOCUMENTADO (5 MÓDULOS)
+         ==================================================================== -->
+    <main class="ds-main-wrap" id="inicio">
+
+      <!-- BANNER DE BOAS-VINDAS / INTRODUÇÃO DO DESIGN SYSTEM -->
+      <div style="background: #ffffff; border-radius: 24px; padding: 2.5rem; margin-bottom: 3.5rem; border: 1px solid #E2E8F0; box-shadow: 0 6px 24px rgba(0,0,0,0.03);">
+        <div style="display: flex; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 1rem;">
+          <span class="ds-badge badge-green"><i class="fa-solid fa-shield-check"></i> Design System Oficial v2.5</span>
+          <span class="ds-badge badge-orange"><i class="fa-solid fa-sparkles"></i> Figma Canonical Edition</span>
+          <span class="ds-badge" style="background: #145424; color: white;"><i class="fa-solid fa-gem"></i> Padrão Ouro da Marca</span>
+        </div>
+        <h1 style="font-family: var(--font-display, 'Marvin Round', cursive, sans-serif); font-size: clamp(2.2rem, 4vw, 3.2rem); font-weight: 800; color: #165424; margin: 0 0 1rem; line-height: 1.15;">
+          Villa Plaza Park — Design System &amp; Documentação Visual
+        </h1>
+        <p style="font-size: 1.05rem; color: #4A4D59; max-width: 860px; margin: 0 0 1.5rem; line-height: 1.6;">
+          Fonte canônica de verdade para tokens de design, tipografia, componentes atômicos, padrões de interface e seções reais do complexo infantil <strong>Villa Plaza Park</strong> (Grupo Mais Barato). Arquitetura modular desenvolvida para garantir máxima consistência, acessibilidade e agilidade na evolução do produto.
+        </p>
+        <div style="display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; border-top: 1px solid #F1F5F9; pt: 1.25rem; margin-top: 1.25rem;">
+          <div style="font-size: 12.5px; color: #64748B;">
+            <strong>Pilares Cromáticos:</strong> Verde Floresta (<code style="color: #228137; font-weight: bold;">#228137</code>) &amp; Laranja Vibrante (<code style="color: #ef7a2b; font-weight: bold;">#ef7a2b</code>)
           </div>
-          <div class="prop-card">
-            <div class="prop-img-wrap">
-              <img src="assets/Fotografias/Und. Plaza/IAG_8400.webp" alt="Unidade Plaza" class="prop-img">
-              <div class="badge-floating">Filial Plaza</div>
-              <button class="heart-btn saved">♥</button>
+          <div style="font-size: 12.5px; color: #64748B;">
+            <strong>Tipografia:</strong> Marvin Round (Display/Títulos) • Fredoka (Botões) • Comfortaa (Textos) • Caveat (Afetivo)
+          </div>
+        </div>
+      </div>
+
+      <!-- ====================================================================
+           01 — FUNDAMENTOS / ELEMENTOS BÁSICOS
+           ==================================================================== -->
+      <div id="mod-fundamentos" class="ds-module-header">
+        <span class="ds-module-num"><i class="fa-solid fa-cubes-stacked"></i> Módulo 01</span>
+        <h2 class="ds-module-title">Fundamentos &amp; Elementos Básicos</h2>
+        <p class="ds-module-desc">Elementos atômicos e fundacionais da marca: identidade conceitual, paleta cromática com tokens CSS, escala tipográfica, espaçamentos, bordas, sombras e acervo 3D.</p>
+      </div>
+
+      <!-- 1.1 IDENTIDADE DA MARCA -->
+      <section id="identidade" class="ds-doc-section">
+        <div class="ds-doc-section-head">
+          <div>
+            <h3 class="ds-doc-title"><i class="fa-solid fa-flag"></i> Identidade &amp; Conceito da Marca</h3>
+            <p class="ds-doc-desc">Diretrizes conceituais do universo lúdico do Villa Plaza Park.</p>
+          </div>
+          <span class="ds-badge badge-green">Brand Foundation</span>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem;">
+          <div style="background: #F8FAF9; border-radius: 18px; padding: 1.5rem; border: 1px solid #E2E8F0;">
+            <div style="width: 44px; height: 44px; border-radius: 12px; background: #eaf5ec; color: #228137; display: flex; align-items: center; justify-content: center; font-size: 18px; margin-bottom: 1rem;">
+              <i class="fa-solid fa-sparkles"></i>
             </div>
-            <div class="prop-meta">
-              <div class="prop-title-row">
-                <span>+B Farma (Plaza)</span>
-                <span>4.9 ★</span>
+            <h4 style="font-weight: 800; color: #1C1D22; margin: 0 0 0.5rem; font-size: 1rem;">Celebrar a Diversão</h4>
+            <p style="color: #64748B; font-size: 0.88rem; margin: 0; line-height: 1.5;">
+              O complexo é o espaço onde a imaginação das crianças ganha vida com segurança total, gerando memórias afetivas inesquecíveis para toda a família.
+            </p>
+          </div>
+
+          <div style="background: #F8FAF9; border-radius: 18px; padding: 1.5rem; border: 1px solid #E2E8F0;">
+            <div style="width: 44px; height: 44px; border-radius: 12px; background: #fef1e8; color: #ef7a2b; display: flex; align-items: center; justify-content: center; font-size: 18px; margin-bottom: 1rem;">
+              <i class="fa-solid fa-heart-pulse"></i>
+            </div>
+            <h4 style="font-weight: 800; color: #1C1D22; margin: 0 0 0.5rem; font-size: 1rem;">Energia com Acolhimento</h4>
+            <p style="color: #64748B; font-size: 0.88rem; margin: 0; line-height: 1.5;">
+              Vibrante e ativo sem ser visualmente caótico. Usamos formas orgânicas, cantos amplamente arredondados e contrastes cromáticos amigáveis.
+            </p>
+          </div>
+
+          <div style="background: #F8FAF9; border-radius: 18px; padding: 1.5rem; border: 1px solid #E2E8F0;">
+            <div style="width: 44px; height: 44px; border-radius: 12px; background: #eaf5ec; color: #165424; display: flex; align-items: center; justify-content: center; font-size: 18px; margin-bottom: 1rem;">
+              <i class="fa-solid fa-shield-halved"></i>
+            </div>
+            <h4 style="font-weight: 800; color: #1C1D22; margin: 0 0 0.5rem; font-size: 1rem;">Tranquilidade para os Pais</h4>
+            <p style="color: #64748B; font-size: 0.88rem; margin: 0; line-height: 1.5;">
+              Monitores treinados, ambiente 100% climatizado no mezanino do supermercado, permitindo compras com conforto e supervisão constante.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 1.2 CORES OFICIAIS -->
+      <section id="cores" class="ds-doc-section">
+        <div class="ds-doc-section-head">
+          <div>
+            <h3 class="ds-doc-title"><i class="fa-solid fa-palette"></i> Paleta Cromática &amp; Tokens CSS</h3>
+            <p class="ds-doc-desc">Clique em qualquer amostra para copiar o código HEX ou a variável CSS diretamente.</p>
+          </div>
+          <span class="ds-badge badge-green">Tokens Canônicos</span>
+        </div>
+
+        <!-- PRIMÁRIAS E SECUNDÁRIAS -->
+        <h4 style="font-size: 0.95rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; color: #64748B; margin: 0 0 1rem;">
+          Pilares Principais da Marca
+        </h4>
+        <div class="ds-palette-grid" style="margin-bottom: 2rem;">
+          <!-- Verde Oficial -->
+          <div class="ds-color-card">
+            <div class="ds-color-swatch" style="background-color: #228137; color: white;">
+              <span style="font-size: 11px; font-weight: 800; letter-spacing: 0.05em;">BRAND GREEN</span>
+              <button class="ds-color-copy-btn" onclick="copyToken('#228137', 'Verde Oficial')">Copiar</button>
+            </div>
+            <div class="ds-color-info">
+              <p class="ds-color-name">Verde Oficial</p>
+              <div style="display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 6px;">
+                <span class="ds-token-badge" onclick="copyToken('#228137', '#228137')">#228137 <i class="fa-regular fa-copy"></i></span>
+                <span class="ds-token-badge" onclick="copyToken('var(--color-primary)', '--color-primary')">--color-primary <i class="fa-regular fa-copy"></i></span>
               </div>
-              <div class="prop-sub">Av. Nazaré, 1234 — Belém / PA</div>
-              <div class="prop-price" style="color: var(--success);">● Farmacêutico de Plantão</div>
+              <p class="ds-color-role">Cor mestra institucional, cabeçalhos, destaques e identidade principal.</p>
+            </div>
+          </div>
+
+          <!-- Laranja Oficial -->
+          <div class="ds-color-card">
+            <div class="ds-color-swatch" style="background-color: #ef7a2b; color: white;">
+              <span style="font-size: 11px; font-weight: 800; letter-spacing: 0.05em;">BRAND ORANGE</span>
+              <button class="ds-color-copy-btn" onclick="copyToken('#ef7a2b', 'Laranja Oficial')">Copiar</button>
+            </div>
+            <div class="ds-color-info">
+              <p class="ds-color-name">Laranja Oficial</p>
+              <div style="display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 6px;">
+                <span class="ds-token-badge" onclick="copyToken('#ef7a2b', '#ef7a2b')">#ef7a2b <i class="fa-regular fa-copy"></i></span>
+                <span class="ds-token-badge" onclick="copyToken('var(--color-secondary)', '--color-secondary')">--color-secondary <i class="fa-regular fa-copy"></i></span>
+              </div>
+              <p class="ds-color-role">Aceleração visual, energia infantil, aniversários e badges promocionais.</p>
+            </div>
+          </div>
+
+          <!-- Verde Ação (Botão) -->
+          <div class="ds-color-card">
+            <div class="ds-color-swatch" style="background-color: #0c6830; color: white;">
+              <span style="font-size: 11px; font-weight: 800; letter-spacing: 0.05em;">CTA GREEN</span>
+              <button class="ds-color-copy-btn" onclick="copyToken('#0c6830', 'Verde Ação CTA')">Copiar</button>
+            </div>
+            <div class="ds-color-info">
+              <p class="ds-color-name">Verde Ação (Botões)</p>
+              <div style="display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 6px;">
+                <span class="ds-token-badge" onclick="copyToken('#0c6830', '#0c6830')">#0c6830 <i class="fa-regular fa-copy"></i></span>
+                <span class="ds-token-badge" onclick="copyToken('.btn-primary', '.btn-primary')">.btn-primary <i class="fa-regular fa-copy"></i></span>
+              </div>
+              <p class="ds-color-role">Verde profundo de alta taxa de clique para botões primários e CTAs.</p>
+            </div>
+          </div>
+
+          <!-- Laranja Ação (Botão) -->
+          <div class="ds-color-card">
+            <div class="ds-color-swatch" style="background-color: #f16719; color: white;">
+              <span style="font-size: 11px; font-weight: 800; letter-spacing: 0.05em;">CTA ORANGE</span>
+              <button class="ds-color-copy-btn" onclick="copyToken('#f16719', 'Laranja Ação CTA')">Copiar</button>
+            </div>
+            <div class="ds-color-info">
+              <p class="ds-color-name">Laranja Ação (Botões)</p>
+              <div style="display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 6px;">
+                <span class="ds-token-badge" onclick="copyToken('#f16719', '#f16719')">#f16719 <i class="fa-regular fa-copy"></i></span>
+                <span class="ds-token-badge" onclick="copyToken('.btn-secondary', '.btn-secondary')">.btn-secondary <i class="fa-regular fa-copy"></i></span>
+              </div>
+              <p class="ds-color-role">Laranja conversivo para reservas de festa e orçamentos rápidos.</p>
             </div>
           </div>
         </div>
 
-        <!-- Painel de Card Compre & Retire -->
-        <div class="comp-panel">
-          <div class="comp-panel-title">
-            <span>Compre & Retire Card</span>
-            <span class="type-token">reservation-card</span>
+        <!-- CORES DE SUPERFÍCIE, FESTAS & NEUTROS -->
+        <h4 style="font-size: 0.95rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; color: #64748B; margin: 0 0 1rem;">
+          Superfícies, Festas &amp; Neutros
+        </h4>
+        <div class="ds-palette-grid">
+          <!-- Creme Festas -->
+          <div class="ds-color-card">
+            <div class="ds-color-swatch" style="background-color: #FEFAEE; border-bottom: 1px solid #E2E8F0;">
+              <span style="font-size: 11px; font-weight: 800; color: #165424;">PARTY CREAM</span>
+              <button class="ds-color-copy-btn" style="background: rgba(0,0,0,0.1); color: #165424;" onclick="copyToken('#FEFAEE', 'Creme Festas')">Copiar</button>
+            </div>
+            <div class="ds-color-info">
+              <p class="ds-color-name">Creme Faça Sua Festa</p>
+              <div style="display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 6px;">
+                <span class="ds-token-badge" onclick="copyToken('#FEFAEE', '#FEFAEE')">#FEFAEE <i class="fa-regular fa-copy"></i></span>
+                <span class="ds-token-badge" onclick="copyToken('var(--color-party-cream)', '--color-party-cream')">--color-party-cream <i class="fa-regular fa-copy"></i></span>
+              </div>
+              <p class="ds-color-role">Fundo acolhedor oficial da seção de pacotes e aniversários.</p>
+            </div>
           </div>
-          <div class="reservation-card">
-            <div class="res-price-row">
+
+          <!-- Verde Floresta Profundo -->
+          <div class="ds-color-card">
+            <div class="ds-color-swatch" style="background-color: #145424; color: white;">
+              <span style="font-size: 11px; font-weight: 800;">FOREST DEEP</span>
+              <button class="ds-color-copy-btn" onclick="copyToken('#145424', 'Verde Floresta')">Copiar</button>
+            </div>
+            <div class="ds-color-info">
+              <p class="ds-color-name">Verde Floresta Deep</p>
+              <div style="display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 6px;">
+                <span class="ds-token-badge" onclick="copyToken('#145424', '#145424')">#145424 <i class="fa-regular fa-copy"></i></span>
+                <span class="ds-token-badge" onclick="copyToken('var(--color-ticket-bg)', '--color-ticket-bg')">--color-ticket-bg <i class="fa-regular fa-copy"></i></span>
+              </div>
+              <p class="ds-color-role">Fundo do container de comodidades da festa e estadia.</p>
+            </div>
+          </div>
+
+          <!-- Neutro Ink (Títulos) -->
+          <div class="ds-color-card">
+            <div class="ds-color-swatch" style="background-color: #1C1D22; color: white;">
+              <span style="font-size: 11px; font-weight: 800;">NEUTRAL INK</span>
+              <button class="ds-color-copy-btn" onclick="copyToken('#1C1D22', 'Neutro Ink')">Copiar</button>
+            </div>
+            <div class="ds-color-info">
+              <p class="ds-color-name">Preto Ink Suave</p>
+              <div style="display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 6px;">
+                <span class="ds-token-badge" onclick="copyToken('#1C1D22', '#1C1D22')">#1C1D22 <i class="fa-regular fa-copy"></i></span>
+                <span class="ds-token-badge" onclick="copyToken('var(--color-ink)', '--color-ink')">--color-ink <i class="fa-regular fa-copy"></i></span>
+              </div>
+              <p class="ds-color-role">Títulos principais, textos em alto contraste e elementos neutros.</p>
+            </div>
+          </div>
+
+          <!-- WhatsApp Oficial -->
+          <div class="ds-color-card">
+            <div class="ds-color-swatch" style="background-color: #25D366; color: white;">
+              <span style="font-size: 11px; font-weight: 800;">WHATSAPP</span>
+              <button class="ds-color-copy-btn" onclick="copyToken('#25D366', 'WhatsApp Green')">Copiar</button>
+            </div>
+            <div class="ds-color-info">
+              <p class="ds-color-name">Verde WhatsApp Oficial</p>
+              <div style="display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 6px;">
+                <span class="ds-token-badge" onclick="copyToken('#25D366', '#25D366')">#25D366 <i class="fa-regular fa-copy"></i></span>
+                <span class="ds-token-badge" onclick="copyToken('.btn-whatsapp', '.btn-whatsapp')">.btn-whatsapp <i class="fa-regular fa-copy"></i></span>
+              </div>
+              <p class="ds-color-role">Botões e links diretos para atendimento e conversão via chat.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 1.3 TIPOGRAFIA OFICIAL -->
+      <section id="tipografia" class="ds-doc-section">
+        <div class="ds-doc-section-head">
+          <div>
+            <h3 class="ds-doc-title"><i class="fa-solid fa-font"></i> Escala Tipográfica Canônica</h3>
+            <p class="ds-doc-desc">Hierarquia completa de títulos, subtítulos, textos de apoio e botões.</p>
+          </div>
+          <span class="ds-badge badge-green">4 Famílias Oficiais</span>
+        </div>
+
+        <!-- CARTÕES DAS FONTES DA MARCA -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.25rem; margin-bottom: 2rem;">
+          <div style="background: #F8FAF9; border-radius: 16px; padding: 1.25rem; border: 1px solid #E2E8F0;">
+            <span class="ds-preview-label" style="background: #eaf5ec; color: #228137;">TÍTULOS &amp; HEADLINES</span>
+            <div style="font-family: var(--font-display, 'Marvin Round', cursive, sans-serif); font-size: 26px; font-weight: 800; color: #165424; margin: 6px 0;">
+              Marvin Round
+            </div>
+            <p style="font-size: 12px; color: #64748B; margin: 0;">Geometria encorpada, curvas lúdicas e presença visual marcante em H1, H2 e manchetes.</p>
+          </div>
+
+          <div style="background: #F8FAF9; border-radius: 16px; padding: 1.25rem; border: 1px solid #E2E8F0;">
+            <span class="ds-preview-label" style="background: #eaf5ec; color: #0c6830;">BOTÕES &amp; AÇÕES (FIGMA)</span>
+            <div style="font-family: var(--font-btn, 'Fredoka', cursive, sans-serif); font-size: 26px; font-weight: 700; color: #0c6830; margin: 6px 0;">
+              Fredoka / Comfortaa
+            </div>
+            <p style="font-size: 12px; color: #64748B; margin: 0;">Permite Title Case perfeito (<strong>Quero</strong> saber mais >) com peso 800/700 na 1ª palavra.</p>
+          </div>
+
+          <div style="background: #F8FAF9; border-radius: 16px; padding: 1.25rem; border: 1px solid #E2E8F0;">
+            <span class="ds-preview-label" style="background: #fef1e8; color: #ef7a2b;">CORPO &amp; LEITURA FLUIDA</span>
+            <div style="font-family: var(--font-sans, 'Comfortaa', cursive, sans-serif); font-size: 24px; font-weight: 600; color: #ef7a2b; margin: 6px 0;">
+              Comfortaa
+            </div>
+            <p style="font-size: 12px; color: #64748B; margin: 0;">Leitura amigável, arredondada e fluida para parágrafos, especificações e horários.</p>
+          </div>
+
+          <div style="background: #F8FAF9; border-radius: 16px; padding: 1.25rem; border: 1px solid #E2E8F0;">
+            <span class="ds-preview-label" style="background: #FEFAEE; color: #3b6645;">AFETIVO &amp; RABISCOS</span>
+            <div style="font-family: var(--font-handwritten, 'Caveat', cursive); font-size: 30px; font-weight: 700; color: #3b6645; margin: 4px 0;">
+              Caveat Hand
+            </div>
+            <p style="font-size: 12px; color: #64748B; margin: 0;">Frases afetivas inclinadas nos cantos dos pacotes e comentários manuscritos.</p>
+          </div>
+        </div>
+
+        <!-- AMOSTRA DE ESCALA TIPOGRÁFICA COMPLETA -->
+        <div class="ds-preview-box" style="background: #ffffff;">
+          
+          <!-- DISPLAY -->
+          <div style="display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 10px; border-bottom: 1px solid #EDF2F7; padding: 16px 0;">
+            <div style="flex: 1; min-width: 280px;">
+              <div style="font-family: var(--font-display, 'Marvin Round', cursive, sans-serif); font-size: 48px; font-weight: 800; color: #165424; line-height: 1.1; text-transform: uppercase;">
+                MUITO MAIS DIVERSÃO
+              </div>
+            </div>
+            <div style="display: flex; gap: 8px;">
+              <span class="ds-token-badge">Display • 48px • Marvin Round 800</span>
+            </div>
+          </div>
+
+          <!-- H1 -->
+          <div style="display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 10px; border-bottom: 1px solid #EDF2F7; padding: 16px 0;">
+            <div style="flex: 1; min-width: 280px;">
+              <div style="font-family: var(--font-display, 'Marvin Round', cursive, sans-serif); font-size: 36px; font-weight: 800; color: #1C1D22; line-height: 1.15; text-transform: uppercase;">
+                O Complexo Infantil do Mezanino
+              </div>
+            </div>
+            <div style="display: flex; gap: 8px;">
+              <span class="ds-token-badge">H1 • 36px • Marvin Round 800</span>
+            </div>
+          </div>
+
+          <!-- H2 -->
+          <div style="display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 10px; border-bottom: 1px solid #EDF2F7; padding: 16px 0;">
+            <div style="flex: 1; min-width: 280px;">
+              <div style="font-family: var(--font-display, 'Marvin Round', cursive, sans-serif); font-size: 28px; font-weight: 800; color: #ef7a2b; line-height: 1.2; text-transform: uppercase;">
+                Pacotes Faça Sua Festa
+              </div>
+            </div>
+            <div style="display: flex; gap: 8px;">
+              <span class="ds-token-badge">H2 • 28px • Marvin Round 800</span>
+            </div>
+          </div>
+
+          <!-- H3 -->
+          <div style="display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 10px; border-bottom: 1px solid #EDF2F7; padding: 16px 0;">
+            <div style="flex: 1; min-width: 280px;">
+              <div style="font-family: var(--font-display, 'Marvin Round', cursive, sans-serif); font-size: 22px; font-weight: 800; color: #165424; line-height: 1.25;">
+                Villa Aventura — Até 30 Pessoas
+              </div>
+            </div>
+            <div style="display: flex; gap: 8px;">
+              <span class="ds-token-badge">H3 • 22px • Marvin Round 800</span>
+            </div>
+          </div>
+
+          <!-- SUBTITLE -->
+          <div style="display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 10px; border-bottom: 1px solid #EDF2F7; padding: 16px 0;">
+            <div style="flex: 1; min-width: 280px;">
+              <div style="font-family: var(--font-sans, 'Comfortaa', cursive, sans-serif); font-size: 16px; font-weight: 700; color: #1C1D22; line-height: 1.4;">
+                Três opções incríveis para transformar esse dia em uma grande festa em família.
+              </div>
+            </div>
+            <div style="display: flex; gap: 8px;">
+              <span class="ds-token-badge">Subtitle • 16px • Comfortaa 700</span>
+            </div>
+          </div>
+
+          <!-- BODY REGULAR -->
+          <div style="display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 10px; border-bottom: 1px solid #EDF2F7; padding: 16px 0;">
+            <div style="flex: 1; min-width: 280px;">
+              <div style="font-family: var(--font-sans, 'Comfortaa', cursive, sans-serif); font-size: 14.5px; font-weight: 500; color: #4A4D59; line-height: 1.6;">
+                Ambiente 100% climatizado, seguro e cheio de aventuras. Brinquedão modular, piscina de bolinhas e monitores dedicados em Belém do Pará.
+              </div>
+            </div>
+            <div style="display: flex; gap: 8px;">
+              <span class="ds-token-badge">Body • 14.5px • Comfortaa 500</span>
+            </div>
+          </div>
+
+          <!-- BUTTON CTA -->
+          <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; padding: 16px 0;">
+            <div style="flex: 1; min-width: 280px;">
+              <button class="btn btn-primary" style="pointer-events: none;">
+                <strong class="btn-bold">Quero</strong> saber mais <span class="ds-cta-arrow">&gt;</span>
+              </button>
+            </div>
+            <div style="display: flex; gap: 8px;">
+              <span class="ds-token-badge">Button • 15.5px • Fredoka 800 + 500</span>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- 1.4 ESPAÇAMENTO -->
+      <section id="espacamento" class="ds-doc-section">
+        <div class="ds-doc-section-head">
+          <div>
+            <h3 class="ds-doc-title"><i class="fa-solid fa-ruler-combined"></i> Escala de Espaçamento (Spacing)</h3>
+            <p class="ds-doc-desc">Sistema de espaçamento proporcional de 4px a 96px para ritmo vertical e respiro visual.</p>
+          </div>
+          <span class="ds-badge badge-green">8-Point Grid</span>
+        </div>
+
+        <div class="ds-preview-box" style="background: #ffffff; padding: 1rem 1.5rem;">
+          <table class="ds-spacing-table">
+            <thead>
+              <tr>
+                <th style="width: 120px;">Token</th>
+                <th style="width: 90px;">Valor</th>
+                <th>Representação Visual</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>--space-xxs</code></td>
+                <td><strong>4px</strong></td>
+                <td><div class="ds-spacing-bar-wrap"><div class="ds-spacing-bar" style="width: 4px;"></div></div></td>
+              </tr>
+              <tr>
+                <td><code>--space-xs</code></td>
+                <td><strong>8px</strong></td>
+                <td><div class="ds-spacing-bar-wrap"><div class="ds-spacing-bar" style="width: 8px;"></div></div></td>
+              </tr>
+              <tr>
+                <td><code>--space-sm</code></td>
+                <td><strong>12px</strong></td>
+                <td><div class="ds-spacing-bar-wrap"><div class="ds-spacing-bar" style="width: 12px;"></div></div></td>
+              </tr>
+              <tr>
+                <td><code>--space-md</code></td>
+                <td><strong>16px</strong></td>
+                <td><div class="ds-spacing-bar-wrap"><div class="ds-spacing-bar" style="width: 16px;"></div></div></td>
+              </tr>
+              <tr>
+                <td><code>--space-lg</code></td>
+                <td><strong>24px</strong></td>
+                <td><div class="ds-spacing-bar-wrap"><div class="ds-spacing-bar" style="width: 24px;"></div></div></td>
+              </tr>
+              <tr>
+                <td><code>--space-xl</code></td>
+                <td><strong>32px</strong></td>
+                <td><div class="ds-spacing-bar-wrap"><div class="ds-spacing-bar" style="width: 32px;"></div></div></td>
+              </tr>
+              <tr>
+                <td><code>--space-2xl</code></td>
+                <td><strong>48px</strong></td>
+                <td><div class="ds-spacing-bar-wrap"><div class="ds-spacing-bar" style="width: 48px;"></div></div></td>
+              </tr>
+              <tr>
+                <td><code>--space-3xl</code></td>
+                <td><strong>64px</strong></td>
+                <td><div class="ds-spacing-bar-wrap"><div class="ds-spacing-bar" style="width: 64px;"></div></div></td>
+              </tr>
+              <tr>
+                <td><code>--space-4xl</code></td>
+                <td><strong>96px</strong></td>
+                <td><div class="ds-spacing-bar-wrap"><div class="ds-spacing-bar" style="width: 96px;"></div></div></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- 1.5 BORDER RADIUS -->
+      <section id="raios" class="ds-doc-section">
+        <div class="ds-doc-section-head">
+          <div>
+            <h3 class="ds-doc-title"><i class="fa-solid fa-shapes"></i> Border Radius &amp; Arredondamentos</h3>
+            <p class="ds-doc-desc">Do raio sutil para inputs até a pílula absoluta dos botões oficiais.</p>
+          </div>
+          <span class="ds-badge badge-green">Curvas Lúdicas</span>
+        </div>
+
+        <div class="ds-radius-grid">
+          <div class="ds-radius-card">
+            <div class="ds-radius-box" style="border-radius: 8px;"></div>
+            <div class="ds-radius-name">Small (8px)</div>
+            <div class="ds-radius-val">--radius-sm</div>
+            <p style="font-size: 11px; color: #757885; margin: 4px 0 0;">Tags, pequenos badges internos.</p>
+          </div>
+
+          <div class="ds-radius-card">
+            <div class="ds-radius-box" style="border-radius: 14px;"></div>
+            <div class="ds-radius-name">Medium (14px)</div>
+            <div class="ds-radius-val">--radius-md</div>
+            <p style="font-size: 11px; color: #757885; margin: 4px 0 0;">Inputs, selects, cards compactos.</p>
+          </div>
+
+          <div class="ds-radius-card">
+            <div class="ds-radius-box" style="border-radius: 20px;"></div>
+            <div class="ds-radius-name">Large (20px)</div>
+            <div class="ds-radius-val">--radius-lg</div>
+            <p style="font-size: 11px; color: #757885; margin: 4px 0 0;">Cards de pacotes, filiais e modais.</p>
+          </div>
+
+          <div class="ds-radius-card">
+            <div class="ds-radius-box" style="border-radius: 32px;"></div>
+            <div class="ds-radius-name">Extra Large (32px)</div>
+            <div class="ds-radius-val">--radius-xl</div>
+            <p style="font-size: 11px; color: #757885; margin: 4px 0 0;">Container verde festas e seções.</p>
+          </div>
+
+          <div class="ds-radius-card" style="border-color: #228137; background: #eaf5ec;">
+            <div class="ds-radius-box" style="border-radius: 9999px; height: 44px;"></div>
+            <div class="ds-radius-name" style="color: #165424;">Pill (9999px) ★</div>
+            <div class="ds-radius-val">--radius-full</div>
+            <p style="font-size: 11px; color: #165424; font-weight: bold; margin: 4px 0 0;">PADRÃO OURO DE TODOS OS BOTÕES.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 1.6 SOMBRAS & ELEVAÇÃO -->
+      <section id="sombras" class="ds-doc-section">
+        <div class="ds-doc-section-head">
+          <div>
+            <h3 class="ds-doc-title"><i class="fa-solid fa-layer-group"></i> Sombras &amp; Sistema de Elevação</h3>
+            <p class="ds-doc-desc">Hierarquia de profundidade com destaque especial para as sombras coloridas (Glow Shadows).</p>
+          </div>
+          <span class="ds-badge badge-green">Elevation System</span>
+        </div>
+
+        <div class="ds-elevation-grid">
+          <div class="ds-elevation-card" style="box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+            <div class="ds-elevation-title">Sombra Sutil</div>
+            <div class="ds-elevation-desc">Elevação 1: Cards estáticos e bordas suaves.</div>
+            <code style="font-size: 10.5px; color: #64748B; display: block; margin-top: 8px;">0 2px 8px rgba(0,0,0,0.05)</code>
+          </div>
+
+          <div class="ds-elevation-card" style="box-shadow: 0 8px 24px rgba(0,0,0,0.08);">
+            <div class="ds-elevation-title">Sombra de Card</div>
+            <div class="ds-elevation-desc">Elevação 2: Cards de pacotes e unidades.</div>
+            <code style="font-size: 10.5px; color: #64748B; display: block; margin-top: 8px;">0 8px 24px rgba(0,0,0,0.08)</code>
+          </div>
+
+          <div class="ds-elevation-card" style="box-shadow: 0 16px 36px rgba(0,0,0,0.12);">
+            <div class="ds-elevation-title">Sombra Flutuante</div>
+            <div class="ds-elevation-desc">Elevação 3: Modais, dropdowns e hover em cards.</div>
+            <code style="font-size: 10.5px; color: #64748B; display: block; margin-top: 8px;">0 16px 36px rgba(0,0,0,0.12)</code>
+          </div>
+
+          <div class="ds-elevation-card" style="background: #0c6830; color: white; box-shadow: 0 10px 26px rgba(12, 104, 48, 0.45);">
+            <div class="ds-elevation-title" style="color: white;">Glow Verde (CTA)</div>
+            <div class="ds-elevation-desc" style="color: rgba(255,255,255,0.85);">Sombra colorida projetada para botões primários.</div>
+            <code style="font-size: 10.5px; color: #a3e6be; display: block; margin-top: 8px;">rgba(12, 104, 48, 0.45)</code>
+          </div>
+
+          <div class="ds-elevation-card" style="background: #f16719; color: white; box-shadow: 0 10px 26px rgba(241, 103, 25, 0.45);">
+            <div class="ds-elevation-title" style="color: white;">Glow Laranja (CTA)</div>
+            <div class="ds-elevation-desc" style="color: rgba(255,255,255,0.85);">Sombra projetada para botões secundários de festa.</div>
+            <code style="font-size: 10.5px; color: #fed7aa; display: block; margin-top: 8px;">rgba(241, 103, 25, 0.45)</code>
+          </div>
+        </div>
+      </section>
+
+      <!-- 1.7 BORDAS & DIVISORES -->
+      <section id="bordas" class="ds-doc-section">
+        <div class="ds-doc-section-head">
+          <div>
+            <h3 class="ds-doc-title"><i class="fa-solid fa-border-all"></i> Bordas &amp; Divisores</h3>
+            <p class="ds-doc-desc">Padrões de contorno, ênfase e demarcação de conteúdo.</p>
+          </div>
+          <span class="ds-badge badge-green">Strokes &amp; Dividers</span>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.25rem;">
+          <div style="background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 14px; padding: 1.25rem;">
+            <strong style="color: #1C1D22; display: block; margin-bottom: 4px;">Borda Hairline (1px)</strong>
+            <span style="font-size: 12px; color: #64748B;">Divisores sutis, bordas de cards neutros.</span>
+            <code style="display: block; margin-top: 8px; font-size: 11px;">border: 1px solid #E2E8F0</code>
+          </div>
+
+          <div style="background: #FFFDF9; border: 2px dashed #ef7a2b; border-radius: 14px; padding: 1.25rem;">
+            <strong style="color: #bf5412; display: block; margin-bottom: 4px;">Borda Tracejada Festas</strong>
+            <span style="font-size: 12px; color: #64748B;">Especial para caixas de bolo e detalhes lúdicos.</span>
+            <code style="display: block; margin-top: 8px; font-size: 11px; color: #bf5412;">2px dashed #ef7a2b</code>
+          </div>
+
+          <div style="background: #eaf5ec; border: 2px solid #228137; border-radius: 14px; padding: 1.25rem;">
+            <strong style="color: #165424; display: block; margin-bottom: 4px;">Borda de Destaque (2px)</strong>
+            <span style="font-size: 12px; color: #64748B;">Unidade ativa, foco em inputs, outline buttons.</span>
+            <code style="display: block; margin-top: 8px; font-size: 11px; color: #165424;">2px solid #228137</code>
+          </div>
+        </div>
+      </section>
+
+      <!-- 1.8 LINGUAGEM DE ÍCONES -->
+      <section id="icones" class="ds-doc-section">
+        <div class="ds-doc-section-head">
+          <div>
+            <h3 class="ds-doc-title"><i class="fa-solid fa-icons"></i> Linguagem de Ícones</h3>
+            <p class="ds-doc-desc">Sistema de ícones (FontAwesome 6 + Lucide) em tamanhos padronizados.</p>
+          </div>
+          <span class="ds-badge badge-green">Icon System</span>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem;">
+          <div style="background: #F8FAF9; border-radius: 16px; padding: 1.25rem; text-align: center; border: 1px solid #E2E8F0;">
+            <div style="font-size: 16px; color: #228137; margin-bottom: 8px;"><i class="fa-solid fa-ticket"></i> <i class="fa-solid fa-clock"></i> <i class="fa-solid fa-location-dot"></i></div>
+            <strong style="font-size: 13px; display: block; color: #1C1D22;">16px — Ícone em Botões &amp; Badges</strong>
+            <span style="font-size: 11px; color: #64748B;">Acompanha rótulos e micro-textos.</span>
+          </div>
+
+          <div style="background: #F8FAF9; border-radius: 16px; padding: 1.25rem; text-align: center; border: 1px solid #E2E8F0;">
+            <div style="font-size: 20px; color: #ef7a2b; margin-bottom: 8px;"><i class="fa-solid fa-cake-candles"></i> <i class="fa-solid fa-shield-halved"></i> <i class="fa-solid fa-phone"></i></div>
+            <strong style="font-size: 13px; display: block; color: #1C1D22;">20px — Ícone em Menus &amp; Listas</strong>
+            <span style="font-size: 11px; color: #64748B;">Navegação do header e itens de comodidade.</span>
+          </div>
+
+          <div style="background: #F8FAF9; border-radius: 16px; padding: 1.25rem; text-align: center; border: 1px solid #E2E8F0;">
+            <div style="font-size: 28px; color: #165424; margin-bottom: 8px;"><i class="fa-solid fa-map-location-dot"></i> <i class="fa-solid fa-child-reaching"></i> <i class="fa-solid fa-wand-magic-sparkles"></i></div>
+            <strong style="font-size: 13px; display: block; color: #1C1D22;">28px — Ícone Destaque / Cards</strong>
+            <span style="font-size: 11px; color: #64748B;">Topos de cards, badges e modais.</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- 1.9 OBJETOS 3D OFICIAIS -->
+      <section id="objetos-3d" class="ds-doc-section">
+        <div class="ds-doc-section-head">
+          <div>
+            <h3 class="ds-doc-title"><i class="fa-solid fa-cubes"></i> Acervo Oficial de Objetos 3D (14 Ativos)</h3>
+            <p class="ds-doc-desc">Renderizações 3D em WebP com transparência em <code>assets/3DObjetos/</code> para topos de cards, festas e ornamentos.</p>
+          </div>
+          <span class="ds-badge badge-orange">14 Ativos Otimizados</span>
+        </div>
+
+        <div class="ds-3d-gallery-grid">
+          <!-- 1. Balão -->
+          <div class="ds-3d-card">
+            <div class="ds-3d-card-preview">
+              <img src="assets/3DObjetos/balao-ar-quente-nuvens-3d.webp" alt="Balão de Ar Quente 3D" loading="lazy">
+            </div>
+            <h4 class="ds-3d-card-name">Balão com Nuvens</h4>
+            <p class="ds-3d-card-usage">Topo do Card Villa Aventura (30 pessoas).</p>
+            <span class="ds-3d-card-tag">Ativo Festa</span>
+          </div>
+
+          <!-- 2. Bolo de Aniversário -->
+          <div class="ds-3d-card">
+            <div class="ds-3d-card-preview">
+              <img src="assets/3DObjetos/bolo-aniversario-velas-3d.webp" alt="Bolo de Aniversário 3D" loading="lazy">
+            </div>
+            <h4 class="ds-3d-card-name">Bolo de Aniversário</h4>
+            <p class="ds-3d-card-usage">Topo do Card Villa Alegria &amp; Destaques.</p>
+            <span class="ds-3d-card-tag tag-orange">Ativo Festa</span>
+          </div>
+
+          <!-- 3. Estrela Sorridente -->
+          <div class="ds-3d-card">
+            <div class="ds-3d-card-preview">
+              <img src="assets/3DObjetos/estrela-sorridente-3d.webp" alt="Estrela Sorridente 3D" loading="lazy">
+            </div>
+            <h4 class="ds-3d-card-name">Estrela Sorridente</h4>
+            <p class="ds-3d-card-usage">Topo do Card Villa Diversão (60 pessoas).</p>
+            <span class="ds-3d-card-tag">Ativo Festa</span>
+          </div>
+
+          <!-- 4. Sol Sorridente -->
+          <div class="ds-3d-card">
+            <div class="ds-3d-card-preview">
+              <img src="assets/3DObjetos/sol-sorridente-3d.webp" alt="Sol Sorridente 3D" loading="lazy">
+            </div>
+            <h4 class="ds-3d-card-name">Sol Sorridente</h4>
+            <p class="ds-3d-card-usage">Ilustração de clima alegre e acolhedor.</p>
+            <span class="ds-3d-card-tag tag-orange">Personagem</span>
+          </div>
+
+          <!-- 5. Nuvem Sorridente -->
+          <div class="ds-3d-card">
+            <div class="ds-3d-card-preview">
+              <img src="assets/3DObjetos/nuvem-sorridente-3d.webp" alt="Nuvem Sorridente 3D" loading="lazy">
+            </div>
+            <h4 class="ds-3d-card-name">Nuvem Sorridente</h4>
+            <p class="ds-3d-card-usage">Fundos lúdicos e transições de cards.</p>
+            <span class="ds-3d-card-tag">Personagem</span>
+          </div>
+
+          <!-- 6. Brinquedão Modular -->
+          <div class="ds-3d-card">
+            <div class="ds-3d-card-preview">
+              <img src="assets/3DObjetos/brinquedao-modular-escorregador-3d.webp" alt="Brinquedão Modular 3D" loading="lazy">
+            </div>
+            <h4 class="ds-3d-card-name">Brinquedão Modular</h4>
+            <p class="ds-3d-card-usage">Atração principal e estrutura do parque.</p>
+            <span class="ds-3d-card-tag">Atração</span>
+          </div>
+
+          <!-- 7. Castelo Inflável -->
+          <div class="ds-3d-card">
+            <div class="ds-3d-card-preview">
+              <img src="assets/3DObjetos/castelo-inflavel-pula-pula-3d.webp" alt="Castelo Inflável 3D" loading="lazy">
+            </div>
+            <h4 class="ds-3d-card-name">Castelo Pula-Pula</h4>
+            <p class="ds-3d-card-usage">Inflável temático de muita energia.</p>
+            <span class="ds-3d-card-tag tag-orange">Atração</span>
+          </div>
+
+          <!-- 8. Piscina de Bolinhas -->
+          <div class="ds-3d-card">
+            <div class="ds-3d-card-preview">
+              <img src="assets/3DObjetos/bolinhas-coloridas-piscina-3d.webp" alt="Piscina de Bolinhas 3D" loading="lazy">
+            </div>
+            <h4 class="ds-3d-card-name">Bolinhas Coloridas</h4>
+            <p class="ds-3d-card-usage">Espaço Baby e piscina de imersão.</p>
+            <span class="ds-3d-card-tag">Atração</span>
+          </div>
+
+          <!-- 9. Tobogã Espiral -->
+          <div class="ds-3d-card">
+            <div class="ds-3d-card-preview">
+              <img src="assets/3DObjetos/toboga-tubo-espiral-3d.webp" alt="Tobogã Espiral 3D" loading="lazy">
+            </div>
+            <h4 class="ds-3d-card-name">Tobogã Espiral</h4>
+            <p class="ds-3d-card-usage">Tubo fechado e escorregador tubular.</p>
+            <span class="ds-3d-card-tag">Atração</span>
+          </div>
+
+          <!-- 10. Tobogã & Bolinhas -->
+          <div class="ds-3d-card">
+            <div class="ds-3d-card-preview">
+              <img src="assets/3DObjetos/brinquedao-toboga-piscina-bolinhas-3d.webp" alt="Tobogã & Bolinhas 3D" loading="lazy">
+            </div>
+            <h4 class="ds-3d-card-name">Tobogã &amp; Bolinhas</h4>
+            <p class="ds-3d-card-usage">Complexo integrado de descida.</p>
+            <span class="ds-3d-card-tag">Atração</span>
+          </div>
+
+          <!-- 11. Circuito de Redes -->
+          <div class="ds-3d-card">
+            <div class="ds-3d-card-preview">
+              <img src="assets/3DObjetos/circuito-redes-arvorismo-3d.webp" alt="Circuito de Redes 3D" loading="lazy">
+            </div>
+            <h4 class="ds-3d-card-name">Circuito de Redes</h4>
+            <p class="ds-3d-card-usage">Arvorismo infantil e escalada.</p>
+            <span class="ds-3d-card-tag">Atração</span>
+          </div>
+
+          <!-- 12. Rampa de Rolos -->
+          <div class="ds-3d-card">
+            <div class="ds-3d-card-preview">
+              <img src="assets/3DObjetos/rampa-rolos-coloridos-3d.webp" alt="Rampa de Rolos 3D" loading="lazy">
+            </div>
+            <h4 class="ds-3d-card-name">Rampa de Rolos</h4>
+            <p class="ds-3d-card-usage">Recreação motora para os pequenos.</p>
+            <span class="ds-3d-card-tag">Atração</span>
+          </div>
+
+          <!-- 13. Cerca Colorida -->
+          <div class="ds-3d-card">
+            <div class="ds-3d-card-preview">
+              <img src="assets/3DObjetos/cerca-colorida-parquinho-3d.webp" alt="Cerca Colorida 3D" loading="lazy">
+            </div>
+            <h4 class="ds-3d-card-name">Cerca do Parquinho</h4>
+            <p class="ds-3d-card-usage">Delimitação de áreas seguras.</p>
+            <span class="ds-3d-card-tag">Cenografia</span>
+          </div>
+
+          <!-- 14. Amarelinha Giz -->
+          <div class="ds-3d-card">
+            <div class="ds-3d-card-preview">
+              <img src="assets/3DObjetos/amarelinha-giz-colorido-3d.webp" alt="Amarelinha de Giz 3D" loading="lazy">
+            </div>
+            <h4 class="ds-3d-card-name">Amarelinha Colorida</h4>
+            <p class="ds-3d-card-usage">Brincadeiras tradicionais e chão interativo.</p>
+            <span class="ds-3d-card-tag">Cenografia</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====================================================================
+           02 — COMPONENTES
+           ==================================================================== -->
+      <div id="mod-componentes" class="ds-module-header module-orange">
+        <span class="ds-module-num"><i class="fa-solid fa-shapes"></i> Módulo 02</span>
+        <h2 class="ds-module-title">Componentes Reutilizáveis</h2>
+        <p class="ds-module-desc">Biblioteca canônica de componentes: Botões Padrão Ouro (1ª palavra em negrito 800 + complemento regular + seta >), inputs, tags, catálogo de cards, barras de navegação e modais.</p>
+      </div>
+
+      <!-- 2.1 BOTÕES PADRÃO OURO -->
+      <section id="botoes" class="ds-doc-section">
+        <div class="ds-doc-section-head">
+          <div>
+            <h3 class="ds-doc-title"><i class="fa-solid fa-circle-dot"></i> Botões Oficiais (Padrão Ouro Vila Park)</h3>
+            <p class="ds-doc-desc">Regra absoluta da marca: Borda pílula (9999px), primeira palavra em <strong>Negrito (800)</strong>, complemento em peso menor e seta direcional microinterativa.</p>
+          </div>
+          <span class="ds-badge badge-green">Figma Canonical</span>
+        </div>
+
+        <!-- QUADRO DE DESTAQUE: REGRA DE OURO -->
+        <div style="background: #FFFDF9; border: 2px dashed #0c6830; border-radius: 20px; padding: 1.5rem; margin-bottom: 2rem;">
+          <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; margin-bottom: 1rem;">
+            <div>
+              <span class="ds-badge badge-green" style="margin-bottom: 0.35rem;"><i class="fa-solid fa-crown"></i> PADRÃO OFICIAL DOS BOTÕES</span>
+              <h4 style="margin: 0; font-size: 1.15rem; color: #1C1D22; font-weight: 800;">Estrutura Obrigatória de Código &amp; Hierarquia</h4>
+            </div>
+            <!-- RÉPLICA INTERATIVA 1:1 -->
+            <div class="btn btn-primary" style="font-size: 16px; padding: 14px 32px;">
+              <strong class="btn-bold">Quero</strong> saber mais <span class="ds-cta-arrow">&gt;</span>
+            </div>
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 0.75rem; font-size: 0.85rem; color: #4A4D59;">
+            <div style="background: white; border-radius: 10px; padding: 0.75rem 1rem; border: 1px solid #E2E8F0;">
+              <strong style="color: #0c6830;">1. Formato Pílula:</strong> <code>border-radius: 9999px</code>
+            </div>
+            <div style="background: white; border-radius: 10px; padding: 0.75rem 1rem; border: 1px solid #E2E8F0;">
+              <strong style="color: #0c6830;">2. 1ª Palavra Negrito:</strong> <code>&lt;strong class="btn-bold"&gt;</code> Fredoka 700
+            </div>
+            <div style="background: white; border-radius: 10px; padding: 0.75rem 1rem; border: 1px solid #E2E8F0;">
+              <strong style="color: #0c6830;">3. Complemento Regular:</strong> Fredoka 400 (Title Case)
+            </div>
+            <div style="background: white; border-radius: 10px; padding: 0.75rem 1rem; border: 1px solid #E2E8F0;">
+              <strong style="color: #0c6830;">4. Seta &gt; no Final:</strong> Leve avanço no hover (+4px)
+            </div>
+            <div style="background: white; border-radius: 10px; padding: 0.75rem 1rem; border: 1px solid #E2E8F0;">
+              <strong style="color: #0c6830;">5. Glow Drop-Shadow:</strong> Sombra colorida da cor da ação
+            </div>
+          </div>
+        </div>
+
+        <!-- CATÁLOGO DE VARIANTES -->
+        <h4 style="font-size: 0.95rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; color: #64748B; margin: 0 0 1rem;">
+          Variantes Disponíveis
+        </h4>
+        <div class="ds-buttons-row" style="margin-bottom: 2rem;">
+          <button class="btn btn-primary"><strong class="btn-bold">Garantir</strong> passaporte <span class="ds-cta-arrow">&gt;</span></button>
+          <button class="btn btn-secondary"><strong class="btn-bold">Comprar</strong> ingresso <span class="ds-cta-arrow">&gt;</span></button>
+          <button class="btn btn-outline-green"><strong class="btn-bold">Conhecer</strong> unidades <span class="ds-cta-arrow">&gt;</span></button>
+          <button class="btn btn-outline-orange"><strong class="btn-bold">Tirar</strong> dúvidas <span class="ds-cta-arrow">&gt;</span></button>
+          <button class="btn btn-outline-white" style="background: #1C1D22;"><strong class="btn-bold">Ver</strong> atrações <span class="ds-cta-arrow">&gt;</span></button>
+          <button class="btn btn-whatsapp"><strong class="btn-bold">Falar</strong> no WhatsApp <span class="ds-cta-arrow">&gt;</span></button>
+        </div>
+
+        <!-- MATRIZ DE ESTADOS INTERATIVA -->
+        <h4 style="font-size: 0.95rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; color: #64748B; margin: 0 0 1rem;">
+          Matriz de Estados
+        </h4>
+        <div class="ds-preview-box" style="background: #ffffff; padding: 1rem; overflow-x: auto;">
+          <table class="ds-state-matrix">
+            <thead>
+              <tr>
+                <th>Variante</th>
+                <th>Default</th>
+                <th>Hover (Passe o mouse)</th>
+                <th>Active / Focus</th>
+                <th>Disabled</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Primário Verde</td>
+                <td><button class="btn btn-primary" style="padding: 9px 18px; font-size: 13.5px;"><strong class="btn-bold">Quero</strong> saber mais <span class="ds-cta-arrow">&gt;</span></button></td>
+                <td><button class="btn btn-primary" style="padding: 9px 18px; font-size: 13.5px;"><strong class="btn-bold">Quero</strong> saber mais <span class="ds-cta-arrow">&gt;</span></button></td>
+                <td><button class="btn btn-primary" style="padding: 9px 18px; font-size: 13.5px; outline: 3px solid #86EFAC;"><strong class="btn-bold">Quero</strong> saber mais <span class="ds-cta-arrow">&gt;</span></button></td>
+                <td><button class="btn btn-primary" style="padding: 9px 18px; font-size: 13.5px; opacity: 0.5; cursor: not-allowed;"><strong class="btn-bold">Quero</strong> saber mais <span class="ds-cta-arrow">&gt;</span></button></td>
+              </tr>
+              <tr>
+                <td>Secundário Laranja</td>
+                <td><button class="btn btn-secondary" style="padding: 9px 18px; font-size: 13.5px;"><strong class="btn-bold">Reservar</strong> data <span class="ds-cta-arrow">&gt;</span></button></td>
+                <td><button class="btn btn-secondary" style="padding: 9px 18px; font-size: 13.5px;"><strong class="btn-bold">Reservar</strong> data <span class="ds-cta-arrow">&gt;</span></button></td>
+                <td><button class="btn btn-secondary" style="padding: 9px 18px; font-size: 13.5px; outline: 3px solid #FED7AA;"><strong class="btn-bold">Reservar</strong> data <span class="ds-cta-arrow">&gt;</span></button></td>
+                <td><button class="btn btn-secondary" style="padding: 9px 18px; font-size: 13.5px; opacity: 0.5; cursor: not-allowed;"><strong class="btn-bold">Reservar</strong> data <span class="ds-cta-arrow">&gt;</span></button></td>
+              </tr>
+              <tr>
+                <td>Outline Verde</td>
+                <td><button class="btn btn-outline-green" style="padding: 9px 18px; font-size: 13.5px;"><strong class="btn-bold">Conhecer</strong> parque <span class="ds-cta-arrow">&gt;</span></button></td>
+                <td><button class="btn btn-outline-green" style="padding: 9px 18px; font-size: 13.5px;"><strong class="btn-bold">Conhecer</strong> parque <span class="ds-cta-arrow">&gt;</span></button></td>
+                <td><button class="btn btn-outline-green" style="padding: 9px 18px; font-size: 13.5px; outline: 3px solid #86EFAC;"><strong class="btn-bold">Conhecer</strong> parque <span class="ds-cta-arrow">&gt;</span></button></td>
+                <td><button class="btn btn-outline-green" style="padding: 9px 18px; font-size: 13.5px; opacity: 0.5; cursor: not-allowed;"><strong class="btn-bold">Conhecer</strong> parque <span class="ds-cta-arrow">&gt;</span></button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- 2.2 LINKS & HIPERTEXTOS -->
+      <section id="links" class="ds-doc-section">
+        <div class="ds-doc-section-head">
+          <div>
+            <h3 class="ds-doc-title"><i class="fa-solid fa-link"></i> Links &amp; Hipertextos</h3>
+            <p class="ds-doc-desc">Padrões de link inline, link com chevron e links de navegação.</p>
+          </div>
+          <span class="ds-badge badge-green">Hyperlinks</span>
+        </div>
+
+        <div style="display: flex; gap: 2rem; flex-wrap: wrap; align-items: center;">
+          <a href="javascript:void(0)" style="color: #228137; font-weight: 700; text-decoration: underline; font-size: 14px;">Link Inline com Sublinhado</a>
+          <a href="javascript:void(0)" style="color: #ef7a2b; font-weight: 700; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; font-size: 14px;">
+            Ver regulamento da promoção <i class="fa-solid fa-arrow-right" style="font-size: 12px;"></i>
+          </a>
+          <a href="javascript:void(0)" style="color: #1C1D22; font-weight: 600; text-decoration: none; font-size: 14px;">Link de Navegação Suave</a>
+        </div>
+      </section>
+
+      <!-- 2.3 FORMULÁRIOS & INPUTS -->
+      <section id="inputs" class="ds-doc-section">
+        <div class="ds-doc-section-head">
+          <div>
+            <h3 class="ds-doc-title"><i class="fa-solid fa-keyboard"></i> Formulários &amp; Controles de Entrada</h3>
+            <p class="ds-doc-desc">Campos de texto com estados de foco, erro e preenchimento, selects e toggles.</p>
+          </div>
+          <span class="ds-badge badge-green">Form Controls</span>
+        </div>
+
+        <div class="ds-form-grid" style="margin-bottom: 2rem;">
+          <!-- Default -->
+          <div class="ds-form-group">
+            <label class="ds-form-label">Nome do Responsável</label>
+            <input type="text" class="ds-input" placeholder="Ex: Maria Silva">
+            <span style="font-size: 11px; color: #64748B;">Estado padrão (Default)</span>
+          </div>
+
+          <!-- Focus -->
+          <div class="ds-form-group">
+            <label class="ds-form-label">WhatsApp de Contato <span style="color: #228137; font-size: 11px;">(Foco Ativo)</span></label>
+            <input type="text" class="ds-input" value="(91) 99319-1582" style="border-color: #228137; box-shadow: 0 0 0 3px rgba(34, 129, 55, 0.15);">
+          </div>
+
+          <!-- Error -->
+          <div class="ds-form-group">
+            <label class="ds-form-label">Data de Aniversário</label>
+            <input type="text" class="ds-input is-error" value="31/02/2026">
+            <span class="ds-form-error-msg"><i class="fa-solid fa-circle-exclamation"></i> Informe uma data válida.</span>
+          </div>
+
+          <!-- Select -->
+          <div class="ds-form-group">
+            <label class="ds-form-label">Unidade Desejada</label>
+            <select class="ds-select">
+              <option>Villa Plaza Park (São Brás)</option>
+              <option>Villa Plaza Park (Tapanã) — Em Breve</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- TOGGLES, CHECKBOXES & RADIOS -->
+        <h4 style="font-size: 0.95rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; color: #64748B; margin: 0 0 1rem;">
+          Seletores e Toggles
+        </h4>
+        <div style="display: flex; gap: 2.5rem; flex-wrap: wrap; align-items: center;">
+          <label class="ds-toggle-wrap" onclick="this.querySelector('.ds-toggle').classList.toggle('active')">
+            <div class="ds-toggle active"><div class="ds-toggle-handle"></div></div>
+            <span style="font-size: 13.5px; font-weight: 700; color: #1C1D22;">Receber avisos de datas no WhatsApp</span>
+          </label>
+
+          <label style="display: inline-flex; align-items: center; gap: 8px; cursor: pointer; font-size: 13.5px; color: #1C1D22;">
+            <input type="checkbox" checked style="accent-color: #228137; width: 18px; height: 18px;">
+            Concordo com os termos da LGPD
+          </label>
+
+          <label style="display: inline-flex; align-items: center; gap: 8px; cursor: pointer; font-size: 13.5px; color: #1C1D22;">
+            <input type="radio" name="ds_radio" checked style="accent-color: #ef7a2b; width: 18px; height: 18px;">
+            Turno Tarde
+          </label>
+          <label style="display: inline-flex; align-items: center; gap: 8px; cursor: pointer; font-size: 13.5px; color: #1C1D22;">
+            <input type="radio" name="ds_radio" style="accent-color: #ef7a2b; width: 18px; height: 18px;">
+            Turno Noite
+          </label>
+        </div>
+      </section>
+
+      <!-- 2.4 TAGS & BADGES -->
+      <section id="badges" class="ds-doc-section">
+        <div class="ds-doc-section-head">
+          <div>
+            <h3 class="ds-doc-title"><i class="fa-solid fa-tag"></i> Tags, Badges &amp; Indicadores de Status</h3>
+            <p class="ds-doc-desc">Pílulas de capacidade, preço, segurança e horários.</p>
+          </div>
+          <span class="ds-badge badge-green">Pill &amp; Dual Badges</span>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+          <!-- BADGES OFICIAIS DE HEADLINE / TOPO DE SEÇÕES (PADRÃO OFICIAL FIGMA) -->
+          <div style="background: #FEFAEE; border: 2px dashed #228137; border-radius: 18px; padding: 1.5rem;">
+            <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; margin-bottom: 12px;">
               <div>
-                <span class="res-price">Retirada Grátis</span>
-                <span style="font-size: 13px; color: var(--muted); display: block;">Pronto em 60 min</span>
+                <span class="ds-preview-label" style="color: #165424; font-weight: 800; margin: 0;">TAGS &amp; BADGES DE HEADLINE (PADRÃO OFICIAL FIGMA)</span>
+                <p style="margin: 4px 0 0; font-size: 13px; color: #4A4D59;">Padrão único e canônico independente da cor: Pílula 9999px horizontal, ícone temático à esquerda e texto em caixa alta Fredoka Bold 700.</p>
               </div>
-              <span style="font-size: 12px; font-weight: 700; color: var(--primary);">Clube +B</span>
+              <span class="ds-badge badge-green">Padrão Ouro Oficial</span>
             </div>
-
-            <div class="res-grid-box">
-              <div class="res-grid-row">
-                <div class="res-cell">
-                  <div class="res-lbl">RETIRADA</div>
-                  <div class="res-val">Filial Plaza</div>
-                </div>
-                <div class="res-cell">
-                  <div class="res-lbl">HORÁRIO</div>
-                  <div class="res-val">Até às 22h</div>
-                </div>
-              </div>
-              <div class="res-cell-full">
-                <div class="res-lbl">CLIENTE</div>
-                <div class="res-val">Cadastrado no Clube +B</div>
-              </div>
-            </div>
-
-            <button class="btn-primary" style="width: 100%; justify-content: center;">Confirmar Pedido</button>
-          </div>
-        </div>
-
-        <!-- Painel de Formulários -->
-        <div class="comp-panel">
-          <div class="comp-panel-title">
-            <span>Form Inputs & Validação</span>
-            <span class="type-token">text-input</span>
-          </div>
-          <div class="text-input-wrap">
-            <label class="text-input-lbl">Nome Completo</label>
-            <input type="text" class="text-input-field" placeholder="Digite seu nome...">
-          </div>
-          <div class="text-input-wrap">
-            <label class="text-input-lbl">CPF (Para descontos do Clube +B)</label>
-            <input type="text" class="text-input-field" value="000.000.000-00">
-          </div>
-          <div class="text-input-wrap">
-            <label class="text-input-lbl">Estado com Erro</label>
-            <input type="text" class="text-input-field error" value="Telefone sem DDD">
-          </div>
-        </div>
-
-        <!-- Painel de Iconografia Oficial (Lucide Icons) -->
-        <div class="comp-panel" style="grid-column: 1 / -1;">
-          <div class="comp-panel-title">
-            <span>Iconografia Oficial (Lucide Icons — Padrão Obrigatório)</span>
-            <span class="type-token">lucide-icons</span>
-          </div>
-          <p style="font-size: 13px; color: var(--body); margin-bottom: 16px;">
-            Todos os ícones da plataforma são exclusivamente padronizados no pacote <strong><a href="https://lucide.dev/icons/" target="_blank" rel="noopener noreferrer" style="color: var(--primary); text-decoration: underline;">Lucide Icons</a></strong> (SVGs nativos com <code>viewBox="0 0 24 24"</code>, <code>stroke="currentColor"</code>, <code>stroke-width="2"</code>). É proibido o uso de outros pacotes ou emojis na interface.
-          </p>
-          <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 12px;">
             
-            <div style="background: var(--surface-soft); border: 1px solid var(--hairline); border-radius: 10px; padding: 12px; text-align: center;">
-              <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" style="margin: 0 auto 6px; color: var(--primary);"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"></path><path d="M15 18H9"></path><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14"></path><circle cx="17" cy="18.5" r="2.5"></circle><circle cx="7" cy="18.5" r="2.5"></circle></svg>
-              <div style="font-size: 11px; font-weight: 700; color: var(--ink);">truck</div>
-              <div style="font-size: 10px; color: var(--muted);">Entrega Expressa</div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem; margin-top: 1rem;">
+              <!-- Exemplo 1: Verde Pílula com Ícone -->
+              <div style="background: white; border-radius: 14px; padding: 1.25rem; border: 1px solid #E2E8F0; display: flex; flex-direction: column; gap: 10px;">
+                <span style="font-size: 11px; font-weight: 700; color: #05712b; text-transform: uppercase;">1. Tag Verde (Festas, Aniversários &amp; Geral)</span>
+                <div>
+                  <span class="ds-tag ds-tag-green">
+                    <i class="fa-solid fa-gift"></i> ANIVERSÁRIOS INCRÍVEIS
+                  </span>
+                </div>
+                <code style="font-size: 11px; color: #64748B;">bg: #e1f3e7 • color: #05712b • pill: 9999px • straight (0deg)</code>
+              </div>
+
+              <!-- Exemplo 2: Laranja Pílula com Ícone -->
+              <div style="background: white; border-radius: 14px; padding: 1.25rem; border: 1px solid #E2E8F0; display: flex; flex-direction: column; gap: 10px;">
+                <span style="font-size: 11px; font-weight: 700; color: #fb4f02; text-transform: uppercase;">2. Tag Laranja (Unidades, Localização &amp; Informações)</span>
+                <div>
+                  <span class="ds-tag ds-tag-orange">
+                    <i class="fa-solid fa-location-dot"></i> NOSSAS UNIDADES
+                  </span>
+                </div>
+                <code style="font-size: 11px; color: #64748B;">bg: #fef4e3 • color: #fb4f02 • pill: 9999px • straight (0deg)</code>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <span class="ds-preview-label">DUAL BADGES DE FESTA (CAPACIDADE | PREÇO)</span>
+            <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+              <div class="ds-dual-badge badge-green">
+                <span class="ds-badge-cap">ATÉ 30 PESSOAS</span>
+                <span class="ds-badge-divider">|</span>
+                <span class="ds-badge-price">R$ 4.900</span>
+              </div>
+              <div class="ds-dual-badge badge-orange">
+                <span class="ds-badge-cap">ATÉ 30 PESSOAS</span>
+                <span class="ds-badge-divider">|</span>
+                <span class="ds-badge-price">R$ 6.000</span>
+              </div>
+              <div class="ds-dual-badge badge-green">
+                <span class="ds-badge-cap">ATÉ 60 PESSOAS</span>
+                <span class="ds-badge-divider">|</span>
+                <span class="ds-badge-price">R$ 13.200</span>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <span class="ds-preview-label">BADGES DE SEGURANÇA &amp; OPERAÇÃO</span>
+            <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+              <span class="ds-badge badge-green"><i class="fa-solid fa-shield-halved"></i> 100% Monitorado</span>
+              <span class="ds-badge badge-green"><i class="fa-solid fa-sparkles"></i> Higienização Contínua</span>
+              <span class="ds-badge badge-orange"><i class="fa-solid fa-clock"></i> Ter a Qui: 14h às 21h</span>
+              <span class="ds-badge badge-orange"><i class="fa-solid fa-cake-candles"></i> Aniversários Incríveis</span>
+              <span class="ds-badge" style="background: #165424;"><i class="fa-solid fa-paw"></i> Pet Friendly</span>
+              <span class="ds-badge badge-green"><i class="fa-solid fa-check"></i> Unidade Aberta</span>
+              <span class="ds-badge badge-orange"><i class="fa-solid fa-hammer"></i> EM BREVE</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2.5 CATÁLOGO DE CARDS -->
+      <section id="cards" class="ds-doc-section">
+        <div class="ds-doc-section-head">
+          <div>
+            <h3 class="ds-doc-title"><i class="fa-solid fa-id-card"></i> Catálogo Completo de Cards</h3>
+            <p class="ds-doc-desc">Documentação dos modelos de cards que compõem o ecossistema do Vila Park.</p>
+          </div>
+          <span class="ds-badge badge-green">Card Components</span>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;">
+          <!-- Card Modelo: Atração -->
+          <div style="background: #ffffff; border-radius: 20px; padding: 1.5rem; border: 1px solid #E2E8F0; text-align: center; box-shadow: 0 4px 14px rgba(0,0,0,0.04);">
+            <span class="ds-preview-label">CARD ATRAÇÃO</span>
+            <div class="ds-attraction-circle" style="margin: 10px auto 12px; width: 90px; height: 90px;">
+              <img src="assets/Pagina/SECAO%20CATEGORIAS%20REDONDO/atracao-brinquedao.webp" alt="Brinquedão">
+            </div>
+            <div class="ds-attraction-name">Brinquedão &amp; Safari</div>
+            <div class="ds-attraction-tag">Circuito de Aventuras</div>
+          </div>
+
+          <!-- Card Modelo: Comodidade Festa -->
+          <div style="background: #145424; border-radius: 20px; padding: 1.5rem; color: white;">
+            <span class="ds-preview-label" style="background: rgba(255,255,255,0.15); color: white; border-color: transparent;">CARD ESTRUTURA</span>
+            <div style="display: flex; align-items: center; gap: 12px; margin-top: 10px;">
+              <div style="width: 44px; height: 44px; border-radius: 12px; background: rgba(255,255,255,0.15); display: flex; align-items: center; justify-content: center; font-size: 20px;">
+                <i class="fa-solid fa-gamepad"></i>
+              </div>
+              <div>
+                <h5 style="margin: 0; font-size: 1rem; font-weight: 800;">Acesso Livre aos Brinquedos</h5>
+                <p style="margin: 0; font-size: 12px; color: rgba(255,255,255,0.8);">Durante todo o período da festa</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card Modelo: Depoimento -->
+          <div style="background: #ffffff; border-radius: 20px; padding: 1.5rem; border: 1px solid #E2E8F0; box-shadow: 0 4px 14px rgba(0,0,0,0.04);">
+            <span class="ds-preview-label">CARD DEPOIMENTO</span>
+            <div style="color: #F59E0B; font-size: 13px; margin: 8px 0 10px;">
+              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+            </div>
+            <p style="font-size: 13px; color: #4A4D59; font-style: italic; margin: 0 0 12px; line-height: 1.45;">
+              "Fizemos a festa de 5 anos do meu filho no mezanino e foi impecável. Monitores muito atenciosos!"
+            </p>
+            <div style="font-size: 12px; font-weight: 800; color: #165424;">Camila Ferreira • Mãe do Enzo</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2.6 NAVEGAÇÃO & HEADER -->
+      <section id="navegacao" class="ds-doc-section">
+        <div class="ds-doc-section-head">
+          <div>
+            <h3 class="ds-doc-title"><i class="fa-solid fa-compass"></i> Navegação &amp; Header Canônico</h3>
+            <p class="ds-doc-desc">Componente de topo do site com menus, logo centralizada e botão de alta conversão.</p>
+          </div>
+          <span class="ds-badge badge-green">Header Component</span>
+        </div>
+
+        <div class="ds-preview-box" style="background: #ffffff; padding: 1.5rem; border: 1px solid #E2E8F0;">
+          <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;">
+            <div style="display: flex; align-items: center; gap: 1.5rem;">
+              <a href="javascript:void(0)" style="display: flex; align-items: center; gap: 6px; color: #4A4D59; text-decoration: none; font-weight: 700; font-size: 13.5px;"><i class="fa-solid fa-house"></i> Início</a>
+              <a href="javascript:void(0)" style="display: flex; align-items: center; gap: 6px; color: #4A4D59; text-decoration: none; font-weight: 700; font-size: 13.5px;"><i class="fa-solid fa-user"></i> Sobre</a>
+              <a href="javascript:void(0)" style="display: flex; align-items: center; gap: 6px; color: #4A4D59; text-decoration: none; font-weight: 700; font-size: 13.5px;"><i class="fa-solid fa-location-dot"></i> Nossas Lojas</a>
+            </div>
+            <img src="assets/Logos/logo-villa-plaza-park.png" alt="Logo" style="height: 46px;">
+            <div style="display: flex; align-items: center; gap: 1.5rem;">
+              <a href="javascript:void(0)" style="display: flex; align-items: center; gap: 6px; color: #4A4D59; text-decoration: none; font-weight: 700; font-size: 13.5px;"><i class="fa-solid fa-tag"></i> Ofertas</a>
+              <button class="btn btn-primary nav-btn-order" style="padding: 10px 20px; font-size: 13.5px;">
+                <strong class="btn-bold">Garantir</strong> passaporte <span class="ds-cta-arrow">&gt;</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2.7 OUTROS COMPONENTES (ACCORDION, CARROSSEL, MODAL) -->
+      <section id="outros-componentes" class="ds-doc-section">
+        <div class="ds-doc-section-head">
+          <div>
+            <h3 class="ds-doc-title"><i class="fa-solid fa-puzzle-piece"></i> Accordion / FAQ, Controles &amp; Modais</h3>
+            <p class="ds-doc-desc">Componentes funcionais com microinterações interativas.</p>
+          </div>
+          <span class="ds-badge badge-green">Interactive UI</span>
+        </div>
+
+        <!-- ACCORDION FAQ -->
+        <div style="margin-bottom: 2rem;">
+          <span class="ds-preview-label">ACCORDION / FAQ INTERATIVO</span>
+          <div style="display: flex; flex-direction: column; gap: 10px;">
+            <div style="background: #FFFFFF; border: 1.5px solid #E2E8F0; border-radius: 16px; overflow: hidden;">
+              <button onclick="toggleFaqDemo(this)" style="width: 100%; padding: 1.25rem 1.5rem; text-align: left; background: none; border: none; display: flex; align-items: center; justify-content: space-between; font-weight: 800; color: #1C1D22; font-size: 14.5px; cursor: pointer;">
+                <span>Onde fica localizado o Villa Plaza Park?</span>
+                <i class="fa-solid fa-chevron-down" style="color: #228137; transition: transform 0.2s;"></i>
+              </button>
+              <div style="padding: 0 1.5rem 1.25rem; font-size: 13.5px; color: #4A4D59; line-height: 1.6; display: none;">
+                Estamos no mezanino climatizado do <strong>+B Supermercados (Plaza)</strong> na Av. Gov. José Malcher, 2388 — São Brás, Belém/PA.
+              </div>
             </div>
 
-            <div style="background: var(--surface-soft); border: 1px solid var(--hairline); border-radius: 10px; padding: 12px; text-align: center;">
-              <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" style="margin: 0 auto 6px; color: var(--ink);"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"></path><path d="M3 6h18"></path><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
-              <div style="font-size: 11px; font-weight: 700; color: var(--ink);">shopping-bag</div>
-              <div style="font-size: 10px; color: var(--muted);">Compre & Retire</div>
+            <div style="background: #FFFFFF; border: 1.5px solid #E2E8F0; border-radius: 16px; overflow: hidden;">
+              <button onclick="toggleFaqDemo(this)" style="width: 100%; padding: 1.25rem 1.5rem; text-align: left; background: none; border: none; display: flex; align-items: center; justify-content: space-between; font-weight: 800; color: #1C1D22; font-size: 14.5px; cursor: pointer;">
+                <span>Como funciona o agendamento de aniversários?</span>
+                <i class="fa-solid fa-chevron-down" style="color: #228137; transition: transform 0.2s;"></i>
+              </button>
+              <div style="padding: 0 1.5rem 1.25rem; font-size: 13.5px; color: #4A4D59; line-height: 1.6; display: none;">
+                Disponibilizamos 3 pacotes completos (Villa Aventura, Villa Alegria e Villa Diversão) com espaço reservado, monitores e alimentação completa.
+              </div>
             </div>
-
-            <div style="background: var(--surface-soft); border: 1px solid var(--hairline); border-radius: 10px; padding: 12px; text-align: center;">
-              <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" style="margin: 0 auto 6px; color: var(--primary);"><path d="M12 4v16m8-8H4"></path></svg>
-              <div style="font-size: 11px; font-weight: 700; color: var(--ink);">plus / cross</div>
-              <div style="font-size: 10px; color: var(--muted);">Farmacêutico</div>
-            </div>
-
-            <div style="background: var(--surface-soft); border: 1px solid var(--hairline); border-radius: 10px; padding: 12px; text-align: center;">
-              <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" style="margin: 0 auto 6px; color: var(--ink);"><path d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 0 1 0 2.828l-7 7a2 2 0 0 1-2.828 0l-7-7A1.994 1.994 0 0 1 3 12V7a4 4 0 0 1 4-4z"></path></svg>
-              <div style="font-size: 11px; font-weight: 700; color: var(--ink);">tag</div>
-              <div style="font-size: 10px; color: var(--muted);">Clube +B / Ofertas</div>
-            </div>
-
-            <div style="background: var(--surface-soft); border: 1px solid var(--hairline); border-radius: 10px; padding: 12px; text-align: center;">
-              <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" style="margin: 0 auto 6px; color: var(--primary);"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path></svg>
-              <div style="font-size: 11px; font-weight: 700; color: var(--ink);">message-circle</div>
-              <div style="font-size: 10px; color: var(--muted);">WhatsApp Direto</div>
-            </div>
-
-            <div style="background: var(--surface-soft); border: 1px solid var(--hairline); border-radius: 10px; padding: 12px; text-align: center;">
-              <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" style="margin: 0 auto 6px; color: var(--ink);"><path d="m2 7 4.41-4.41A2 2 0 0 1 7.83 2h8.34a2 2 0 0 1 1.42.59L22 7"></path><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path><path d="M15 22v-4a2 2 0 0 0-2-2h-2a2 2 0 0 0-2 2v4"></path></svg>
-              <div style="font-size: 11px; font-weight: 700; color: var(--ink);">store</div>
-              <div style="font-size: 10px; color: var(--muted);">Unidades da Rede</div>
-            </div>
-
-            <div style="background: var(--surface-soft); border: 1px solid var(--hairline); border-radius: 10px; padding: 12px; text-align: center;">
-              <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" style="margin: 0 auto 6px; color: var(--primary);"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"></path><circle cx="12" cy="10" r="3"></circle></svg>
-              <div style="font-size: 11px; font-weight: 700; color: var(--ink);">map-pin</div>
-              <div style="font-size: 10px; color: var(--muted);">Localização Filiais</div>
-            </div>
-
-            <div style="background: var(--surface-soft); border: 1px solid var(--hairline); border-radius: 10px; padding: 12px; text-align: center;">
-              <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" style="margin: 0 auto 6px; color: var(--ink);"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path><path d="m9 12 2 2 4-4"></path></svg>
-              <div style="font-size: 11px; font-weight: 700; color: var(--ink);">shield-check</div>
-              <div style="font-size: 10px; color: var(--muted);">Procedência 100%</div>
-            </div>
-
           </div>
         </div>
 
-      </div>
-    </section>
-
-
-    <!-- ==========================================================================
-         SEÇÃO 4: SPACING & RADIUS
-         ========================================================================== -->
-    <section id="layout" class="section">
-      <span class="section-tag">04 · Sistema Espacial</span>
-      <h2 class="section-title">Spacing & Border Radius Scales</h2>
-      <p class="section-lead">Tokens de espaçamento em base 4px/8px e escala de arredondamentos.</p>
-
-      <div class="color-group-title">Escala de Espaçamento</div>
-      <div style="background: var(--surface-soft); padding: 24px; border-radius: 14px; border: 1px solid var(--hairline);">
-        <div class="spacing-row">
-          <span style="width: 120px;">spacing.xs (4px)</span>
-          <div class="spacing-bar" style="width: 4px;"></div>
-        </div>
-        <div class="spacing-row">
-          <span style="width: 120px;">spacing.sm (8px)</span>
-          <div class="spacing-bar" style="width: 8px;"></div>
-        </div>
-        <div class="spacing-row">
-          <span style="width: 120px;">spacing.md (12px)</span>
-          <div class="spacing-bar" style="width: 12px;"></div>
-        </div>
-        <div class="spacing-row">
-          <span style="width: 120px;">spacing.base (16px)</span>
-          <div class="spacing-bar" style="width: 16px;"></div>
-        </div>
-        <div class="spacing-row">
-          <span style="width: 120px;">spacing.lg (24px)</span>
-          <div class="spacing-bar" style="width: 24px;"></div>
-        </div>
-        <div class="spacing-row">
-          <span style="width: 120px;">spacing.xl (32px)</span>
-          <div class="spacing-bar" style="width: 32px;"></div>
-        </div>
-        <div class="spacing-row">
-          <span style="width: 120px;">spacing.2xl (48px)</span>
-          <div class="spacing-bar" style="width: 48px;"></div>
-        </div>
-        <div class="spacing-row">
-          <span style="width: 120px;">spacing.section (80px)</span>
-          <div class="spacing-bar" style="width: 80px;"></div>
-        </div>
-      </div>
-
-      <!-- City Link Grid -->
-      <div class="color-group-title">Localidades & Categorias (6-Column Grid)</div>
-      <div class="city-grid">
-        <a href="#" class="city-item">
-          <div class="city-title">Unidade Plaza</div>
-          <div class="city-sub">Av. Nazaré, 1234</div>
-        </a>
-        <a href="#" class="city-item">
-          <div class="city-title">Unidade Tapanã</div>
-          <div class="city-sub">Av. Augusto Montenegro</div>
-        </a>
-        <a href="#" class="city-item">
-          <div class="city-title">Medicamentos</div>
-          <div class="city-sub">Genéricos & Similares</div>
-        </a>
-        <a href="#" class="city-item">
-          <div class="city-title">Mamãe & Bebê</div>
-          <div class="city-sub">Fraldas & Fórmulas</div>
-        </a>
-        <a href="#" class="city-item">
-          <div class="city-title">Dermocosméticos</div>
-          <div class="city-sub">Protetores & Hidratantes</div>
-        </a>
-        <a href="#" class="city-item">
-          <div class="city-title">Clube +B</div>
-          <div class="city-sub">Descontos Exclusivos</div>
-        </a>
-      </div>
-    </section>
-
-
-    <!-- ==========================================================================
-         SEÇÃO 5: CÓDIGO FONTE DOS TOKENS (RAW TOKENS VIEWER)
-         ========================================================================== -->
-    <section id="tokens" class="section" style="border-bottom: none;">
-      <span class="section-tag">05 · Contrato Formal</span>
-      <h2 class="section-title">Design Tokens (YAML / JSON Specification)</h2>
-      <p class="section-lead">Tokens oficiais compilados e sincronizados com <code>DESIGN-maisbfarma.md</code>.</p>
-
-      <pre class="code-viewer"><code>---
-version: 1.0.0
-name: maisbfarma-design-system
-description: Sistema oficial de design para a rede +B FARMA (Grupo Mais Barato).
-
-colors:
-  primary: "#E92125"
-  primary-hover: "#C8161A"
-  primary-active: "#A81014"
-  primary-disabled: "#FBD1D3"
-  primary-light: "#FDE8E9"
-  ink: "#32343D"
-  body: "#555866"
-  muted: "#7B7E8C"
-  muted-soft: "#A0A3B1"
-  canvas: "#edf5fd"
-  surface-soft: "#edf5fd"
-  surface-strong: "#F0F2F5"
-  surface-dark: "#1C1D22"
-  surface-dark-card: "#25272E"
-  hairline: "#E7E7E7"
-  border-strong: "#D4D5DC"
-  star-rating: "#F59E0B"
-  success: "#10B981"
-
-typography:
-  fontFamily: "'Lufga', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif"
-  weights:
-    regular: 400
-    medium: 500
-    medium-italic: 500
-    semibold: 600
-    bold: 700
-    extrabold: 800
-  standards:
-    eyebrow:
-      fontSize: "12px"
-      fontWeight: 700
-      lineHeight: "16px"
-      color: "#E92125"
-      textTransform: "uppercase"
-      letterSpacing: "0.1em"
-    headline:
-      fontSize: "38px"
-      fontWeight: 700
-      lineHeight: "36px"
-      color: "#32343D"
-      letterSpacing: "-0.02em"
-      highlightColor: "#E92125"
-    hero-h1:
-      fontSize: "48px"
-      fontWeight: 700
-      lineHeight: "1.15"
-    title-h3:
-      fontSize: "20px"
-      fontWeight: 600
-      lineHeight: "1.3"
-    subtitle:
-      fontSize: "17px"
-      fontWeight: 400
-      lineHeight: "1.6"
-      color: "#555866"
-    body:
-      fontSize: "15px"
-      fontWeight: 400
-      lineHeight: "1.5"
-      color: "#555866"
-
-rounded:
-  sm: "8px"
-  md: "12px"
-  lg: "16px"
-  xl: "24px"
-  2xl: "32px"
-  full: "9999px"
-
-spacing:
-  xs: "4px"
-  sm: "8px"
-  md: "12px"
-  base: "16px"
-  lg: "24px"
-  xl: "32px"
-  2xl: "48px"
-  section: "80px"
----</code></pre>
-    </section>
-
-  </main>
-
-
-  <!-- ==========================================================================
-       FOOTER LIGHT (ESTILO GETDESIGN.MD)
-       ========================================================================== -->
-  <footer class="footer-light">
-    <div class="content">
-      <div class="footer-cols">
+        <!-- CONTROLES DE CARROSSEL -->
         <div>
-          <div class="footer-col-title">Atendimento & Filiais</div>
-          <ul class="footer-links">
-            <li><a href="index.html#filiais">Unidade Plaza (Belém)</a></li>
-            <li><a href="index.html#filiais">Unidade Tapanã (Belém)</a></li>
-            <li><a href="index.html#beneficios">Compre & Retire em 60 min</a></li>
-            <li><a href="index.html#faq">Central de Dúvidas</a></li>
-          </ul>
+          <span class="ds-preview-label">CONTROLES DE CARROSSEL</span>
+          <div style="display: flex; align-items: center; gap: 1.5rem; background: #1C1D22; padding: 1.25rem 2rem; border-radius: 18px; width: fit-content;">
+            <button style="width: 42px; height: 42px; border-radius: 50%; background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.3); color: white; display: flex; align-items: center; justify-content: center; cursor: pointer;">
+              <i class="fa-solid fa-chevron-left"></i>
+            </button>
+            <div style="display: flex; gap: 8px; align-items: center;">
+              <span style="width: 28px; height: 8px; border-radius: 9999px; background: #228137;"></span>
+              <span style="width: 8px; height: 8px; border-radius: 9999px; background: rgba(255,255,255,0.4);"></span>
+              <span style="width: 8px; height: 8px; border-radius: 9999px; background: rgba(255,255,255,0.4);"></span>
+            </div>
+            <button style="width: 42px; height: 42px; border-radius: 50%; background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.3); color: white; display: flex; align-items: center; justify-content: center; cursor: pointer;">
+              <i class="fa-solid fa-chevron-right"></i>
+            </button>
+          </div>
         </div>
+      </section>
 
-        <div>
-          <div class="footer-col-title">Vantagens & Clube +B</div>
-          <ul class="footer-links">
-            <li><a href="index.html#clube">Programa de Fidelidade Gratuito</a></li>
-            <li><a href="index.html#ofertas">Campanhas Semanais</a></li>
-            <li><a href="index.html#beneficios">Entrega Expressa</a></li>
-            <li><a href="index.html#sobre">Atenção Farmacêutica</a></li>
-          </ul>
-        </div>
-
-        <div>
-          <div class="footer-col-title">+B FARMA Institucional</div>
-          <ul class="footer-links">
-            <li><a href="index.html#sobre">Sobre a Rede +B Farma</a></li>
-            <li><a href="index.html#sobre">Grupo Mais Barato</a></li>
-            <li><a href="DESIGN-maisbfarma.md">Design System Spec (.MD)</a></li>
-            <li><a href="index.html">Página Oficial de Produção</a></li>
-          </ul>
-        </div>
+      <!-- ====================================================================
+           03 — APLICAÇÕES
+           ==================================================================== -->
+      <div id="mod-aplicacoes" class="ds-module-header module-dark">
+        <span class="ds-module-num"><i class="fa-solid fa-layer-group"></i> Módulo 03</span>
+        <h2 class="ds-module-title">Padrões de Aplicação &amp; Blocos Reais</h2>
+        <p class="ds-module-desc">Composições e blocos de interface prontos: cabeçalhos duotone com sparks lúdicos, CTAs de alta conversão, layouts de duas colunas, grids de cartões e blocos de localização.</p>
       </div>
 
-      <div class="legal-band">
-        <div>© 2026 +B FARMA · Grupo Mais Barato. Todos os direitos reservados.</div>
-        <div class="legal-links">
-          <a href="#">Privacidade</a>
-          <span>·</span>
-          <a href="#">Termos</a>
-          <span>·</span>
-          <a href="#">Mapa do Site</a>
+      <!-- 3.1 BLOCOS DE CTA -->
+      <section id="blocos-cta" class="ds-doc-section">
+        <div class="ds-doc-section-head">
+          <div>
+            <h3 class="ds-doc-title"><i class="fa-solid fa-bullhorn"></i> Blocos de Chamada para Ação (CTA)</h3>
+            <p class="ds-doc-desc">Composições de título + texto de apoio + botão canônico + grafismos lúdicos.</p>
+          </div>
+          <span class="ds-badge badge-orange">High Conversion</span>
         </div>
+
+        <div class="category-cta" style="margin-bottom: 1.5rem;">
+          <div class="category-cta-copy">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sparkles"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg>
+            <div>
+              <p class="category-cta-kicker">Muita diversão para os pequenos</p>
+              <p class="category-cta-title">Venha viver momentos mágicos em família no Villa Plaza Park.</p>
+            </div>
+          </div>
+          <button type="button" class="btn btn-primary category-cta-button">
+            <strong class="btn-bold">Falar</strong> no WhatsApp <span class="ds-cta-arrow">&gt;</span>
+          </button>
+        </div>
+
+        <!-- CALLOUT DE URGÊNCIA -->
+        <div style="background: #fef1e8; border: 2px dashed #fcd6bd; border-radius: 20px; padding: 1.5rem 2rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1.5rem;">
+          <div>
+            <div style="margin-bottom: 0.5rem;">
+              <span class="ds-tag ds-tag-orange"><i class="fa-solid fa-clock"></i> AGENDA ABERTA 2026</span>
+            </div>
+            <h4 style="font-family: var(--font-display, 'Marvin Round', cursive, sans-serif); font-size: 1.25rem; color: #bf5412; margin: 0 0 4px;">Garanta a data do aniversário com antecedência!</h4>
+            <p style="color: #4A4D59; font-size: 0.9rem; margin: 0;">Datas de finais de semana possuem concorrência alta. Reserve seu pacote no WhatsApp.</p>
+          </div>
+          <a href="https://wa.me/5591993191582" target="_blank" class="btn btn-secondary">
+            <strong class="btn-bold">Comprar</strong> ingressos <span class="ds-cta-arrow">&gt;</span>
+          </a>
+        </div>
+      </section>
+
+      <!-- 3.2 TÍTULOS DE SEÇÃO DUOTONE -->
+      <section id="titulos-secao" class="ds-doc-section">
+        <div class="ds-doc-section-head">
+          <div>
+            <h3 class="ds-doc-title"><i class="fa-solid fa-sparkles"></i> Padrão Oficial de Título de Seção Duotone</h3>
+            <p class="ds-doc-desc">Eyebrow badge + Marvin Round duotone (Verde e Laranja) + sparks com raios lúdicos.</p>
+          </div>
+          <span class="ds-badge badge-green">Figma Headline Standard</span>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr; gap: 1.5rem;">
+          <!-- Exemplo 1: Festas com Tag Verde + Duotone Headline + Raios -->
+          <div style="text-align: center; padding: 2.5rem 1.5rem; background: #FEFAEE; border-radius: 24px; border: 1px solid #f2eedb;">
+            <div style="margin-bottom: 0.85rem;">
+              <span class="ds-tag ds-tag-green">
+                <i class="fa-solid fa-gift"></i> ANIVERSÁRIOS INCRÍVEIS
+              </span>
+            </div>
+            <div class="ds-title-container" style="margin-bottom: 0.5rem;">
+              <svg class="ds-spark-rays ds-spark-left" viewBox="0 0 36 36" fill="none" style="width: 32px; height: 32px;">
+                <path d="M30 18L8 8" stroke="#EF7A2B" stroke-width="5" stroke-linecap="round"/>
+                <path d="M32 26L8 28" stroke="#EF7A2B" stroke-width="5" stroke-linecap="round"/>
+                <path d="M26 10L14 3" stroke="#EF7A2B" stroke-width="5" stroke-linecap="round"/>
+              </svg>
+              <h2 class="ds-duotone-title text-center" style="font-size: clamp(2rem, 4vw, 2.8rem); margin: 0;">
+                <span class="text-green">PACOTES</span> <span class="text-orange">FAÇA SUA FESTA</span>
+              </h2>
+              <svg class="ds-spark-rays ds-spark-right" viewBox="0 0 36 36" fill="none" style="width: 32px; height: 32px;">
+                <path d="M6 18L28 8" stroke="#EF7A2B" stroke-width="5" stroke-linecap="round"/>
+                <path d="M4 26L28 28" stroke="#EF7A2B" stroke-width="5" stroke-linecap="round"/>
+                <path d="M10 10L22 3" stroke="#EF7A2B" stroke-width="5" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <p style="font-family: var(--font-sans); font-size: 15px; color: #434c43; margin: 0 auto; max-width: 540px;">
+              Três opções incríveis para transformar esse dia em uma grande festa.
+            </p>
+          </div>
+
+          <!-- Exemplo 2: Unidades / Institucional com Tag Laranja Oficial + Duotone Headline + Raios -->
+          <div style="text-align: center; padding: 2.5rem 1.5rem; background: #ffffff; border: 1px solid #E2E8F0; border-radius: 24px; box-shadow: 0 4px 16px rgba(0,0,0,0.04);">
+            <div style="margin-bottom: 0.85rem;">
+              <span class="ds-tag ds-tag-orange">
+                <i class="fa-solid fa-location-dot"></i> NOSSAS UNIDADES
+              </span>
+            </div>
+            <div class="ds-title-container" style="margin-bottom: 0.5rem;">
+              <svg class="ds-spark-rays ds-spark-left" viewBox="0 0 36 36" fill="none" style="width: 32px; height: 32px;">
+                <path d="M30 18L8 8" stroke="#EF7A2B" stroke-width="5" stroke-linecap="round"/>
+                <path d="M32 26L8 28" stroke="#EF7A2B" stroke-width="5" stroke-linecap="round"/>
+                <path d="M26 10L14 3" stroke="#EF7A2B" stroke-width="5" stroke-linecap="round"/>
+              </svg>
+              <h2 class="ds-duotone-title text-center" style="font-size: clamp(2rem, 4vw, 2.8rem); margin: 0;">
+                <span class="text-green">DIVERSÃO E LAZER</span> <span class="text-orange">BEM PERTO DE VOCÊ</span>
+              </h2>
+              <svg class="ds-spark-rays ds-spark-right" viewBox="0 0 36 36" fill="none" style="width: 32px; height: 32px;">
+                <path d="M6 18L28 8" stroke="#EF7A2B" stroke-width="5" stroke-linecap="round"/>
+                <path d="M4 26L28 28" stroke="#EF7A2B" stroke-width="5" stroke-linecap="round"/>
+                <path d="M10 10L22 3" stroke="#EF7A2B" stroke-width="5" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <p style="font-family: var(--font-sans); font-size: 15px; color: #64748B; margin: 0 auto; max-width: 540px;">
+              O complexo infantil de alto padrão no mezanino dos supermercados +B.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3.3 DUAS COLUNAS INSTITUCIONAL -->
+      <section id="duas-colunas" class="ds-doc-section">
+        <div class="ds-doc-section-head">
+          <div>
+            <h3 class="ds-doc-title"><i class="fa-solid fa-columns"></i> Conteúdo em Duas Colunas</h3>
+            <p class="ds-doc-desc">Equilíbrio perfeito entre elemento visual e lista de comodidades.</p>
+          </div>
+          <span class="ds-badge badge-green">Two-Column Layout</span>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2.5rem; align-items: center;">
+          <div>
+            <div style="margin-bottom: 0.85rem;">
+              <span class="ds-tag ds-tag-green">
+                <i class="fa-solid fa-shapes"></i> ESPAÇO MEZANINO
+              </span>
+            </div>
+            <div class="ds-title-container" style="justify-content: flex-start; margin-bottom: 1rem;">
+              <svg class="ds-spark-rays ds-spark-left" viewBox="0 0 36 36" fill="none" style="width: 30px; height: 30px;">
+                <path d="M30 18L8 8" stroke="#EF7A2B" stroke-width="5" stroke-linecap="round"/>
+                <path d="M32 26L8 28" stroke="#EF7A2B" stroke-width="5" stroke-linecap="round"/>
+                <path d="M26 10L14 3" stroke="#EF7A2B" stroke-width="5" stroke-linecap="round"/>
+              </svg>
+              <h2 class="ds-duotone-title" style="font-size: clamp(1.8rem, 3.2vw, 2.3rem); text-align: left; margin: 0; line-height: 1.15;">
+                <span class="text-green">SEGURANÇA E CONFORTO</span> <span class="text-orange">EM BELÉM</span>
+              </h2>
+            </div>
+            <p style="color: #4A4D59; font-size: 0.95rem; line-height: 1.65; margin-bottom: 1.5rem;">
+              O Villa Plaza Park foi projetado para oferecer tranquilidade total. Enquanto os pequenos aproveitam o circuito completo de recreação motora, os pais fazem suas compras com tranquilidade.
+            </p>
+            <button class="btn btn-primary">
+              <strong class="btn-bold">Conhecer</strong> o complexo <span class="ds-cta-arrow">&gt;</span>
+            </button>
+          </div>
+          <div style="background: #F1F5F2; border-radius: 24px; padding: 2.5rem 2rem; text-align: center; border: 1px solid #E2E8F0; box-shadow: 0 8px 24px rgba(0,0,0,0.04);">
+            <img src="assets/3DObjetos/brinquedao-modular-escorregador-3d.webp" alt="Brinquedão" style="max-height: 240px; filter: drop-shadow(0 14px 24px rgba(0,0,0,0.18));">
+          </div>
+        </div>
+      </section>
+
+      <!-- ====================================================================
+           04 — SEÇÕES REAIS DO SITE
+           ==================================================================== -->
+      <div id="mod-secoes" class="ds-module-header">
+        <span class="ds-module-num"><i class="fa-solid fa-window-maximize"></i> Módulo 04</span>
+        <h2 class="ds-module-title">Seções Oficiais do Site</h2>
+        <p class="ds-module-desc">As seções completas e canônicas que formam o portal Villa Plaza Park: Pacotes Faça Sua Festa, Estrutura Verde, Valores de Estadia, 10 Atrações Circulares, Filiais e Galeria do Figma.</p>
       </div>
-    </div>
-  </footer>
+
+      <!-- 4.1 PACOTES FAÇA SUA FESTA -->
+      <section id="secao-festas" class="ds-doc-section" style="padding: 0; background: transparent; border: none; box-shadow: none;">
+        <div class="ds-party-section-wrapper">
+          <img src="assets/brand/wave-top-left.svg" alt="" class="ds-party-wave-tl" aria-hidden="true">
+          <img src="assets/brand/wave-bottom-right.svg" alt="" class="ds-party-wave-br" aria-hidden="true">
+          <div class="ds-party-note-tr">Mais<br>que uma festa,<br>boas memórias!♡</div>
+          <div class="ds-party-note-bl">Aqui,<br>a diversão<br>é de verdade!</div>
+
+          <div style="text-align: center; position: relative; z-index: 2; margin-bottom: 2rem;">
+            <div style="margin-bottom: 0.85rem;">
+              <span class="ds-tag ds-tag-green">
+                <i class="fa-solid fa-gift"></i> ANIVERSÁRIOS INCRÍVEIS
+              </span>
+            </div>
+            <div style="display: flex; align-items: center; justify-content: center; gap: 14px; margin-bottom: 6px;">
+              <svg class="ds-title-sparks" viewBox="0 0 36 36" fill="none" style="width: 32px; height: 32px;"><path d="M30 18L8 8" stroke="#EF7A2B" stroke-width="5" stroke-linecap="round"/><path d="M32 26L8 28" stroke="#EF7A2B" stroke-width="5" stroke-linecap="round"/><path d="M26 10L14 3" stroke="#EF7A2B" stroke-width="5" stroke-linecap="round"/></svg>
+              <h2 class="ds-festas-title">
+                <span class="title-pacotes">PACOTES</span> <span class="title-festa">FAÇA SUA FESTA</span>
+              </h2>
+              <svg class="ds-title-sparks" viewBox="0 0 36 36" fill="none" style="width: 32px; height: 32px;"><path d="M6 18L28 8" stroke="#EF7A2B" stroke-width="5" stroke-linecap="round"/><path d="M4 26L28 28" stroke="#EF7A2B" stroke-width="5" stroke-linecap="round"/><path d="M10 10L22 3" stroke="#EF7A2B" stroke-width="5" stroke-linecap="round"/></svg>
+            </div>
+            <p style="font-family: var(--font-sans); font-size: 15px; color: #434c43; margin: 0 auto; max-width: 540px;">
+              Três opções incríveis para transformar esse dia em uma grande festa.
+            </p>
+          </div>
+
+          <!-- GRID DOS 3 PACOTES -->
+          <div class="ds-party-grid">
+            <!-- CARD 1: VILLA AVENTURA -->
+            <div class="ds-party-card">
+              <div class="ds-party-header-pure theme-green">
+                <div class="ds-header-cloud-bg"></div>
+                <div class="ds-topper-3d-wrapper">
+                  <img src="assets/3DObjetos/balao-ar-quente-nuvens-3d.webp" alt="Villa Aventura 3D" class="ds-topper-3d-img">
+                </div>
+                <h3 class="ds-card-title-pure">VILLA AVENTURA</h3>
+                <p class="ds-card-subtitle-pure">Mais diversão para um dia que merece ser especial!</p>
+              </div>
+              <div class="ds-party-body-white">
+                <ul class="ds-party-items-list">
+                  <li class="ds-menu-item">
+                    <img src="assets/brand/svg-icons/icon-kids.svg" alt="" class="ds-item-ico">
+                    <div class="ds-item-texts">
+                      <span class="ds-item-name">ENTRADA KIDS</span>
+                      <p class="ds-item-desc">Batata frita, mini pizza, pipoca, hambúrguer, hot-dog, crepe e churros.</p>
+                    </div>
+                  </li>
+                  <li class="ds-menu-item">
+                    <img src="assets/brand/svg-icons/icon-adults.svg" alt="" class="ds-item-ico">
+                    <div class="ds-item-texts">
+                      <span class="ds-item-name">ENTRADA ADULTOS</span>
+                      <p class="ds-item-desc">Salgadinhos variados + 1 opção de finger food.</p>
+                    </div>
+                  </li>
+                  <li class="ds-menu-item">
+                    <img src="assets/brand/svg-icons/icon-prato.svg" alt="" class="ds-item-ico">
+                    <div class="ds-item-texts">
+                      <span class="ds-item-name">PRATO PRINCIPAL</span>
+                      <p class="ds-item-desc">1 opção de massa + 2 opções de molho + 1 opção de filé.<br><small>Acompanhamentos: arroz, salada, farofa e batata palha.</small></p>
+                    </div>
+                  </li>
+                  <li class="ds-menu-item">
+                    <img src="assets/brand/svg-icons/icon-sobremesa.svg" alt="" class="ds-item-ico">
+                    <div class="ds-item-texts">
+                      <span class="ds-item-name">SOBREMESA</span>
+                      <p class="ds-item-desc">1 opção a cada 30 pessoas + 150 doces tradicionais a cada 30 pessoas.</p>
+                    </div>
+                  </li>
+                  <li class="ds-menu-item">
+                    <img src="assets/brand/svg-icons/icon-bebidas.svg" alt="" class="ds-item-ico">
+                    <div class="ds-item-texts">
+                      <span class="ds-item-name">BEBIDAS</span>
+                      <p class="ds-item-desc">Água + 2 opções de suco + refrigerante.</p>
+                    </div>
+                  </li>
+                </ul>
+                <div class="ds-dual-badge badge-green">
+                  <span class="ds-badge-cap">ATÉ 30 PESSOAS</span>
+                  <span class="ds-badge-divider">|</span>
+                  <span class="ds-badge-price">R$ 4.900</span>
+                </div>
+                <a href="https://wa.me/5591993191582?text=Ol%C3%A1%2C%20gostaria%20de%20saber%20mais%20sobre%20o%20pacote%20Villa%20Aventura" target="_blank" class="ds-party-cta cta-green">
+                  <strong class="cta-bold">Quero</strong> saber mais <span class="ds-cta-arrow">&gt;</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- CARD 2: VILLA ALEGRIA -->
+            <div class="ds-party-card">
+              <div class="ds-party-header-pure theme-orange">
+                <div class="ds-header-cloud-bg"></div>
+                <div class="ds-topper-3d-wrapper">
+                  <img src="assets/3DObjetos/bolo-aniversario-velas-3d.webp" alt="Villa Alegria 3D" class="ds-topper-3d-img">
+                </div>
+                <h3 class="ds-card-title-pure">VILLA ALEGRIA</h3>
+                <p class="ds-card-subtitle-pure">Uma festa completa para celebrar em grande estilo!</p>
+              </div>
+              <div class="ds-party-body-white">
+                <ul class="ds-party-items-list">
+                  <li class="ds-menu-item">
+                    <img src="assets/brand/svg-icons/icon-kids.svg" alt="" class="ds-item-ico">
+                    <div class="ds-item-texts">
+                      <span class="ds-item-name">ENTRADA KIDS</span>
+                      <p class="ds-item-desc">Batata frita, mini pizza, pipoca, hambúrguer, hot-dog, crepe e churros.</p>
+                    </div>
+                  </li>
+                  <li class="ds-menu-item">
+                    <img src="assets/brand/svg-icons/icon-adults.svg" alt="" class="ds-item-ico">
+                    <div class="ds-item-texts">
+                      <span class="ds-item-name">ENTRADA ADULTOS</span>
+                      <p class="ds-item-desc">Salgadinhos variados + 2 opções de finger food.</p>
+                    </div>
+                  </li>
+                  <li class="ds-menu-item">
+                    <img src="assets/brand/svg-icons/icon-prato.svg" alt="" class="ds-item-ico">
+                    <div class="ds-item-texts">
+                      <span class="ds-item-name">PRATO PRINCIPAL</span>
+                      <p class="ds-item-desc">1 opção de massa + 2 opções de molho + 1 opção de filé + 1 opção de camarão.<br><small>Acompanhamentos: arroz, salada, farofa e batata palha.</small></p>
+                    </div>
+                  </li>
+                  <li class="ds-menu-item">
+                    <img src="assets/brand/svg-icons/icon-sobremesa.svg" alt="" class="ds-item-ico">
+                    <div class="ds-item-texts">
+                      <span class="ds-item-name">SOBREMESA</span>
+                      <p class="ds-item-desc">1 opção a cada 30 pessoas + 150 doces tradicionais a cada 30 pessoas.</p>
+                    </div>
+                  </li>
+                  <li class="ds-menu-item">
+                    <img src="assets/brand/svg-icons/icon-bebidas.svg" alt="" class="ds-item-ico">
+                    <div class="ds-item-texts">
+                      <span class="ds-item-name">BEBIDAS</span>
+                      <p class="ds-item-desc">Água + 2 opções de suco + refrigerante.</p>
+                    </div>
+                  </li>
+                </ul>
+                <div class="ds-dual-badge badge-orange">
+                  <span class="ds-badge-cap">ATÉ 30 PESSOAS</span>
+                  <span class="ds-badge-divider">|</span>
+                  <span class="ds-badge-price">R$ 6.000</span>
+                </div>
+                <a href="https://wa.me/5591993191582?text=Ol%C3%A1%2C%20gostaria%20de%20saber%20mais%20sobre%20o%20pacote%20Villa%20Alegria" target="_blank" class="ds-party-cta cta-orange">
+                  <strong class="cta-bold">Quero</strong> saber mais <span class="ds-cta-arrow">&gt;</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- CARD 3: VILLA DIVERSÃO -->
+            <div class="ds-party-card">
+              <div class="ds-party-header-pure theme-green">
+                <div class="ds-header-cloud-bg"></div>
+                <div class="ds-topper-3d-wrapper">
+                  <img src="assets/3DObjetos/estrela-sorridente-3d.webp" alt="Villa Diversão 3D" class="ds-topper-3d-img">
+                </div>
+                <h3 class="ds-card-title-pure">VILLA DIVERSÃO</h3>
+                <p class="ds-card-subtitle-pure">Para transformar o aniversário em uma experiência completa!</p>
+              </div>
+              <div class="ds-party-body-white">
+                <ul class="ds-party-items-list">
+                  <li class="ds-menu-item">
+                    <img src="assets/brand/svg-icons/icon-kids.svg" alt="" class="ds-item-ico">
+                    <div class="ds-item-texts">
+                      <span class="ds-item-name">ENTRADA KIDS</span>
+                      <p class="ds-item-desc">Batata frita, mini pizza, pipoca, hambúrguer, hot-dog, crepe e churros.</p>
+                    </div>
+                  </li>
+                  <li class="ds-menu-item">
+                    <img src="assets/brand/svg-icons/icon-adults.svg" alt="" class="ds-item-ico">
+                    <div class="ds-item-texts">
+                      <span class="ds-item-name">ENTRADA ADULTOS</span>
+                      <p class="ds-item-desc">Salgadinhos variados + 2 opções de finger food.</p>
+                    </div>
+                  </li>
+                  <li class="ds-menu-item">
+                    <img src="assets/brand/svg-icons/icon-prato.svg" alt="" class="ds-item-ico">
+                    <div class="ds-item-texts">
+                      <span class="ds-item-name">PRATO PRINCIPAL</span>
+                      <p class="ds-item-desc">1 opção de massa + 2 opções de molho + 1 opção de filé + 1 opção de camarão + 1 opção de filhote.<br><small>Acompanhamentos: arroz, salada, farofa e batata palha.</small></p>
+                    </div>
+                  </li>
+                  <li class="ds-menu-item">
+                    <img src="assets/brand/svg-icons/icon-sobremesa.svg" alt="" class="ds-item-ico">
+                    <div class="ds-item-texts">
+                      <span class="ds-item-name">SOBREMESA</span>
+                      <p class="ds-item-desc">1 opção a cada 30 pessoas + 150 doces tradicionais a cada 30 pessoas.</p>
+                    </div>
+                  </li>
+                  <li class="ds-menu-item">
+                    <img src="assets/brand/svg-icons/icon-bebidas.svg" alt="" class="ds-item-ico">
+                    <div class="ds-item-texts">
+                      <span class="ds-item-name">BEBIDAS</span>
+                      <p class="ds-item-desc">Água + 2 opções de suco + refrigerante.</p>
+                    </div>
+                  </li>
+                </ul>
+                <div class="ds-dual-badge badge-green">
+                  <span class="ds-badge-cap">ATÉ 60 PESSOAS</span>
+                  <span class="ds-badge-divider">|</span>
+                  <span class="ds-badge-price">R$ 13.200</span>
+                </div>
+                <a href="https://wa.me/5591993191582?text=Ol%C3%A1%2C%20gostaria%20de%20saber%20mais%20sobre%20o%20pacote%20Villa%20Divers%C3%A3o" target="_blank" class="ds-party-cta cta-green">
+                  <strong class="cta-bold">Quero</strong> saber mais <span class="ds-cta-arrow">&gt;</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4.2 ESTRUTURA DA FESTA -->
+      <section id="secao-estrutura" class="ds-doc-section">
+        <div class="ds-doc-section-head">
+          <div>
+            <h3 class="ds-doc-title"><i class="fa-solid fa-list-check"></i> Estrutura da Festa (11 Comodidades)</h3>
+            <p class="ds-doc-desc">Container verde floresta oficial com todos os serviços e itens inclusos.</p>
+          </div>
+          <span class="ds-badge badge-green">Box Oficial</span>
+        </div>
+
+        <div class="ds-features-box">
+          <div class="ds-features-header">
+            <h2 class="ds-features-title">TUDO QUE A FESTA OFERECE</h2>
+            <p class="ds-features-subtitle">Estrutura completa e exclusiva para você comemorar sem se preocupar com nada.</p>
+          </div>
+
+          <div class="ds-features-grid-layout">
+            <div class="ds-features-list">
+              <div class="ds-feature-item">
+                <span class="ds-feature-check"><i class="fa-solid fa-check"></i></span>
+                <span class="ds-feature-text">Parque fechado exclusivamente para a sua festa</span>
+              </div>
+              <div class="ds-feature-item">
+                <span class="ds-feature-check"><i class="fa-solid fa-check"></i></span>
+                <span class="ds-feature-text">Acesso livre a todos os brinquedos e atrações</span>
+              </div>
+              <div class="ds-feature-item">
+                <span class="ds-feature-check"><i class="fa-solid fa-check"></i></span>
+                <span class="ds-feature-text">Monitores dedicados e treinados durante todo o evento</span>
+              </div>
+              <div class="ds-feature-item">
+                <span class="ds-feature-check"><i class="fa-solid fa-check"></i></span>
+                <span class="ds-feature-text">Convite digital personalizado para enviar aos convidados</span>
+              </div>
+              <div class="ds-feature-item">
+                <span class="ds-feature-check"><i class="fa-solid fa-check"></i></span>
+                <span class="ds-feature-text">Garçons e equipe de apoio para serviço completo</span>
+              </div>
+              <div class="ds-feature-item">
+                <span class="ds-feature-check"><i class="fa-solid fa-check"></i></span>
+                <span class="ds-feature-text">Mesa decorada no tema escolhido com painel e balões</span>
+              </div>
+              <div class="ds-feature-item">
+                <span class="ds-feature-check"><i class="fa-solid fa-check"></i></span>
+                <span class="ds-feature-text">Bolo cenográfico temático para fotos e parabéns</span>
+              </div>
+              <div class="ds-feature-item">
+                <span class="ds-feature-check"><i class="fa-solid fa-check"></i></span>
+                <span class="ds-feature-text">Descartáveis completos (copos, pratos, garfos e guardanapos)</span>
+              </div>
+              <div class="ds-feature-item">
+                <span class="ds-feature-check"><i class="fa-solid fa-check"></i></span>
+                <span class="ds-feature-text">Som ambiente com playlist infantil personalizada</span>
+              </div>
+              <div class="ds-feature-item">
+                <span class="ds-feature-check"><i class="fa-solid fa-check"></i></span>
+                <span class="ds-feature-text">Área reservada com mesas e cadeiras para adultos</span>
+              </div>
+              <div class="ds-feature-item">
+                <span class="ds-feature-check"><i class="fa-solid fa-check"></i></span>
+                <span class="ds-feature-text">Limpeza contínua e higienização durante e após o evento</span>
+              </div>
+            </div>
+
+            <!-- CARD LATERAL DE APOIO COM 3D -->
+            <div class="ds-features-side-box" style="background: #ffffff; border-radius: 24px; padding: 32px 24px; box-shadow: 0 12px 32px rgba(0,0,0,0.14); position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: space-between; border: 1px solid rgba(255,255,255,0.8);">
+              <img src="assets/3DObjetos/bolo-aniversario-velas-3d.webp" alt="Bolo de Aniversário 3D" class="ds-side-cake-img" style="position: absolute; bottom: -15px; right: -15px; width: 140px; opacity: 0.2; pointer-events: none;">
+              <div style="position: relative; z-index: 2;">
+                <div class="mb-3">
+                  <span class="ds-tag ds-tag-green" style="font-size: 11px; padding: 5px 14px;">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i> FESTA COMPLETA
+                  </span>
+                </div>
+                <h4 style="font-family: var(--font-display, 'Marvin Round', cursive, sans-serif); font-size: 1.35rem; color: #165424; margin: 0 0 10px; line-height: 1.2;">
+                  Festa 100% sem Estresse
+                </h4>
+                <p style="font-family: var(--font-sans, 'Comfortaa', sans-serif); font-size: 13.5px; color: #4A4D59; line-height: 1.55; margin: 0 0 20px;">
+                  Nossa equipe cuida de cada detalhe com carinho: da recepção dos convidados à recreação dos pequenos.
+                </p>
+              </div>
+              <div style="position: relative; z-index: 2;">
+                <a href="https://wa.me/5591993191582?text=Ol%C3%A1%2C%20quero%20solicitar%20um%20or%C3%A7amento%20para%20festa%20no%20Villa%20Park" target="_blank" class="btn btn-secondary" style="width: 100%; font-size: 14.5px; padding: 12px 20px;">
+                  <strong class="btn-bold">Quero</strong> meu orçamento <span class="ds-cta-arrow">&gt;</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4.3 VALORES POR ESTADIA -->
+      <section id="secao-estadia" class="ds-doc-section">
+        <div class="ds-doc-section-head">
+          <div>
+            <h3 class="ds-doc-title"><i class="fa-solid fa-ticket"></i> Tabela de Passaportes &amp; Estadia</h3>
+            <p class="ds-doc-desc">Valores oficiais de permanência avulsa no parque.</p>
+          </div>
+          <span class="ds-badge badge-green">Passaportes Oficiais</span>
+        </div>
+
+        <div style="background: #145424; border-radius: 24px; padding: 2.5rem; color: white;">
+          <div style="text-align: center; margin-bottom: 2rem;">
+            <div style="margin-bottom: 0.85rem;">
+              <span class="ds-tag ds-tag-orange"><i class="fa-solid fa-clock"></i> PASSAPORTE POR TEMPO</span>
+            </div>
+            <div class="ds-title-container" style="margin-bottom: 0.5rem;">
+              <svg class="ds-spark-rays ds-spark-left" viewBox="0 0 36 36" fill="none" style="width: 28px; height: 28px;">
+                <path d="M30 18L8 8" stroke="#EF7A2B" stroke-width="5" stroke-linecap="round"/>
+                <path d="M32 26L8 28" stroke="#EF7A2B" stroke-width="5" stroke-linecap="round"/>
+                <path d="M26 10L14 3" stroke="#EF7A2B" stroke-width="5" stroke-linecap="round"/>
+              </svg>
+              <h2 class="ds-duotone-title text-center" style="font-size: clamp(1.8rem, 3.5vw, 2.5rem); margin: 0;">
+                <span style="color: #FFFFFF;">VALORES POR</span> <span class="text-orange">ESTADIA NO PARQUE</span>
+              </h2>
+              <svg class="ds-spark-rays ds-spark-right" viewBox="0 0 36 36" fill="none" style="width: 28px; height: 28px;">
+                <path d="M6 18L28 8" stroke="#EF7A2B" stroke-width="5" stroke-linecap="round"/>
+                <path d="M4 26L28 28" stroke="#EF7A2B" stroke-width="5" stroke-linecap="round"/>
+                <path d="M10 10L22 3" stroke="#EF7A2B" stroke-width="5" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <p style="color: rgba(255,255,255,0.85); font-size: 14px; margin: 0;">Diversão garantida com acompanhamento seguro de monitores.</p>
+          </div>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.25rem;">
+            <div style="background: #FFF4E6; border-radius: 18px; padding: 1.5rem; text-align: center; color: #1C1D22; border: 2px dashed #ef7a2b;">
+              <span style="font-size: 11px; font-weight: 800; color: #bf5412; text-transform: uppercase;">15 MINUTOS</span>
+              <div style="font-family: var(--font-display, 'Marvin Round', cursive, sans-serif); font-size: 2.2rem; font-weight: 800; color: #165424; margin: 4px 0;">R$ 20</div>
+              <p style="font-size: 11px; color: #64748B; margin: 0;">Ideal para um circuito rápido</p>
+            </div>
+
+            <div style="background: #FFF4E6; border-radius: 18px; padding: 1.5rem; text-align: center; color: #1C1D22; border: 2px dashed #ef7a2b;">
+              <span style="font-size: 11px; font-weight: 800; color: #bf5412; text-transform: uppercase;">30 MINUTOS</span>
+              <div style="font-family: var(--font-display, 'Marvin Round', cursive, sans-serif); font-size: 2.2rem; font-weight: 800; color: #165424; margin: 4px 0;">R$ 35</div>
+              <p style="font-size: 11px; color: #64748B; margin: 0;">Aproveitamento intermediário</p>
+            </div>
+
+            <div style="background: #FFF4E6; border-radius: 18px; padding: 1.5rem; text-align: center; color: #1C1D22; border: 2px dashed #ef7a2b;">
+              <span style="font-size: 11px; font-weight: 800; color: #bf5412; text-transform: uppercase;">60 MINUTOS</span>
+              <div style="font-family: var(--font-display, 'Marvin Round', cursive, sans-serif); font-size: 2.2rem; font-weight: 800; color: #165424; margin: 4px 0;">R$ 50</div>
+              <p style="font-size: 11px; color: #64748B; margin: 0;">1 hora cheia de pura diversão</p>
+            </div>
+
+            <div style="background: #FFF4E6; border-radius: 18px; padding: 1.5rem; text-align: center; color: #1C1D22; border: 2px dashed #ef7a2b;">
+              <span style="font-size: 11px; font-weight: 800; color: #bf5412; text-transform: uppercase;">TEMPO LIVRE</span>
+              <div style="font-family: var(--font-display, 'Marvin Round', cursive, sans-serif); font-size: 2.2rem; font-weight: 800; color: #165424; margin: 4px 0;">R$ 80</div>
+              <p style="font-size: 11px; color: #64748B; margin: 0;">Brinque à vontade sem limite</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4.4 10 ATRAÇÕES CIRCULARES -->
+      <section id="secao-categorias" class="ds-doc-section">
+        <div class="ds-doc-section-head">
+          <div>
+            <h3 class="ds-doc-title"><i class="fa-solid fa-shapes"></i> 10 Atrações Circulares Oficiais</h3>
+            <p class="ds-doc-desc">Conjunto canônico de fotos circulares de atrações com zoom hover e badges temáticos.</p>
+          </div>
+          <span class="ds-badge badge-green">10 Atrações</span>
+        </div>
+
+        <div class="ds-attractions-grid">
+          <div class="ds-attraction-card">
+            <div class="ds-attraction-circle"><img src="assets/Pagina/SECAO%20CATEGORIAS%20REDONDO/atracao-brinquedao.webp" alt="Brinquedão"></div>
+            <div class="ds-attraction-name">Brinquedão &amp; Safari</div>
+            <div class="ds-attraction-tag">Circuito de Aventura</div>
+          </div>
+          <div class="ds-attraction-card">
+            <div class="ds-attraction-circle"><img src="assets/Pagina/SECAO%20CATEGORIAS%20REDONDO/atracao-piscina-bolinhas.webp" alt="Piscina de Bolinhas"></div>
+            <div class="ds-attraction-name">Piscina de Bolinhas</div>
+            <div class="ds-attraction-tag">Milhares de Cores</div>
+          </div>
+          <div class="ds-attraction-card">
+            <div class="ds-attraction-circle"><img src="assets/Pagina/SECAO%20CATEGORIAS%20REDONDO/atracao-cama-elastica.webp" alt="Cama Elástica"></div>
+            <div class="ds-attraction-name">Cama Elástica</div>
+            <div class="ds-attraction-tag">Pula-Pula Seguro</div>
+          </div>
+          <div class="ds-attraction-card">
+            <div class="ds-attraction-circle"><img src="assets/Pagina/SECAO%20CATEGORIAS%20REDONDO/atracao-futebol.webp" alt="Quadra de Futebol"></div>
+            <div class="ds-attraction-name">Quadra de Futebol</div>
+            <div class="ds-attraction-tag">Mini Arena Infantil</div>
+          </div>
+          <div class="ds-attraction-card">
+            <div class="ds-attraction-circle"><img src="assets/Pagina/SECAO%20CATEGORIAS%20REDONDO/atracao-baby.webp" alt="Espaço Baby"></div>
+            <div class="ds-attraction-name">Espaço Baby</div>
+            <div class="ds-attraction-tag">Até 3 Anos</div>
+          </div>
+          <div class="ds-attraction-card">
+            <div class="ds-attraction-circle"><img src="assets/Pagina/SECAO%20CATEGORIAS%20REDONDO/atracao-oficinas.webp" alt="Oficinas Criativas"></div>
+            <div class="ds-attraction-name">Oficinas Criativas</div>
+            <div class="ds-attraction-tag">Pintura e Arte</div>
+          </div>
+          <div class="ds-attraction-card">
+            <div class="ds-attraction-circle"><img src="assets/Pagina/SECAO%20CATEGORIAS%20REDONDO/atracao-camarim.webp" alt="Camarim Infantil"></div>
+            <div class="ds-attraction-name">Camarim Infantil</div>
+            <div class="ds-attraction-tag">Penteados e Tattoos</div>
+          </div>
+          <div class="ds-attraction-card">
+            <div class="ds-attraction-circle"><img src="assets/Pagina/SECAO%20CATEGORIAS%20REDONDO/atracao-festas.webp" alt="Festas &amp; Eventos"></div>
+            <div class="ds-attraction-name">Festas &amp; Eventos</div>
+            <div class="ds-attraction-tag">Aniversários</div>
+          </div>
+          <div class="ds-attraction-card">
+            <div class="ds-attraction-circle"><img src="assets/Pagina/SECAO%20CATEGORIAS%20REDONDO/atracao-familia.webp" alt="Espaço Família"></div>
+            <div class="ds-attraction-name">Espaço Família</div>
+            <div class="ds-attraction-tag">Conforto para os Pais</div>
+          </div>
+          <div class="ds-attraction-card">
+            <div class="ds-attraction-circle"><img src="assets/Pagina/SECAO%20CATEGORIAS%20REDONDO/atracao-muitomais.webp" alt="E Muito Mais"></div>
+            <div class="ds-attraction-name">E muito mais...</div>
+            <div class="ds-attraction-tag">Venha Conferir</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4.5 UNIDADES OFICIAIS -->
+      <section id="bloco-localizacao" class="ds-doc-section">
+        <div class="ds-doc-section-head">
+          <div>
+            <div style="margin-bottom: 0.5rem;">
+              <span class="ds-tag ds-tag-orange"><i class="fa-solid fa-location-dot"></i> NOSSAS UNIDADES</span>
+            </div>
+            <h3 class="ds-doc-title"><i class="fa-solid fa-map-location-dot"></i> Unidades Oficiais do Complexo</h3>
+            <p class="ds-doc-desc">Endereços e horários das duas filiais oficiais em Belém/PA.</p>
+          </div>
+          <span class="ds-badge badge-green">Filiais Oficiais</span>
+        </div>
+
+        <div class="ds-units-grid">
+          <!-- Unidade Plaza -->
+          <div class="ds-unit-card active">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem;">
+              <span class="ds-badge badge-green"><i class="fa-solid fa-check"></i> Unidade Aberta</span>
+              <span style="font-size: 0.85rem; color: #228137; font-weight: 700;"><i class="fa-solid fa-star"></i> 4.9 (Google)</span>
+            </div>
+            <h3 class="ds-unit-title">Villa Plaza Park (Plaza)</h3>
+            <p style="color: #4A4D59; font-size: 0.95rem; margin-bottom: 1.25rem;">
+              <strong>Mezanino do +B Supermercados</strong><br>
+              Av. Gov. José Malcher, 2388 — São Brás, Belém - PA
+            </p>
+            <div style="background: #eaf5ec; padding: 0.75rem 1rem; border-radius: 12px; margin-bottom: 1.5rem; font-size: 0.85rem; color: #165424;">
+              <i class="fa-regular fa-clock"></i> Ter a Qui: 14h-21h | Sex a Sáb: 09h-21h | Dom: 08h-14h
+            </div>
+            <a href="https://maps.google.com/?q=Av.+Gov.+Jose+Malcher+2388+Belem" target="_blank" class="btn btn-primary" style="width: 100%; box-sizing: border-box; justify-content: center;">
+              <strong class="btn-bold">Ver rota</strong> no Google Maps <span class="ds-cta-arrow">&gt;</span>
+            </a>
+          </div>
+
+          <!-- Unidade Tapanã (Em Breve) -->
+          <div class="ds-unit-card coming-soon">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem;">
+              <span class="ds-badge badge-orange"><i class="fa-solid fa-hammer"></i> EM BREVE</span>
+              <span style="font-size: 0.85rem; color: #ef7a2b; font-weight: 700;">Segunda Unidade</span>
+            </div>
+            <h3 class="ds-unit-title">Villa Plaza Park (Tapanã)</h3>
+            <p style="color: #4A4D59; font-size: 0.95rem; margin-bottom: 1.25rem;">
+              <strong>+B Supermercados Tapanã</strong><br>
+              Rod. do Tapanã, 597 — Tapanã, Belém - PA
+            </p>
+            <div style="background: #fef1e8; padding: 0.75rem 1rem; border-radius: 12px; margin-bottom: 1.5rem; font-size: 0.85rem; color: #bf5412;">
+              <i class="fa-solid fa-bullhorn"></i> Inauguração em preparação para 2026!
+            </div>
+            <a href="https://wa.me/5591993191582?text=Gostaria%20de%20saber%20sobre%20a%20inaugura%C3%A7%C3%A3o%20do%20Tapan%C3%A3" target="_blank" class="btn btn-secondary" style="width: 100%; box-sizing: border-box; justify-content: center;">
+              <strong class="btn-bold">Quero</strong> convite VIP <span class="ds-cta-arrow">&gt;</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4.6 GALERIA DE TELAS DO FIGMA -->
+      <section id="secao-figma" class="ds-doc-section">
+        <div class="ds-doc-section-head">
+          <div>
+            <h3 class="ds-doc-title"><i class="fa-solid fa-images"></i> Galeria de Telas &amp; Mockups do Figma</h3>
+            <p class="ds-doc-desc">Telas de referência salvas em <code>assets/brand/figma-mockups/</code> para consulta do time.</p>
+          </div>
+          <span class="ds-badge badge-orange"><i class="fa-brands fa-figma"></i> Telas Originais</span>
+        </div>
+
+        <div class="ds-figma-grid">
+          <div class="ds-figma-card">
+            <div class="ds-figma-img-wrap"><img src="assets/brand/figma-mockups/figma-pacotes-festa.jpg" alt="Pacotes Faça Sua Festa"></div>
+            <div class="ds-figma-body">
+              <span class="ds-figma-badge" style="background: #eaf5ec; color: #228137;">Seção Pacotes</span>
+              <h4 style="margin: 0 0 0.5rem; font-size: 1rem; font-weight: 800;">Pacotes Faça Sua Festa</h4>
+              <p style="font-size: 0.82rem; color: #757885; margin: 0 0 0.75rem;">Cards de 3 colunas: Villa Aventura, Villa Alegria e Villa Diversão.</p>
+              <a href="assets/brand/figma-mockups/figma-pacotes-festa.jpg" target="_blank" class="btn btn-outline-green" style="font-size: 0.82rem; padding: 0.5rem 1rem;">
+                <strong class="btn-bold">Ver</strong> em alta resolução <span class="ds-cta-arrow">&gt;</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="ds-figma-card">
+            <div class="ds-figma-img-wrap"><img src="assets/brand/figma-mockups/figma-estrutura-festa.jpg" alt="Estrutura da Festa"></div>
+            <div class="ds-figma-body">
+              <span class="ds-figma-badge" style="background: #fef1e8; color: #ef7a2b;">Seção Estrutura</span>
+              <h4 style="margin: 0 0 0.5rem; font-size: 1rem; font-weight: 800;">Tudo que a festa oferece</h4>
+              <p style="font-size: 0.82rem; color: #757885; margin: 0 0 0.75rem;">Grid de 11 comodidades + foto e card lateral tracejado.</p>
+              <a href="assets/brand/figma-mockups/figma-estrutura-festa.jpg" target="_blank" class="btn btn-outline-orange" style="font-size: 0.82rem; padding: 0.5rem 1rem;">
+                <strong class="btn-bold">Ver</strong> em alta resolução <span class="ds-cta-arrow">&gt;</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="ds-figma-card">
+            <div class="ds-figma-img-wrap"><img src="assets/brand/figma-mockups/figma-landing-page-completa.png" alt="Landing Page Completa"></div>
+            <div class="ds-figma-body">
+              <span class="ds-figma-badge" style="background: #eaf5ec; color: #228137;">Full Page Mockup</span>
+              <h4 style="margin: 0 0 0.5rem; font-size: 1rem; font-weight: 800;">Landing Page Completa</h4>
+              <p style="font-size: 0.82rem; color: #757885; margin: 0 0 0.75rem;">Visão geral da landing page, sequenciamento e ritmo visual.</p>
+              <a href="assets/brand/figma-mockups/figma-landing-page-completa.png" target="_blank" class="btn btn-outline-green" style="font-size: 0.82rem; padding: 0.5rem 1rem;">
+                <strong class="btn-bold">Ver</strong> em alta resolução <span class="ds-cta-arrow">&gt;</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="ds-figma-card">
+            <div class="ds-figma-img-wrap"><img src="assets/brand/figma-mockups/figma-wireframe-estrutura.png" alt="Wireframe Estrutura"></div>
+            <div class="ds-figma-body">
+              <span class="ds-figma-badge" style="background: #1C1D22; color: #FFFFFF;">Esqueleto Wireframe</span>
+              <h4 style="margin: 0 0 0.5rem; font-size: 1rem; font-weight: 800;">Arquitetura &amp; Grids</h4>
+              <p style="font-size: 0.82rem; color: #757885; margin: 0 0 0.75rem;">Estrutura esquelética de blocos e espaçamentos.</p>
+              <a href="assets/brand/figma-mockups/figma-wireframe-estrutura.png" target="_blank" class="btn btn-outline-orange" style="font-size: 0.82rem; padding: 0.5rem 1rem;">
+                <strong class="btn-bold">Ver</strong> em alta resolução <span class="ds-cta-arrow">&gt;</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====================================================================
+           05 — DIRETRIZES (DO's & DON'Ts / FAÇA & EVITE)
+           ==================================================================== -->
+      <div id="mod-diretrizes" class="ds-module-header module-orange">
+        <span class="ds-module-num"><i class="fa-solid fa-compass-drafting"></i> Módulo 05</span>
+        <h2 class="ds-module-title">Diretrizes Práticas (Faça &amp; Evite)</h2>
+        <p class="ds-module-desc">Boas práticas visuais e regras de ouro para designers e desenvolvedores manterem a consistência e qualidade do produto.</p>
+      </div>
+
+      <!-- COMPARATIVO FAÇA & EVITE -->
+      <section id="faca" class="ds-doc-section">
+        <div class="ds-doc-section-head">
+          <div>
+            <h3 class="ds-doc-title"><i class="fa-solid fa-scale-balanced"></i> Recomendações de UI/UX</h3>
+            <p class="ds-doc-desc">Regras de decisão para criação de novas telas e componentes.</p>
+          </div>
+          <span class="ds-badge badge-green">Do's &amp; Don'ts</span>
+        </div>
+
+        <div class="ds-guidelines-grid" id="evite">
+          <!-- FAÇA (DO'S) -->
+          <div class="ds-guideline-card do">
+            <div class="ds-guideline-head"><i class="fa-solid fa-circle-check"></i> FAÇA (Práticas Recomendadas)</div>
+            <ul class="ds-guideline-list">
+              <li><i class="fa-solid fa-check"></i> <span><strong>Padronize todos os botões com pílula (9999px)</strong>, destacando o verbo/ação principal em negrito 800 e seta direcional.</span></li>
+              <li><i class="fa-solid fa-check"></i> <span><strong>Utilize bastante respiro visual</strong> entre seções para não poluir ou sobrecarregar a leitura das famílias.</span></li>
+              <li><i class="fa-solid fa-check"></i> <span><strong>Use objetos 3D nos topos de cards e cabeçalhos</strong> como pontos focais lúdicos, sempre com contraste equilibrado.</span></li>
+              <li><i class="fa-solid fa-check"></i> <span><strong>Mantenha os pilares Verde e Laranja</strong> como cores dominantes das ações principais.</span></li>
+              <li><i class="fa-solid fa-check"></i> <span><strong>Aplique as frases afetivas em Caveat</strong> de forma leve e inclinada, humanizando a experiência da festa.</span></li>
+              <li><i class="fa-solid fa-check"></i> <span><strong>Garanta 100% de responsividade</strong> e toque confortável em smartphones (tamanho mínimo de clique 44px).</span></li>
+            </ul>
+          </div>
+
+          <!-- EVITE (DON'TS) -->
+          <div class="ds-guideline-card dont">
+            <div class="ds-guideline-head"><i class="fa-solid fa-circle-xmark"></i> EVITE (Anti-Padrões Proibidos)</div>
+            <ul class="ds-guideline-list">
+              <li><i class="fa-solid fa-xmark"></i> <span><strong>Nunca use botões com cantos quadrados ou 100% all-caps</strong> em frases inteiras.</span></li>
+              <li><i class="fa-solid fa-xmark"></i> <span><strong>Evite aglomerar múltiplos elementos 3D simultaneamente</strong> sem espaçamento ou função clara.</span></li>
+              <li><i class="fa-solid fa-xmark"></i> <span><strong>Não invente cores fora da paleta canônica</strong> (como roxos ou azuis não aprovados).</span></li>
+              <li><i class="fa-solid fa-xmark"></i> <span><strong>Evite terminar seções sempre em linhas horizontais rígidas</strong>; priorize transições orgânicas e ondas suaves.</span></li>
+              <li><i class="fa-solid fa-xmark"></i> <span><strong>Não coloque elementos decorativos por cima de textos de leitura</strong> comprometendo a acessibilidade.</span></li>
+              <li><i class="fa-solid fa-xmark"></i> <span><strong>Evite infantilizar a interface ao extremo</strong> com poluição visual que afaste o público pagante (pais e responsáveis).</span></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- TABELA DE TOKENS CSS -->
+      <section id="tokens-tabela" class="ds-doc-section">
+        <div class="ds-doc-section-head">
+          <div>
+            <h3 class="ds-doc-title"><i class="fa-solid fa-code"></i> Especificação Técnica dos Tokens (:root)</h3>
+            <p class="ds-doc-desc">Variáveis CSS canônicas definidas em <code>src/css/design-system.css</code> para implementação direta.</p>
+          </div>
+          <span class="ds-badge badge-green">CSS Variables</span>
+        </div>
+
+        <div style="background: #1C1D22; border-radius: 18px; padding: 1.5rem; color: #F8FAFC; overflow-x: auto; font-family: var(--font-mono, monospace); font-size: 12.5px; line-height: 1.7;">
+<pre style="margin: 0;"><span style="color: #64748B;">/* Pilares Cromáticos */</span>
+<span style="color: #86EFAC;">--color-primary</span>: <span style="color: #FED7AA;">#228137</span>;           <span style="color: #64748B;">/* Verde Oficial */</span>
+<span style="color: #86EFAC;">--color-secondary</span>: <span style="color: #FED7AA;">#ef7a2b</span>;         <span style="color: #64748B;">/* Laranja Oficial */</span>
+<span style="color: #86EFAC;">--color-btn-green</span>: <span style="color: #FED7AA;">#0c6830</span>;         <span style="color: #64748B;">/* Verde Ação CTA */</span>
+<span style="color: #86EFAC;">--color-btn-orange</span>: <span style="color: #FED7AA;">#f16719</span>;        <span style="color: #64748B;">/* Laranja Ação CTA */</span>
+<span style="color: #86EFAC;">--color-ticket-bg</span>: <span style="color: #FED7AA;">#145424</span>;         <span style="color: #64748B;">/* Verde Profundo Festas */</span>
+<span style="color: #86EFAC;">--color-party-cream</span>: <span style="color: #FED7AA;">#FEFAEE</span>;       <span style="color: #64748B;">/* Fundo Creme Faça Sua Festa */</span>
+
+<span style="color: #64748B;">/* Tipografia Canônica */</span>
+<span style="color: #86EFAC;">--font-display</span>: <span style="color: #FED7AA;">'Marvin Round', cursive, sans-serif</span>; <span style="color: #64748B;">/* Títulos e Destaques */</span>
+<span style="color: #86EFAC;">--font-btn</span>: <span style="color: #FED7AA;">'Fredoka', sans-serif</span>;                  <span style="color: #64748B;">/* Botões com 1ª Palavra Negrito (700 + 400) */</span>
+<span style="color: #86EFAC;">--font-sans</span>: <span style="color: #FED7AA;">'Comfortaa', cursive, sans-serif</span>;     <span style="color: #64748B;">/* Textos e Leitura Fluida */</span>
+<span style="color: #86EFAC;">--font-handwritten</span>: <span style="color: #FED7AA;">'Caveat', cursive</span>;             <span style="color: #64748B;">/* Frases Afetivas Inclinadas */</span>
+
+<span style="color: #64748B;">/* Raios de Arredondamento */</span>
+<span style="color: #86EFAC;">--radius-sm</span>: <span style="color: #FED7AA;">8px</span>;    <span style="color: #86EFAC;">--radius-md</span>: <span style="color: #FED7AA;">14px</span>;   <span style="color: #86EFAC;">--radius-lg</span>: <span style="color: #FED7AA;">20px</span>;
+<span style="color: #86EFAC;">--radius-xl</span>: <span style="color: #FED7AA;">32px</span>;   <span style="color: #86EFAC;">--radius-full</span>: <span style="color: #FED7AA;">9999px</span>; <span style="color: #64748B;">/* Padrão Ouro dos Botões */</span></pre>
+        </div>
+      </section>
+
+      <!-- FOOTER DA DOCUMENTAÇÃO -->
+      <footer class="ds-footer" style="border-radius: 24px; margin-top: 2rem;">
+        <img src="assets/Logos/logo-villa-plaza-park-white.png" alt="Villa Plaza Park">
+        <p style="margin: 0 0 0.5rem; font-weight: 700; color: white;">Villa Plaza Park — O complexo de muita diversão para os pequenos</p>
+        <p style="margin: 0; font-size: 0.8rem; color: #9EA2B0;">© 2026 Grupo Mais Barato • Documentação Técnica &amp; Visual de Design System</p>
+      </footer>
+
+    </main>
+  </div>
+
+  <!-- TOAST FEEDBACK DE CÓPIA -->
+  <div id="dsToast" class="ds-toast">
+    <i class="fa-solid fa-circle-check"></i>
+    <span id="dsToastMsg">Código copiado para a área de transferência!</span>
+  </div>
+
+  <!-- JAVASCRIPT DE INTERATIVIDADE DO DESIGN SYSTEM -->
+  <script>
+    // 1. Alternar Sidebar no Mobile
+    function toggleSidebar() {
+      const sidebar = document.getElementById('dsSidebar');
+      const backdrop = document.getElementById('dsSidebarBackdrop');
+      sidebar.classList.toggle('is-open');
+      backdrop.classList.toggle('is-open');
+    }
+
+    // 2. Fechar sidebar ao clicar em um link no mobile
+    document.querySelectorAll('.ds-sub-link, .ds-nav-group-title').forEach(link => {
+      link.addEventListener('click', () => {
+        if (window.innerWidth <= 1024) {
+          toggleSidebar();
+        }
+      });
+    });
+
+    // 3. Copiar Token / HEX para Clipboard com Toast
+    function copyToken(text, label) {
+      navigator.clipboard.writeText(text).then(() => {
+        const toast = document.getElementById('dsToast');
+        const toastMsg = document.getElementById('dsToastMsg');
+        toastMsg.textContent = `${label || text} copiado!`;
+        toast.classList.add('show');
+        setTimeout(() => {
+          toast.classList.remove('show');
+        }, 2500);
+      });
+    }
+
+    // 4. Toggle de Demonstração de FAQ / Accordion
+    function toggleFaqDemo(btn) {
+      const answer = btn.nextElementSibling;
+      const icon = btn.querySelector('i');
+      if (answer.style.display === 'block') {
+        answer.style.display = 'none';
+        icon.style.transform = 'rotate(0deg)';
+      } else {
+        answer.style.display = 'block';
+        icon.style.transform = 'rotate(180deg)';
+      }
+    }
+
+    // 5. ScrollSpy Automático para Destaque na Sidebar
+    const sections = document.querySelectorAll('section.ds-doc-section, .ds-module-header');
+    const navLinks = document.querySelectorAll('.ds-sidebar-nav a');
+
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop - 120;
+        if (window.scrollY >= sectionTop) {
+          current = section.getAttribute('id');
+        }
+      });
+
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (current && link.getAttribute('href') === `#${current}`) {
+          link.classList.add('active');
+        }
+      });
+    });
+
+    // 6. Filtro / Busca Rápida no Design System
+    function filterDesignSystem(query) {
+      const q = query.toLowerCase().trim();
+      const sections = document.querySelectorAll('.ds-doc-section');
+      
+      sections.forEach(sec => {
+        if (!q) {
+          sec.style.display = 'block';
+          return;
+        }
+        const text = sec.textContent.toLowerCase();
+        if (text.includes(q)) {
+          sec.style.display = 'block';
+        } else {
+          sec.style.display = 'none';
+        }
+      });
+    }
+  </script>
 
 </body>
 </html>

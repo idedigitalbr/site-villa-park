@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 220" fill="none" width="220" height="220">
+  <!-- Orange Base Blob -->
+  <path d="M220 220 L70 220 C90 170 110 150 140 135 C180 115 210 60 220 20 Z" fill="#ef7a2b" />
+  <!-- Deep Green Overlapping Blob -->
+  <path d="M220 220 L130 220 C145 185 165 165 185 150 C205 135 220 90 220 60 Z" fill="#13783a" />
+</svg>

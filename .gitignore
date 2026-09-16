@@ -11,6 +11,8 @@ $RECYCLE.BIN/
 *.temp
 *.log
 *.bak
+*.dat
+.recovery/
 
 # Dependencies / Builds
 node_modules/

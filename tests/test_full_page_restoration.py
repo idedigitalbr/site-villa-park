@@ -34,9 +34,9 @@ class FullPageRestorationTests(unittest.TestCase):
         self.assertEqual(
             self.page.get_by_role("heading", name="Luciana Nascimento").count(), 1
         )
-        self.assertEqual(
+        self.assertGreaterEqual(
             self.page.get_by_text(
-                '"Ótimo atendimento e preços muito bons"', exact=True
+                '"Lugar incrível e super seguro para as crianças! Meus filhos adoraram o brinquedão e a equipe é muito atenciosa."', exact=True
             ).count(),
             1,
         )
@@ -47,7 +47,7 @@ class FullPageRestorationTests(unittest.TestCase):
         self.assertEqual(stores.get_by_text("Prefere falar com a gente?").count(), 0)
         self.assertEqual(
             self.page.get_by_text(
-                "Farmácia do grupo +B, feita para cuidar da sua saúde com confiança no atendimento.",
+                "O complexo de muita diversão para os pequenos. Lazer, segurança e momentos inesquecíveis para toda a família no mezanino do +B Supermercados.",
                 exact=True,
             ).count(),
             1,
@@ -58,7 +58,7 @@ class FullPageRestorationTests(unittest.TestCase):
         self.assertEqual(banner.count(), 1)
         self.assertEqual(
             banner.get_attribute("src"),
-            "assets/Pagina/S4%20BANNERS%20HORIZONTAIS/banner-ifood-com-botao.webp",
+            "assets/Pagina/S4%20BANNERS%20HORIZONTAIS/banner-festa-aniversario.webp",
         )
         self.assertTrue(
             banner.evaluate(

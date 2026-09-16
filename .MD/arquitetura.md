@@ -1,88 +1,64 @@
-# Arquitetura do Projeto
+# Arquitetura do Projeto — Villa Plaza Park
 
-atualizado: 2026-08-28
+atualizado: 2026-09-15
 
----
+## Visão Geral
 
-## 1. Visão Geral
-
-O projeto **+B FARMA** é estruturado como uma aplicação Web institucional estática (*Single Page Application / Static Site*), projetada com foco em máxima velocidade de carregamento, responsividade fluida, SEO local e aderência total ao Design System oficial.
+Landing page institucional de alta conversão do complexo infantil **Villa Plaza Park** (empresa do Grupo Mais Barato). Arquitetura estática limpa, modular e altamente otimizada para SEO local, acessibilidade (WCAG 2.1 AA) e performance mobile.
 
 ---
 
-## 2. Estrutura Real de Diretórios
+## Estrutura de Pastas e Diretórios
 
 ```
-site-maisb-farma/
-├── index.html                   # Página principal institucional e catálogo (100% responsiva)
-├── design-system-preview.html   # Showcase e UI kit interativo (getdesign.md)
-├── DESIGN-maisbfarma.md         # CONTRATO VISUAL DO PROJETO
-├── assets/
-│   ├── fonts/                               # Família tipográfica Lufga completa (18 pesos em .otf)
-│   ├── Logos/
-│   │   ├── logo-maisb-farma.webp            # Logo principal horizontal
-│   │   ├── logo-farmacia-branca.webp        # Versão branca para fundos escuros
-│   │   ├── logo-maisb-farma-vertical.webp   # Versão selo vertical
-│   │   └── logo-maisb-farma-alt.webp        # Variante alternativa
-│   └── Fotografias/
-│       ├── Und. Plaza/                      # 19 fotografias Full HD WebP da filial Plaza
-│       └── Und. Tapanã/                     # 14 fotografias Full HD WebP da filial Tapanã
-├── .MD/                                     # Documentação técnica e Obsidian
-│   ├── README.md                            # Documento mestre de apresentação
-│   ├── arquitetura.md                       # Este arquivo (Contrato Arquitetural)
-│   ├── stack.md                             # Tecnologias reais do projeto
-│   ├── features.md                          # Funcionalidades implementadas e status
-│   ├── bugs.md                              # Histórico e auditoria de bugs
-│   ├── deploy.md                            # Pipeline de publicação e VPS
-│   ├── notas.md                             # Notas e decisões de arquitetura
-│   ├── notion.md                            # Mapeamento do DB_IDE no Notion
-│   ├── changelog.md                         # Histórico cronológico de alterações
-│   └── plus/                                # Manuais de identidade visual em PDF
-└── .gitignore                               # Regras de exclusão do controle de versão
+site-villa-park/
+├── .MD/                              # Memória viva e sincronização do Obsidian
+│   ├── plus/                         # Manuais em PDF e documentação complementar
+│   └── *.md                          # changelog, arquitetura, checklist, etc.
+├── assets/                           # Arquivos estáticos de mídia
+│   ├── brand/                        # Manuais de marca e referências visuais
+│   │   └── raw/                      # Arquivos brutos de identidade visual
+│   ├── icons/                        # Ícones canônicos e favicons
+│   ├── images/                       # Fotografias em WebP das atrações e espaços
+│   ├── Logos/                        # Logotipos oficiais ativos da marca
+│   └── Pagina/                       # Imagens de seções específicas da landing page
+│       ├── S1 TOPO HERO/             # 3 artes oficiais do carrossel principal
+│       ├── S3 BANNERZINHOS/          # 5 cards de destaques de atrações
+│       ├── S3 SOBRE/                 # Imagens da seção institucional sobre o parque
+│       ├── S4 BANNERS HORIZONTAIS/   # Banners promocionais de festas e eventos
+│       └── SECAO CATEGORIAS REDONDO/ # 10 círculos de atrações do parque
+├── docs/                             # Especificações técnicas e manuais de design
+│   └── DESIGN-villaplazapark.md      # Tokens, cores, tipografia e diretrizes de design
+├── src/                              # Código-fonte da aplicação
+│   ├── css/                          # Folhas de estilo
+│   │   └── design-system.css         # Design System canônico (:root tokens, tipografia)
+│   ├── fonts/                        # Fontes locais tipográficas licenciadas
+│   │   ├── Marvin-Round.woff2        # Tipografia oficial Marvin Round
+│   │   └── MarvinRound.woff2
+│   └── js/                           # Lógica cliente modularizada
+│       └── main.js                   # FAQ, mobile drawer, carrosséis, modais e scrollspy
+├── tests/                            # Testes de regressão visual e funcional (Playwright)
+│   ├── test_category_section.py
+│   ├── test_full_page_restoration.py
+│   └── test_header_navigation.py
+├── .gitignore                        # Regras do git (incluindo .recovery/ e temporários)
+├── design-system-preview.html        # Página de visualização e documentação do Design System
+├── favicon.ico                       # Fallback canônico na raiz para crawlers e navegadores
+├── index.html                        # Página principal institucional
+├── robots.txt                        # Diretivas de SEO e robôs de busca
+└── sitemap.xml                       # Mapa do site indexável
 ```
 
 ---
 
-## 3. Camadas e Módulos do Front-End
+## Decisões Técnicas
 
-### 3.1 Camada de Apresentação (UI & Layout)
-- **Estrutura HTML5 Semântica:** Utilização de tags semânticas (`<header>`, `<nav>`, `<main>`, `<section>`, `<article>`, `<footer>`).
-- **Design Tokens:** Centralizados em CSS Custom Properties (`:root`) no topo dos documentos e integrados ao tema do Tailwind CSS via script inline.
-- **Tipografia:** Família `Lufga` com fallback para `-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif`.
-
-### 3.2 Componentes Globais & Seções Padronizadas
-1. **Header & Top Bar:** Faixa superior vermelha (`#E92125`), barra de navegação branca (`#FFFFFF`) com logo horizontal e menu responsivo.
-2. **Hero / Carrossel:** Carrossel dinâmico com fotos reais em WebP das filiais Plaza e Tapanã, títulos de destaque e CTAs de ação.
-3. **Vantagens e atalhos de compra:** Container responsivo com WhatsApp, iFood, Lojas, Clube +B e Atendimento, usando grid de duas colunas no mobile e sem promessas operacionais não confirmadas.
-4. **Categorias Circulares:** Trilho horizontal responsivo com dez categorias ilustradas, imagens WebP otimizadas, badges Lucide, controles acessíveis e CTAs ligados ao seletor de pedido.
-5. **Sobre Nós:** Apresentação da rede e foto institucional da loja física.
-6. **Indicadores:** Bloco numérico com estatísticas de mercado (+50 unidades, +500 mil clientes atendidos, +10 anos de atuação).
-7. **Ofertas da Semana:** Cards de campanhas promocionais e encartes.
-8. **Clube +B:** Seção explicativa sobre as vantagens do programa de fidelidade.
-9. **FAQ Acordeão:** Seção interativa com respostas às principais dúvidas dos clientes.
-10. **Prova Social & Avaliações:** Seção em fundo escuro (`#1C1D22`) com depoimentos 5 estrelas verificados no Google Meu Negócio.
-11. **Reputação & Filiais:** Cards dedicados às unidades Plaza e Tapanã com status de funcionamento e rotas.
-12. **Footer Institucional:** Rodapé escuro com logo branca, redes sociais e faixa inferior de direitos autorais.
-
-### 3.3 Camada de Lógica & Interatividade (Vanilla JS)
-- **FAQ Accordion Controller:** Função `toggleFaq(button)` que gerencia a expansão e o fechamento acessível de perguntas.
-- **Hero Carousel Engine:** Controle de slides, botões anterior/próximo, indicadores em pontos (dots) e autoplay temporizado a cada 6 segundos.
-- **Mobile Menu Drawer:** Alternância do menu responsivo para telas móveis.
-
----
-
-## 4. Otimização de Mídias & Performance
-
-- **WebP Otimizado:** Todas as imagens foram processadas com compressão de alta fidelidade e interpolação Lanczos, gerando redução de 96.9% no payload total (~7.4 MB).
-- **Sem Dependências Pesadas:** Zero dependências de runtime em Node.js ou bundlers pesados, garantindo tempo de resposta quase instantâneo e pontuação máxima no Google PageSpeed Insights.
-
----
-
-## 5. Regras para Novas Páginas e Componentes
-
-Qualquer nova página ou componente deve seguir obrigatoriamente:
-1. Contrato Visual: [`DESIGN-maisbfarma.md`](../DESIGN-maisbfarma.md).
-2. Manter a paleta `#E92125`, `#32343D`, `#E7E7E7`, `#FFFFFF` e `#1C1D22`.
-3. Usar a tipografia `Lufga` com os pesos mapeados.
-4. **Iconografia Estrita:** Utilizar exclusivamente ícones do pacote **[Lucide Icons](https://lucide.dev/icons/)** (SVG `stroke-width="2"`, `viewBox="0 0 24 24"`). É proibido misturar outros pacotes ou emojis na interface.
-5. Reutilizar os componentes de container, grid, botões e cards documentados.
+1. **Separação Rígida entre `src/` e `assets/`**:
+   - `src/`: abriga tudo o que é código-fonte (CSS, JS, fontes locais tipográficas).
+   - `assets/`: abriga exclusivamente arquivos de mídia estáticos (fotografias, logos, banners, ícones).
+2. **Modularização de Scripts**:
+   - Toda a lógica interativa (drawer mobile, carrosséis hero e banners, accordions, modais) foi extraída do HTML monolítico para `src/js/main.js`.
+3. **Design System Centralizado**:
+   - Importado como folha canônica em `src/css/design-system.css`, definindo as cores oficiais `#228137` (Verde) e `#ef7a2b` (Laranja), além das fontes `@font-face` Marvin Round.
+4. **Suíte de Testes Automatizada**:
+   - Playwright + unittest em `tests/`, garantindo integridade visual e funcional dos fluxos em headless Chromium.

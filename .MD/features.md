@@ -1,48 +1,23 @@
-# Features e Módulos do Projeto
+# Features e Módulos do Projeto — Villa Plaza Park
 
-atualizado: 2026-09-08
+## 📋 PRÉ PROJETO: Documentações, Anotações, Links e Referências [Concluído]
+- [x] S0 Mapeamento de Escopo & Briefing
+- [x] S1 Arquitetura de Informação & Contexto IA
+- [x] S2 Organização canônica de pastas e arquivos (`src/`, `assets/`, `docs/`, `.MD/`)
 
----
+## 💻 PÁGINA: HOME [Concluída]
+- [x] S0 Menu de Navegação com Logo Centralizada, Drawer Mobile e Rodapé
+- [x] S1 TOPO HERO (Carrossel responsivo com 3 artes e autoplay com pause no hover)
+- [x] S2 ATALHOS & DESTAQUES DE ATRAÇÕES (Carrossel S3 Bannerzinhos)
+- [x] S3 SEÇÃO DE CATEGORIAS REDONDAS (10 atrações com modal de contato)
+- [x] S4 SOBRE O VILLA PLAZA PARK (Institucional com modal de vídeo)
+- [x] S5 BANNERS HORIZONTAIS (Festas de Aniversário & Eventos)
+- [x] S6 AVALIAÇÕES DO GOOGLE (Card Google Maps oficial + Marquee de depoimentos)
+- [x] S7 HORÁRIOS & UNIDADES (Cards Plaza e Tapanã)
+- [x] S8 FAQ COM ACCORDION E ACESSIBILIDADE
+- [x] S9 MODAIS (Vídeo Institucional, Privacidade LGPD e Atendimento WhatsApp)
 
-## Implementadas
-
-- [x] **Design System Oficial (+B FARMA):** Contrato visual consolidado em `DESIGN-maisbfarma.md` com paleta `#E92125`, `#32343D`, `#E7E7E7`, Fundo `#F4FEFD`, `#1C1D22` e tipografia `Lufga`.
-- [x] **Showcase de Componentes:** Página `design-system-preview.html` com demonstração de todos os botões, cores, tipografias, inputs, cards e acordeões.
-- [x] **Página Institucional Completa (`index.html`):**
-  - [x] Faixa superior vermelha com redes sociais oficiais (Instagram, TikTok e Facebook) e links institucionais.
-  - [x] **Navbar Institucional Completa:** Barra superior de links rápidos, logo centralizada, menu com Início, Ofertas, Categorias, Vantagens, Lojas e Sobre, botão **Pedir agora** com seleção de filial/canal e menu gaveta mobile responsivo.
-  - [x] **Carrossel Hero 79vh:** 3 slides WebP institucionais e promocionais com CTAs HTML, dots, touch swipe e autoplay.
-  - [x] Bloco de vantagens com WhatsApp, iFood, Lojas, Clube +B e Atendimento; cinco colunas no desktop e grid de duas colunas no mobile.
-  - [x] **Carrossel de Banners de Ofertas (S3 Bannerzinhos):** 4 banners reais em alta definição com cantos arredondados, tag *NÃO PERCA*, botões de navegação lateral, *drag to scroll* com mouse e *touch swipe* no mobile.
-  - [x] **Categorias Circulares:** composição responsiva com dez categorias ilustradas, selos Lucide, benefícios, controles laterais, rolagem por toque e CTA de ofertas, baseada na referência visual aprovada.
-  - [x] **Seção Sobre a Rede:** Narrativa institucional, 3 pilares de atendimento, foto real oficial da equipe (`sobre-farma.png`) com botão de play integrado e modal interativo para exibição do vídeo institucional (`farmab-video.mp4`).
-  - [x] Faixa institucional com atributos de marca, sem números não validados.
-  - [x] **Banners Horizontais (Clube +B & iFood):** Carrossel com um banner por vez, transição suave por `transform`, setas, dots, autoplay e swipe; o slide do iFood usa `banner-ifood.png` e abre o seletor por unidade.
-  - [x] **Acordeão interativo de FAQ:** Respostas rápidas para dúvidas frequentes com chevrons animados no tom vermelho institucional (`#E92125`).
-  - [x] **Prova Social Google Maps:** Depoimentos restaurados em dois trilhos contínuos, com cards visíveis, pausa ao toque e links de consulta às fichas oficiais.
-  - [x] Cards das filiais Plaza e Tapanã com localização, telefone e acesso ao Google, sem botões extras de WhatsApp e iFood.
-  - [x] Rodapé simples em fundo escuro com logo branca, descrição, redes sociais e sub-faixa de direitos autorais, sem colunas extras de navegação.
-- [x] **Otimização de Mídias:** 33 fotos Full HD e 4 logos convertidos para WebP (economia de 96.9% de peso).
-- [x] **Otimização Global de Mobile (World-Class UX):** Suporte nativo completo para telas compactas (320px a 430px), drawer mobile com overlay escuro e scroll interno, alternância dinâmica de ícones, acordeão FAQ via CSS Grid a 60fps, pausa por toque nos depoimentos Google, floating hub (WhatsApp FAB com pulso e botão voltar ao topo) e touch/swipe physics em todos os carrosséis.
-- [x] **Responsividade:** Layout preparado para resoluções mobile (320px a 430px), tablet e desktop; revisão visual concluída em 360px, 390px e 430px.
-
----
-
-## Em desenvolvimento
-
-- [/] **Integração de Links Dinâmicos de WhatsApp:** Configuração das mensagens pré-formatadas para pedidos de cada filial.
-- [/] **Tags de Rastreamento (Google Tag Manager / Meta Pixel):** Preparação dos scripts para monitoramento de conversão.
-
----
-
-## Planejadas
-
-- [ ] **Módulo de Busca de Medicamentos:** Campo para consulta rápida de disponibilidade de produtos.
-- [ ] **Páginas Específicas para Cada Filial:** Rotas dedicadas com mapa interativo do Google Maps e horários de feriados.
-- [ ] **Blog de Dicas de Saúde & Farmácia Preventiva:** Seção editorial com artigos de cuidados preventivos.
-
----
-
-## Descontinuadas
-
-- [-] *Estilos legados inspirados em Airbnb:* Removidos completamente em favor da identidade visual exclusiva da +B FARMA.
+## 🛠️ INFRAESTRUTURA & QUALIDADE [Concluído]
+- [x] S0 Setup de Suíte de Testes Automatizados (Playwright / unittest: 16/16 passando)
+- [x] S1 Design System Canônico com Marvin Round e Comfortaa
+- [x] S2 Separação e Modularização de JavaScript (`src/js/main.js`) e CSS (`src/css/design-system.css`)

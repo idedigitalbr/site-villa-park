@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="#117336" width="34" height="34">
+  <!-- Cake Slice / Pudding on Right -->
+  <path d="M22 41h22c.8 0 1.5-.7 1.5-1.5s-.7-1.5-1.5-1.5H22v3z" />
+  <path d="M25 24c0-3.5 2.5-5.5 5.5-5.5h8c3 0 5.5 2 5.5 5.5v14H25V24z" />
+  <!-- Drips layer -->
+  <path d="M25 25c1.5 0 2 2 3.5 2s2-2 3.5-2 2 2 3.5 2 2-2 3.5-2 2 2 5 2v-8H25v6z" fill="#FFFDF9" opacity="0.3" />
+  <!-- Cherry with curved stem -->
+  <circle cx="34" cy="13" r="3.2" />
+  <path d="M34 11c0-4 4-6.5 6.5-7.5" fill="none" stroke="#117336" stroke-width="2.2" stroke-linecap="round" />
+  
+  <!-- Cupcake on Left -->
+  <path d="M6 28l2.2 11c.2 1 1 1.8 2 1.8h8.6c1 0 1.8-.8 2-1.8L23 28H6z" />
+  <line x1="11" y1="30" x2="12" y2="39" stroke="#FFFDF9" stroke-width="1.6" stroke-linecap="round" />
+  <line x1="14.5" y1="30" x2="14.5" y2="39" stroke="#FFFDF9" stroke-width="1.6" stroke-linecap="round" />
+  <line x1="18" y1="30" x2="17" y2="39" stroke="#FFFDF9" stroke-width="1.6" stroke-linecap="round" />
+  <!-- Cupcake Frosting Swirl -->
+  <path d="M6 26c0-3.5 3.5-5.5 8.5-5.5s8.5 2 8.5 5.5c1 0 1.8.8 1.8 1.8 0 1-.8 1.8-1.8 1.8H5.8c-1 0-1.8-.8-1.8-1.8 0-1 .8-1.8 2-1.8z" />
+</svg>

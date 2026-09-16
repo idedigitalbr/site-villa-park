@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="#ef7a2b" width="34" height="34">
+  <!-- Bent Straw -->
+  <path d="M29 6l-5-3c-.6-.4-1.4-.2-1.8.4l-1.8 2.4 2.8 2.1 1.2-1.6 3.5 2.1 2.2 5.6h3L30 8c-.1-.8-.4-1.5-1-2z" />
+  <!-- Cup Lid -->
+  <rect x="11" y="14" width="26" height="4" rx="2" />
+  <!-- Cup Body -->
+  <path d="M13 19l2.6 19.5c.2 1.2 1.2 2.1 2.4 2.1h12c1.2 0 2.2-.9 2.4-2.1L35 19H13z" />
+  <!-- Subtle line highlight on cup -->
+  <path d="M16 26h16" stroke="#FFFDF9" stroke-width="1.8" stroke-linecap="round" opacity="0.35" />
+</svg>

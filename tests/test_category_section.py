@@ -59,15 +59,15 @@ class CategorySectionTests(unittest.TestCase):
 
     def test_displays_the_ten_reference_categories_as_loaded_circles(self):
         expected_names = [
-            "Infantil",
-            "Dermocosméticos",
-            "Higiene Pessoal",
-            "Beleza e Cuidados",
-            "Medicamentos",
-            "Mercado",
-            "Saúde e Bem-Estar",
-            "Nutrição Saudável",
-            "Pet Shop",
+            "Brinquedão & Safari",
+            "Piscina de Bolinhas",
+            "Cama Elástica",
+            "Quadra de Futebol",
+            "Espaço Baby",
+            "Oficinas Criativas",
+            "Camarim Infantil",
+            "Festas & Eventos",
+            "Espaço Família",
             "e muito mais....",
         ]
         items = self.page.locator("#categorias [data-category-item]")
@@ -94,7 +94,7 @@ class CategorySectionTests(unittest.TestCase):
         self.assertLess(visual_order["categoriesTop"], visual_order["offersTop"])
 
     def test_category_opens_the_existing_order_picker(self):
-        category = self.page.get_by_role("button", name="Comprar produtos da categoria Infantil")
+        category = self.page.get_by_role("button", name="Conhecer atração Brinquedão & Safari")
         self.assertEqual(category.count(), 1)
         category.click()
         self.assertTrue(self.page.locator("#orderModal").is_visible())
@@ -125,7 +125,7 @@ class CategorySectionTests(unittest.TestCase):
         self.assertEqual(len(badges_style), 10)
         for badge in badges_style:
             self.assertEqual(badge["bg"], "rgb(248, 249, 250)")
-            self.assertEqual(badge["color"], "rgb(233, 33, 37)")
+            self.assertEqual(badge["color"], "rgb(34, 129, 55)")
 
     def test_mobile_keeps_all_ten_categories_visible_without_horizontal_scroll(self):
         self.page.set_viewport_size({"width": 390, "height": 844})
