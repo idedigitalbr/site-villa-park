@@ -1395,11 +1395,11 @@
     <!-- ==========================================================================
          S2 — SEÇÃO DESTAQUES LARANJA COM 4 CARDS E DECORAÇÃO 3D
          ========================================================================== -->
-    <section id="ofertas" class="destaques-stage-orange w-full pt-2 sm:pt-4 md:pt-6 pb-14 sm:pb-18 md:pb-22 scroll-mt-24 md:scroll-mt-28 relative -mt-1.5" style="border-top: none !important; box-shadow: none !important;" aria-label="Destaques e Ofertas do Parque">
+    <section id="ofertas" class="destaques-stage-orange w-full !overflow-x-clip !overflow-y-visible pt-2 sm:pt-4 md:pt-6 pb-14 sm:pb-18 md:pb-22 scroll-mt-24 md:scroll-mt-28 relative -mt-1.5" style="border-top: none !important; box-shadow: none !important;" aria-label="Destaques e Ofertas do Parque">
       
       <!-- Elementos Decorativos 3D de Destaques com Parallax (Escala Fiel ao Mockup) -->
-      <!-- 1. Nuvem 3D Volumosa Branca pertencente a esta seção (lateral direita) -->
-      <div class="decor-3d-item anim-float-reverse hidden sm:block" data-parallax="0.05" style="top: 15px; right: -15px; width: clamp(125px, 16vw, 210px); z-index: 25;">
+      <!-- 1. Nuvem 3D Volumosa Branca (Superior Direita, bem próxima ao início/topo da seção) -->
+      <div class="decor-3d-item anim-float-reverse hidden sm:block" data-parallax="0.05" style="top: -8px; right: -22px; width: clamp(130px, 17vw, 225px); z-index: 25;">
         <img src="assets/3DObjetos/nuvem-branca-3d.webp" alt="Nuvem 3D Volumosa" class="w-full h-auto drop-shadow-xl select-none pointer-events-none" loading="lazy" decoding="async">
       </div>
 
@@ -1408,13 +1408,8 @@
         <img src="assets/3DObjetos/balao-ar-quente-nuvens-3d.webp" alt="Balão 3D Villa Plaza Park" class="w-full h-auto drop-shadow-2xl select-none pointer-events-none" loading="lazy" decoding="async">
       </div>
 
-      <!-- 3. Nuvem 3D decorativa inferior esquerda com confetes -->
-      <div class="decor-3d-item anim-float-reverse hidden sm:block" data-parallax="0.04" style="bottom: 15px; left: -25px; width: clamp(130px, 16vw, 220px); z-index: 20;">
-        <img src="assets/3DObjetos/nuvem-sorridente-3d.webp" alt="Nuvem 3D" class="w-full h-auto drop-shadow-xl select-none pointer-events-none" loading="lazy" decoding="async">
-      </div>
-
-      <!-- 4. Brinquedão Modular / Tobogã 3D (lateral direita emoldurando os cards) -->
-      <div class="decor-3d-item anim-float-gentle hidden sm:block" data-parallax="0.05" style="top: 20px; right: -40px; width: clamp(280px, 33vw, 460px); z-index: 15;">
+      <!-- 3. Brinquedão Modular / Tobogã 3D (Inferior Direita, separado da nuvem e emoldurando a base) -->
+      <div class="decor-3d-item anim-float-gentle hidden sm:block" data-parallax="0.05" style="bottom: 20px; right: -40px; width: clamp(250px, 30vw, 420px); z-index: 15;">
         <img src="assets/3DObjetos/brinquedao-modular-escorregador-3d.webp" alt="Brinquedão Modular 3D" class="w-full h-auto drop-shadow-2xl select-none pointer-events-none" loading="lazy" decoding="async">
       </div>
 
@@ -1648,9 +1643,11 @@
         </div>
       </div>
 
-      <!-- 3. Cerca Colorida do Parquinho 3D (Lateral Direita Borda) -->
-      <div class="decor-3d-item anim-float-reverse hidden sm:block" data-parallax="0.03" style="top: 100px; right: -75px; width: clamp(260px, 26vw, 380px); z-index: 5;">
-        <img src="assets/3DObjetos/cerca-colorida-parquinho-3d.webp" alt="Cerca Colorida do Parquinho 3D" class="w-full h-auto drop-shadow-2xl select-none pointer-events-none" loading="eager" decoding="async">
+      <!-- 3. Cerca Colorida do Parquinho 3D (Lateral Direita Borda - Canto Inferior Direito) -->
+      <div class="atracoes-cerca-wrap decor-3d-item anim-float-reverse hidden sm:block" data-parallax="0.03">
+        <div class="atracoes-cerca-inner">
+          <img src="assets/3DObjetos/cerca-colorida-parquinho-3d.webp" alt="Cerca Colorida do Parquinho 3D" class="w-full h-auto drop-shadow-2xl select-none pointer-events-none" loading="eager" decoding="async">
+        </div>
       </div>
 
       <div class="bf-container relative z-20">
@@ -1852,75 +1849,87 @@
 
           <!-- 2. BLOCO DOS 5 CARDS COM VARAL DE CORDA -->
           <div class="ds-estadia-cards-container">
-            <!-- Linha Contínua de Corda Trançada no Fundo -->
-            <div class="ds-estadia-rope-line" aria-hidden="true">
-              <img src="assets/brand/estadia/rope-full.webp" alt="" class="ds-estadia-rope-img">
-            </div>
-
-            <!-- Grade / Carrossel dos 5 Cards -->
-            <div class="ds-estadia-cards-row">
+            
+            <!-- Versão Desktop e Tablet: Fileira Canônica Unificada com Varal Perfeito -->
+            <div class="ds-estadia-desktop-row hidden sm:block relative">
+              <picture>
+                <source srcset="assets/brand/estadia/cards-row-full.webp" type="image/webp">
+                <img src="assets/brand/estadia/cards-row-full.png" alt="Tabela de Valores por Estadia: Meia Hora R$ 35, Uma Hora R$ 49, Duas Horas R$ 69, Cliente +B R$ 59, Pacote VIP R$ 89" class="ds-estadia-full-img" loading="lazy">
+              </picture>
               
-              <!-- Card 1: Meia Hora -->
-              <div class="ds-estadia-card" tabindex="0" role="article" aria-label="Passaporte Meia Hora: R$ 35,00" onclick="openOrderModal()">
-                <picture>
-                  <source srcset="assets/brand/estadia/card-meia-hora.webp" type="image/webp">
-                  <img src="assets/brand/estadia/card-meia-hora.png" alt="Meia Hora - R$ 35,00" class="ds-estadia-card-img" loading="lazy">
-                </picture>
-                <div class="sr-only">
-                  <h3>Meia Hora</h3>
-                  <p>Valor: R$ 35,00</p>
-                </div>
+              <!-- Hotspots Interativos e Acessíveis sobre cada Card -->
+              <div class="ds-estadia-hotspots-grid" aria-hidden="true">
+                <button type="button" class="ds-estadia-hotspot-btn" onclick="openOrderModal()" aria-label="Garantir Meia Hora R$ 35,00" title="Meia Hora - R$ 35,00"></button>
+                <button type="button" class="ds-estadia-hotspot-btn" onclick="openOrderModal()" aria-label="Garantir Uma Hora R$ 49,00" title="Uma Hora - R$ 49,00"></button>
+                <button type="button" class="ds-estadia-hotspot-btn" onclick="openOrderModal()" aria-label="Garantir Duas Horas R$ 69,00" title="Duas Horas - R$ 69,00"></button>
+                <button type="button" class="ds-estadia-hotspot-btn" onclick="openOrderModal()" aria-label="Garantir Cliente +B R$ 59,00" title="Cliente +B - R$ 59,00"></button>
+                <button type="button" class="ds-estadia-hotspot-btn" onclick="openOrderModal()" aria-label="Garantir Pacote VIP R$ 89,00" title="Pacote VIP - R$ 89,00"></button>
               </div>
 
-              <!-- Card 2: Uma Hora -->
-              <div class="ds-estadia-card" tabindex="0" role="article" aria-label="Passaporte Uma Hora: R$ 49,00" onclick="openOrderModal()">
-                <picture>
-                  <source srcset="assets/brand/estadia/card-uma-hora.webp" type="image/webp">
-                  <img src="assets/brand/estadia/card-uma-hora.png" alt="Uma Hora - R$ 49,00" class="ds-estadia-card-img" loading="lazy">
-                </picture>
-                <div class="sr-only">
-                  <h3>Uma Hora</h3>
-                  <p>Valor: R$ 49,00</p>
-                </div>
+              <!-- Texto Acessível para Leitores de Tela (SEO & A11Y) -->
+              <div class="sr-only">
+                <ul>
+                  <li>Passaporte Meia Hora: R$ 35,00</li>
+                  <li>Passaporte Uma Hora: R$ 49,00</li>
+                  <li>Passaporte Duas Horas: R$ 69,00</li>
+                  <li>Passaporte Cliente +B (até 1h30): R$ 59,00</li>
+                  <li>Passaporte Pacote VIP (até 4 horas): R$ 89,00</li>
+                </ul>
               </div>
-
-              <!-- Card 3: Duas Horas -->
-              <div class="ds-estadia-card" tabindex="0" role="article" aria-label="Passaporte Duas Horas: R$ 69,00" onclick="openOrderModal()">
-                <picture>
-                  <source srcset="assets/brand/estadia/card-duas-horas.webp" type="image/webp">
-                  <img src="assets/brand/estadia/card-duas-horas.png" alt="Duas Horas - R$ 69,00" class="ds-estadia-card-img" loading="lazy">
-                </picture>
-                <div class="sr-only">
-                  <h3>Duas Horas</h3>
-                  <p>Valor: R$ 69,00</p>
-                </div>
-              </div>
-
-              <!-- Card 4: Cliente +B -->
-              <div class="ds-estadia-card" tabindex="0" role="article" aria-label="Cliente +B até 1h30: R$ 59,00" onclick="openOrderModal()">
-                <picture>
-                  <source srcset="assets/brand/estadia/card-cliente-mais-b.webp" type="image/webp">
-                  <img src="assets/brand/estadia/card-cliente-mais-b.png" alt="Cliente +B (até 1h30) - R$ 59,00" class="ds-estadia-card-img" loading="lazy">
-                </picture>
-                <div class="sr-only">
-                  <h3>Cliente +B (até 1h30)</h3>
-                  <p>Valor: R$ 59,00</p>
-                </div>
-              </div>
-
-              <!-- Card 5: Pacote VIP -->
-              <div class="ds-estadia-card" tabindex="0" role="article" aria-label="Pacote VIP até 4 horas: R$ 89,00" onclick="openOrderModal()">
-                <picture>
-                  <source srcset="assets/brand/estadia/card-pacote-vip.webp" type="image/webp">
-                  <img src="assets/brand/estadia/card-pacote-vip.png" alt="Pacote VIP (até 4 horas) - R$ 89,00" class="ds-estadia-card-img" loading="lazy">
-                </picture>
-                <div class="sr-only">
-                  <h3>Pacote VIP (até 4 horas)</h3>
-                  <p>Valor: R$ 89,00</p>
-                </div>
-              </div>
-
             </div>
+
+            <!-- Versão Mobile: Carrossel Touch com Scroll-Snap Fluido -->
+            <div class="ds-estadia-mobile-row sm:hidden">
+              <div class="ds-estadia-cards-scroll">
+                
+                <!-- Card 1: Meia Hora -->
+                <div class="ds-estadia-card-mobile" tabindex="0" role="article" aria-label="Passaporte Meia Hora: R$ 35,00" onclick="openOrderModal()">
+                  <picture>
+                    <source srcset="assets/brand/estadia/card-meia-hora.webp" type="image/webp">
+                    <img src="assets/brand/estadia/card-meia-hora.png" alt="Meia Hora - R$ 35,00" class="ds-estadia-card-img" loading="lazy">
+                  </picture>
+                </div>
+
+                <!-- Card 2: Uma Hora -->
+                <div class="ds-estadia-card-mobile" tabindex="0" role="article" aria-label="Passaporte Uma Hora: R$ 49,00" onclick="openOrderModal()">
+                  <picture>
+                    <source srcset="assets/brand/estadia/card-uma-hora.webp" type="image/webp">
+                    <img src="assets/brand/estadia/card-uma-hora.png" alt="Uma Hora - R$ 49,00" class="ds-estadia-card-img" loading="lazy">
+                  </picture>
+                </div>
+
+                <!-- Card 3: Duas Horas -->
+                <div class="ds-estadia-card-mobile" tabindex="0" role="article" aria-label="Passaporte Duas Horas: R$ 69,00" onclick="openOrderModal()">
+                  <picture>
+                    <source srcset="assets/brand/estadia/card-duas-horas.webp" type="image/webp">
+                    <img src="assets/brand/estadia/card-duas-horas.png" alt="Duas Horas - R$ 69,00" class="ds-estadia-card-img" loading="lazy">
+                  </picture>
+                </div>
+
+                <!-- Card 4: Cliente +B -->
+                <div class="ds-estadia-card-mobile" tabindex="0" role="article" aria-label="Cliente +B até 1h30: R$ 59,00" onclick="openOrderModal()">
+                  <picture>
+                    <source srcset="assets/brand/estadia/card-cliente-mais-b.webp" type="image/webp">
+                    <img src="assets/brand/estadia/card-cliente-mais-b.png" alt="Cliente +B (até 1h30) - R$ 59,00" class="ds-estadia-card-img" loading="lazy">
+                  </picture>
+                </div>
+
+                <!-- Card 5: Pacote VIP -->
+                <div class="ds-estadia-card-mobile" tabindex="0" role="article" aria-label="Pacote VIP até 4 horas: R$ 89,00" onclick="openOrderModal()">
+                  <picture>
+                    <source srcset="assets/brand/estadia/card-pacote-vip.webp" type="image/webp">
+                    <img src="assets/brand/estadia/card-pacote-vip.png" alt="Pacote VIP (até 4 horas) - R$ 89,00" class="ds-estadia-card-img" loading="lazy">
+                  </picture>
+                </div>
+
+              </div>
+              
+              <!-- Dica de Navegação Touch -->
+              <div class="ds-estadia-scroll-hint">
+                <span>&larr; Deslize para ver todos os valores &rarr;</span>
+              </div>
+            </div>
+
           </div>
 
           <!-- 3. BLOCO INFERIOR: HORÁRIOS DE FUNCIONAMENTO -->
@@ -1990,8 +1999,8 @@
 
           <!-- BOTÃO DE CONVERSÃO / AGENDAMENTO -->
           <div class="ds-estadia-cta-wrap">
-            <button type="button" onclick="openOrderModal()" class="btn btn-secondary ds-estadia-cta-btn" aria-label="Garantir passaporte de estadia">
-              <strong class="btn-bold">Garantir</strong> passaporte <span class="ds-cta-arrow">&gt;</span>
+            <button type="button" onclick="openOrderModal()" class="btn btn-secondary ds-estadia-cta-btn" aria-label="Quero saber mais">
+              <strong class="btn-bold">Quero</strong> saber mais <span class="ds-cta-arrow">&gt;</span>
             </button>
           </div>
 
@@ -2006,226 +2015,264 @@
     <!-- ==========================================================================
          S6 — PACOTES FAÇA SUA FESTA (3 CARDS COM OBJETOS 3D + 11 COMODIDADES)
          ========================================================================== -->
-    <section id="clube" class="py-10 sm:py-14 md:py-16 bg-[#F8FAF9] scroll-mt-24 md:scroll-mt-28">
-      <div class="bf-container">
-        
-        <!-- WRAPPER OFICIAL COM ONDAS E NOTAS CAVEAT -->
-        <div class="ds-party-section-wrapper">
-          <img src="assets/brand/wave-top-left.svg" alt="" class="ds-party-wave-tl" aria-hidden="true">
-          <img src="assets/brand/wave-bottom-right.svg" alt="" class="ds-party-wave-br" aria-hidden="true">
-          <div class="ds-party-note-tr">Mais<br>que uma festa,<br>boas memórias!♡</div>
-          <div class="ds-party-note-bl">Aqui,<br>a diversão<br>é de verdade!</div>
+    <!-- ==========================================================================
+         S6 — PACOTES FAÇA SUA FESTA (FIDELIDADE TOTAL À REFERÊNCIA VISUAL)
+         ========================================================================== -->
+    <section id="clube" class="ds-party-full-section scroll-mt-24 md:scroll-mt-28" aria-label="Pacotes Faça Sua Festa">
+      
+      <!-- ONDA ORGÂNICA FLUIDA TOPO-ESQUERDO (VERDE E LARANJA) -->
+      <img src="assets/brand/festas-wave-top-left.svg" alt="" class="ds-party-wave-tl-fluid" aria-hidden="true">
 
-          <!-- Cabeçalho Oficial Festas -->
-          <div class="text-center relative z-10 mb-8 sm:mb-10">
-            <div class="mb-3">
-              <span class="ds-tag ds-tag-green">
-                <i class="fa-solid fa-gift"></i> ANIVERSÁRIOS INCRÍVEIS
-              </span>
+      <!-- BOLO 3D COM VELAS NO CANTO SUPERIOR DIREITO -->
+      <div class="ds-party-cake-wrapper" aria-hidden="true">
+        <img src="assets/3DObjetos/bolo-aniversario-velas-3d.webp" alt="Bolo de Aniversário 3D" class="ds-party-decor-cake" loading="eager" decoding="async">
+      </div>
+
+      <!-- PISCINA DE BOLINHAS COLORIDAS 3D NA LATERAL ESQUERDA -->
+      <div class="ds-party-balls-wrapper" aria-hidden="true">
+        <img src="assets/3DObjetos/bolinhas-coloridas-piscina-3d.webp" alt="Bolinhas Coloridas 3D" class="ds-party-decor-balls" loading="lazy" decoding="async">
+      </div>
+
+      <!-- ONDA ORGÂNICA LATERAL DIREITA ATRÁS DO BANNER -->
+      <img src="assets/brand/festas-wave-bottom-right.svg" alt="" class="ds-party-wave-br-fluid" aria-hidden="true">
+
+      <!-- CONTAINER DE CONTEÚDO CENTRALIZADO -->
+      <div class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <!-- Cabeçalho Oficial Festas -->
+        <div class="text-center relative z-10 mb-8 sm:mb-12">
+          <div class="mb-3">
+            <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold tracking-wider uppercase bg-[#E2F4E8] text-[#0D6832] border border-[#C4E8CE]">
+              <i class="fa-solid fa-gift"></i> ANIVERSÁRIOS INCRÍVEIS
+            </span>
+          </div>
+          <div class="ds-title-container flex items-center justify-center gap-3">
+            <svg class="ds-spark-rays ds-spark-left" viewBox="0 0 36 36" fill="none" style="width: 32px; height: 32px;" aria-hidden="true">
+              <path d="M30 18L8 8" stroke="#EF7A2B" stroke-width="5" stroke-linecap="round"/>
+              <path d="M32 26L8 28" stroke="#EF7A2B" stroke-width="5" stroke-linecap="round"/>
+              <path d="M26 10L14 3" stroke="#EF7A2B" stroke-width="5" stroke-linecap="round"/>
+            </svg>
+            <h2 class="ds-duotone-title text-center text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight m-0 font-display">
+              <span class="text-[#0D6832]">PACOTES</span> <span class="text-[#EF7A2B]">FAÇA SUA FESTA</span>
+            </h2>
+            <svg class="ds-spark-rays ds-spark-right" viewBox="0 0 36 36" fill="none" style="width: 32px; height: 32px;" aria-hidden="true">
+              <path d="M6 18L28 8" stroke="#EF7A2B" stroke-width="5" stroke-linecap="round"/>
+              <path d="M4 26L28 28" stroke="#EF7A2B" stroke-width="5" stroke-linecap="round"/>
+              <path d="M10 10L22 3" stroke="#EF7A2B" stroke-width="5" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <p class="text-sm sm:text-base md:text-lg text-slate-800 font-sans font-medium mt-2 max-w-xl mx-auto">
+            Três opções incríveis para transformar esse dia em uma grande festa.
+          </p>
+        </div>
+
+        <!-- GRID DOS 3 PACOTES COM OBJETOS 3D -->
+        <div class="ds-party-grid">
+          <!-- CARD 1: VILLA AVENTURA -->
+          <div class="ds-party-card">
+            <div class="ds-party-header-pure theme-green">
+              <div class="ds-header-cloud-bg"></div>
+              <div class="ds-topper-3d-wrapper">
+                <span class="ds-topper-sparkle ds-topper-sparkle-l" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" class="w-6 h-6"><path d="M19 19L5 5M21 11L11 3" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-opacity="0.85"/></svg>
+                </span>
+                <img src="assets/3DObjetos/balao-ar-quente-nuvens-3d.webp" alt="Villa Aventura 3D" class="ds-topper-3d-img" loading="eager" decoding="async">
+                <span class="ds-topper-sparkle ds-topper-sparkle-r" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" class="w-6 h-6"><path d="M5 19L19 5M3 11L13 3" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-opacity="0.85"/></svg>
+                </span>
+              </div>
+              <h3 class="ds-card-title-pure">VILLA AVENTURA</h3>
+              <p class="ds-card-subtitle-pure">Mais diversão para um dia que merece ser especial!</p>
             </div>
-            <div class="ds-title-container">
-              <svg class="ds-spark-rays ds-spark-left" viewBox="0 0 36 36" fill="none" style="width: 32px; height: 32px;">
-                <path d="M30 18L8 8" stroke="#EF7A2B" stroke-width="5" stroke-linecap="round"/>
-                <path d="M32 26L8 28" stroke="#EF7A2B" stroke-width="5" stroke-linecap="round"/>
-                <path d="M26 10L14 3" stroke="#EF7A2B" stroke-width="5" stroke-linecap="round"/>
-              </svg>
-              <h2 class="ds-duotone-title text-center">
-                <span class="text-green">PACOTES</span> <span class="text-orange">FAÇA SUA FESTA</span>
-              </h2>
-              <svg class="ds-spark-rays ds-spark-right" viewBox="0 0 36 36" fill="none" style="width: 32px; height: 32px;">
-                <path d="M6 18L28 8" stroke="#EF7A2B" stroke-width="5" stroke-linecap="round"/>
-                <path d="M4 26L28 28" stroke="#EF7A2B" stroke-width="5" stroke-linecap="round"/>
-                <path d="M10 10L22 3" stroke="#EF7A2B" stroke-width="5" stroke-linecap="round"/>
-              </svg>
+            <div class="ds-party-body-white">
+              <ul class="ds-party-items-list">
+                <li class="ds-menu-item">
+                  <img src="assets/brand/svg-icons/icon-kids.svg" alt="" class="ds-item-ico">
+                  <div class="ds-item-texts">
+                    <span class="ds-item-name">ENTRADA KIDS</span>
+                    <p class="ds-item-desc">Batata frita, mini pizza, pipoca, hambúrguer, hot-dog, crepe e churros.</p>
+                  </div>
+                </li>
+                <li class="ds-menu-item">
+                  <img src="assets/brand/svg-icons/icon-adults.svg" alt="" class="ds-item-ico">
+                  <div class="ds-item-texts">
+                    <span class="ds-item-name">ENTRADA ADULTOS</span>
+                    <p class="ds-item-desc">Salgadinhos variados + 1 opção de finger food.</p>
+                  </div>
+                </li>
+                <li class="ds-menu-item">
+                  <img src="assets/brand/svg-icons/icon-prato.svg" alt="" class="ds-item-ico">
+                  <div class="ds-item-texts">
+                    <span class="ds-item-name">PRATO PRINCIPAL</span>
+                    <p class="ds-item-desc">1 opção de massa + 2 opções de molho + 1 opção de filé.<br><small>Acompanhamentos: arroz, salada, farofa e batata palha.</small></p>
+                  </div>
+                </li>
+                <li class="ds-menu-item">
+                  <img src="assets/brand/svg-icons/icon-sobremesa.svg" alt="" class="ds-item-ico">
+                  <div class="ds-item-texts">
+                    <span class="ds-item-name">SOBREMESA</span>
+                    <p class="ds-item-desc">1 opção a cada 30 pessoas + 150 doces tradicionais a cada 30 pessoas.</p>
+                  </div>
+                </li>
+                <li class="ds-menu-item">
+                  <img src="assets/brand/svg-icons/icon-bebidas.svg" alt="" class="ds-item-ico">
+                  <div class="ds-item-texts">
+                    <span class="ds-item-name">BEBIDAS</span>
+                    <p class="ds-item-desc">Água + 2 opções de suco + refrigerante.</p>
+                  </div>
+                </li>
+              </ul>
+              <div class="ds-dual-badge badge-green">
+                <span class="ds-badge-cap">ATÉ 30 PESSOAS</span>
+                <span class="ds-badge-divider">|</span>
+                <span class="ds-badge-price">R$ 4.900</span>
+              </div>
+              <a href="https://wa.me/5591993191582?text=Ol%C3%A1%2C%20gostaria%20de%20saber%20mais%20sobre%20o%20pacote%20Villa%20Aventura" target="_blank" class="ds-party-cta cta-green" aria-label="Quero saber mais sobre o pacote Villa Aventura">
+                <strong class="font-extrabold">Quero</strong> saber mais <span class="ds-cta-arrow">&gt;</span>
+              </a>
             </div>
-            <p class="ds-headline-sub">
-              Três opções incríveis para transformar esse dia em uma grande festa.
-            </p>
           </div>
 
-          <!-- GRID DOS 3 PACOTES COM OBJETOS 3D -->
-          <div class="ds-party-grid">
-            <!-- CARD 1: VILLA AVENTURA -->
-            <div class="ds-party-card">
-              <div class="ds-party-header-pure theme-green">
-                <div class="ds-header-cloud-bg"></div>
-                <div class="ds-topper-3d-wrapper">
-                  <img src="assets/3DObjetos/balao-ar-quente-nuvens-3d.webp" alt="Villa Aventura 3D" class="ds-topper-3d-img">
-                </div>
-                <h3 class="ds-card-title-pure">VILLA AVENTURA</h3>
-                <p class="ds-card-subtitle-pure">Mais diversão para um dia que merece ser especial!</p>
+          <!-- CARD 2: VILLA ALEGRIA (DESTAQUE) -->
+          <div class="ds-party-card card-featured">
+            <div class="ds-party-header-pure theme-orange">
+              <div class="ds-header-cloud-bg"></div>
+              <div class="ds-topper-3d-wrapper">
+                <span class="ds-topper-sparkle ds-topper-sparkle-l" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" class="w-6 h-6"><path d="M19 19L5 5M21 11L11 3" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-opacity="0.85"/></svg>
+                </span>
+                <img src="assets/3DObjetos/bolo-aniversario-velas-3d.webp" alt="Villa Alegria 3D" class="ds-topper-3d-img" loading="eager" decoding="async">
+                <span class="ds-topper-sparkle ds-topper-sparkle-r" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" class="w-6 h-6"><path d="M5 19L19 5M3 11L13 3" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-opacity="0.85"/></svg>
+                </span>
               </div>
-              <div class="ds-party-body-white">
-                <ul class="ds-party-items-list">
-                  <li class="ds-menu-item">
-                    <img src="assets/brand/svg-icons/icon-kids.svg" alt="" class="ds-item-ico">
-                    <div class="ds-item-texts">
-                      <span class="ds-item-name">ENTRADA KIDS</span>
-                      <p class="ds-item-desc">Batata frita, mini pizza, pipoca, hambúrguer, hot-dog, crepe e churros.</p>
-                    </div>
-                  </li>
-                  <li class="ds-menu-item">
-                    <img src="assets/brand/svg-icons/icon-adults.svg" alt="" class="ds-item-ico">
-                    <div class="ds-item-texts">
-                      <span class="ds-item-name">ENTRADA ADULTOS</span>
-                      <p class="ds-item-desc">Salgadinhos variados + 1 opção de finger food.</p>
-                    </div>
-                  </li>
-                  <li class="ds-menu-item">
-                    <img src="assets/brand/svg-icons/icon-prato.svg" alt="" class="ds-item-ico">
-                    <div class="ds-item-texts">
-                      <span class="ds-item-name">PRATO PRINCIPAL</span>
-                      <p class="ds-item-desc">1 opção de massa + 2 opções de molho + 1 opção de filé.<br><small>Acompanhamentos: arroz, salada, farofa e batata palha.</small></p>
-                    </div>
-                  </li>
-                  <li class="ds-menu-item">
-                    <img src="assets/brand/svg-icons/icon-sobremesa.svg" alt="" class="ds-item-ico">
-                    <div class="ds-item-texts">
-                      <span class="ds-item-name">SOBREMESA</span>
-                      <p class="ds-item-desc">1 opção a cada 30 pessoas + 150 doces tradicionais a cada 30 pessoas.</p>
-                    </div>
-                  </li>
-                  <li class="ds-menu-item">
-                    <img src="assets/brand/svg-icons/icon-bebidas.svg" alt="" class="ds-item-ico">
-                    <div class="ds-item-texts">
-                      <span class="ds-item-name">BEBIDAS</span>
-                      <p class="ds-item-desc">Água + 2 opções de suco + refrigerante.</p>
-                    </div>
-                  </li>
-                </ul>
-                <div class="ds-dual-badge badge-green">
-                  <span class="ds-badge-cap">ATÉ 30 PESSOAS</span>
-                  <span class="ds-badge-divider">|</span>
-                  <span class="ds-badge-price">R$ 4.900</span>
-                </div>
-                <a href="https://wa.me/5591993191582?text=Ol%C3%A1%2C%20gostaria%20de%20saber%20mais%20sobre%20o%20pacote%20Villa%20Aventura" target="_blank" class="btn btn-primary ds-party-cta" aria-label="Quero saber mais">
-                  <strong class="btn-bold">Quero</strong> saber mais <span class="ds-cta-arrow">&gt;</span>
-                </a>
-              </div>
+              <h3 class="ds-card-title-pure">VILLA ALEGRIA</h3>
+              <p class="ds-card-subtitle-pure">Uma festa completa para celebrar em grande estilo!</p>
             </div>
-
-            <!-- CARD 2: VILLA ALEGRIA -->
-            <div class="ds-party-card card-featured">
-              <div class="ds-party-header-pure theme-orange">
-                <div class="ds-header-cloud-bg"></div>
-                <div class="ds-topper-3d-wrapper">
-                  <img src="assets/3DObjetos/bolo-aniversario-velas-3d.webp" alt="Villa Alegria 3D" class="ds-topper-3d-img">
-                </div>
-                <h3 class="ds-card-title-pure">VILLA ALEGRIA</h3>
-                <p class="ds-card-subtitle-pure">Uma festa completa para celebrar em grande estilo!</p>
+            <div class="ds-party-body-white">
+              <ul class="ds-party-items-list">
+                <li class="ds-menu-item">
+                  <img src="assets/brand/svg-icons/icon-kids.svg" alt="" class="ds-item-ico">
+                  <div class="ds-item-texts">
+                    <span class="ds-item-name">ENTRADA KIDS</span>
+                    <p class="ds-item-desc">Batata frita, mini pizza, pipoca, hambúrguer, hot-dog, crepe e churros.</p>
+                  </div>
+                </li>
+                <li class="ds-menu-item">
+                  <img src="assets/brand/svg-icons/icon-adults.svg" alt="" class="ds-item-ico">
+                  <div class="ds-item-texts">
+                    <span class="ds-item-name">ENTRADA ADULTOS</span>
+                    <p class="ds-item-desc">Salgadinhos variados + 2 opções de finger food.</p>
+                  </div>
+                </li>
+                <li class="ds-menu-item">
+                  <img src="assets/brand/svg-icons/icon-prato.svg" alt="" class="ds-item-ico">
+                  <div class="ds-item-texts">
+                    <span class="ds-item-name">PRATO PRINCIPAL</span>
+                    <p class="ds-item-desc">1 opção de massa + 2 opções de molho + 1 opção de filé + 1 opção de camarão.<br><small>Acompanhamentos: arroz, salada, farofa e batata palha.</small></p>
+                  </div>
+                </li>
+                <li class="ds-menu-item">
+                  <img src="assets/brand/svg-icons/icon-sobremesa.svg" alt="" class="ds-item-ico">
+                  <div class="ds-item-texts">
+                    <span class="ds-item-name">SOBREMESA</span>
+                    <p class="ds-item-desc">1 opção a cada 30 pessoas + 150 doces tradicionais a cada 30 pessoas.</p>
+                  </div>
+                </li>
+                <li class="ds-menu-item">
+                  <img src="assets/brand/svg-icons/icon-bebidas.svg" alt="" class="ds-item-ico">
+                  <div class="ds-item-texts">
+                    <span class="ds-item-name">BEBIDAS</span>
+                    <p class="ds-item-desc">Água + 2 opções de suco + refrigerante.</p>
+                  </div>
+                </li>
+              </ul>
+              <div class="ds-dual-badge badge-orange">
+                <span class="ds-badge-cap">ATÉ 30 PESSOAS</span>
+                <span class="ds-badge-divider">|</span>
+                <span class="ds-badge-price">R$ 6.000</span>
               </div>
-              <div class="ds-party-body-white">
-                <ul class="ds-party-items-list">
-                  <li class="ds-menu-item">
-                    <img src="assets/brand/svg-icons/icon-kids.svg" alt="" class="ds-item-ico">
-                    <div class="ds-item-texts">
-                      <span class="ds-item-name">ENTRADA KIDS</span>
-                      <p class="ds-item-desc">Batata frita, mini pizza, pipoca, hambúrguer, hot-dog, crepe e churros.</p>
-                    </div>
-                  </li>
-                  <li class="ds-menu-item">
-                    <img src="assets/brand/svg-icons/icon-adults.svg" alt="" class="ds-item-ico">
-                    <div class="ds-item-texts">
-                      <span class="ds-item-name">ENTRADA ADULTOS</span>
-                      <p class="ds-item-desc">Salgadinhos variados + 2 opções de finger food.</p>
-                    </div>
-                  </li>
-                  <li class="ds-menu-item">
-                    <img src="assets/brand/svg-icons/icon-prato.svg" alt="" class="ds-item-ico">
-                    <div class="ds-item-texts">
-                      <span class="ds-item-name">PRATO PRINCIPAL</span>
-                      <p class="ds-item-desc">1 opção de massa + 2 opções de molho + 1 opção de filé + 1 opção de camarão.<br><small>Acompanhamentos: arroz, salada, farofa e batata palha.</small></p>
-                    </div>
-                  </li>
-                  <li class="ds-menu-item">
-                    <img src="assets/brand/svg-icons/icon-sobremesa.svg" alt="" class="ds-item-ico">
-                    <div class="ds-item-texts">
-                      <span class="ds-item-name">SOBREMESA</span>
-                      <p class="ds-item-desc">1 opção a cada 30 pessoas + 150 doces tradicionais a cada 30 pessoas.</p>
-                    </div>
-                  </li>
-                  <li class="ds-menu-item">
-                    <img src="assets/brand/svg-icons/icon-bebidas.svg" alt="" class="ds-item-ico">
-                    <div class="ds-item-texts">
-                      <span class="ds-item-name">BEBIDAS</span>
-                      <p class="ds-item-desc">Água + 2 opções de suco + refrigerante.</p>
-                    </div>
-                  </li>
-                </ul>
-                <div class="ds-dual-badge badge-orange">
-                  <span class="ds-badge-cap">ATÉ 30 PESSOAS</span>
-                  <span class="ds-badge-divider">|</span>
-                  <span class="ds-badge-price">R$ 6.000</span>
-                </div>
-                <a href="https://wa.me/5591993191582?text=Ol%C3%A1%2C%20gostaria%20de%20saber%20mais%20sobre%20o%20pacote%20Villa%20Alegria" target="_blank" class="btn btn-secondary ds-party-cta" aria-label="Quero saber mais">
-                  <strong class="btn-bold">Quero</strong> saber mais <span class="ds-cta-arrow">&gt;</span>
-                </a>
-              </div>
+              <a href="https://wa.me/5591993191582?text=Ol%C3%A1%2C%20gostaria%20de%20saber%20mais%20sobre%20o%20pacote%20Villa%20Alegria" target="_blank" class="ds-party-cta cta-orange" aria-label="Quero saber mais sobre o pacote Villa Alegria">
+                <strong class="font-extrabold">Quero</strong> saber mais <span class="ds-cta-arrow">&gt;</span>
+              </a>
             </div>
+          </div>
 
-            <!-- CARD 3: VILLA DIVERSÃO -->
-            <div class="ds-party-card">
-              <div class="ds-party-header-pure theme-green">
-                <div class="ds-header-cloud-bg"></div>
-                <div class="ds-topper-3d-wrapper">
-                  <img src="assets/3DObjetos/estrela-sorridente-3d.webp" alt="Villa Diversão 3D" class="ds-topper-3d-img">
-                </div>
-                <h3 class="ds-card-title-pure">VILLA DIVERSÃO</h3>
-                <p class="ds-card-subtitle-pure">Para transformar o aniversário em uma experiência completa!</p>
+          <!-- CARD 3: VILLA DIVERSÃO -->
+          <div class="ds-party-card">
+            <div class="ds-party-header-pure theme-green">
+              <div class="ds-header-cloud-bg"></div>
+              <div class="ds-topper-3d-wrapper">
+                <span class="ds-topper-sparkle ds-topper-sparkle-l" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" class="w-6 h-6"><path d="M19 19L5 5M21 11L11 3" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-opacity="0.85"/></svg>
+                </span>
+                <img src="assets/3DObjetos/estrela-sorridente-3d.webp" alt="Villa Diversão 3D" class="ds-topper-3d-img" loading="eager" decoding="async">
+                <span class="ds-topper-sparkle ds-topper-sparkle-r" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" class="w-6 h-6"><path d="M5 19L19 5M3 11L13 3" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-opacity="0.85"/></svg>
+                </span>
               </div>
-              <div class="ds-party-body-white">
-                <ul class="ds-party-items-list">
-                  <li class="ds-menu-item">
-                    <img src="assets/brand/svg-icons/icon-kids.svg" alt="" class="ds-item-ico">
-                    <div class="ds-item-texts">
-                      <span class="ds-item-name">ENTRADA KIDS</span>
-                      <p class="ds-item-desc">Batata frita, mini pizza, pipoca, hambúrguer, hot-dog, crepe e churros.</p>
-                    </div>
-                  </li>
-                  <li class="ds-menu-item">
-                    <img src="assets/brand/svg-icons/icon-adults.svg" alt="" class="ds-item-ico">
-                    <div class="ds-item-texts">
-                      <span class="ds-item-name">ENTRADA ADULTOS</span>
-                      <p class="ds-item-desc">Salgadinhos variados + 2 opções de finger food.</p>
-                    </div>
-                  </li>
-                  <li class="ds-menu-item">
-                    <img src="assets/brand/svg-icons/icon-prato.svg" alt="" class="ds-item-ico">
-                    <div class="ds-item-texts">
-                      <span class="ds-item-name">PRATO PRINCIPAL</span>
-                      <p class="ds-item-desc">1 opção de massa + 2 opções de molho + 1 opção de filé + 1 opção de camarão + 1 opção de filhote.<br><small>Acompanhamentos: arroz, salada, farofa e batata palha.</small></p>
-                    </div>
-                  </li>
-                  <li class="ds-menu-item">
-                    <img src="assets/brand/svg-icons/icon-sobremesa.svg" alt="" class="ds-item-ico">
-                    <div class="ds-item-texts">
-                      <span class="ds-item-name">SOBREMESA</span>
-                      <p class="ds-item-desc">1 opção a cada 30 pessoas + 150 doces tradicionais a cada 30 pessoas.</p>
-                    </div>
-                  </li>
-                  <li class="ds-menu-item">
-                    <img src="assets/brand/svg-icons/icon-bebidas.svg" alt="" class="ds-item-ico">
-                    <div class="ds-item-texts">
-                      <span class="ds-item-name">BEBIDAS</span>
-                      <p class="ds-item-desc">Água + 2 opções de suco + refrigerante.</p>
-                    </div>
-                  </li>
-                </ul>
-                <div class="ds-dual-badge badge-green">
-                  <span class="ds-badge-cap">ATÉ 60 PESSOAS</span>
-                  <span class="ds-badge-divider">|</span>
-                  <span class="ds-badge-price">R$ 13.200</span>
-                </div>
-                <a href="https://wa.me/5591993191582?text=Ol%C3%A1%2C%20gostaria%20de%20saber%20mais%20sobre%20o%20pacote%20Villa%20Divers%C3%A3o" target="_blank" class="btn btn-primary ds-party-cta" aria-label="Quero saber mais">
-                  <strong class="btn-bold">Quero</strong> saber mais <span class="ds-cta-arrow">&gt;</span>
-                </a>
+              <h3 class="ds-card-title-pure">VILLA DIVERSÃO</h3>
+              <p class="ds-card-subtitle-pure">Para transformar o aniversário em uma experiência completa!</p>
+            </div>
+            <div class="ds-party-body-white">
+              <ul class="ds-party-items-list">
+                <li class="ds-menu-item">
+                  <img src="assets/brand/svg-icons/icon-kids.svg" alt="" class="ds-item-ico">
+                  <div class="ds-item-texts">
+                    <span class="ds-item-name">ENTRADA KIDS</span>
+                    <p class="ds-item-desc">Batata frita, mini pizza, pipoca, hambúrguer, hot-dog, crepe e churros.</p>
+                  </div>
+                </li>
+                <li class="ds-menu-item">
+                  <img src="assets/brand/svg-icons/icon-adults.svg" alt="" class="ds-item-ico">
+                  <div class="ds-item-texts">
+                    <span class="ds-item-name">ENTRADA ADULTOS</span>
+                    <p class="ds-item-desc">Salgadinhos variados + 2 opções de finger food.</p>
+                  </div>
+                </li>
+                <li class="ds-menu-item">
+                  <img src="assets/brand/svg-icons/icon-prato.svg" alt="" class="ds-item-ico">
+                  <div class="ds-item-texts">
+                    <span class="ds-item-name">PRATO PRINCIPAL</span>
+                    <p class="ds-item-desc">1 opção de massa + 2 opções de molho + 1 opção de filé + 1 opção de camarão + 1 opção de filhote.<br><small>Acompanhamentos: arroz, salada, farofa e batata palha.</small></p>
+                  </div>
+                </li>
+                <li class="ds-menu-item">
+                  <img src="assets/brand/svg-icons/icon-sobremesa.svg" alt="" class="ds-item-ico">
+                  <div class="ds-item-texts">
+                    <span class="ds-item-name">SOBREMESA</span>
+                    <p class="ds-item-desc">1 opção a cada 30 pessoas + 150 doces tradicionais a cada 30 pessoas.</p>
+                  </div>
+                </li>
+                <li class="ds-menu-item">
+                  <img src="assets/brand/svg-icons/icon-bebidas.svg" alt="" class="ds-item-ico">
+                  <div class="ds-item-texts">
+                    <span class="ds-item-name">BEBIDAS</span>
+                    <p class="ds-item-desc">Água + 2 opções de suco + refrigerante.</p>
+                  </div>
+                </li>
+              </ul>
+              <div class="ds-dual-badge badge-green">
+                <span class="ds-badge-cap">ATÉ 60 PESSOAS</span>
+                <span class="ds-badge-divider">|</span>
+                <span class="ds-badge-price">R$ 13.200</span>
               </div>
+              <a href="https://wa.me/5591993191582?text=Ol%C3%A1%2C%20gostaria%20de%20saber%20mais%20sobre%20o%20pacote%20Villa%20Divers%C3%A3o" target="_blank" class="ds-party-cta cta-green" aria-label="Quero saber mais sobre o pacote Villa Diversão">
+                <strong class="font-extrabold">Quero</strong> saber mais <span class="ds-cta-arrow">&gt;</span>
+              </a>
             </div>
           </div>
         </div>
 
+        <!-- BANNER OFICIAL DA PARTE INFERIOR: TUDO QUE A FESTA OFERECE -->
+        <div class="ds-party-banner-container">
+          <img src="assets/Pagina/SECAO FACA SUA FESTA/BANNER-SUA-FESTA-VILLA-PARK.png" alt="Tudo que a festa oferece no Villa Plaza Park — Estrutura completa, buffet, som ambiente, monitores e muito mais" class="ds-party-banner-img" loading="eager" decoding="async">
+          <!-- Link / Hotspot transparente sobre o botão QUERO SABER MAIS do banner -->
+          <a href="https://wa.me/5591993191582?text=Ol%C3%A1%2C%20gostaria%20de%20consultar%20disponibilidade%20e%20valores%20para%20planejar%20uma%20festa%20no%20Villa%20Plaza%20Park" target="_blank" rel="noopener noreferrer" class="ds-party-banner-cta-link" aria-label="Consultar disponibilidade e valores da festa pelo WhatsApp"></a>
+        </div>
 
       </div>
+
     </section>
 
 
