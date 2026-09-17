@@ -2,6 +2,41 @@
 
 ## 2026-09-17
 
+- **Reorganização dos Elementos 3D da Seção Destaques (`#ofertas`)**:
+  - **Nuvem 3D da Direita**: Elevada para a parte superior direita da seção (`top: -8px; right: -22px; width: clamp(130px, 17vw, 225px); z-index: 25;`), ficando bem próxima ao topo e com suave projeção orgânica na margem direita.
+  - **Brinquedão Modular 3D**: Reposicionado para a parte inferior direita (`bottom: 20px; right: -40px; width: clamp(250px, 30vw, 420px); z-index: 15;`), criando uma separação visual nítida e confortável em relação à nuvem, eliminando qualquer sobreposição.
+  - **Nuvem Inferior Esquerda**: Elemento `nuvem-sorridente-3d.webp` removido integralmente da seção, proporcionando um layout mais limpo e equilibrado com apenas o Balão 3D na lateral esquerda.
+
+
+- **Implementação de Alta Fidelidade da Seção "Valores por Estadia & Horários de Funcionamento" (`#estadia`)**:
+  - Criação da seção completa com container master em verde floresta profundo (`#016225` a `#01561F`), cantos arredondados (`42px` desktop, `28px` mobile) e sobreposição sutil de fotografia de parque infantil (`Criancas-brincando-parque-infantil-visao-ampla.webp`).
+  - Ondas orgânicas canônicas em laranja nos cantos superior-esquerdo (`wave-top-left.svg`) e inferior-direito (`wave-bottom-right.svg`).
+  - **Bloco 1 (Valores por Estadia)**: Pre-header `CONFIRA OS NOSSOS` e título principal `VALORES POR ESTADIA` em tipografia `Marvin Round` 800 com efeito sticker 3D (laranja vibrante com contorno branco espesso e drop-shadow). Composição com os 5 cards suspensos em varal contínuo de corda trançada (`rope-full.webp`):
+    - *Meia Hora*: Estandarte amarelo dourado | `R$ 35,00`
+    - *Uma Hora*: Estandarte rosa chiclete / magenta | `R$ 49,00`
+    - *Duas Horas*: Estandarte azul turquesa | `R$ 69,00`
+    - *Cliente +B (até 1h30)*: Estandarte pink / fúcsia | `R$ 59,00`
+    - *Pacote VIP (até 4 horas)*: Estandarte azul royal | `R$ 89,00`
+    - Hotspots interativos e acessíveis (`ds-estadia-hotspot-btn`) em cada card direcionando ao modal de agendamento/contato.
+  - **Bloco 2 (Horários de Funcionamento)**: Título central `HORÁRIOS DE FUNCIONAMENTO` flanqueado por linhas horizontais em verde neon vibrante (`#00E650`), acompanhado de 4 cápsulas (pills) em madeira clara com ícone analógico de relógio marrom chocolate e horários entalhados:
+    - *Segunda*: `FECHADO`
+    - *Terça à Quinta*: `14H - 21H`
+    - *Sexta à Sábado*: `09H - 21H`
+    - *Domingo*: `08H - 14H`
+  - **Responsividade & Acessibilidade**:
+    - Desktop / Tablet: Fileira unificada de alta resolução Retina 2x (`cards-row-full.webp`) com varal contínuo e 4 cápsulas em 4 colunas ou 2x2.
+    - Mobile: Carrossel touch com scroll-snap suave (`ds-estadia-cards-scroll`), micro-dica de navegação por toque e pills em grid 2 colunas perfeitamente legíveis, com zero overflow horizontal testado de 320px a 1280px.
+    - Botão CTA pílula padronizado conforme padrão oficial: `<strong class="btn-bold">Quero</strong> saber mais >`.
+  - Suíte de testes automatizados Playwright (`tests/test_estadia_section.py`) criada e aprovada com 100% de sucesso.
+
+
+- **Deslocamento Horizontal de ~40% do Brinquedão 3D na Seção de Atrações (`#atracoes`)**:
+  - Implementação da estrutura com `.atracoes-brinquedao-wrap` e `.atracoes-brinquedao-inner` utilizando `transform: translateX(-40%)` no desktop e ajustes calibrados para tablet (`-50%`) e mobile (`-52%`).
+  - Preservação rigorosa e 100% intacta da escala, altura, proporção e resolução da imagem 3D, sem qualquer distorção ou encolhimento.
+  - Projeção de aproximadamente 40% do asset para fora da tela (margem esquerda cortada), mantendo 60% visível na página e ampliando substancialmente o respiro visual para o carrossel central e os 5 cards de atrações.
+  - Isolamento completo do deslocamento horizontal em relação às animações flutuantes (`anim-float-gentle`) e efeito de parallax (`data-parallax="0.03"`), evitando sobrescrita de propriedades transform.
+  - Adição de teste automatizado específico (`test_brinquedao_horizontal_displacement`) em `tests/test_atracoes_section.py`, com 5 testes aprovados (100% OK).
+
 - **Reposicionamento da Nuvem 3D e Eliminação da Linha Entre Áreas Laranjas**:
   - **Nuvem 3D da Direita**: Removida da seção Hero verde (`#home`) e inserida nativamente na lateral direita da seção Destaques (`#ofertas`), utilizando o container da própria seção como referência (`position: relative`), com `top: 15px; right: -15px; z-index: 25;`, sem subir para o verde e mantendo a lógica de objetos 3D decorativos.
   - **Remoção da Linha Horizontal**: Eliminado o artefato de linha de antialiasing entre o SVG de transição e a seção `#ofertas` através de preenchimento laranja na base do SVG (`<rect y="70" width="1440" height="115" fill="#F15A24"/>`), extensão da base do path vetorial e sobreposição subpixel precisa (`-mt-1.5`) em `#ofertas`, tornando o fundo perfeitamente contínuo.
