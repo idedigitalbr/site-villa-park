@@ -511,26 +511,26 @@
     .hero-carousel {
       position: relative;
       width: 100%;
-      aspect-ratio: 16 / 10;
-      min-height: 230px;
+      aspect-ratio: 16 / 9.5;
+      min-height: 240px;
       overflow: hidden;
       background-color: #141519;
       border-radius: 20px;
       isolation: isolate;
-      box-shadow: 0 16px 40px -8px rgba(0, 0, 0, 0.25), 0 4px 14px -1px rgba(0, 0, 0, 0.12);
+      box-shadow: 0 20px 45px -8px rgba(0, 0, 0, 0.28), 0 6px 18px -2px rgba(0, 0, 0, 0.15);
     }
     @media (min-width: 640px) {
       .hero-carousel {
-        aspect-ratio: 1.85 / 1;
-        min-height: 380px;
+        aspect-ratio: 16 / 9.2;
+        min-height: 400px;
         border-radius: 28px;
       }
     }
     @media (min-width: 1024px) {
       .hero-carousel {
-        aspect-ratio: 1.85 / 1;
-        min-height: 480px;
-        max-height: 560px;
+        aspect-ratio: 16 / 9;
+        min-height: 520px;
+        max-height: 600px;
         border-radius: 36px;
       }
     }
@@ -1250,21 +1250,21 @@
     <!-- ==========================================================================
          S1 — HERO SECTION / CENÁRIO VERDE IMERSIVO COM OBJETOS 3D E CARROSSEL CENTRAL
          ========================================================================== -->
-    <section id="home" class="hero-stage-green w-full pt-5 sm:pt-6 md:pt-8 pb-2 sm:pb-3 scroll-mt-24 md:scroll-mt-28 relative overflow-hidden" aria-label="Carrossel Principal de Atrações e Lazer Infantil">
+    <section id="home" class="hero-stage-green w-full pt-4 sm:pt-5 md:pt-6 pb-2 sm:pb-3 scroll-mt-24 md:scroll-mt-28 relative overflow-hidden" aria-label="Carrossel Principal de Atrações e Lazer Infantil">
       
       <!-- Elementos Decorativos 3D da Hero com Parallax Sutil e Animação Ambiente (Fiel ao Mockup) -->
-      <!-- 1. Sol 3D Sorridente (canto superior direito transbordando com presença) -->
-      <div class="decor-3d-item anim-sun-glow" data-parallax="0.07" style="top: -25px; right: -20px; width: clamp(170px, 23vw, 320px); z-index: 15;">
+      <!-- 1. Sol 3D Sorridente (canto superior direito com leve inclinação e presença) -->
+      <div class="decor-3d-item anim-sun-glow" data-parallax="0.07" style="top: -15px; right: -15px; width: clamp(190px, 22vw, 320px); z-index: 15; transform: rotate(7deg);">
         <img src="assets/3DObjetos/sol-sorridente-3d.webp" alt="Sol 3D Sorridente Villa Plaza Park" class="w-full h-auto drop-shadow-2xl select-none pointer-events-none" loading="eager" decoding="async">
       </div>
 
-      <!-- 2. Nuvem 3D Sorridente (lateral esquerda com maior volume) -->
-      <div class="decor-3d-item anim-float-gentle" data-parallax="0.04" style="bottom: 25px; left: -35px; width: clamp(130px, 18vw, 240px); z-index: 15;">
+      <!-- 2. Nuvem 3D Sorridente (lateral esquerda repousando sobre a crista da nuvem laranja) -->
+      <div class="decor-3d-item anim-float-gentle" data-parallax="0.04" style="bottom: 10px; left: -25px; width: clamp(140px, 18vw, 240px); z-index: 25;">
         <img src="assets/3DObjetos/nuvem-sorridente-3d.webp" alt="Nuvem 3D Sorridente" class="w-full h-auto drop-shadow-xl select-none pointer-events-none" loading="lazy" decoding="async">
       </div>
 
-      <!-- 3. Nuvem 3D (canto inferior direito ancorada na transição verde-laranja) -->
-      <div class="decor-3d-item anim-float-reverse" data-parallax="0.05" style="bottom: -35px; right: -20px; width: clamp(160px, 21vw, 270px); z-index: 25;">
+      <!-- 3. Nuvem 3D (canto inferior direito ancorada na crista da nuvem laranja) -->
+      <div class="decor-3d-item anim-float-reverse" data-parallax="0.05" style="bottom: 5px; right: -20px; width: clamp(150px, 20vw, 260px); z-index: 25;">
         <img src="assets/3DObjetos/nuvem-sorridente-3d.webp" alt="Nuvem 3D" class="w-full h-auto drop-shadow-xl select-none pointer-events-none" loading="lazy" decoding="async">
       </div>
 
@@ -1368,11 +1368,11 @@
 
         </div>
 
-        <!-- Indicadores de Pontos (3 Dots) centralizados abaixo do banner sobre o fundo verde -->
-        <div class="flex items-center justify-center gap-2 sm:gap-2.5 mt-2.5 sm:mt-3 mb-0" id="heroDotsNav">
-          <button type="button" onclick="setSlide(0); resetAutoplay();" class="slide-dot w-7 sm:w-9 h-2 sm:h-2.5 rounded-full bg-white transition-all duration-300 flex-shrink-0 shadow-sm focus:outline-none" aria-label="Slide 1"></button>
-          <button type="button" onclick="setSlide(1); resetAutoplay();" class="slide-dot w-2 sm:w-2.5 h-2 sm:h-2.5 rounded-full bg-white/40 hover:bg-white/70 transition-all duration-300 flex-shrink-0 focus:outline-none" aria-label="Slide 2"></button>
-          <button type="button" onclick="setSlide(2); resetAutoplay();" class="slide-dot w-2 sm:w-2.5 h-2 sm:h-2.5 rounded-full bg-white/40 hover:bg-white/70 transition-all duration-300 flex-shrink-0 focus:outline-none" aria-label="Slide 3"></button>
+        <!-- Indicadores de Pontos (3 Dots) repousando no topo do arco central da nuvem -->
+        <div class="flex items-center justify-center gap-2.5 sm:gap-3 mt-3 sm:mt-4 mb-0 relative z-30" id="heroDotsNav">
+          <button type="button" onclick="setSlide(0); resetAutoplay();" class="slide-dot w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-[#1b4329] border border-white/50 transition-all duration-300 flex-shrink-0 shadow-sm focus:outline-none" aria-label="Slide 1"></button>
+          <button type="button" onclick="setSlide(1); resetAutoplay();" class="slide-dot w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-[#3e6f4f]/80 hover:bg-[#1b4329] transition-all duration-300 flex-shrink-0 focus:outline-none" aria-label="Slide 2"></button>
+          <button type="button" onclick="setSlide(2); resetAutoplay();" class="slide-dot w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-[#3e6f4f]/80 hover:bg-[#1b4329] transition-all duration-300 flex-shrink-0 focus:outline-none" aria-label="Slide 3"></button>
         </div>
 
       </div>
@@ -1381,31 +1381,31 @@
     <!-- ==========================================================================
          TRANSIÇÃO ORGÂNICA EM NUVENS (VERDE FLORESTA → LARANJA DESTAQUES)
          ========================================================================== -->
-    <div class="relative w-full overflow-hidden leading-none z-20 pointer-events-none select-none -mt-1 bg-[#0B6E2A]">
-      <svg viewBox="0 0 1440 140" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" class="w-full h-16 sm:h-24 md:h-32 lg:h-36 block">
-        <!-- Nuvens orgânicas assimétricas fiéis à referência visual sem bordas artificiais -->
-        <path d="M 0,16 C 20,16 65,35 105,66 C 130,60 165,58 190,66 C 230,26 310,22 355,24 C 400,26 440,50 470,68 C 505,62 545,62 580,68 C 620,28 695,25 735,26 C 775,27 820,52 855,68 C 885,58 925,56 955,66 C 995,30 1065,28 1105,28 C 1145,28 1195,50 1230,68 C 1260,56 1295,54 1325,66 C 1365,30 1410,20 1440,16 L 1440,140 L 0,140 Z" fill="#F15A24"/>
+    <div class="relative w-full overflow-hidden leading-none z-20 pointer-events-none select-none -mt-16 sm:-mt-22 md:-mt-32 lg:-mt-38">
+      <svg viewBox="0 0 1440 180" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" class="w-full h-28 sm:h-36 md:h-48 lg:h-56 block">
+        <!-- Nuvens orgânicas volumosas em cúpulas cumulus fiéis à referência visual Anexo 2 -->
+        <path d="M 0,50 C 25,22 60,18 95,18 C 135,18 165,35 185,65 C 215,35 255,24 295,24 C 335,24 365,38 385,68 C 415,40 450,30 485,30 C 525,30 560,42 585,65 C 620,25 670,12 720,12 C 770,12 820,25 855,65 C 880,42 915,30 955,30 C 990,30 1025,40 1055,68 C 1075,38 1105,24 1145,24 C 1185,24 1225,35 1255,65 C 1275,35 1305,18 1345,18 C 1380,18 1415,22 1440,50 L 1440,180 L 0,180 Z" fill="#F15A24"/>
       </svg>
     </div>
 
     <!-- ==========================================================================
          S2 — SEÇÃO DESTAQUES LARANJA COM 4 CARDS E DECORAÇÃO 3D
          ========================================================================== -->
-    <section id="ofertas" class="destaques-stage-orange w-full pt-4 sm:pt-6 md:pt-8 pb-14 sm:pb-18 md:pb-22 scroll-mt-24 md:scroll-mt-28 relative" aria-label="Destaques e Ofertas do Parque">
+    <section id="ofertas" class="destaques-stage-orange w-full pt-2 sm:pt-4 md:pt-6 pb-14 sm:pb-18 md:pb-22 scroll-mt-24 md:scroll-mt-28 relative -mt-1" aria-label="Destaques e Ofertas do Parque">
       
       <!-- Elementos Decorativos 3D de Destaques com Parallax (Escala Fiel ao Mockup) -->
       <!-- 1. Balão de Ar Quente 3D (lateral esquerda com volume expressivo) -->
-      <div class="decor-3d-item anim-float-gentle hidden sm:block" data-parallax="0.06" style="top: 20px; left: -50px; width: clamp(200px, 24vw, 340px); z-index: 15;">
+      <div class="decor-3d-item anim-float-gentle hidden sm:block" data-parallax="0.06" style="top: 55px; left: -40px; width: clamp(210px, 24vw, 340px); z-index: 15;">
         <img src="assets/3DObjetos/balao-ar-quente-nuvens-3d.webp" alt="Balão 3D Villa Plaza Park" class="w-full h-auto drop-shadow-2xl select-none pointer-events-none" loading="lazy" decoding="async">
       </div>
 
-      <!-- 2. Nuvem 3D decorativa inferior esquerda -->
-      <div class="decor-3d-item anim-float-reverse hidden sm:block" data-parallax="0.04" style="bottom: 15px; left: -30px; width: clamp(140px, 17vw, 240px); z-index: 20;">
+      <!-- 2. Nuvem 3D decorativa inferior esquerda com confetes -->
+      <div class="decor-3d-item anim-float-reverse hidden sm:block" data-parallax="0.04" style="bottom: 15px; left: -25px; width: clamp(130px, 16vw, 220px); z-index: 20;">
         <img src="assets/3DObjetos/nuvem-sorridente-3d.webp" alt="Nuvem 3D" class="w-full h-auto drop-shadow-xl select-none pointer-events-none" loading="lazy" decoding="async">
       </div>
 
       <!-- 3. Brinquedão Modular / Tobogã 3D (lateral direita emoldurando os cards) -->
-      <div class="decor-3d-item anim-float-gentle hidden sm:block" data-parallax="0.05" style="top: 0px; right: -50px; width: clamp(260px, 32vw, 440px); z-index: 15;">
+      <div class="decor-3d-item anim-float-gentle hidden sm:block" data-parallax="0.05" style="top: 20px; right: -40px; width: clamp(280px, 33vw, 460px); z-index: 15;">
         <img src="assets/3DObjetos/brinquedao-modular-escorregador-3d.webp" alt="Brinquedão Modular 3D" class="w-full h-auto drop-shadow-2xl select-none pointer-events-none" loading="lazy" decoding="async">
       </div>
 

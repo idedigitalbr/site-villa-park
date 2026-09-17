@@ -178,9 +178,9 @@ function updateCarousel() {
   });
   dots.forEach((d, idx) => {
     if (idx === currentSlide) {
-      d.className = 'slide-dot w-6 sm:w-8 md:w-9 h-2 sm:h-2.5 rounded-full bg-white transition-all duration-300 flex-shrink-0 shadow-sm';
+      d.className = 'slide-dot w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-[#1b4329] border border-white/50 transition-all duration-300 flex-shrink-0 shadow-sm';
     } else {
-      d.className = 'slide-dot w-2 sm:w-2.5 h-2 sm:h-2.5 rounded-full bg-white/40 hover:bg-white/70 transition-all duration-300 flex-shrink-0';
+      d.className = 'slide-dot w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-[#3e6f4f]/80 hover:bg-[#1b4329] transition-all duration-300 flex-shrink-0';
     }
   });
 }
