@@ -2,6 +2,65 @@
 
 ## 2026-09-17
 
+- **Calibração Visual de Alta Fidelidade da Seção de Atrações (Fidelidade Estrita ao Anexo 2 / Figma)**:
+  - Redimensionamento do Brinquedão 3D para escala monumental (`width: clamp(480px, 46vw, 680px)`), com ~45% cortado na margem esquerda e base de bolinhas passando por trás dos cards 1 e 2.
+  - Ampliação da Cerca 3D (`width: clamp(260px, 26vw, 380px)`) encostada na borda direita com o poste verde e pinos amarelos destacados.
+  - Recorte cirúrgico do giz 3D no canto superior direito para exibir exclusivamente o quadrado "1" e os gizes coloridos.
+  - Alinhamento em 100% da largura horizontal compartilhada (`max-w-[860px]`) entre o carrossel panorâmico e o grid dos 5 cards.
+  - Compactação dos espaçamentos verticais e encaixe direto da curva verde de "Valores por Estadia" sobre o fundo amarelo `#FDEA76`.
+
+- **Remoção Completa das Seções "Passaporte por Tempo" e "Tudo que a Festa Oferece"**:
+  - Exclusão integral da seção `<section id="estadia">` ("VALORES POR ESTADIA NO PARQUE / PASSAPORTE POR TEMPO"), eliminando os 4 cards de tarifas (15m, 30m, 60m e TEMPO LIVRE) e a faixa amarela correspondente.
+  - Exclusão integral do bloco `ds-features-box` ("TUDO QUE A FESTA OFERECE"), removendo a grade com os 11 itens de comodidades e o card lateral de apoio "Festa 100% sem Estresse" da seção de pacotes de festas (`#clube`), preservando exclusivamente os 3 cards principais de pacotes de aniversário (*Villa Aventura*, *Villa Alegria* e *Villa Diversão*).
+  - Ajuste ergonômico no espaçamento inferior (`pb-12 sm:pb-16 md:pb-20`) da seção de atrações (`#atracoes`), garantindo transição visual contínua e harmônica diretamente para a seção de festas (`#clube`).
+  - Atualização dos testes automatizados Playwright para validar a sequência e a integridade da página sem erros de ancoragem ou layout.
+
+- **Padronização Visual Oficial de Todos os Botões (Fidelidade Canônica ao Anexo `media_1789673023424.png`)**:
+  - Implementação estrita e canônica das especificações visuais do botão padrão em todos os pontos do layout:
+    - **Formato**: Pílula contínua perfeita (`border-radius: 9999px !important`), eliminando qualquer variação chanfrada ou quadrada;
+    - **Tipografia**: Família `Fredoka` com renderização suave e lúdica;
+    - **Hierarquia de Peso**: Primeira palavra da ação em negrito encorpado (`font-weight: 700`, `<strong class="btn-bold">Quero</strong>`) e complemento em peso regular 400 (" saber mais");
+    - **Seta Direcional**: Chevron `>` estilizado ao final com microinteração de avanço suave no hover (`transform: translateX(4px)`);
+    - **Glow Shadow & Cores**: Fundo verde floresta `#0c6830` com glow verde (`box-shadow: 0 8px 20px rgba(12, 104, 48, 0.38)`) e laranja institucional `#f16719` com glow laranja (`box-shadow: 0 8px 20px rgba(241, 103, 25, 0.38)`);
+    - **Cards de Destaques (S3)**: Substituído o estilo mini-badge por botões em largura total perfeitamente centralizados na base de cada card, reproduzindo exatamente o mockup oficial;
+    - **Header, Seção Sobre, Megafone e Modais**: Eliminados gradientes divergentes, inline styles e cantos retos, unificando 100% da interface sob o mesmo padrão.
+  - Suíte de testes automatizados Playwright (`test_sobre_section.py`, `test_header_navigation.py`, `test_atracoes_section.py`) executada com 100% de sucesso.
+
+- **Padronização Global de Copy dos Botões de Ação para "Quero saber mais"**:
+  - Unificação de todos os botões de conversão e chamada para ação (CTA) do site com o texto oficial **"Quero saber mais"**:
+    - **Header (Desktop & Mobile)**: Botão de ação rápida na barra superior;
+    - **Menu Drawer Mobile**: Botão principal de atendimento;
+    - **Hero Principal (S1)**: Botões primários e secundários dos 3 slides;
+    - **Cards de Destaques (S2)**: 4 botões pílula dos cards temáticos;
+    - **Faixa de Conversão**: Botão do card horizontal "Garanta agora sua diversão!";
+    - **Seção Sobre o Villa Plaza Park (S5)**: Botão pílula da seção institucional;
+    - **Seção Passaporte por Tempo (S5.5)**: Botão principal da tabela de valores;
+    - **Seção Pacotes Faça sua Festa (S6)**: Botões dos cards e do box lateral de apoio;
+    - **Modal de Contato / WhatsApp**: Botões de direcionamento para recepção e orçamentos.
+  - Atualização dos testes automatizados Playwright com 100% de aprovação.
+
+- **Modernização Visual da Seção "SOBRE O VILLA PLAZA PARK" (Fidelidade ao Print de Referência)**:
+  - Substituição do layout anterior com vídeo estático único por uma colagem dinâmica de 4 fotografias em alta definição com cantos arredondados (`rounded-[26px]` e `rounded-[22px]`), microinterações no hover (`scale-105`) e acionamento interativo do modal de vídeo.
+  - Alinhamento tipográfico de alta precisão com a referência do cliente:
+    - Badge pílula suave `★ SOBRE O VILLA PLAZA PARK` em tom pêssego com texto e estrela laranja vibrante;
+    - Título duotone display com "ONDE A IMAGINAÇÃO" acompanhado de dois traços lúdicos inclinados em laranja e "GANHA VIDA" em destaque na linha seguinte;
+    - Descrição institucional com leitura agradável e equilibrada;
+    - Lista de 3 diferenciais com ícones circulares em verde escuro `#136637` e checkmarks brancos;
+    - Botão CTA pílula "Conhecer o parque >" em verde escuro com sombra suave elevada.
+  - Fundo branco puro `#FFFFFF` destacando as cores vivas da colagem fotográfica e mantendo total consistência e responsividade entre desktop, tablet e mobile.
+
+- **Implementação da Seção "O QUE VOCÊ ENCONTRA NO VILA PARK" (Fidelidade ao Mockup `media_1789669910531.png`)**:
+  - Nova seção `S5.2 (#atracoes)` inserida logo após a seção institucional `#sobre` ("ONDE A IMAGINAÇÃO GANHA VIDA") e imediatamente anterior à seção `#estadia`.
+  - Fundo amarelo solar `#FDEA76` com emolduramento lúdico 3D:
+    - Lateral esquerda: `brinquedao-toboga-piscina-bolinhas-3d.webp` (tobogã verde tubular e piscina de bolinhas na base com animação flutuante);
+    - Lateral direita: `cerca-colorida-parquinho-3d.webp` (cerca colorida com parafusos redondos amarelos e ripas laranja/amarela);
+    - Canto superior direito: `amarelinha-giz-colorido-3d.webp` (giz rosa/azul e quadrado "1").
+  - Header centralizado com badge circular laranja com ícone de arte/criatividade, eyebrow "CONFIRA" em verde `#0D6E2A` e título display duotone "O QUE VOCÊ ENCONTRA NO VILA PARK".
+  - Carrossel principal em destaque (`rounded-3xl` / 24px) com fotos em alta definição das atrações, botões laterais de navegação escuros com chevrons brancos, dots de paginação e legendas informativas.
+  - Grid com 5 cards inferiores de atrações (Piscina de Bolinhas, Escorregadores, Área Baby, Brinquedão Safari e Espaço Família) com clique sincronizado ao slide principal.
+  - Módulo interativo JavaScript (`src/js/main.js`) com suporte a touch/swipe mobile, pausa no hover, navegação por teclado e transições suaves.
+  - Estilização canônica em `src/css/design-system.css` com tratamento responsivo completo para mobile, tablet e desktop.
+
 - **Ajuste Cirúrgico da Transição Orgânica em Nuvens (Fidelidade ao Anexo `media_1789594201176.png`)**:
   - Remodelado o formato vetorial SVG da transição entre S1 (Hero Verde) e S2 (Destaques Laranja) para reproduzir fielmente a silhueta orgânica e assimétrica aprovada pelo cliente.
   - Composição de 5 domos principais alternados por suaves arcos conectores nos vales, eliminando o padrão de ondas repetitivas artificiais.

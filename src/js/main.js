@@ -73,7 +73,7 @@ window.toggleMobileMenu = toggleMobileMenu;
 document.addEventListener('DOMContentLoaded', () => {
   const navLinks = document.querySelectorAll('.nav-link, .drawer-link');
   const trackedSections = Array.from(document.querySelectorAll('section[id]')).filter(sec => {
-    return ['home', 'ofertas', 'categorias', 'filiais', 'sobre', 'faq'].includes(sec.id);
+    return ['home', 'ofertas', 'categorias', 'filiais', 'sobre', 'atracoes', 'faq'].includes(sec.id);
   });
 
   function updateActiveNav() {
@@ -650,5 +650,171 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { passive: true });
   }
 });
+
+/* ----------------------------------------------------------------------------
+   14. CARROSSEL DE ATRAÇÕES (O QUE VOCÊ ENCONTRA NO VILA PARK)
+   ---------------------------------------------------------------------------- */
+(function initAtracoesSlider() {
+  let currentIdx = 0;
+  let autoTimer = null;
+  const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function getElements() {
+    const slides = document.querySelectorAll('.atracoes-slide');
+    const dots = document.querySelectorAll('.atracoes-dot');
+    const cards = document.querySelectorAll('.atracoes-card');
+    const track = document.getElementById('atracoesSlidesTrack');
+    return { slides, dots, cards, track };
+  }
+
+  function updateAtracoes(newIdx) {
+    const { slides, dots, cards } = getElements();
+    if (!slides.length) return;
+
+    currentIdx = (newIdx + slides.length) % slides.length;
+
+    // Atualiza slides
+    slides.forEach((slide, i) => {
+      if (i === currentIdx) {
+        slide.classList.add('active');
+        slide.style.opacity = '1';
+        slide.style.pointerEvents = 'auto';
+        slide.style.zIndex = '2';
+      } else {
+        slide.classList.remove('active');
+        slide.style.opacity = '0';
+        slide.style.pointerEvents = 'none';
+        slide.style.zIndex = '1';
+      }
+    });
+
+    // Atualiza dots
+    dots.forEach((dot, i) => {
+      if (i === currentIdx) {
+        dot.classList.add('active');
+        dot.style.width = '24px';
+        dot.style.backgroundColor = '#1C1D22';
+        dot.style.opacity = '1';
+      } else {
+        dot.classList.remove('active');
+        dot.style.width = '10px';
+        dot.style.backgroundColor = 'rgba(255, 255, 255, 0.75)';
+        dot.style.opacity = '0.85';
+      }
+    });
+
+    // Atualiza cards inferiores
+    cards.forEach((card, i) => {
+      if (i === currentIdx) {
+        card.classList.add('active');
+        card.style.borderColor = '#0D6E2A';
+        card.style.transform = 'translateY(-4px)';
+        card.style.boxShadow = '0 12px 24px -6px rgba(13, 110, 42, 0.25), 0 4px 10px rgba(0, 0, 0, 0.06)';
+      } else {
+        card.classList.remove('active');
+        card.style.borderColor = 'transparent';
+        card.style.transform = 'translateY(0)';
+        card.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.05)';
+      }
+    });
+  }
+
+  function nextAtracao() {
+    updateAtracoes(currentIdx + 1);
+  }
+
+  function prevAtracao() {
+    updateAtracoes(currentIdx - 1);
+  }
+
+  function setAtracao(idx) {
+    updateAtracoes(idx);
+    resetAuto();
+  }
+
+  function startAuto() {
+    if (autoTimer) clearInterval(autoTimer);
+    if (prefersReduced) return;
+    const { slides } = getElements();
+    if (slides.length < 2) return;
+    autoTimer = setInterval(nextAtracao, 5000);
+  }
+
+  function resetAuto() {
+    if (autoTimer) clearInterval(autoTimer);
+    startAuto();
+  }
+
+  // Bind global para handlers embutidos
+  window.atracoesNextSlide = function() {
+    nextAtracao();
+    resetAuto();
+  };
+
+  window.atracoesPrevSlide = function() {
+    prevAtracao();
+    resetAuto();
+  };
+
+  window.atracoesSetSlide = function(idx) {
+    setAtracao(idx);
+  };
+
+  // Inicialização no DOM
+  document.addEventListener('DOMContentLoaded', () => {
+    const { track } = getElements();
+    if (!track) return;
+
+    // Swipe em mobile
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    track.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    track.addEventListener('touchend', (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      const diff = touchEndX - touchStartX;
+      if (Math.abs(diff) > 40) {
+        if (diff < 0) {
+          nextAtracao();
+        } else {
+          prevAtracao();
+        }
+        resetAuto();
+      }
+    }, { passive: true });
+
+    // Pausa no hover do slider principal
+    const sliderBox = track.closest('.group\\/slider') || track.parentElement;
+    if (sliderBox) {
+      sliderBox.addEventListener('mouseenter', () => {
+        if (autoTimer) clearInterval(autoTimer);
+      });
+      sliderBox.addEventListener('mouseleave', () => {
+        startAuto();
+      });
+    }
+
+    // Suporte a teclado acessível quando focado na seção
+    const sec = document.getElementById('atracoes');
+    if (sec) {
+      sec.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft') {
+          prevAtracao();
+          resetAuto();
+        } else if (e.key === 'ArrowRight') {
+          nextAtracao();
+          resetAuto();
+        }
+      });
+    }
+
+    updateAtracoes(0);
+    startAuto();
+  });
+})();
+
 
 

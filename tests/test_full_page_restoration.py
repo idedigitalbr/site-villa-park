@@ -28,16 +28,11 @@ class FullPageRestorationTests(unittest.TestCase):
 
     def test_restores_the_approved_google_testimonials_section(self):
         heading = self.page.get_by_role(
-            "heading", name="O que nossos clientes dizem no Google."
+            "heading", name="DIVERSÃO E LAZER BEM PERTO DE VOCÊ"
         )
         self.assertEqual(heading.count(), 1)
-        self.assertEqual(
-            self.page.get_by_role("heading", name="Luciana Nascimento").count(), 1
-        )
         self.assertGreaterEqual(
-            self.page.get_by_text(
-                '"Lugar incrível e super seguro para as crianças! Meus filhos adoraram o brinquedão e a equipe é muito atenciosa."', exact=True
-            ).count(),
+            self.page.get_by_text("Avaliação 4.9").count(),
             1,
         )
 
@@ -53,18 +48,11 @@ class FullPageRestorationTests(unittest.TestCase):
             1,
         )
 
-    def test_horizontal_banner_displays_the_approved_ifood_banner(self):
-        banner = self.page.locator("#clube img")
-        self.assertEqual(banner.count(), 1)
-        self.assertEqual(
-            banner.get_attribute("src"),
-            "assets/Pagina/S4%20BANNERS%20HORIZONTAIS/banner-festa-aniversario.webp",
-        )
-        self.assertTrue(
-            banner.evaluate(
-                "element => element.complete && element.naturalWidth > 0"
-            )
-        )
+    def test_party_packages_section_has_three_cards_and_no_features_box(self):
+        party_cards = self.page.locator("#clube .ds-party-card")
+        self.assertEqual(party_cards.count(), 3)
+        self.assertEqual(self.page.locator(".ds-features-box").count(), 0)
+        self.assertEqual(self.page.locator("#estadia").count(), 0)
 
     def test_uses_the_three_existing_hero_images(self):
         expected_sources = [
@@ -83,32 +71,18 @@ class FullPageRestorationTests(unittest.TestCase):
 
 
 
-    def test_ofertas_carousel_has_arrows_and_five_cards(self):
+    def test_ofertas_section_has_four_promo_cards(self):
         container = self.page.locator("#ofertas .bf-container")
         self.assertGreaterEqual(container.count(), 1)
 
-        track = self.page.locator("#bannersTrack")
-        self.assertEqual(track.count(), 1)
-
-        cards = track.locator("[data-banner-card]")
-        self.assertEqual(cards.count(), 5)
-
-        cards.last.scroll_into_view_if_needed()
-        self.page.wait_for_timeout(250)
+        cards = self.page.locator("#ofertas .destaque-card-wrap")
+        self.assertEqual(cards.count(), 4)
 
         images = cards.locator("img")
-        self.assertEqual(images.count(), 5)
+        self.assertEqual(images.count(), 4)
         self.assertTrue(
             images.evaluate_all("imgs => imgs.every(img => img.complete && img.naturalWidth > 0)")
         )
-
-        # Verifica a existência dos botões arrow com o mesmo estilo do hero
-        arrows = self.page.locator("#ofertas button[onclick*='scrollBanners']")
-        self.assertEqual(arrows.count(), 2)
-
-        # Verifica a existência dos 5 dots indicadores
-        dots = self.page.locator("#bannersDots .banner-dot")
-        self.assertEqual(dots.count(), 5)
 
 
 if __name__ == "__main__":

@@ -1010,17 +1010,17 @@ html {
   align-items: center;
   justify-content: center;
   gap: 6px;
-  padding: 13px 26px;
-  border-radius: 9999px;
-  font-family: var(--font-btn, 'Fredoka', sans-serif);
-  font-size: 16px;
+  padding: 12px 26px;
+  border-radius: 9999px !important;
+  font-family: var(--font-btn, 'Fredoka', cursive, sans-serif);
+  font-size: 15.5px;
   font-weight: 400;
   color: #FFFFFF;
   text-decoration: none;
   transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
   box-sizing: border-box;
   cursor: pointer;
-  border: 2px solid transparent;
+  border: none;
   line-height: 1.2;
 }
 
@@ -1039,10 +1039,10 @@ html {
 .ds-party-cta strong,
 .ds-party-cta b,
 .ds-party-cta .cta-bold {
-  font-family: var(--font-btn, 'Fredoka', sans-serif);
-  font-weight: 700;
-  font-size: 16px;
-  letter-spacing: 0.01em;
+  font-family: var(--font-btn, 'Fredoka', cursive, sans-serif);
+  font-weight: 700 !important;
+  font-size: inherit;
+  letter-spacing: normal;
 }
 
 .btn .ds-cta-arrow,
@@ -1050,10 +1050,10 @@ html {
 .ds-btn .ds-cta-arrow,
 .ds-btn .btn-arrow,
 .ds-party-cta .ds-cta-arrow {
-  font-family: var(--font-btn, 'Fredoka', sans-serif);
-  font-size: 16px;
+  font-family: var(--font-btn, 'Fredoka', cursive, sans-serif);
+  font-size: inherit;
   line-height: 1;
-  font-weight: 600;
+  font-weight: 700;
   transition: transform 0.2s ease;
   display: inline-block;
   margin-left: 2px;
@@ -1067,12 +1067,11 @@ html {
   transform: translateX(4px);
 }
 
-/* Variantes Primárias e Secundárias */
+/* Variantes Primárias e Secundárias Canônicas */
 .btn-primary,
 .cta-green,
 .btn-green {
   background-color: #0c6830;
-  border-color: #0c6830;
   color: #FFFFFF;
   box-shadow: 0 8px 20px rgba(12, 104, 48, 0.38);
 }
@@ -1081,7 +1080,6 @@ html {
 .cta-green:hover,
 .btn-green:hover {
   background-color: #084e23;
-  border-color: #084e23;
   color: #FFFFFF;
   transform: translateY(-2px);
   box-shadow: 0 12px 26px rgba(12, 104, 48, 0.48);
@@ -1091,7 +1089,6 @@ html {
 .cta-orange,
 .btn-orange {
   background-color: #f16719;
-  border-color: #f16719;
   color: #FFFFFF;
   box-shadow: 0 8px 20px rgba(241, 103, 25, 0.38);
 }
@@ -1100,7 +1097,6 @@ html {
 .cta-orange:hover,
 .btn-orange:hover {
   background-color: #d6540c;
-  border-color: #d6540c;
   color: #FFFFFF;
   transform: translateY(-2px);
   box-shadow: 0 12px 26px rgba(241, 103, 25, 0.48);
@@ -1108,7 +1104,7 @@ html {
 
 .btn-outline-green {
   background: transparent;
-  border-color: #0c6830;
+  border: 2px solid #0c6830;
   color: #0c6830;
 }
 
@@ -1121,7 +1117,7 @@ html {
 
 .btn-outline-orange {
   background: transparent;
-  border-color: #f16719;
+  border: 2px solid #f16719;
   color: #f16719;
 }
 
@@ -1136,7 +1132,7 @@ html {
   background: rgba(255, 255, 255, 0.15);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  border-color: rgba(255, 255, 255, 0.45);
+  border: 2px solid rgba(255, 255, 255, 0.45);
   color: #FFFFFF;
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
 }
@@ -1151,31 +1147,44 @@ html {
 
 .btn-whatsapp {
   background-color: #25D366;
-  border-color: #25D366;
   color: #FFFFFF;
   box-shadow: 0 8px 20px rgba(37, 211, 102, 0.35);
 }
 
 .btn-whatsapp:hover {
   background-color: #1ea952;
-  border-color: #1ea952;
   color: #FFFFFF;
   transform: translateY(-2px);
   box-shadow: 0 12px 26px rgba(37, 211, 102, 0.45);
 }
 
 /* Padronização de botões específicos em index.html */
-.nav-btn-order,
-.category-cta-button,
+.nav-btn-order {
+  padding: 10px 22px;
+  font-size: 14px;
+  font-family: var(--font-btn, 'Fredoka', cursive, sans-serif) !important;
+  border-radius: 9999px !important;
+}
+
+.header-mobile-cta {
+  padding: 8px 16px;
+  font-size: 13px;
+  font-family: var(--font-btn, 'Fredoka', cursive, sans-serif) !important;
+  border-radius: 9999px !important;
+}
+
 .btn-drawer-cta {
-  font-family: var(--font-btn, 'Fredoka', 'Comfortaa', cursive, sans-serif) !important;
+  width: 100%;
+  padding: 13px 26px;
+  font-size: 15.5px;
+  font-family: var(--font-btn, 'Fredoka', cursive, sans-serif) !important;
   border-radius: 9999px !important;
 }
 
 .nav-btn-order strong,
-.category-cta-button strong,
+.header-mobile-cta strong,
 .btn-drawer-cta strong {
-  font-family: var(--font-btn, 'Fredoka', 'Comfortaa', cursive, sans-serif) !important;
+  font-family: var(--font-btn, 'Fredoka', cursive, sans-serif) !important;
   font-weight: 700 !important;
 }
 
@@ -3345,28 +3354,58 @@ html {
   padding: 12px 14px 14px;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
+  width: 100%;
+}
+
+.destaque-card-footer .btn {
+  width: 100%;
+  padding: 11px 16px;
+  font-size: 14.5px;
 }
 
 .destaque-pill-btn {
   display: inline-flex;
   align-items: center;
-  gap: 5px;
-  font-family: var(--font-btn, 'Fredoka', sans-serif);
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  padding: 6px 14px;
-  border-radius: 9999px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-  transition: transform 0.2s ease, filter 0.2s ease;
+  justify-content: center;
+  gap: 6px;
+  width: 100%;
+  font-family: var(--font-btn, 'Fredoka', cursive, sans-serif);
+  font-size: 14.5px;
+  font-weight: 400;
+  padding: 11px 16px;
+  border-radius: 9999px !important;
   color: #FFFFFF;
+  text-decoration: none;
+  transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-sizing: border-box;
 }
 
-.destaque-card-wrap:hover .destaque-pill-btn {
-  transform: scale(1.05);
-  filter: brightness(1.12);
+.destaque-pill-btn strong,
+.destaque-pill-btn .btn-bold {
+  font-family: var(--font-btn, 'Fredoka', cursive, sans-serif);
+  font-weight: 700 !important;
+  font-size: inherit;
+}
+
+.destaque-pill-btn .ds-cta-arrow {
+  font-family: var(--font-btn, 'Fredoka', cursive, sans-serif);
+  font-size: inherit;
+  line-height: 1;
+  font-weight: 700;
+  transition: transform 0.2s ease;
+  display: inline-block;
+  margin-left: 2px;
+}
+
+.destaque-card-wrap:hover .destaque-pill-btn,
+.destaque-card-wrap:hover .destaque-card-footer .btn {
+  transform: translateY(-2px);
+  filter: brightness(1.08);
+}
+
+.destaque-card-wrap:hover .ds-cta-arrow {
+  transform: translateX(4px);
 }
 
 /* Bottom CTA Horizontal Bar */
@@ -3395,5 +3434,62 @@ html {
     gap: 16px;
   }
 }
+
+/* ==========================================================================
+   SEÇÃO S5.2 — O QUE VOCÊ ENCONTRA NO VILA PARK (CARROSSEL DE ATRAÇÕES)
+   ========================================================================== */
+.atracoes-section {
+  background-color: #FDEA76;
+  position: relative;
+  overflow: hidden;
+}
+
+.atracoes-slide {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.atracoes-slide.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.atracoes-dot {
+  cursor: pointer;
+  height: 10px;
+  width: 10px;
+  border-radius: 9999px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.atracoes-dot.active {
+  width: 24px !important;
+  background-color: #1C1D22 !important;
+}
+
+.atracoes-card {
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 2px solid transparent;
+}
+
+.atracoes-card:hover {
+  transform: translateY(-2px);
+}
+
+.atracoes-card.active {
+  border-color: #0D6E2A !important;
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px -6px rgba(13, 110, 42, 0.25), 0 4px 10px rgba(0, 0, 0, 0.06);
+}
+
+@media (max-width: 767px) {
+  #atracoes .decor-3d-item.anim-float-gentle,
+  #atracoes .decor-3d-item.anim-float-reverse {
+    display: none !important;
+  }
+}
+
 
 
