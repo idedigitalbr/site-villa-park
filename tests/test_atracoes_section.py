@@ -75,15 +75,19 @@ class AtracoesSectionTests(unittest.TestCase):
         self.assertLess(order["atracoesIdx"], order["clubeIdx"])
 
     def test_3d_decorations_exist(self):
-        # Brinquedão 3D e Cerca 3D
-        brinquedao = self.page.locator("img[src*='brinquedao-toboga-piscina-bolinhas-3d.webp']")
-        self.assertGreaterEqual(brinquedao.count(), 1)
+        # Brinquedão 3D e Cerca 3D dentro de #atracoes
+        brinquedao = self.page.locator("section#atracoes img[src*='brinquedao-toboga-piscina-bolinhas-3d.webp']")
+        self.assertEqual(brinquedao.count(), 1)
 
-        cerca = self.page.locator("img[src*='cerca-colorida-parquinho-3d.webp']")
-        self.assertGreaterEqual(cerca.count(), 1)
+        cerca = self.page.locator("section#atracoes img[src*='cerca-colorida-parquinho-3d.webp']")
+        self.assertEqual(cerca.count(), 1)
 
-        chalk = self.page.locator("img[src*='amarelinha-giz-colorido-3d.webp']")
-        self.assertGreaterEqual(chalk.count(), 1)
+        # Giz / Amarelinha deve estar na seção #sobre (anterior), e NÃO em #atracoes
+        chalk_in_atracoes = self.page.locator("section#atracoes img[src*='amarelinha-giz-colorido-3d.webp']")
+        self.assertEqual(chalk_in_atracoes.count(), 0)
+
+        chalk_in_sobre = self.page.locator("section#sobre img[src*='amarelinha-giz-colorido-3d.webp']")
+        self.assertEqual(chalk_in_sobre.count(), 1)
 
     def test_title_and_eyebrow_texts(self):
         title = self.page.locator("section#atracoes h2")

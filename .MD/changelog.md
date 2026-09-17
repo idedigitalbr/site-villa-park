@@ -2,10 +2,14 @@
 
 ## 2026-09-17
 
+- **Ajuste Cirúrgico de Posicionamento dos Elementos 3D (Giz / Amarelinha)**:
+  - Remoção completa do elemento de giz / amarelinha 3D (`amarelinha-giz-colorido-3d.webp`) da seção `#atracoes`, mantendo-a estritamente com os dois assets 3D solicitados: o **Brinquedão Gigante com Tobogã e Piscina de Bolinhas** na margem esquerda e a **Cerca Colorida do Parquinho** na borda direita.
+  - Alocação do giz / amarelinha 3D exclusivamente na seção anterior (`#sobre`), reforçando a identidade lúdica da colagem de fotos sem interferir na seção amarela de atrações.
+  - Atualização dos testes automatizados Playwright (`test_atracoes_section.py`) com 100% de aprovação.
+
 - **Calibração Visual de Alta Fidelidade da Seção de Atrações (Fidelidade Estrita ao Anexo 2 / Figma)**:
   - Redimensionamento do Brinquedão 3D para escala monumental (`width: clamp(480px, 46vw, 680px)`), com ~45% cortado na margem esquerda e base de bolinhas passando por trás dos cards 1 e 2.
   - Ampliação da Cerca 3D (`width: clamp(260px, 26vw, 380px)`) encostada na borda direita com o poste verde e pinos amarelos destacados.
-  - Recorte cirúrgico do giz 3D no canto superior direito para exibir exclusivamente o quadrado "1" e os gizes coloridos.
   - Alinhamento em 100% da largura horizontal compartilhada (`max-w-[860px]`) entre o carrossel panorâmico e o grid dos 5 cards.
   - Compactação dos espaçamentos verticais e encaixe direto da curva verde de "Valores por Estadia" sobre o fundo amarelo `#FDEA76`.
 
