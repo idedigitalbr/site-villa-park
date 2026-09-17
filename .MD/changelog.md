@@ -2,6 +2,11 @@
 
 ## 2026-09-17
 
+- **Reposicionamento da Nuvem 3D e Eliminação da Linha Entre Áreas Laranjas**:
+  - **Nuvem 3D da Direita**: Removida da seção Hero verde (`#home`) e inserida nativamente na lateral direita da seção Destaques (`#ofertas`), utilizando o container da própria seção como referência (`position: relative`), com `top: 15px; right: -15px; z-index: 25;`, sem subir para o verde e mantendo a lógica de objetos 3D decorativos.
+  - **Remoção da Linha Horizontal**: Eliminado o artefato de linha de antialiasing entre o SVG de transição e a seção `#ofertas` através de preenchimento laranja na base do SVG (`<rect y="70" width="1440" height="115" fill="#F15A24"/>`), extensão da base do path vetorial e sobreposição subpixel precisa (`-mt-1.5`) em `#ofertas`, tornando o fundo perfeitamente contínuo.
+
+
 - **Ajuste Cirúrgico de Posicionamento dos Elementos 3D (Giz / Amarelinha)**:
   - Remoção completa do elemento de giz / amarelinha 3D (`amarelinha-giz-colorido-3d.webp`) da seção `#atracoes`, mantendo-a estritamente com os dois assets 3D solicitados: o **Brinquedão Gigante com Tobogã e Piscina de Bolinhas** na margem esquerda e a **Cerca Colorida do Parquinho** na borda direita.
   - Alocação do giz / amarelinha 3D exclusivamente na seção anterior (`#sobre`), reforçando a identidade lúdica da colagem de fotos sem interferir na seção amarela de atrações.
