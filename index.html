@@ -1196,6 +1196,10 @@
             <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
             <span>Sobre Nós</span>
           </a>
+          <a href="#estadia" onclick="toggleMobileMenu()" class="drawer-link">
+            <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect width="20" height="14" x="2" y="5" rx="2"></rect><line x1="2" x2="22" y1="10" y2="10"></line></svg>
+            <span>Passaportes &amp; Horários</span>
+          </a>
           <a href="#filiais" onclick="toggleMobileMenu()" class="drawer-link">
             <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg>
             <span>Nossas Lojas</span>
@@ -1263,10 +1267,6 @@
         <img src="assets/3DObjetos/nuvem-sorridente-3d.webp" alt="Nuvem 3D Sorridente" class="w-full h-auto drop-shadow-xl select-none pointer-events-none" loading="lazy" decoding="async">
       </div>
 
-      <!-- 3. Nuvem 3D Volumosa Branca (canto inferior direito, nova arte ~10% menor posicionada na transição com o laranja) -->
-      <div class="decor-3d-item anim-float-reverse" data-parallax="0.05" style="bottom: -40px; right: -15px; width: clamp(130px, 17vw, 220px); z-index: 25;">
-        <img src="assets/3DObjetos/nuvem-branca-3d.webp" alt="Nuvem 3D Volumosa" class="w-full h-auto drop-shadow-xl select-none pointer-events-none" loading="lazy" decoding="async">
-      </div>
 
       <div class="bf-container relative z-10">
         <div class="hero-carousel group relative w-full overflow-hidden rounded-2xl sm:rounded-3xl md:rounded-[32px] shadow-2xl border border-white/20">
@@ -1381,32 +1381,39 @@
     <!-- ==========================================================================
          TRANSIÇÃO ORGÂNICA EM NUVENS (VERDE FLORESTA → LARANJA DESTAQUES)
          ========================================================================== -->
-    <div class="relative w-full overflow-hidden leading-none z-20 pointer-events-none select-none -mt-1 bg-[#0B6E2A]">
+    <div class="relative w-full overflow-hidden leading-none z-20 pointer-events-none select-none -mt-1 bg-[#0B6E2A]" style="margin-bottom: -2px;">
       <svg viewBox="0 0 1440 180" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" class="w-full h-20 sm:h-28 md:h-36 lg:h-44 block">
-        <!-- Fundo verde oficial para garantir transição 100% contínua sem qualquer fresta branca -->
-        <rect width="1440" height="180" fill="#0B6E2A"/>
+        <!-- Fundo verde oficial no topo para garantir transição 100% contínua sem fresta branca -->
+        <rect width="1440" height="100" fill="#0B6E2A"/>
+        <!-- Base laranja no rodapé para eliminar qualquer linha de antialiasing verde -->
+        <rect y="70" width="1440" height="115" fill="#F15A24"/>
         <!-- Nuvens orgânicas volumosas em cúpulas cumulus fiéis à referência visual Anexo 2 -->
-        <path d="M 0,50 C 25,22 60,18 95,18 C 135,18 165,35 185,65 C 215,35 255,24 295,24 C 335,24 365,38 385,68 C 415,40 450,30 485,30 C 525,30 560,42 585,65 C 620,25 670,12 720,12 C 770,12 820,25 855,65 C 880,42 915,30 955,30 C 990,30 1025,40 1055,68 C 1075,38 1105,24 1145,24 C 1185,24 1225,35 1255,65 C 1275,35 1305,18 1345,18 C 1380,18 1415,22 1440,50 L 1440,180 L 0,180 Z" fill="#F15A24"/>
+        <path d="M 0,50 C 25,22 60,18 95,18 C 135,18 165,35 185,65 C 215,35 255,24 295,24 C 335,24 365,38 385,68 C 415,40 450,30 485,30 C 525,30 560,42 585,65 C 620,25 670,12 720,12 C 770,12 820,25 855,65 C 880,42 915,30 955,30 C 990,30 1025,40 1055,68 C 1075,38 1105,24 1145,24 C 1185,24 1225,35 1255,65 C 1275,35 1305,18 1345,18 C 1380,18 1415,22 1440,50 L 1440,185 L 0,185 Z" fill="#F15A24"/>
       </svg>
     </div>
 
     <!-- ==========================================================================
          S2 — SEÇÃO DESTAQUES LARANJA COM 4 CARDS E DECORAÇÃO 3D
          ========================================================================== -->
-    <section id="ofertas" class="destaques-stage-orange w-full pt-2 sm:pt-4 md:pt-6 pb-14 sm:pb-18 md:pb-22 scroll-mt-24 md:scroll-mt-28 relative -mt-1" aria-label="Destaques e Ofertas do Parque">
+    <section id="ofertas" class="destaques-stage-orange w-full pt-2 sm:pt-4 md:pt-6 pb-14 sm:pb-18 md:pb-22 scroll-mt-24 md:scroll-mt-28 relative -mt-1.5" style="border-top: none !important; box-shadow: none !important;" aria-label="Destaques e Ofertas do Parque">
       
       <!-- Elementos Decorativos 3D de Destaques com Parallax (Escala Fiel ao Mockup) -->
-      <!-- 1. Balão de Ar Quente 3D (lateral esquerda com volume expressivo) -->
+      <!-- 1. Nuvem 3D Volumosa Branca pertencente a esta seção (lateral direita) -->
+      <div class="decor-3d-item anim-float-reverse hidden sm:block" data-parallax="0.05" style="top: 15px; right: -15px; width: clamp(125px, 16vw, 210px); z-index: 25;">
+        <img src="assets/3DObjetos/nuvem-branca-3d.webp" alt="Nuvem 3D Volumosa" class="w-full h-auto drop-shadow-xl select-none pointer-events-none" loading="lazy" decoding="async">
+      </div>
+
+      <!-- 2. Balão de Ar Quente 3D (lateral esquerda com volume expressivo) -->
       <div class="decor-3d-item anim-float-gentle hidden sm:block" data-parallax="0.06" style="top: 55px; left: -40px; width: clamp(210px, 24vw, 340px); z-index: 15;">
         <img src="assets/3DObjetos/balao-ar-quente-nuvens-3d.webp" alt="Balão 3D Villa Plaza Park" class="w-full h-auto drop-shadow-2xl select-none pointer-events-none" loading="lazy" decoding="async">
       </div>
 
-      <!-- 2. Nuvem 3D decorativa inferior esquerda com confetes -->
+      <!-- 3. Nuvem 3D decorativa inferior esquerda com confetes -->
       <div class="decor-3d-item anim-float-reverse hidden sm:block" data-parallax="0.04" style="bottom: 15px; left: -25px; width: clamp(130px, 16vw, 220px); z-index: 20;">
         <img src="assets/3DObjetos/nuvem-sorridente-3d.webp" alt="Nuvem 3D" class="w-full h-auto drop-shadow-xl select-none pointer-events-none" loading="lazy" decoding="async">
       </div>
 
-      <!-- 3. Brinquedão Modular / Tobogã 3D (lateral direita emoldurando os cards) -->
+      <!-- 4. Brinquedão Modular / Tobogã 3D (lateral direita emoldurando os cards) -->
       <div class="decor-3d-item anim-float-gentle hidden sm:block" data-parallax="0.05" style="top: 20px; right: -40px; width: clamp(280px, 33vw, 460px); z-index: 15;">
         <img src="assets/3DObjetos/brinquedao-modular-escorregador-3d.webp" alt="Brinquedão Modular 3D" class="w-full h-auto drop-shadow-2xl select-none pointer-events-none" loading="lazy" decoding="async">
       </div>
@@ -1635,8 +1642,10 @@
       
 
       <!-- 2. Brinquedão com Tobogã e Piscina de Bolinhas 3D (Lateral Esquerda Gigante) -->
-      <div class="decor-3d-item anim-float-gentle hidden sm:block" data-parallax="0.03" style="top: -20px; left: -140px; width: clamp(480px, 46vw, 680px); z-index: 5;">
-        <img src="assets/3DObjetos/brinquedao-toboga-piscina-bolinhas-3d.webp" alt="Brinquedão e Tobogã 3D Villa Plaza Park" class="w-full h-auto drop-shadow-2xl select-none pointer-events-none" loading="eager" decoding="async">
+      <div class="atracoes-brinquedao-wrap decor-3d-item anim-float-gentle" data-parallax="0.03">
+        <div class="atracoes-brinquedao-inner">
+          <img src="assets/3DObjetos/brinquedao-toboga-piscina-bolinhas-3d.webp" alt="Brinquedão e Tobogã 3D Villa Plaza Park" class="w-full h-auto drop-shadow-2xl select-none pointer-events-none" loading="eager" decoding="async">
+        </div>
       </div>
 
       <!-- 3. Cerca Colorida do Parquinho 3D (Lateral Direita Borda) -->
@@ -1811,6 +1820,179 @@
               <h4 class="font-display font-bold text-[11px] sm:text-xs md:text-sm text-slate-900 truncate m-0">Espaço família</h4>
               <p class="text-[10px] sm:text-[11px] text-slate-500 font-sans truncate m-0 mt-0.5">Conforto dos pais</p>
             </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+
+
+    <!-- ==========================================================================
+         S5.5 — VALORES POR ESTADIA & HORÁRIOS DE FUNCIONAMENTO (FIDELIDADE FIGMA)
+         ========================================================================== -->
+    <section id="estadia" class="ds-estadia-section py-8 sm:py-12 md:py-16 bg-[#F8FAF9] scroll-mt-24 md:scroll-mt-28" aria-label="Valores por Estadia e Horários de Funcionamento">
+      <div class="bf-container">
+        
+        <!-- CARD CONTAINER MASTER (VERDE FLORESTA COM ONDAS LARANJA NOS CANTOS) -->
+        <div class="ds-estadia-wrapper">
+          <!-- Ondas Orgânicas nos Cantos -->
+          <img src="assets/brand/estadia/wave-top-left.svg" alt="" class="ds-estadia-wave-tl" aria-hidden="true">
+          <img src="assets/brand/estadia/wave-bottom-right.svg" alt="" class="ds-estadia-wave-br" aria-hidden="true">
+
+          <!-- 1. BLOCO SUPERIOR: CONFIRA OS NOSSOS VALORES POR ESTADIA -->
+          <div class="ds-estadia-head">
+            <span class="ds-estadia-preheader">CONFIRA OS NOSSOS</span>
+            <h2 class="ds-estadia-title">
+              VALORES POR ESTADIA
+            </h2>
+          </div>
+
+          <!-- 2. BLOCO DOS 5 CARDS COM VARAL DE CORDA -->
+          <div class="ds-estadia-cards-container">
+            <!-- Linha Contínua de Corda Trançada no Fundo -->
+            <div class="ds-estadia-rope-line" aria-hidden="true">
+              <img src="assets/brand/estadia/rope-full.webp" alt="" class="ds-estadia-rope-img">
+            </div>
+
+            <!-- Grade / Carrossel dos 5 Cards -->
+            <div class="ds-estadia-cards-row">
+              
+              <!-- Card 1: Meia Hora -->
+              <div class="ds-estadia-card" tabindex="0" role="article" aria-label="Passaporte Meia Hora: R$ 35,00" onclick="openOrderModal()">
+                <picture>
+                  <source srcset="assets/brand/estadia/card-meia-hora.webp" type="image/webp">
+                  <img src="assets/brand/estadia/card-meia-hora.png" alt="Meia Hora - R$ 35,00" class="ds-estadia-card-img" loading="lazy">
+                </picture>
+                <div class="sr-only">
+                  <h3>Meia Hora</h3>
+                  <p>Valor: R$ 35,00</p>
+                </div>
+              </div>
+
+              <!-- Card 2: Uma Hora -->
+              <div class="ds-estadia-card" tabindex="0" role="article" aria-label="Passaporte Uma Hora: R$ 49,00" onclick="openOrderModal()">
+                <picture>
+                  <source srcset="assets/brand/estadia/card-uma-hora.webp" type="image/webp">
+                  <img src="assets/brand/estadia/card-uma-hora.png" alt="Uma Hora - R$ 49,00" class="ds-estadia-card-img" loading="lazy">
+                </picture>
+                <div class="sr-only">
+                  <h3>Uma Hora</h3>
+                  <p>Valor: R$ 49,00</p>
+                </div>
+              </div>
+
+              <!-- Card 3: Duas Horas -->
+              <div class="ds-estadia-card" tabindex="0" role="article" aria-label="Passaporte Duas Horas: R$ 69,00" onclick="openOrderModal()">
+                <picture>
+                  <source srcset="assets/brand/estadia/card-duas-horas.webp" type="image/webp">
+                  <img src="assets/brand/estadia/card-duas-horas.png" alt="Duas Horas - R$ 69,00" class="ds-estadia-card-img" loading="lazy">
+                </picture>
+                <div class="sr-only">
+                  <h3>Duas Horas</h3>
+                  <p>Valor: R$ 69,00</p>
+                </div>
+              </div>
+
+              <!-- Card 4: Cliente +B -->
+              <div class="ds-estadia-card" tabindex="0" role="article" aria-label="Cliente +B até 1h30: R$ 59,00" onclick="openOrderModal()">
+                <picture>
+                  <source srcset="assets/brand/estadia/card-cliente-mais-b.webp" type="image/webp">
+                  <img src="assets/brand/estadia/card-cliente-mais-b.png" alt="Cliente +B (até 1h30) - R$ 59,00" class="ds-estadia-card-img" loading="lazy">
+                </picture>
+                <div class="sr-only">
+                  <h3>Cliente +B (até 1h30)</h3>
+                  <p>Valor: R$ 59,00</p>
+                </div>
+              </div>
+
+              <!-- Card 5: Pacote VIP -->
+              <div class="ds-estadia-card" tabindex="0" role="article" aria-label="Pacote VIP até 4 horas: R$ 89,00" onclick="openOrderModal()">
+                <picture>
+                  <source srcset="assets/brand/estadia/card-pacote-vip.webp" type="image/webp">
+                  <img src="assets/brand/estadia/card-pacote-vip.png" alt="Pacote VIP (até 4 horas) - R$ 89,00" class="ds-estadia-card-img" loading="lazy">
+                </picture>
+                <div class="sr-only">
+                  <h3>Pacote VIP (até 4 horas)</h3>
+                  <p>Valor: R$ 89,00</p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- 3. BLOCO INFERIOR: HORÁRIOS DE FUNCIONAMENTO -->
+          <div class="ds-estadia-hours-section">
+            
+            <!-- Título Central Flanqueado por Linhas Verdes Vibrantes -->
+            <div class="ds-estadia-divider-header">
+              <span class="ds-estadia-green-line"></span>
+              <h3 class="ds-estadia-hours-title">HORÁRIOS DE FUNCIONAMENTO</h3>
+              <span class="ds-estadia-green-line"></span>
+            </div>
+
+            <!-- Grid das 4 Cápsulas de Horários -->
+            <div class="ds-estadia-pills-grid">
+              
+              <!-- 1. Segunda -->
+              <div class="ds-estadia-pill-item">
+                <span class="ds-estadia-day-name">SEGUNDA</span>
+                <div class="ds-estadia-pill-box">
+                  <picture>
+                    <source srcset="assets/brand/estadia/pill-segunda.webp" type="image/webp">
+                    <img src="assets/brand/estadia/pill-segunda.png" alt="Segunda: FECHADO" class="ds-estadia-pill-img" loading="lazy">
+                  </picture>
+                  <span class="sr-only">FECHADO</span>
+                </div>
+              </div>
+
+              <!-- 2. Terça à Quinta -->
+              <div class="ds-estadia-pill-item">
+                <span class="ds-estadia-day-name">TERÇA À QUINTA</span>
+                <div class="ds-estadia-pill-box">
+                  <picture>
+                    <source srcset="assets/brand/estadia/pill-terca-quinta.webp" type="image/webp">
+                    <img src="assets/brand/estadia/pill-terca-quinta.png" alt="Terça à Quinta: 14H - 21H" class="ds-estadia-pill-img" loading="lazy">
+                  </picture>
+                  <span class="sr-only">14H - 21H (14h às 21h)</span>
+                </div>
+              </div>
+
+              <!-- 3. Sexta à Sábado -->
+              <div class="ds-estadia-pill-item">
+                <span class="ds-estadia-day-name">SEXTA À SÁBADO</span>
+                <div class="ds-estadia-pill-box">
+                  <picture>
+                    <source srcset="assets/brand/estadia/pill-sexta-sabado.webp" type="image/webp">
+                    <img src="assets/brand/estadia/pill-sexta-sabado.png" alt="Sexta à Sábado: 09H - 21H" class="ds-estadia-pill-img" loading="lazy">
+                  </picture>
+                  <span class="sr-only">09H - 21H (09h às 21h)</span>
+                </div>
+              </div>
+
+              <!-- 4. Domingo -->
+              <div class="ds-estadia-pill-item">
+                <span class="ds-estadia-day-name">DOMINGO</span>
+                <div class="ds-estadia-pill-box">
+                  <picture>
+                    <source srcset="assets/brand/estadia/pill-domingo.webp" type="image/webp">
+                    <img src="assets/brand/estadia/pill-domingo.png" alt="Domingo: 08H - 14H" class="ds-estadia-pill-img" loading="lazy">
+                  </picture>
+                  <span class="sr-only">08H - 14H (08h às 14h)</span>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+          <!-- BOTÃO DE CONVERSÃO / AGENDAMENTO -->
+          <div class="ds-estadia-cta-wrap">
+            <button type="button" onclick="openOrderModal()" class="btn btn-secondary ds-estadia-cta-btn" aria-label="Garantir passaporte de estadia">
+              <strong class="btn-bold">Garantir</strong> passaporte <span class="ds-cta-arrow">&gt;</span>
+            </button>
           </div>
 
         </div>
