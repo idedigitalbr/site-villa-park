@@ -1,5 +1,13 @@
 # Changelog — Villa Plaza Park
 
+## 2026-09-17
+
+- **Ajuste Cirúrgico da Transição Orgânica em Nuvens (Fidelidade ao Anexo `media_1789594201176.png`)**:
+  - Remodelado o formato vetorial SVG da transição entre S1 (Hero Verde) e S2 (Destaques Laranja) para reproduzir fielmente a silhueta orgânica e assimétrica aprovada pelo cliente.
+  - Composição de 5 domos principais alternados por suaves arcos conectores nos vales, eliminando o padrão de ondas repetitivas artificiais.
+  - Remoção completa de linhas e sombras escuras/marrons sobrepostas, garantindo junção limpa, vibrante e contínua em `#F15A24`.
+  - Encaixe preciso do domo central sob os indicadores (3 dots) do carrossel Hero.
+
 ## 2026-09-16
 
 - **Calibração Visual 100% Fiel ao Mockup Aprovado (Hero S1, Transição e Destaques S2)**:
