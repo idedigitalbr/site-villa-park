@@ -2,6 +2,11 @@
 
 ## 2026-09-18
 
+- **Auditoria Pós-Apagão & Mapeamento de Próximos Passos (`.MD/proximos-passos.md`)**:
+  - Varredura forense completa de todos os 7 chats e tarefas executadas em 17/09 interrompidas pela queda de energia.
+  - Levantamento do status real de cada seção: Botões (100%), Sobre (100%), Estadia (100%), Atrações (90%), Festas (75%), Depoimentos/FAQ (75%) e Footer/Unidades (0% - maior GAP).
+  - Elaboração do plano de ação executivo com priorização estrita, referências visuais do Figma e prompt mestre para retomada.
+
 - **Refatoração do Carrossel de Depoimentos (`#depoimentos`)**:
   - Implementação de carrossel dinâmico em formato Reels/Vídeo (`ds-reels-slider`, `ds-reel-card`) com navegação interativa por setas e transições suaves de offset.
   - Adição de suporte completo a gestos touch swipe em dispositivos móveis (`touchstart` e `touchend`).
