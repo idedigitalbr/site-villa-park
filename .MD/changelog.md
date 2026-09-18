@@ -1,5 +1,21 @@
 # Changelog — Villa Plaza Park
 
+## 2026-09-18
+
+- **Refatoração do Carrossel de Depoimentos (`#depoimentos`)**:
+  - Implementação de carrossel dinâmico em formato Reels/Vídeo (`ds-reels-slider`, `ds-reel-card`) com navegação interativa por setas e transições suaves de offset.
+  - Adição de suporte completo a gestos touch swipe em dispositivos móveis (`touchstart` e `touchend`).
+  - Bloco editorial dinâmico com citação em destaque, avaliação por estrelas, autor, papel/relação e filial de referência, sincronizado a cada troca de slide.
+
+- **Modernização e Padronização do FAQ (`#faq`)**:
+  - Introdução do container cenográfico `ds-sky-stage` com gradiente azul céu e elementos orgânicos decorativos.
+  - Reestruturação dos cards de perguntas frequentes com a nova classe canônica `ds-faq-card`, chevron rotativo e painéis expansíveis.
+  - Atualização da função `toggleFaq()` em `src/js/main.js` para suportar nativamente a nova estrutura.
+
+- **Aprimoramentos no Design System e Suíte de Testes**:
+  - Inclusão dos estilos correspondentes em `src/css/design-system.css`.
+  - Atualização de assets complementares e testes automatizados.
+
 ## 2026-09-17
 
 - **Reorganização dos Elementos 3D da Seção Destaques (`#ofertas`)**:

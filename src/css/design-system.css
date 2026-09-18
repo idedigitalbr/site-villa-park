@@ -509,42 +509,158 @@ html {
 }
 
 /* ==========================================================================
-   PACOTES — FAÇA SUA FESTA (FIDELIDADE TOTAL FIGMA)
+   PACOTES — FAÇA SUA FESTA (SEÇÃO FULL-WIDTH & DIREÇÃO DE ARTE FIEL AO FIGMA)
    ========================================================================== */
-.ds-party-section-wrapper {
-  background-color: #FEFAEE;
+.ds-party-full-section {
   position: relative;
+  width: 100%;
+  background-color: #FDE976;
+  background: linear-gradient(180deg, #FDE976 0%, #FDE46A 100%);
   overflow: hidden;
-  padding: 60px 24px 80px;
-  border-radius: 36px;
-  margin-bottom: 3rem;
+  padding: 64px 0 60px;
+  margin: 0;
 }
 
-.ds-party-wave-tl {
+/* Ondas Orgânicas Fluidas Topo-Esquerdo (Verde e Laranja) */
+.ds-party-wave-tl-fluid {
   position: absolute;
   top: 0;
   left: 0;
-  width: 140px;
+  width: clamp(240px, 32vw, 440px);
+  height: auto;
   pointer-events: none;
   z-index: 1;
 }
 
-.ds-party-wave-br {
+/* Grande Bolo 3D com Velas no Canto Superior Direito */
+.ds-party-cake-wrapper {
   position: absolute;
-  bottom: 0;
+  top: -30px;
+  right: -25px;
+  z-index: 4;
+  pointer-events: none;
+}
+
+.ds-party-decor-cake {
+  width: clamp(210px, 26vw, 360px);
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 20px 32px rgba(0, 0, 0, 0.18));
+  transform-origin: 75% 25%;
+  animation: dsPartyFloat 6s ease-in-out infinite alternate;
+}
+
+@keyframes dsPartyFloat {
+  0% { transform: translateY(0) rotate(0deg); }
+  100% { transform: translateY(-8px) rotate(1.5deg); }
+}
+
+/* Piscina de Bolinhas Coloridas 3D na Lateral Esquerda */
+.ds-party-balls-wrapper {
+  position: absolute;
+  left: -55px;
+  top: clamp(580px, 48%, 760px);
+  z-index: 4;
+  pointer-events: none;
+}
+
+.ds-party-decor-balls {
+  width: clamp(170px, 21vw, 290px);
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 16px 26px rgba(0, 0, 0, 0.22));
+  transform: rotate(-4deg);
+}
+
+/* Onda Orgânica Lateral Direita Atrás do Banner */
+.ds-party-wave-br-fluid {
+  position: absolute;
   right: 0;
-  width: 130px;
+  bottom: 0;
+  width: clamp(240px, 30vw, 480px);
+  height: auto;
   pointer-events: none;
   z-index: 1;
 }
 
+/* Banner Inferior: Tudo Que a Festa Oferece */
+.ds-party-banner-container {
+  position: relative;
+  width: 100%;
+  max-width: 1140px;
+  margin: 56px auto 0;
+  border-radius: 28px;
+  overflow: hidden;
+  box-shadow: 0 20px 48px -8px rgba(0, 0, 0, 0.18), 0 8px 24px -6px rgba(0, 0, 0, 0.08);
+  background: #FEF9EB;
+  z-index: 3;
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.35s ease;
+}
+
+@media (min-width: 768px) {
+  .ds-party-banner-container {
+    border-radius: 36px;
+  }
+}
+
+.ds-party-banner-container:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 28px 60px -10px rgba(0, 0, 0, 0.24), 0 12px 28px -6px rgba(0, 0, 0, 0.12);
+}
+
+.ds-party-banner-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+.ds-party-banner-cta-link {
+  position: absolute;
+  top: 67%;
+  left: 68%;
+  width: 25%;
+  height: 10%;
+  border-radius: 9999px;
+  z-index: 10;
+  cursor: pointer;
+  outline: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.ds-party-banner-cta-link:hover {
+  transform: scale(1.04);
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.5), 0 6px 20px rgba(0, 135, 90, 0.4);
+}
+
+.ds-party-banner-cta-link:focus-visible {
+  box-shadow: 0 0 0 3px #FFFFFF, 0 0 0 6px #0D6832;
+}
+
+/* Faíscas Brancas do Topper 3D nos Cards */
+.ds-topper-sparkle {
+  position: absolute;
+  top: 45%;
+  pointer-events: none;
+  opacity: 0.9;
+}
+
+.ds-topper-sparkle-l {
+  left: -20px;
+}
+
+.ds-topper-sparkle-r {
+  right: -20px;
+}
+
+/* Notas Manuscritas Estilo Caveat */
 .ds-party-note-tr {
   position: absolute;
   top: 24px;
-  right: 28px;
+  right: 48px;
   font-family: var(--font-handwritten, 'Caveat', cursive);
-  color: #3b6645;
-  font-size: 1.45rem;
+  color: #165424;
+  font-size: 1.55rem;
   line-height: 1.15;
   text-align: right;
   transform: rotate(-6deg);
@@ -555,10 +671,10 @@ html {
 .ds-party-note-bl {
   position: absolute;
   bottom: 24px;
-  left: 28px;
+  left: 36px;
   font-family: var(--font-handwritten, 'Caveat', cursive);
-  color: #3b6645;
-  font-size: 1.4rem;
+  color: #165424;
+  font-size: 1.45rem;
   line-height: 1.15;
   transform: rotate(4deg);
   pointer-events: none;
@@ -566,12 +682,22 @@ html {
 }
 
 @media (max-width: 768px) {
-  .ds-party-note-tr, .ds-party-note-bl, .ds-party-wave-tl, .ds-party-wave-br {
-    display: none;
+  .ds-party-full-section {
+    padding-top: 48px;
   }
-  .ds-party-section-wrapper {
-    padding: 40px 14px 50px;
-    border-radius: 24px;
+  .ds-party-decor-cake {
+    width: clamp(140px, 35vw, 190px);
+    top: -15px;
+    right: -15px;
+  }
+  .ds-party-decor-balls {
+    width: clamp(120px, 28vw, 160px);
+    left: -35px;
+    top: 45%;
+  }
+  .ds-party-banner-container {
+    margin-top: 36px;
+    border-radius: 20px;
   }
 }
 
@@ -2589,122 +2715,8 @@ html {
   word-break: break-all;
 }
 
-/* PACOTES FAÇA SUA FESTA (4.1) */
-.ds-party-section-wrapper {
-  background: var(--color-party-cream, #FEFAEE);
-  border-radius: 28px;
-  padding: 60px 40px;
-  position: relative;
-  overflow: hidden;
-  box-shadow: var(--shadow-card, 0 8px 30px rgba(0,0,0,0.06));
-}
+/* PACOTES FAÇA SUA FESTA — ESTILOS CANÔNICOS UNIFICADOS NO TOPO */
 
-.ds-party-wave-tl {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 140px;
-  pointer-events: none;
-}
-
-.ds-party-wave-br {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  width: 140px;
-  pointer-events: none;
-}
-
-.ds-party-note-tr {
-  position: absolute;
-  top: 30px;
-  right: 40px;
-  font-family: 'Caveat', cursive;
-  font-size: 26px;
-  font-weight: 700;
-  color: #165424;
-  line-height: 1.1;
-  transform: rotate(5deg);
-}
-
-.ds-party-note-bl {
-  position: absolute;
-  bottom: 30px;
-  left: 40px;
-  font-family: 'Caveat', cursive;
-  font-size: 26px;
-  font-weight: 700;
-  color: #ef7a2b;
-  line-height: 1.1;
-  transform: rotate(-5deg);
-}
-
-
-.ds-festas-title {
-  font-family: var(--font-display, 'Marvin Round', cursive);
-  font-size: 38px;
-  line-height: 1.1;
-  margin: 0;
-}
-
-.ds-festas-title .title-pacotes {
-  color: #228137;
-}
-
-.ds-festas-title .title-festa {
-  color: #ef7a2b;
-}
-
-.ds-party-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 28px;
-  position: relative;
-  z-index: 2;
-  margin-top: 50px;
-}
-
-@media (max-width: 992px) {
-  .ds-party-grid {
-    grid-template-columns: 1fr;
-  }
-  .ds-party-note-tr, .ds-party-note-bl {
-    display: none;
-  }
-}
-
-.ds-party-card {
-  background: #ffffff;
-  border-radius: 24px;
-  overflow: visible;
-  box-shadow: 0 12px 30px rgba(0,0,0,0.06);
-  display: flex;
-  flex-direction: column;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-  position: relative;
-  margin-top: 60px;
-}
-
-.ds-party-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 20px 40px rgba(0,0,0,0.12);
-}
-
-.ds-party-header-pure {
-  position: relative;
-  padding: 65px 24px 22px;
-  text-align: center;
-  color: #ffffff;
-  border-radius: 24px 24px 0 0;
-}
-
-.ds-party-header-pure.theme-green {
-  background: linear-gradient(180deg, #228137 0%, #165424 100%);
-}
-
-.ds-party-header-pure.theme-orange {
-  background: linear-gradient(180deg, #ef7a2b 0%, #d85c10 100%);
-}
 
 .ds-topper-3d-wrapper {
   position: absolute;
@@ -3484,12 +3496,898 @@ html {
   box-shadow: 0 12px 24px -6px rgba(13, 110, 42, 0.25), 0 4px 10px rgba(0, 0, 0, 0.06);
 }
 
+/* Posicionamento e Deslocamento Horizontal do Brinquedão 3D (#atracoes) */
+.atracoes-brinquedao-wrap {
+  top: -20px;
+  left: 0;
+  width: clamp(480px, 46vw, 680px);
+  z-index: 5;
+  pointer-events: none;
+}
+
+.atracoes-brinquedao-inner {
+  width: 100%;
+  height: 100%;
+  transform: translateX(-40%);
+  will-change: transform;
+}
+
+@media (max-width: 1279px) and (min-width: 1024px) {
+  .atracoes-brinquedao-inner {
+    transform: translateX(-42%);
+  }
+}
+
+@media (max-width: 1023px) and (min-width: 768px) {
+  .atracoes-brinquedao-wrap {
+    top: -15px;
+    width: clamp(380px, 42vw, 480px);
+  }
+  .atracoes-brinquedao-inner {
+    transform: translateX(-50%);
+  }
+}
+
 @media (max-width: 767px) {
-  #atracoes .decor-3d-item.anim-float-gentle,
-  #atracoes .decor-3d-item.anim-float-reverse {
+  .atracoes-brinquedao-wrap {
+    top: -10px;
+    left: 0;
+    width: clamp(240px, 48vw, 320px);
+    z-index: 5;
+    opacity: 0.85;
+  }
+  .atracoes-brinquedao-inner {
+    transform: translateX(-52%);
+  }
+  #atracoes .decor-3d-item.anim-float-reverse,
+  .atracoes-cerca-wrap {
     display: none !important;
   }
 }
 
+/* Posicionamento da Cerca 3D (#atracoes) - Canto Inferior Direito Elevado */
+.atracoes-cerca-wrap {
+  bottom: clamp(50px, 7vw, 85px);
+  right: -75px;
+  width: clamp(260px, 26vw, 380px);
+  z-index: 5;
+  pointer-events: none;
+}
 
+.atracoes-cerca-inner {
+  width: 100%;
+  height: 100%;
+}
 
+@media (max-width: 1279px) and (min-width: 1024px) {
+  .atracoes-cerca-wrap {
+    bottom: clamp(40px, 6vw, 75px);
+    right: -85px;
+    width: clamp(240px, 24vw, 340px);
+  }
+}
+
+@media (max-width: 1023px) and (min-width: 768px) {
+  .atracoes-cerca-wrap {
+    bottom: 35px;
+    right: -95px;
+    width: clamp(210px, 23vw, 290px);
+  }
+}
+
+/* ==========================================================================
+   SEÇÃO VALORES POR ESTADIA & HORÁRIOS DE FUNCIONAMENTO (FIDELIDADE FIGMA)
+   ========================================================================== */
+.ds-estadia-section {
+  position: relative;
+  overflow-x: clip;
+}
+
+.ds-estadia-wrapper {
+  background: linear-gradient(180deg, #016225 0%, #01561f 100%);
+  position: relative;
+  overflow: hidden;
+  border-radius: 28px;
+  padding: 36px 18px 36px;
+  box-shadow: 0 16px 40px -8px rgba(1, 60, 22, 0.4), 0 4px 14px rgba(0, 0, 0, 0.1);
+}
+
+@media (min-width: 640px) {
+  .ds-estadia-wrapper {
+    border-radius: 36px;
+    padding: 44px 28px 44px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .ds-estadia-wrapper {
+    border-radius: 42px;
+    padding: 50px 40px 48px;
+  }
+}
+
+/* Fundo com textura sutil fotográfica de parque infantil */
+.ds-estadia-wrapper::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url('../../assets/images/Criancas-brincando-parque-infantil-visao-ampla.webp');
+  background-size: cover;
+  background-position: center;
+  opacity: 0.08;
+  mix-blend-mode: luminosity;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Ondas Orgânicas nos Cantos */
+.ds-estadia-wave-tl {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: clamp(70px, 12vw, 125px);
+  height: auto;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.ds-estadia-wave-br {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: clamp(75px, 13vw, 135px);
+  height: auto;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Cabeçalho Superior */
+.ds-estadia-head {
+  text-align: center;
+  position: relative;
+  z-index: 2;
+  margin-bottom: 22px;
+}
+
+@media (min-width: 768px) {
+  .ds-estadia-head {
+    margin-bottom: 28px;
+  }
+}
+
+.ds-estadia-preheader {
+  display: block;
+  font-family: var(--font-sans, 'Comfortaa', sans-serif);
+  font-size: clamp(10.5px, 1.4vw, 13px);
+  font-weight: 800;
+  letter-spacing: 0.32em;
+  color: #FFFFFF;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.35);
+}
+
+.ds-estadia-title {
+  font-family: 'Marvin Round', 'Comfortaa', cursive, sans-serif !important;
+  font-size: clamp(1.85rem, 4vw, 2.9rem);
+  font-weight: 800;
+  text-transform: uppercase;
+  color: #EF7A2B;
+  margin: 0;
+  line-height: 1.1;
+  letter-spacing: 0.015em;
+  -webkit-text-stroke: 4px #FFFFFF;
+  paint-order: stroke fill;
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.35));
+}
+
+@media (max-width: 640px) {
+  .ds-estadia-title {
+    -webkit-text-stroke: 3px #FFFFFF;
+  }
+}
+
+/* Bloco dos Cards com Varal */
+.ds-estadia-cards-container {
+  position: relative;
+  z-index: 2;
+  margin: 0 auto 30px;
+  max-width: 1040px;
+}
+
+@media (min-width: 768px) {
+  .ds-estadia-cards-container {
+    margin-bottom: 38px;
+  }
+}
+
+/* Versão Desktop Unificada (Pixel-Perfect Figma) */
+.ds-estadia-desktop-row {
+  position: relative;
+  max-width: 920px;
+  margin: 0 auto;
+}
+
+.ds-estadia-full-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  filter: drop-shadow(0 10px 22px rgba(0, 0, 0, 0.38));
+  user-select: none;
+}
+
+.ds-estadia-hotspots-grid {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+  pointer-events: none;
+}
+
+.ds-estadia-hotspot-btn {
+  pointer-events: auto;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  border-radius: 20px;
+  transition: background-color 0.22s ease, transform 0.22s ease;
+  outline: none;
+}
+
+.ds-estadia-hotspot-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.ds-estadia-hotspot-btn:focus-visible {
+  outline: 2px solid #EF7A2B;
+  outline-offset: 2px;
+}
+
+/* Versão Mobile (Touch Scroll-Snap) */
+.ds-estadia-mobile-row {
+  width: 100%;
+}
+
+.ds-estadia-cards-scroll {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  gap: 14px;
+  padding: 8px 12px 16px;
+  scrollbar-width: thin;
+  scrollbar-color: #EF7A2B rgba(255, 255, 255, 0.15);
+}
+
+.ds-estadia-card-mobile {
+  flex: 0 0 160px;
+  max-width: 160px;
+  scroll-snap-align: center;
+  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.32));
+  cursor: pointer;
+  outline: none;
+  transition: transform 0.2s ease;
+}
+
+.ds-estadia-card-mobile:active {
+  transform: scale(0.97);
+}
+
+.ds-estadia-card-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  user-select: none;
+  pointer-events: none;
+}
+
+.ds-estadia-scroll-hint {
+  text-align: center;
+  margin-top: 6px;
+  font-family: var(--font-sans, 'Comfortaa', sans-serif);
+  font-size: 11px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.75);
+  letter-spacing: 0.03em;
+}
+
+/* Bloco Inferior: Horários de Funcionamento */
+.ds-estadia-hours-section {
+  position: relative;
+  z-index: 2;
+  max-width: 1040px;
+  margin: 0 auto;
+}
+
+.ds-estadia-divider-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+@media (min-width: 768px) {
+  .ds-estadia-divider-header {
+    gap: 20px;
+    margin-bottom: 26px;
+  }
+}
+
+.ds-estadia-green-line {
+  flex: 1 1 0%;
+  height: 3px;
+  background: #00E650;
+  border-radius: 9999px;
+  box-shadow: 0 0 10px rgba(0, 230, 80, 0.65);
+}
+
+.ds-estadia-hours-title {
+  font-family: 'Marvin Round', 'Comfortaa', cursive, sans-serif !important;
+  font-size: clamp(1.2rem, 2.7vw, 1.95rem);
+  font-weight: 800;
+  text-transform: uppercase;
+  color: #EF7A2B;
+  margin: 0;
+  white-space: nowrap;
+  -webkit-text-stroke: 3.5px #FFFFFF;
+  paint-order: stroke fill;
+  filter: drop-shadow(0 3px 8px rgba(0, 0, 0, 0.35));
+  letter-spacing: 0.02em;
+}
+
+@media (max-width: 640px) {
+  .ds-estadia-divider-header {
+    gap: 10px;
+  }
+  .ds-estadia-hours-title {
+    white-space: normal;
+    text-align: center;
+    -webkit-text-stroke: 2.5px #FFFFFF;
+    font-size: 1.35rem;
+  }
+  .ds-estadia-green-line {
+    display: none;
+  }
+}
+
+/* Grid das 4 Cápsulas de Horários */
+.ds-estadia-pills-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(10px, 1.8vw, 20px);
+}
+
+@media (max-width: 960px) and (min-width: 581px) {
+  .ds-estadia-pills-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px 20px;
+  }
+}
+
+@media (max-width: 580px) {
+  .ds-estadia-pills-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px 10px;
+  }
+}
+
+.ds-estadia-pill-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 7px;
+  text-align: center;
+}
+
+.ds-estadia-day-name {
+  font-family: 'Marvin Round', 'Comfortaa', cursive, sans-serif !important;
+  font-size: clamp(11.5px, 1.3vw, 13.5px);
+  font-weight: 800;
+  color: #FFFFFF;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.45);
+}
+
+.ds-estadia-pill-box {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.22s ease, filter 0.22s ease;
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.22));
+}
+
+.ds-estadia-pill-box:hover {
+  transform: translateY(-2px);
+  filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.32));
+}
+
+.ds-estadia-pill-img {
+  width: 100%;
+  max-width: 235px;
+  height: auto;
+  display: block;
+  user-select: none;
+  pointer-events: none;
+}
+
+/* Botão de Conversão */
+.ds-estadia-cta-wrap {
+  margin-top: 24px;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+
+.ds-estadia-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 30px;
+  font-size: 14.5px;
+  border-radius: 9999px;
+  background: linear-gradient(135deg, #FF6F26, #EF5A24);
+  color: #FFFFFF;
+  border: none;
+  box-shadow: 0 6px 20px rgba(239, 90, 36, 0.4);
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease;
+}
+
+.ds-estadia-cta-btn:hover {
+  transform: scale(1.04);
+  box-shadow: 0 10px 26px rgba(239, 90, 36, 0.55);
+}
+
+/* ============================================================================
+   SEÇÕES DEPOIMENTOS & FAQ — REPRODUÇÃO FIEL AO MOCKUP EDITORIAL
+   ============================================================================ */
+
+/* Palco Unificado Azul Muito Claro */
+.ds-sky-stage {
+  background-color: #EDF6FD;
+  position: relative;
+  width: 100%;
+  overflow-x: clip;
+}
+
+/* Camada Independente de Elementos 3D Cenográficos Laterais */
+.ds-stage-decor-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 5;
+}
+
+.ds-stage-decor-left {
+  position: absolute;
+  top: 52%;
+  left: -80px;
+  width: clamp(220px, 24vw, 360px);
+  transform: translateY(-50%);
+  animation: dsDecorFloatL 6s ease-in-out infinite alternate;
+  filter: drop-shadow(0 20px 30px rgba(0, 70, 35, 0.12));
+}
+
+.ds-stage-decor-right {
+  position: absolute;
+  top: 48%;
+  right: -90px;
+  width: clamp(250px, 27vw, 420px);
+  transform: translateY(-50%);
+  animation: dsDecorFloatR 7s ease-in-out infinite alternate;
+  filter: drop-shadow(0 20px 35px rgba(239, 122, 43, 0.12));
+}
+
+@keyframes dsDecorFloatL {
+  0% { transform: translateY(-50%) rotate(0deg); }
+  100% { transform: translateY(calc(-50% - 10px)) rotate(1.5deg); }
+}
+
+@keyframes dsDecorFloatR {
+  0% { transform: translateY(-50%) rotate(0deg); }
+  100% { transform: translateY(calc(-50% - 12px)) rotate(-1.5deg); }
+}
+
+/* Responsividade dos infláveis nas bordas */
+/* Desktop ≥1280px: Tamanhos máximos cenográficos como no print */
+@media (min-width: 1280px) {
+  .ds-stage-decor-left {
+    left: -120px;
+    width: 400px;
+    top: 56%;
+  }
+  .ds-stage-decor-right {
+    right: -130px;
+    width: 460px;
+    top: 54%;
+  }
+}
+
+@media (max-width: 1279px) and (min-width: 1024px) {
+  .ds-stage-decor-left {
+    left: -90px;
+    width: 300px;
+    top: 55%;
+  }
+  .ds-stage-decor-right {
+    right: -100px;
+    width: 340px;
+    top: 54%;
+  }
+}
+
+@media (max-width: 1023px) and (min-width: 641px) {
+  .ds-stage-decor-left {
+    left: -70px;
+    width: clamp(180px, 22vw, 260px);
+    top: 53%;
+    opacity: 0.9;
+  }
+  .ds-stage-decor-right {
+    right: -80px;
+    width: clamp(210px, 26vw, 300px);
+    top: 53%;
+    opacity: 0.9;
+  }
+}
+
+@media (max-width: 640px) {
+  .ds-stage-decor-left {
+    left: -55px;
+    width: 140px;
+    top: 50%;
+    opacity: 0.8;
+  }
+  .ds-stage-decor-right {
+    right: -65px;
+    width: 170px;
+    top: 52%;
+    opacity: 0.8;
+  }
+}
+
+/* --- SEÇÃO 01: DEPOIMENTOS --- */
+.ds-depoimentos-section {
+  position: relative;
+  z-index: 10;
+  padding-top: clamp(48px, 6vw, 84px);
+  padding-bottom: clamp(32px, 4vw, 56px);
+}
+
+/* Container do Carrossel de Vídeos / Cards Verticais */
+.ds-reels-slider-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(10px, 1.5vw, 18px);
+  position: relative;
+  width: 100%;
+}
+
+/* Botões Circulares de Navegação */
+.ds-slider-nav-btn {
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  border-radius: 9999px;
+  background-color: #374151;
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.2s ease, box-shadow 0.2s ease;
+  z-index: 15;
+  flex-shrink: 0;
+}
+
+.ds-slider-nav-btn:hover {
+  transform: scale(1.1);
+  background-color: #1F2937;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+}
+
+.ds-slider-nav-btn:active {
+  transform: scale(0.95);
+}
+
+/* Viewport dos Cards de Reels */
+.ds-reels-viewport {
+  overflow: hidden;
+  width: 100%;
+  max-width: 530px;
+  border-radius: 28px;
+}
+
+.ds-reels-track {
+  display: flex;
+  gap: 16px;
+  transition: transform 0.45s cubic-bezier(0.25, 1, 0.5, 1);
+  will-change: transform;
+}
+
+/* Card Individual de Reels / Vídeo Vertical */
+.ds-reel-card {
+  flex: 0 0 calc(50% - 8px);
+  width: calc(50% - 8px);
+  min-width: calc(50% - 8px);
+  aspect-ratio: 9 / 15.5;
+  border-radius: 26px;
+  overflow: hidden;
+  position: relative;
+  background-color: #1C2D21;
+  box-shadow: 0 10px 30px -4px rgba(0, 0, 0, 0.12), 0 2px 6px rgba(0, 0, 0, 0.04);
+  cursor: pointer;
+  transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.25s ease;
+  user-select: none;
+}
+
+@media (max-width: 640px) {
+  .ds-reels-viewport {
+    max-width: 270px;
+  }
+  .ds-reel-card {
+    flex: 0 0 100%;
+    width: 100%;
+    min-width: 100%;
+  }
+}
+
+.ds-reel-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 36px -6px rgba(0, 0, 0, 0.2);
+}
+
+.ds-reel-media {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Overlay do Botão Play Circular Central */
+.ds-reel-play-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.35) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  transition: background 0.2s ease;
+}
+
+.ds-reel-card:hover .ds-reel-play-overlay {
+  background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.45) 100%);
+}
+
+.ds-reel-play-btn {
+  width: 58px;
+  height: 58px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 2px solid rgba(255, 255, 255, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.2s ease;
+}
+
+.ds-reel-card:hover .ds-reel-play-btn {
+  transform: scale(1.12);
+  background: rgba(255, 255, 255, 0.35);
+}
+
+.ds-reel-play-icon {
+  width: 22px;
+  height: 22px;
+  margin-left: 3px;
+  fill: #FFFFFF;
+  color: #FFFFFF;
+}
+
+.ds-reel-badge {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  background: rgba(20, 34, 23, 0.7);
+  backdrop-filter: blur(6px);
+  color: #FFFFFF;
+  font-size: 10.5px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 9999px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* Bloco Editorial à Direita */
+.ds-editorial-star {
+  width: clamp(95px, 10vw, 135px);
+  height: auto;
+  display: block;
+  user-select: none;
+  pointer-events: none;
+  margin-bottom: 12px;
+  animation: dsFloatStar 4.5s ease-in-out infinite alternate;
+  filter: drop-shadow(0 12px 20px rgba(245, 158, 11, 0.25));
+}
+
+@keyframes dsFloatStar {
+  0% { transform: translateY(0) rotate(0deg); }
+  100% { transform: translateY(-8px) rotate(2deg); }
+}
+
+.ds-depoimentos-eyebrow {
+  color: #EF7A2B;
+  font-size: clamp(11.5px, 1.2vw, 13px);
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+  display: block;
+}
+
+.ds-depoimentos-title {
+  font-family: 'Marvin Round', 'Comfortaa', cursive, sans-serif !important;
+  font-size: clamp(28px, 4vw, 46px);
+  font-weight: 800;
+  color: #005D3E;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  line-height: 1.05;
+  margin: 0 0 16px 0;
+}
+
+.ds-depoimentos-text-box {
+  min-height: 110px;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* --- SEÇÃO 02: FAQ --- */
+.ds-faq-section {
+  position: relative;
+  z-index: 10;
+  padding-top: clamp(24px, 3.5vw, 44px);
+  padding-bottom: clamp(56px, 7vw, 96px);
+}
+
+.ds-faq-eyebrow {
+  color: #005D3E;
+  font-size: clamp(11.5px, 1.2vw, 13px);
+  font-weight: 800;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+  display: block;
+  text-align: center;
+}
+
+.ds-faq-title {
+  font-family: 'Marvin Round', 'Comfortaa', cursive, sans-serif !important;
+  font-size: clamp(32px, 4.5vw, 54px);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  line-height: 1.02;
+  text-align: center;
+  margin: 0 0 clamp(24px, 3.5vw, 42px) 0;
+}
+
+.ds-faq-title-green {
+  color: #005D3E;
+  display: block;
+}
+
+.ds-faq-title-orange {
+  color: #EF7A2B;
+  display: block;
+}
+
+/* Cards do Accordion (Pills Brancas Flutuantes) */
+.ds-faq-card {
+  background-color: #FFFFFF;
+  border-radius: 16px;
+  border: 1px solid rgba(226, 232, 240, 0.85);
+  box-shadow: 0 4px 16px rgba(34, 129, 55, 0.04), 0 1px 3px rgba(0, 0, 0, 0.02);
+  overflow: hidden;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.ds-faq-card:hover {
+  border-color: rgba(34, 129, 55, 0.35);
+  box-shadow: 0 8px 24px rgba(34, 129, 55, 0.08), 0 2px 6px rgba(0, 0, 0, 0.03);
+}
+
+.ds-faq-card.active {
+  border-color: rgba(34, 129, 55, 0.5);
+  box-shadow: 0 8px 26px rgba(34, 129, 55, 0.1);
+}
+
+.ds-faq-btn {
+  width: 100%;
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+@media (min-width: 640px) {
+  .ds-faq-btn {
+    padding: 18px 24px;
+  }
+}
+
+.ds-faq-question {
+  font-family: 'Comfortaa', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: clamp(12.5px, 1.2vw, 14.5px);
+  font-weight: 700;
+  color: #1C1D22;
+  line-height: 1.35;
+  transition: color 0.2s ease;
+}
+
+.ds-faq-card.active .ds-faq-question,
+.ds-faq-btn:hover .ds-faq-question {
+  color: #005D3E;
+}
+
+.ds-faq-chevron-ico {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  color: #005D3E;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), color 0.2s ease;
+}
+
+.ds-faq-card.active .ds-faq-chevron-ico {
+  transform: rotate(180deg);
+  color: #EF7A2B;
+}
+
+.ds-faq-panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.ds-faq-card.active .ds-faq-panel {
+  grid-template-rows: 1fr;
+}
+
+.ds-faq-panel-inner {
+  min-height: 0;
+  overflow: hidden;
+}
+
+.ds-faq-answer {
+  padding: 0 20px 18px 20px;
+  font-size: clamp(12px, 1.1vw, 13.5px);
+  color: #4A4D59;
+  line-height: 1.6;
+}
+
+@media (min-width: 640px) {
+  .ds-faq-answer {
+    padding: 0 24px 20px 24px;
+  }
+}

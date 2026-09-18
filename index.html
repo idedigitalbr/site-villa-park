@@ -2277,139 +2277,365 @@
 
 
     <!-- ==========================================================================
-         S7 — FAQ (DÚVIDAS FREQUENTES COM ACORDEÃO)
+         S6 — DEPOIMENTOS / NOSSOS CLIENTES (EDITORIAL, CARROSSEL REELS)
+         + S7 — FAQ / DÚVIDAS FREQUENTES
          ========================================================================== -->
-    <section id="faq" class="py-12 sm:py-16 md:py-20 bg-[#F8FAF9] scroll-mt-24 md:scroll-mt-28">
-      <div class="bf-container">
-        
-        <div class="text-center max-w-2xl mx-auto mb-8 sm:mb-12 px-2">
-          <div class="mb-3">
-            <span class="ds-tag ds-tag-orange">
-              <i class="fa-solid fa-circle-question"></i> DÚVIDAS FREQUENTES
-            </span>
-          </div>
-          <div class="ds-title-container" style="margin-bottom: 0.5rem;">
-            <svg class="ds-spark-rays ds-spark-left" viewBox="0 0 36 36" fill="none" style="width: 32px; height: 32px;">
-              <path d="M30 18L8 8" stroke="#EF7A2B" stroke-width="5" stroke-linecap="round"/>
-              <path d="M32 26L8 28" stroke="#EF7A2B" stroke-width="5" stroke-linecap="round"/>
-              <path d="M26 10L14 3" stroke="#EF7A2B" stroke-width="5" stroke-linecap="round"/>
-            </svg>
-            <h2 class="ds-duotone-title text-center" style="margin: 0;">
-              <span class="text-green">PERGUNTAS QUE</span> <span class="text-orange">PODEM TE AJUDAR</span>
-            </h2>
-            <svg class="ds-spark-rays ds-spark-right" viewBox="0 0 36 36" fill="none" style="width: 32px; height: 32px;">
-              <path d="M6 18L28 8" stroke="#EF7A2B" stroke-width="5" stroke-linecap="round"/>
-              <path d="M4 26L28 28" stroke="#EF7A2B" stroke-width="5" stroke-linecap="round"/>
-              <path d="M10 10L22 3" stroke="#EF7A2B" stroke-width="5" stroke-linecap="round"/>
-            </svg>
-          </div>
-          <p class="ds-subtitle text-sm sm:text-base text-bf-muted mt-2 text-center mx-auto">
-            Tire suas principais dúvidas sobre horários, passaportes, segurança e festas de aniversário.
-          </p>
-        </div>
 
-        <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 items-start">
-          
-          <!-- Coluna 1 -->
-          <div class="space-y-3 sm:space-y-4">
-            <!-- Accordion 1 -->
-            <div class="faq-item bg-[#F8FAF9] rounded-xl border border-bf-line shadow-xs overflow-hidden transition-all duration-200">
-              <button onclick="toggleFaq(this)" aria-expanded="false" aria-controls="faqAnswer1" class="w-full py-3.5 sm:py-4 px-4 sm:px-6 text-left flex items-center justify-between gap-3 sm:gap-4 font-semibold text-xs sm:text-sm text-bf-ink transition-colors">
-                <span>Onde fica o Villa Plaza Park?</span>
-                <svg class="faq-chevron w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-              </button>
-              <div id="faqAnswer1" class="faq-content-wrapper">
-                <div class="faq-content-inner">
-                  <div class="px-4 sm:px-6 pb-4 pt-3 text-xs text-bf-body leading-relaxed">
-                    Nossa primeira unidade em funcionamento fica localizada no mezanino do +B Supermercados (Plaza), na Av. Gov. José Malcher, 2388, Nazaré/São Brás em Belém/PA. Uma nova unidade no Tapanã está em breve!
-                  </div>
-                </div>
-              </div>
-            </div>
+    <!-- PALCO AZUL CLARO UNIFICADO — contém AMBAS as seções com elementos decorativos 3D nas bordas -->
+    <div class="ds-sky-stage scroll-mt-24 md:scroll-mt-28" id="depoimentos">
 
-            <!-- Accordion 2 -->
-            <div class="faq-item bg-[#F8FAF9] rounded-xl border border-bf-line shadow-xs overflow-hidden transition-all duration-200">
-              <button onclick="toggleFaq(this)" aria-expanded="false" aria-controls="faqAnswer2" class="w-full py-3.5 sm:py-4 px-4 sm:px-6 text-left flex items-center justify-between gap-3 sm:gap-4 font-semibold text-xs sm:text-sm text-bf-ink transition-colors">
-                <span>Quais são os horários de funcionamento?</span>
-                <svg class="faq-chevron w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-              </button>
-              <div id="faqAnswer2" class="faq-content-wrapper">
-                <div class="faq-content-inner">
-                  <div class="px-4 sm:px-6 pb-4 pt-3 text-xs text-bf-body leading-relaxed">
-                    A Unidade Plaza funciona de Segunda a Sexta das 11h às 22h, aos Sábados das 10h às 22h e aos Domingos das 10h às 21h.
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Accordion 3 -->
-            <div class="faq-item bg-[#F8FAF9] rounded-xl border border-bf-line shadow-xs overflow-hidden transition-all duration-200">
-              <button onclick="toggleFaq(this)" aria-expanded="false" aria-controls="faqAnswer3" class="w-full py-3.5 sm:py-4 px-4 sm:px-6 text-left flex items-center justify-between gap-3 sm:gap-4 font-semibold text-xs sm:text-sm text-bf-ink transition-colors">
-                <span>Qual a faixa etária permitida no parque?</span>
-                <svg class="faq-chevron w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-              </button>
-              <div id="faqAnswer3" class="faq-content-wrapper">
-                <div class="faq-content-inner">
-                  <div class="px-4 sm:px-6 pb-4 pt-3 text-xs text-bf-body leading-relaxed">
-                    Recebemos com muito carinho crianças de todas as idades. Dispomos de um Espaço Baby exclusivo para os pequenininhos e brinquedões safari, trampolins e quadras para os maiores.
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Coluna 2 -->
-          <div class="space-y-3 sm:space-y-4">
-            <!-- Accordion 4 -->
-            <div class="faq-item bg-[#F8FAF9] rounded-xl border border-bf-line shadow-xs overflow-hidden transition-all duration-200">
-              <button onclick="toggleFaq(this)" aria-expanded="false" aria-controls="faqAnswer4" class="w-full py-3.5 sm:py-4 px-4 sm:px-6 text-left flex items-center justify-between gap-3 sm:gap-4 font-semibold text-xs sm:text-sm text-bf-ink transition-colors">
-                <span>Posso deixar meu filho brincando enquanto faço compras?</span>
-                <svg class="faq-chevron w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-              </button>
-              <div id="faqAnswer4" class="faq-content-wrapper">
-                <div class="faq-content-inner">
-                  <div class="px-4 sm:px-6 pb-4 pt-3 text-xs text-bf-body leading-relaxed">
-                    Sim! Esse é um dos maiores diferenciais do Villa Plaza Park. Com cadastro seguro, controle de pulseiras e monitores dedicados, você faz suas compras no supermercado com tranquilidade enquanto os pequenos brincam.
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Accordion 5 -->
-            <div class="faq-item bg-[#F8FAF9] rounded-xl border border-bf-line shadow-xs overflow-hidden transition-all duration-200">
-              <button onclick="toggleFaq(this)" aria-expanded="false" aria-controls="faqAnswer5" class="w-full py-3.5 sm:py-4 px-4 sm:px-6 text-left flex items-center justify-between gap-3 sm:gap-4 font-semibold text-xs sm:text-sm text-bf-ink transition-colors">
-                <span>Como comemorar festa de aniversário no Villa Plaza Park?</span>
-                <svg class="faq-chevron w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-              </button>
-              <div id="faqAnswer5" class="faq-content-wrapper">
-                <div class="faq-content-inner">
-                  <div class="px-4 sm:px-6 pb-4 pt-3 text-xs text-bf-body leading-relaxed">
-                    Temos pacotes especiais para festas e comemorações com toda a estrutura, espaço reservado e brincadeiras acompanhadas por monitores. Clique no botão de WhatsApp para solicitar o cardápio e orçamento completo.
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Accordion 6 -->
-            <div class="faq-item bg-[#F8FAF9] rounded-xl border border-bf-line shadow-xs overflow-hidden transition-all duration-200">
-              <button onclick="toggleFaq(this)" aria-expanded="false" aria-controls="faqAnswer6" class="w-full py-3.5 sm:py-4 px-4 sm:px-6 text-left flex items-center justify-between gap-3 sm:gap-4 font-semibold text-xs sm:text-sm text-bf-ink transition-colors">
-                <span>Como funciona a cobrança do tempo e passaporte?</span>
-                <svg class="faq-chevron w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-              </button>
-              <div id="faqAnswer6" class="faq-content-wrapper">
-                <div class="faq-content-inner">
-                  <div class="px-4 sm:px-6 pb-4 pt-3 text-xs text-bf-body leading-relaxed">
-                    Trabalhamos com opções por período (minutos/horas) e passaportes promocionais. Consulte na recepção da unidade Plaza ou envie uma mensagem no nosso WhatsApp oficial: (91) 99319-1582.
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-        </div>
-
+      <!-- CAMADA DECORATIVA INDEPENDENTE (FORA DO CONTAINER, SANGRA NAS BORDAS) -->
+      <div class="ds-stage-decor-layer" aria-hidden="true">
+        <!-- INFLÁVEL ESQUERDA: Rampa de Rolos Coloridos (parcialmente fora do viewport) -->
+        <img
+          src="assets/3DObjetos/rampa-rolos-coloridos-3d.webp"
+          alt=""
+          class="ds-stage-decor-left"
+          loading="lazy"
+          decoding="async"
+        >
+        <!-- INFLÁVEL DIREITA: Castelo Pula-Pula (parcialmente fora do viewport) -->
+        <img
+          src="assets/3DObjetos/castelo-inflavel-pula-pula-3d.webp"
+          alt=""
+          class="ds-stage-decor-right"
+          loading="lazy"
+          decoding="async"
+        >
       </div>
-    </section>
+
+      <!-- ====== SEÇÃO 1: DEPOIMENTOS ====== -->
+      <section class="ds-depoimentos-section" aria-label="Depoimentos de clientes do Villa Plaza Park">
+        <div class="bf-container">
+
+          <!-- Grid principal: [carrossel de vídeos] à esquerda + [bloco editorial] à direita -->
+          <div class="flex flex-col lg:flex-row items-center lg:items-start gap-8 lg:gap-12 xl:gap-16">
+
+            <!-- ======= COLUNA ESQUERDA: CARROSSEL DE VÍDEOS/REELS ======= -->
+            <div class="flex-1 min-w-0 w-full lg:max-w-[54%] xl:max-w-[52%]">
+
+              <!-- Wrapper com botões de navegação nas laterais -->
+              <div class="ds-reels-slider-wrap">
+
+                <!-- Botão Navegação — Anterior -->
+                <button
+                  onclick="depoimentosPrev()"
+                  class="ds-slider-nav-btn"
+                  aria-label="Depoimento anterior"
+                  type="button"
+                >
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M15 18l-6-6 6-6"/>
+                  </svg>
+                </button>
+
+                <!-- Viewport dos cards de Reels -->
+                <div class="ds-reels-viewport">
+                  <div class="ds-reels-track" id="reelsTrack">
+
+                    <!-- CARD 1: Vídeo Real do Parque -->
+                    <div class="ds-reel-card" onclick="openVideoModal()" role="button" tabindex="0" aria-label="Assistir vídeo do Villa Plaza Park — Camila Ferreira">
+                      <video
+                        class="ds-reel-media"
+                        preload="metadata"
+                        playsinline
+                        muted
+                        loop
+                        poster="assets/Pagina/S3 SOBRE/sobre-park.webp"
+                      >
+                        <source src="assets/Pagina/S3 SOBRE/SaveClip.App_AQOBxZ6vqAFYmuKYax3Ofv6Su8_6Vjfg9IfhVDBfNWo1jCnioMHUVwoo9pT2iWt39q1fSsgSMK7VCB9A-6Wm526rI5ueSD_QGVDcqhE.mp4" type="video/mp4">
+                      </video>
+                      <div class="ds-reel-play-overlay">
+                        <div class="ds-reel-play-btn">
+                          <svg class="ds-reel-play-icon" viewBox="0 0 24 24"><path d="M5 3l14 9-14 9V3z"/></svg>
+                        </div>
+                      </div>
+                      <span class="ds-reel-badge">Villa Plaza Park</span>
+                    </div>
+
+                    <!-- CARD 2: Foto Real do Parque — crianças na piscina -->
+                    <div class="ds-reel-card" onclick="depoimentosGoTo(1)" role="button" tabindex="0" aria-label="Depoimento — Fernanda Rocha">
+                      <img
+                        src="assets/images/Meninas-sorrindo-piscina-de-bolinhas.webp"
+                        alt="Meninas sorrindo na piscina de bolinhas do Villa Plaza Park"
+                        class="ds-reel-media"
+                        loading="lazy"
+                        decoding="async"
+                      >
+                      <div class="ds-reel-play-overlay">
+                        <div class="ds-reel-play-btn">
+                          <svg class="ds-reel-play-icon" viewBox="0 0 24 24"><path d="M5 3l14 9-14 9V3z"/></svg>
+                        </div>
+                      </div>
+                      <span class="ds-reel-badge">Piscina de Bolinhas</span>
+                    </div>
+
+                    <!-- CARD 3: Foto Real do Parque — família sorrindo -->
+                    <div class="ds-reel-card" onclick="depoimentosGoTo(2)" role="button" tabindex="0" aria-label="Depoimento — Juliana e Marcos">
+                      <img
+                        src="assets/images/Familia-sorrindo-selfie-no-parque.webp"
+                        alt="Família feliz tirando selfie no Villa Plaza Park"
+                        class="ds-reel-media"
+                        loading="lazy"
+                        decoding="async"
+                      >
+                      <div class="ds-reel-play-overlay">
+                        <div class="ds-reel-play-btn">
+                          <svg class="ds-reel-play-icon" viewBox="0 0 24 24"><path d="M5 3l14 9-14 9V3z"/></svg>
+                        </div>
+                      </div>
+                      <span class="ds-reel-badge">Família no Parque</span>
+                    </div>
+
+                    <!-- CARD 4: Foto Real do Parque — crianças brincando -->
+                    <div class="ds-reel-card" onclick="depoimentosGoTo(3)" role="button" tabindex="0" aria-label="Depoimento — Lucas Menezes">
+                      <img
+                        src="assets/images/Criancas-brincando-na-piscina-de-bolinhas.webp"
+                        alt="Crianças brincando felizes na piscina de bolinhas do Villa Plaza Park"
+                        class="ds-reel-media"
+                        loading="lazy"
+                        decoding="async"
+                      >
+                      <div class="ds-reel-play-overlay">
+                        <div class="ds-reel-play-btn">
+                          <svg class="ds-reel-play-icon" viewBox="0 0 24 24"><path d="M5 3l14 9-14 9V3z"/></svg>
+                        </div>
+                      </div>
+                      <span class="ds-reel-badge">Diversão em Família</span>
+                    </div>
+
+                  </div><!-- /ds-reels-track -->
+                </div><!-- /ds-reels-viewport -->
+
+                <!-- Botão Navegação — Próximo -->
+                <button
+                  onclick="depoimentosNext()"
+                  class="ds-slider-nav-btn"
+                  aria-label="Próximo depoimento"
+                  type="button"
+                >
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 18l6-6-6-6"/>
+                  </svg>
+                </button>
+
+              </div><!-- /ds-reels-slider-wrap -->
+
+            </div><!-- /coluna esquerda -->
+
+
+            <!-- ======= COLUNA DIREITA: BLOCO EDITORIAL ======= -->
+            <div class="flex-shrink-0 w-full lg:w-auto lg:max-w-[42%] xl:max-w-[44%] pt-4 lg:pt-6">
+
+              <!-- Estrela 3D Sorridente (personagem decorativo grande acima do texto) -->
+              <img
+                src="assets/3DObjetos/estrela-sorridente-3d.webp"
+                alt=""
+                class="ds-editorial-star"
+                aria-hidden="true"
+                loading="eager"
+                decoding="async"
+              >
+
+              <!-- Eyebrow: NOSSOS CLIENTES -->
+              <span class="ds-depoimentos-eyebrow">NOSSOS CLIENTES</span>
+
+              <!-- Título principal: DEPOIMENTOS -->
+              <h2 class="ds-depoimentos-title">DEPOIMENTOS</h2>
+
+              <!-- Caixa de Texto Dinâmica (sincronizada com o card ativo) -->
+              <div
+                id="depoimentosTextBox"
+                class="ds-depoimentos-text-box"
+                style="transition: opacity 0.3s ease, transform 0.3s ease;"
+              >
+                <!-- Conteúdo inicial (card 1) — será atualizado pelo JS -->
+                <div class="flex items-center gap-1 mb-3">
+                  <i class="fa-solid fa-star text-[#F59E0B] text-sm mr-1"></i>
+                  <i class="fa-solid fa-star text-[#F59E0B] text-sm mr-1"></i>
+                  <i class="fa-solid fa-star text-[#F59E0B] text-sm mr-1"></i>
+                  <i class="fa-solid fa-star text-[#F59E0B] text-sm mr-1"></i>
+                  <i class="fa-solid fa-star text-[#F59E0B] text-sm mr-1"></i>
+                </div>
+                <blockquote class="text-sm sm:text-base lg:text-[16px] text-[#4A4D59] font-medium leading-relaxed italic mb-4">
+                  "Fizemos a comemoração de aniversário de 5 anos no Villa Plaza Park e foi sensacional! Monitores atenciosos, brinquedos limpinhos e seguros. As crianças não queriam ir embora!"
+                </blockquote>
+                <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2 text-xs sm:text-sm">
+                  <span class="font-extrabold text-[#005D3E]">Camila Ferreira</span>
+                  <span class="hidden sm:inline text-slate-300">•</span>
+                  <span class="text-[#757885]">Mãe do Enzo (5 anos)</span>
+                </div>
+                <div class="text-[11px] text-[#9EA2B0] mt-1 font-semibold">
+                  Unidade Plaza — Belém/PA
+                </div>
+              </div><!-- /depoimentosTextBox -->
+
+            </div><!-- /coluna direita -->
+
+          </div><!-- /flex grid principal -->
+
+        </div><!-- /bf-container -->
+      </section><!-- /depoimentos -->
+
+
+      <!-- ====== SEÇÃO 2: FAQ / DÚVIDAS FREQUENTES ====== -->
+      <section id="faq" class="ds-faq-section scroll-mt-24 md:scroll-mt-28" aria-label="Dúvidas frequentes sobre o Villa Plaza Park">
+        <div class="bf-container">
+
+          <!-- Cabeçalho Centralizado do FAQ -->
+          <div class="text-center mb-8 sm:mb-10 lg:mb-12 px-2">
+            <span class="ds-faq-eyebrow">FAQ</span>
+            <h2 class="ds-faq-title">
+              <span class="ds-faq-title-green">DÚVIDAS</span>
+              <span class="ds-faq-title-orange">FREQUENTES</span>
+            </h2>
+          </div>
+
+          <!-- Grid 2 colunas × 3 linhas no desktop -->
+          <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 items-start">
+
+            <!-- COLUNA 1 -->
+            <div class="space-y-3 sm:space-y-4">
+
+              <!-- FAQ 1 -->
+              <div class="ds-faq-card">
+                <button
+                  onclick="toggleFaq(this)"
+                  aria-expanded="false"
+                  aria-controls="faq2Answer1"
+                  class="ds-faq-btn"
+                  type="button"
+                >
+                  <span class="ds-faq-question">Onde fica o Villa Plaza Park?</span>
+                  <svg class="ds-faq-chevron-ico" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M19 9l-7 7-7-7"/></svg>
+                </button>
+                <div id="faq2Answer1" class="ds-faq-panel">
+                  <div class="ds-faq-panel-inner">
+                    <p class="ds-faq-answer">
+                      Nossa primeira unidade em funcionamento fica localizada no mezanino do +B Supermercados (Plaza), na Av. Gov. José Malcher, 2388, Nazaré/São Brás em Belém/PA. Uma nova unidade no Tapanã está em breve!
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- FAQ 2 -->
+              <div class="ds-faq-card">
+                <button
+                  onclick="toggleFaq(this)"
+                  aria-expanded="false"
+                  aria-controls="faq2Answer2"
+                  class="ds-faq-btn"
+                  type="button"
+                >
+                  <span class="ds-faq-question">Quais são os horários de funcionamento?</span>
+                  <svg class="ds-faq-chevron-ico" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M19 9l-7 7-7-7"/></svg>
+                </button>
+                <div id="faq2Answer2" class="ds-faq-panel">
+                  <div class="ds-faq-panel-inner">
+                    <p class="ds-faq-answer">
+                      A Unidade Plaza funciona de Segunda a Sexta das 11h às 22h, aos Sábados das 10h às 22h e aos Domingos das 10h às 21h.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- FAQ 3 -->
+              <div class="ds-faq-card">
+                <button
+                  onclick="toggleFaq(this)"
+                  aria-expanded="false"
+                  aria-controls="faq2Answer3"
+                  class="ds-faq-btn"
+                  type="button"
+                >
+                  <span class="ds-faq-question">Qual a faixa etária permitida no parque?</span>
+                  <svg class="ds-faq-chevron-ico" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M19 9l-7 7-7-7"/></svg>
+                </button>
+                <div id="faq2Answer3" class="ds-faq-panel">
+                  <div class="ds-faq-panel-inner">
+                    <p class="ds-faq-answer">
+                      Recebemos com muito carinho crianças de todas as idades. Dispomos de um Espaço Baby exclusivo para os pequenininhos e brinquedões safari, trampolins e quadras para os maiores.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+            </div><!-- /coluna 1 -->
+
+            <!-- COLUNA 2 -->
+            <div class="space-y-3 sm:space-y-4">
+
+              <!-- FAQ 4 -->
+              <div class="ds-faq-card">
+                <button
+                  onclick="toggleFaq(this)"
+                  aria-expanded="false"
+                  aria-controls="faq2Answer4"
+                  class="ds-faq-btn"
+                  type="button"
+                >
+                  <span class="ds-faq-question">Posso deixar meu filho brincando enquanto faço compras?</span>
+                  <svg class="ds-faq-chevron-ico" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M19 9l-7 7-7-7"/></svg>
+                </button>
+                <div id="faq2Answer4" class="ds-faq-panel">
+                  <div class="ds-faq-panel-inner">
+                    <p class="ds-faq-answer">
+                      Sim! Esse é um dos maiores diferenciais do Villa Plaza Park. Com cadastro seguro, controle de pulseiras e monitores dedicados, você faz suas compras com tranquilidade enquanto os pequenos brincam.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- FAQ 5 -->
+              <div class="ds-faq-card">
+                <button
+                  onclick="toggleFaq(this)"
+                  aria-expanded="false"
+                  aria-controls="faq2Answer5"
+                  class="ds-faq-btn"
+                  type="button"
+                >
+                  <span class="ds-faq-question">Como comemorar festa de aniversário no Villa Plaza Park?</span>
+                  <svg class="ds-faq-chevron-ico" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M19 9l-7 7-7-7"/></svg>
+                </button>
+                <div id="faq2Answer5" class="ds-faq-panel">
+                  <div class="ds-faq-panel-inner">
+                    <p class="ds-faq-answer">
+                      Temos pacotes especiais para festas e comemorações com toda a estrutura, espaço reservado e brincadeiras acompanhadas por monitores. Clique no botão de WhatsApp para solicitar o cardápio e orçamento completo.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- FAQ 6 -->
+              <div class="ds-faq-card">
+                <button
+                  onclick="toggleFaq(this)"
+                  aria-expanded="false"
+                  aria-controls="faq2Answer6"
+                  class="ds-faq-btn"
+                  type="button"
+                >
+                  <span class="ds-faq-question">Como funciona a cobrança do tempo e passaporte?</span>
+                  <svg class="ds-faq-chevron-ico" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M19 9l-7 7-7-7"/></svg>
+                </button>
+                <div id="faq2Answer6" class="ds-faq-panel">
+                  <div class="ds-faq-panel-inner">
+                    <p class="ds-faq-answer">
+                      Trabalhamos com opções por período (minutos/horas) e passaportes promocionais. Consulte na recepção da unidade Plaza ou envie uma mensagem no nosso WhatsApp oficial: (91) 99319-1582.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+            </div><!-- /coluna 2 -->
+
+          </div><!-- /grid -->
+
+        </div><!-- /bf-container -->
+      </section><!-- /faq -->
+
+    </div><!-- /ds-sky-stage -->
 
     <!-- ==========================================================================
          S9 — REPUTAÇÃO GOOGLE & FILIAIS PLAZA / TAPANÃ (CARDS GOOGLE MAPS RECRIADOS)

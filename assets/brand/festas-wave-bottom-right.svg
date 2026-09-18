@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 540" fill="none">
+  <!-- Orange flowing layer -->
+  <path d="M420 0 C370 60 300 120 270 190 C235 270 250 340 310 400 C360 450 395 490 420 520 Z" fill="#FA6212" />
+  <!-- Green base layer at bottom right -->
+  <path d="M420 180 C365 240 320 310 320 370 C320 440 370 500 420 540 L420 540 L280 540 C320 490 350 440 360 390 C370 330 395 250 420 180 Z" fill="#016124" />
+  <!-- Solid green corner fill to match reference exactly -->
+  <path d="M420 230 C370 280 340 340 340 400 C340 460 380 510 420 540 Z" fill="#016124" />
+</svg>

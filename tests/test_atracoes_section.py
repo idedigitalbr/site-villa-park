@@ -89,6 +89,32 @@ class AtracoesSectionTests(unittest.TestCase):
         chalk_in_sobre = self.page.locator("section#sobre img[src*='amarelinha-giz-colorido-3d.webp']")
         self.assertEqual(chalk_in_sobre.count(), 1)
 
+    def test_brinquedao_horizontal_displacement(self):
+        # Verifica se o brinquedão está deslocado horizontalmente para a esquerda
+        # de modo que aproximadamente 40% fique fora da tela
+        img_info = self.page.evaluate(
+            """() => {
+            const sec = document.querySelector('section#atracoes');
+            const img = document.querySelector('.atracoes-brinquedao-inner img');
+            if (!sec || !img) return null;
+            const secRect = sec.getBoundingClientRect();
+            const imgRect = img.getBoundingClientRect();
+            // pixels do elemento que estão à esquerda da seção
+            const outsideLeft = Math.max(0, secRect.left - imgRect.left);
+            const pctOutside = (outsideLeft / imgRect.width) * 100;
+            return {
+                width: imgRect.width,
+                height: imgRect.height,
+                outsideLeft,
+                pctOutside
+            };
+        }"""
+        )
+        self.assertIsNotNone(img_info)
+        # Deve ter entre 35% e 45% projetado para fora da lateral esquerda
+        self.assertGreaterEqual(img_info["pctOutside"], 35.0)
+        self.assertLessEqual(img_info["pctOutside"], 48.0)
+
     def test_title_and_eyebrow_texts(self):
         title = self.page.locator("section#atracoes h2")
         self.assertIn("O QUE VOCÊ ENCONTRA", title.inner_text().upper())

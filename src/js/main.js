@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
    1. FAQ ACCORDION COM ACESSIBILIDADE
    ---------------------------------------------------------------------------- */
 function toggleFaq(button) {
-  const item = button.closest('.faq-item');
+  const item = button.closest('.faq-item') || button.closest('.ds-faq-card');
   if (!item) return;
   const isActive = item.classList.toggle('active');
   button.setAttribute('aria-expanded', isActive ? 'true' : 'false');
@@ -601,19 +601,148 @@ document.addEventListener('keydown', function(e) {
 });
 
 /* ----------------------------------------------------------------------------
-   9. DEPOIMENTOS & CATEGORIAS
+   9. CARROSSEL DE DEPOIMENTOS (REELS / VÍDEOS & AVALIAÇÕES EDITORIAIS)
    ---------------------------------------------------------------------------- */
-document.addEventListener('DOMContentLoaded', () => {
-  const testimonialSection = document.getElementById('depoimentos');
-  if (testimonialSection) {
-    const testimonialTracks = testimonialSection.querySelectorAll('.animate-marquee-left, .animate-marquee-right');
-    testimonialSection.addEventListener('touchstart', () => {
-      testimonialTracks.forEach(track => track.style.animationPlayState = 'paused');
-    }, { passive: true });
-    testimonialSection.addEventListener('touchend', () => {
-      setTimeout(() => testimonialTracks.forEach(track => track.style.animationPlayState = 'running'), 2200);
-    }, { passive: true });
+(function initDepoimentosSlider() {
+  const testimonials = [
+    {
+      stars: 5,
+      quote: "Fizemos a comemoração de aniversário de 5 anos no Villa Plaza Park e foi sensacional! Monitores atenciosos, brinquedos limpinhos e seguros. As crianças não queriam ir embora!",
+      author: "Camila Ferreira",
+      role: "Mãe do Enzo (5 anos)",
+      badge: "Festa de Aniversário",
+      location: "Unidade Plaza — Belém/PA"
+    },
+    {
+      stars: 5,
+      quote: "O melhor parque infantil em Belém para deixar as crianças se divertirem com segurança enquanto fazemos compras. A tranquilidade e o cuidado dos monitores são nota 10!",
+      author: "Fernanda Rocha",
+      role: "Mãe da Alice (4 anos)",
+      badge: "Passaporte & Compras",
+      location: "Unidade Plaza — Belém/PA"
+    },
+    {
+      stars: 5,
+      quote: "O Espaço Baby é simplesmente impecável, acolchoado e super higienizado! Nosso filho de 2 anos brincou à vontade sem risco nenhum. Pais super tranquilos.",
+      author: "Juliana & Marcos",
+      role: "Pais do Benício (2 anos)",
+      badge: "Espaço Baby",
+      location: "Unidade Plaza — Belém/PA"
+    },
+    {
+      stars: 5,
+      quote: "Ambiente climatizado, estrutura de padrão internacional e passaporte com ótimo custo-benefício. O circuito de trampolins e o tobogã espiral são os preferidos da minha filha!",
+      author: "Lucas Menezes",
+      role: "Pai da Sofia (6 anos)",
+      badge: "Diversão em Família",
+      location: "Unidade Plaza — Belém/PA"
+    }
+  ];
+
+  let currentIdx = 0;
+
+  function updateSlide(idx) {
+    const track = document.getElementById('reelsTrack');
+    const textBox = document.getElementById('depoimentosTextBox');
+    const cards = document.querySelectorAll('.ds-reel-card');
+    if (!track || !cards.length) return;
+
+    currentIdx = (idx + testimonials.length) % testimonials.length;
+
+    // Calcular offset de deslizamento
+    const cardWidth = cards[0].offsetWidth;
+    const gap = 16;
+    const shift = currentIdx * (cardWidth + gap);
+
+    track.style.transform = `translateX(-${shift}px)`;
+
+    // Atualizar classe ativa nos cards
+    cards.forEach((card, i) => {
+      if (i === currentIdx) {
+        card.classList.add('is-active');
+        card.style.opacity = '1';
+        card.style.transform = 'translateY(-4px)';
+      } else {
+        card.classList.remove('is-active');
+        card.style.opacity = '0.78';
+        card.style.transform = 'translateY(0)';
+      }
+    });
+
+    // Atualizar texto editorial suavemente
+    if (textBox && testimonials[currentIdx]) {
+      const data = testimonials[currentIdx];
+      textBox.style.opacity = '0';
+      textBox.style.transform = 'translateY(6px)';
+
+      setTimeout(() => {
+        let starsHtml = '';
+        for (let s = 0; s < data.stars; s++) {
+          starsHtml += '<i class="fa-solid fa-star text-[#F59E0B] text-sm sm:text-base mr-1"></i>';
+        }
+
+        textBox.innerHTML = `
+          <div class="flex items-center gap-1 mb-3">
+            ${starsHtml}
+          </div>
+          <blockquote class="text-sm sm:text-base lg:text-[16px] text-[#4A4D59] font-medium leading-relaxed italic mb-4">
+            "${data.quote}"
+          </blockquote>
+          <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2 text-xs sm:text-sm">
+            <span class="font-extrabold text-[#005D3E]">${data.author}</span>
+            <span class="hidden sm:inline text-slate-300">•</span>
+            <span class="text-[#757885]">${data.role}</span>
+          </div>
+          <div class="text-[11px] text-[#9EA2B0] mt-1 font-semibold">
+            ${data.location}
+          </div>
+        `;
+        textBox.style.opacity = '1';
+        textBox.style.transform = 'translateY(0)';
+      }, 180);
+    }
   }
+
+  window.depoimentosPrev = function() {
+    updateSlide(currentIdx - 1);
+  };
+
+  window.depoimentosNext = function() {
+    updateSlide(currentIdx + 1);
+  };
+
+  window.depoimentosGoTo = function(idx) {
+    updateSlide(idx);
+  };
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const track = document.getElementById('reelsTrack');
+    if (!track) return;
+
+    updateSlide(0);
+
+    // Suporte a Touch Swipe Mobile
+    let startX = 0;
+    track.addEventListener('touchstart', (e) => {
+      startX = e.touches[0].clientX;
+    }, { passive: true });
+
+    track.addEventListener('touchend', (e) => {
+      const endX = e.changedTouches[0].clientX;
+      const diff = startX - endX;
+      if (Math.abs(diff) > 40) {
+        if (diff > 0) window.depoimentosNext();
+        else window.depoimentosPrev();
+      }
+    }, { passive: true });
+
+    window.addEventListener('resize', () => {
+      updateSlide(currentIdx);
+    });
+  });
+})();
+
+document.addEventListener('DOMContentLoaded', () => {
 
   document.querySelectorAll('.category-item').forEach(function(item) {
     item.addEventListener('click', function() {
