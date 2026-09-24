@@ -3314,26 +3314,79 @@ html {
   text-shadow: 0 4px 14px rgba(180, 50, 10, 0.35);
 }
 
-/* Cards de Destaque com Proporção Equilibrada (~4:5) e Botão Pílula Integrado */
-.destaque-card-wrap {
+/* ============================================================================
+   CARROSSEL INFINITO DE DESTAQUES (S3 BANNERZINHOS / OFERTAS)
+   ============================================================================ */
+
+/* Container & Viewport do Carrossel */
+.destaques-carousel-container {
+  position: relative;
+  width: 100%;
+}
+
+.destaques-carousel-viewport {
+  overflow: hidden;
+  width: 100%;
+  position: relative;
   border-radius: 26px;
+  padding: 8px 2px;
+}
+
+.destaques-carousel-track {
+  display: flex;
+  gap: 20px;
+  will-change: transform;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: pan-y;
+}
+
+/* Cards de Destaque no Carrossel Infinito (Proporção Exata 4:5 dos Flyers Promocionais) */
+.destaque-card-wrap,
+.destaque-clone-wrap {
+  border-radius: 24px;
   overflow: hidden;
   box-shadow: 0 10px 28px rgba(0, 0, 0, 0.18);
-  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.35s ease;
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.35s ease, border-color 0.35s ease;
   background: #1c1d22;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   position: relative;
   cursor: pointer;
-  aspect-ratio: 4 / 4.85;
-  border: 2px solid rgba(255, 255, 255, 0.16);
+  aspect-ratio: 4 / 5;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  flex-shrink: 0;
+  /* Largura responsiva fluida: 1 card + peek no mobile, 2 no tablet, 3 em md, 4 em lg */
+  width: calc(84% - 10px);
 }
 
-.destaque-card-wrap:hover {
-  transform: translateY(-8px) scale(1.02);
-  box-shadow: 0 20px 42px rgba(0, 0, 0, 0.28);
-  border-color: rgba(255, 255, 255, 0.38);
+@media (min-width: 640px) {
+  .destaque-card-wrap,
+  .destaque-clone-wrap {
+    width: calc((100% - 20px) / 2);
+  }
+}
+
+@media (min-width: 768px) {
+  .destaque-card-wrap,
+  .destaque-clone-wrap {
+    width: calc((100% - 40px) / 3);
+  }
+}
+
+@media (min-width: 1024px) {
+  .destaque-card-wrap,
+  .destaque-clone-wrap {
+    width: calc((100% - 60px) / 4);
+  }
+}
+
+.destaque-card-wrap:hover,
+.destaque-clone-wrap:hover {
+  transform: translateY(-8px) scale(1.025);
+  box-shadow: 0 20px 42px rgba(0, 0, 0, 0.32);
+  border-color: rgba(255, 255, 255, 0.55);
 }
 
 .destaque-card-bg {
@@ -3348,76 +3401,119 @@ html {
   transition: transform 0.5s ease;
 }
 
-.destaque-card-wrap:hover .destaque-card-bg {
+.destaque-card-wrap:hover .destaque-card-bg,
+.destaque-clone-wrap:hover .destaque-card-bg {
   transform: scale(1.05);
 }
 
 .destaque-card-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0.02) 0%, rgba(0, 0, 0, 0.15) 50%, rgba(0, 0, 0, 0.7) 100%);
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 65%, rgba(0, 0, 0, 0.3) 100%);
+  opacity: 0;
   z-index: 2;
   pointer-events: none;
+  transition: opacity 0.3s ease;
 }
 
-.destaque-card-footer {
-  position: relative;
-  z-index: 3;
-  padding: 12px 14px 14px;
+.destaque-card-wrap:hover .destaque-card-overlay,
+.destaque-clone-wrap:hover .destaque-card-overlay {
+  opacity: 1;
+}
+
+/* Setas de Navegação Circulares do Carrossel */
+.destaques-nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  border-radius: 9999px;
+  background-color: #FFFFFF;
+  color: #1C1D22;
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.25);
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
+  z-index: 30;
+  border: 2px solid rgba(255, 255, 255, 0.95);
+  cursor: pointer;
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.2s ease, box-shadow 0.2s ease, color 0.2s ease;
 }
 
-.destaque-card-footer .btn {
-  width: 100%;
-  padding: 11px 16px;
-  font-size: 14.5px;
+.destaques-nav-btn.prev {
+  left: 4px;
 }
 
-.destaque-pill-btn {
-  display: inline-flex;
+.destaques-nav-btn.next {
+  right: 4px;
+}
+
+@media (min-width: 640px) {
+  .destaques-nav-btn {
+    width: 48px;
+    height: 48px;
+  }
+  .destaques-nav-btn.prev {
+    left: -20px;
+  }
+  .destaques-nav-btn.next {
+    right: -20px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .destaques-nav-btn.prev {
+    left: -26px;
+  }
+  .destaques-nav-btn.next {
+    right: -26px;
+  }
+}
+
+.destaques-nav-btn:hover {
+  transform: translateY(-50%) scale(1.12);
+  background-color: #1C1D22;
+  color: #FFFFFF;
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.35);
+}
+
+.destaques-nav-btn:active {
+  transform: translateY(-50%) scale(0.94);
+}
+
+.destaques-nav-btn:focus-visible {
+  outline: 3px solid #FFFFFF;
+  outline-offset: 2px;
+}
+
+/* Dots Indicadores (Sleek Pills) */
+.destaques-dots {
+  display: flex;
   align-items: center;
   justify-content: center;
-  gap: 6px;
-  width: 100%;
-  font-family: var(--font-btn, 'Fredoka', cursive, sans-serif);
-  font-size: 14.5px;
-  font-weight: 400;
-  padding: 11px 16px;
-  border-radius: 9999px !important;
-  color: #FFFFFF;
-  text-decoration: none;
-  transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
-  box-sizing: border-box;
+  gap: 8px;
 }
 
-.destaque-pill-btn strong,
-.destaque-pill-btn .btn-bold {
-  font-family: var(--font-btn, 'Fredoka', cursive, sans-serif);
-  font-weight: 700 !important;
-  font-size: inherit;
+.destaques-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 9999px;
+  background-color: rgba(255, 255, 255, 0.45);
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-.destaque-pill-btn .ds-cta-arrow {
-  font-family: var(--font-btn, 'Fredoka', cursive, sans-serif);
-  font-size: inherit;
-  line-height: 1;
-  font-weight: 700;
-  transition: transform 0.2s ease;
-  display: inline-block;
-  margin-left: 2px;
+.destaques-dot:hover {
+  background-color: rgba(255, 255, 255, 0.8);
 }
 
-.destaque-card-wrap:hover .destaque-pill-btn,
-.destaque-card-wrap:hover .destaque-card-footer .btn {
-  transform: translateY(-2px);
-  filter: brightness(1.08);
-}
-
-.destaque-card-wrap:hover .ds-cta-arrow {
-  transform: translateX(4px);
+.destaques-dot.active {
+  width: 32px;
+  background-color: #FFFFFF;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
 }
 
 /* Bottom CTA Horizontal Bar */
@@ -4605,28 +4701,53 @@ html {
 .ds-unidades-wrapper {
   position: relative;
   width: 100%;
-  background: #027C4F;
+  background: linear-gradient(180deg, #EDF5FD 0%, #E2F2FC 60%, #E2F2FC 100%);
   color: #FFFFFF;
   overflow-x: clip;
   z-index: 20;
 }
 
-/* Transição orgânica superior de onda */
-.ds-unidades-wave-top {
+/* Fundo cenográfico vetorial integrado (Desktop/Tablet) */
+.ds-unidades-bg-landscape {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+}
+
+/* Rodapé Integrado e Onda Orgânica Superior */
+.ds-footer-integrated {
+  position: relative;
+  width: 100%;
+  z-index: 20;
+  color: #FFFFFF;
+}
+
+.ds-footer-wave-top {
   position: relative;
   width: 100%;
   line-height: 0;
   pointer-events: none;
   z-index: 10;
+  margin-bottom: -1px;
 }
 
-.ds-unidades-wave-top svg {
+.ds-footer-wave-top svg {
   display: block;
   width: 100%;
-  height: clamp(60px, 8vw, 130px);
+  height: clamp(55px, 8vw, 120px);
 }
 
-/* Formas orgânicas laterais laranjas (Figma Print) */
+@media (max-width: 1023px) {
+  .ds-footer-integrated {
+    background-color: #027C4F;
+  }
+}
+
+/* Formas orgânicas laterais laranjas e verdes (Figma Print) */
 .ds-organic-orange-left {
   position: absolute;
   left: -70px;
@@ -4635,7 +4756,7 @@ html {
   height: 520px;
   background: #FA5A00;
   border-radius: 50% 50% 60% 40% / 40% 60% 50% 50%;
-  z-index: 10;
+  z-index: 5;
   pointer-events: none;
   opacity: 0.95;
 }
@@ -4648,7 +4769,33 @@ html {
   height: 480px;
   background: #FA5A00;
   border-radius: 60% 40% 50% 50% / 50% 50% 60% 40%;
-  z-index: 10;
+  z-index: 5;
+  pointer-events: none;
+  opacity: 0.95;
+}
+
+.ds-organic-green-left {
+  position: absolute;
+  left: -50px;
+  top: 120px;
+  width: 220px;
+  height: 440px;
+  background: #00B359;
+  border-radius: 50% 50% 60% 40% / 40% 60% 50% 50%;
+  z-index: 4;
+  pointer-events: none;
+  opacity: 0.95;
+}
+
+.ds-organic-green-right {
+  position: absolute;
+  right: -50px;
+  top: 70px;
+  width: 200px;
+  height: 420px;
+  background: #00B359;
+  border-radius: 60% 40% 50% 50% / 50% 50% 60% 40%;
+  z-index: 4;
   pointer-events: none;
   opacity: 0.95;
 }
@@ -4663,6 +4810,16 @@ html {
     width: 150px;
     height: 300px;
     right: -60px;
+  }
+  .ds-organic-green-left {
+    width: 140px;
+    height: 280px;
+    left: -50px;
+  }
+  .ds-organic-green-right {
+    width: 130px;
+    height: 260px;
+    right: -50px;
   }
 }
 

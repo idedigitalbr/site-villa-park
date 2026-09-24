@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 180" fill="none" class="w-full h-full block" preserveAspectRatio="none">
+  <!-- Morro Verde Claro Esquerdo de Fundo -->
+  <path d="M 0,110 C 60,80 120,75 180,105 C 235,130 280,150 340,160 L 0,160 Z" fill="#00B359" opacity="0.9" />
+  <!-- Morro Verde Claro Direito de Fundo -->
+  <path d="M 1220,180 C 1300,140 1370,100 1440,80 L 1440,180 Z" fill="#00B359" opacity="0.9" />
+  <!-- Dobra Orgânica Principal do Rodapé (Verde Floresta #027C4F) -->
+  <path d="M 0,85 C 40,65 95,50 145,65 C 190,80 230,120 310,135 C 420,155 720,145 1000,145 C 1180,145 1320,115 1440,65 L 1440,180 L 0,180 Z" fill="#027C4F" />
+</svg>

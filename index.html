@@ -1254,7 +1254,7 @@
     <!-- ==========================================================================
          S1 — HERO SECTION / CENÁRIO VERDE IMERSIVO COM OBJETOS 3D E CARROSSEL CENTRAL
          ========================================================================== -->
-    <section id="home" class="hero-stage-green w-full pt-4 sm:pt-5 md:pt-6 pb-4 sm:pb-6 scroll-mt-24 md:scroll-mt-28 relative overflow-x-clip" aria-label="Carrossel Principal de Atrações e Lazer Infantil">
+    <section id="home" class="hero-stage-green w-full pt-4 sm:pt-5 md:pt-6 pb-0 scroll-mt-24 md:scroll-mt-28 relative overflow-x-clip" aria-label="Carrossel Principal de Atrações e Lazer Infantil">
       
       <!-- Elementos Decorativos 3D da Hero com Parallax Sutil e Animação Ambiente (Fiel ao Mockup) -->
       <!-- 1. Sol 3D Sorridente (canto superior direito com escala reduzida ~10%) -->
@@ -1263,7 +1263,7 @@
       </div>
 
       <!-- 2. Nuvem 3D Sorridente (lateral esquerda com escala ampliada ~10%) -->
-      <div class="decor-3d-item anim-float-gentle" data-parallax="0.04" style="bottom: 8px; left: -25px; width: clamp(155px, 20vw, 265px); z-index: 25;">
+      <div class="decor-3d-item anim-float-gentle" data-parallax="0.04" style="bottom: calc(8px + clamp(80px, 12vw, 176px)); left: -25px; width: clamp(155px, 20vw, 265px); z-index: 25;">
         <img src="assets/3DObjetos/nuvem-sorridente-3d.webp" alt="Nuvem 3D Sorridente" class="w-full h-auto drop-shadow-xl select-none pointer-events-none" loading="lazy" decoding="async">
       </div>
 
@@ -1376,21 +1376,20 @@
         </div>
 
       </div>
-    </section>
 
-    <!-- ==========================================================================
-         TRANSIÇÃO ORGÂNICA EM NUVENS (VERDE FLORESTA → LARANJA DESTAQUES)
-         ========================================================================== -->
-    <div class="relative w-full overflow-hidden leading-none z-20 pointer-events-none select-none -mt-1 bg-[#0B6E2A]" style="margin-bottom: -2px;">
-      <svg viewBox="0 0 1440 180" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" class="w-full h-20 sm:h-28 md:h-36 lg:h-44 block">
-        <!-- Fundo verde oficial no topo para garantir transição 100% contínua sem fresta branca -->
-        <rect width="1440" height="100" fill="#0B6E2A"/>
-        <!-- Base laranja no rodapé para eliminar qualquer linha de antialiasing verde -->
-        <rect y="70" width="1440" height="115" fill="#F15A24"/>
-        <!-- Nuvens orgânicas volumosas em cúpulas cumulus fiéis à referência visual Anexo 2 -->
-        <path d="M 0,50 C 25,22 60,18 95,18 C 135,18 165,35 185,65 C 215,35 255,24 295,24 C 335,24 365,38 385,68 C 415,40 450,30 485,30 C 525,30 560,42 585,65 C 620,25 670,12 720,12 C 770,12 820,25 855,65 C 880,42 915,30 955,30 C 990,30 1025,40 1055,68 C 1075,38 1105,24 1145,24 C 1185,24 1225,35 1255,65 C 1275,35 1305,18 1345,18 C 1380,18 1415,22 1440,50 L 1440,185 L 0,185 Z" fill="#F15A24"/>
-      </svg>
-    </div>
+      <!-- ==========================================================================
+           TRANSIÇÃO ORGÂNICA EM NUVENS (CONTINUAÇÃO NATURAL DA HERO SEM QUEBRA DE VERDE)
+           ========================================================================== -->
+      <div class="relative w-full overflow-hidden leading-none z-20 pointer-events-none select-none mt-2 sm:mt-3" style="margin-bottom: -2px;">
+        <svg viewBox="0 0 1440 180" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" class="w-full h-20 sm:h-28 md:h-36 lg:h-44 block">
+          <!-- Nuvens orgânicas volumosas em cúpulas cumulus fiéis à referência visual Anexo 2 -->
+          <path d="M 0,50 C 25,22 60,18 95,18 C 135,18 165,35 185,65 C 215,35 255,24 295,24 C 335,24 365,38 385,68 C 415,40 450,30 485,30 C 525,30 560,42 585,65 C 620,25 670,12 720,12 C 770,12 820,25 855,65 C 880,42 915,30 955,30 C 990,30 1025,40 1055,68 C 1075,38 1105,24 1145,24 C 1185,24 1225,35 1255,65 C 1275,35 1305,18 1345,18 C 1380,18 1415,22 1440,50 L 1440,185 L 0,185 Z" fill="#F15A24"/>
+          <!-- Base laranja no rodapé para garantir conexão contínua e sem frestas com a Seção Destaques -->
+          <rect y="70" width="1440" height="115" fill="#F15A24"/>
+        </svg>
+      </div>
+
+    </section>
 
     <!-- ==========================================================================
          S2 — SEÇÃO DESTAQUES LARANJA COM 4 CARDS E DECORAÇÃO 3D
@@ -1421,51 +1420,74 @@
           <h2 class="destaques-title uppercase">DESTAQUES</h2>
         </div>
 
-        <!-- Grid de 4 Cards Oficiais Estilo UI com Botões Pílula Integrados -->
-        <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-5 lg:gap-6 max-w-6xl mx-auto">
+        <!-- Carrossel de Destaques Infinito (S3) -->
+        <div class="destaques-carousel-container relative max-w-6xl mx-auto mb-6 sm:mb-8" id="destaquesCarousel">
           
-          <!-- Card 01: Comprou R$300, Ganhou 1 Hora Extra -->
-          <div class="destaque-card-wrap group" onclick="openOrderModal()" role="button" tabindex="0" aria-label="Comprou R$300, Ganhou 1 Hora Extra">
-            <img src="assets/Pagina/S3%20BANNERZINHOS/1-card-promo-3-4.jpg" alt="Comprou R$300, Ganhou 1 Hora Extra — Villa Plaza Park" class="destaque-card-bg" loading="lazy" decoding="async">
-            <div class="destaque-card-overlay"></div>
-            <div class="destaque-card-footer">
-              <span class="btn btn-primary" style="width: 100%;">
-                <strong class="btn-bold">Quero</strong> saber mais <span class="ds-cta-arrow">&gt;</span>
-              </span>
+          <div class="relative px-2 sm:px-0">
+            <!-- Botão Seta Esquerda (Prev) -->
+            <button
+              type="button"
+              id="destaquesPrevBtn"
+              class="destaques-nav-btn prev"
+              aria-label="Card anterior"
+              onclick="destaquesPrev()"
+            >
+              <svg class="w-5 h-5 sm:w-6 sm:h-6 -translate-x-0.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                <polyline points="15 18 9 12 15 6"></polyline>
+              </svg>
+            </button>
+
+            <!-- Viewport do Carrossel (overflow: hidden) -->
+            <div class="destaques-carousel-viewport overflow-hidden rounded-[26px] py-2 sm:py-3" id="destaquesViewport">
+              <div class="destaques-carousel-track flex select-none cursor-grab" id="destaquesTrack">
+                
+                <!-- Card 01: Comprou R$300, Ganhou 1 Hora Extra -->
+                <div class="destaque-card-wrap group flex-shrink-0" onclick="openOrderModal()" role="button" tabindex="0" aria-label="Comprou R$300, Ganhou 1 Hora Extra" data-card-idx="0">
+                  <img src="assets/Pagina/S3%20BANNERZINHOS/1-card-promo-3-4.jpg" alt="Comprou R$300, Ganhou 1 Hora Extra — Villa Plaza Park" class="destaque-card-bg" loading="lazy" decoding="async">
+                  <div class="destaque-card-overlay"></div>
+                </div>
+
+                <!-- Card 02: Venha com seu Pet -->
+                <div class="destaque-card-wrap group flex-shrink-0" onclick="openOrderModal()" role="button" tabindex="0" aria-label="Venha com seu Pet" data-card-idx="1">
+                  <img src="assets/Pagina/S3%20BANNERZINHOS/3-card-promo-3-4.jpg" alt="Venha com seu Pet — Diversão também para os melhores amigos" class="destaque-card-bg" loading="lazy" decoding="async">
+                  <div class="destaque-card-overlay"></div>
+                </div>
+
+                <!-- Card 03: Aniversário do seu pequeno -->
+                <div class="destaque-card-wrap group flex-shrink-0" onclick="openOrderModal()" role="button" tabindex="0" aria-label="Aniversário do seu pequeno merece ser inesquecível" data-card-idx="2">
+                  <img src="assets/Pagina/S3%20BANNERZINHOS/2-card-promo-3-4.jpg" alt="O aniversário do seu pequeno merece ser inesquecível — Faça sua festa" class="destaque-card-bg" loading="lazy" decoding="async">
+                  <div class="destaque-card-overlay"></div>
+                </div>
+
+                <!-- Card 04: Seu pequeno vive grandes aventuras aqui -->
+                <div class="destaque-card-wrap group flex-shrink-0" onclick="openOrderModal()" role="button" tabindex="0" aria-label="Seu pequeno vive grandes aventuras aqui" data-card-idx="3">
+                  <img src="assets/Pagina/S3%20BANNERZINHOS/4-card-promo-3-4.jpg" alt="Seu pequeno vive grandes aventuras aqui — Conheça" class="destaque-card-bg" loading="lazy" decoding="async">
+                  <div class="destaque-card-overlay"></div>
+                </div>
+
+              </div>
             </div>
+
+            <!-- Botão Seta Direita (Next) -->
+            <button
+              type="button"
+              id="destaquesNextBtn"
+              class="destaques-nav-btn next"
+              aria-label="Próximo card"
+              onclick="destaquesNext()"
+            >
+              <svg class="w-5 h-5 sm:w-6 sm:h-6 translate-x-0.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                <polyline points="9 18 15 12 9 6"></polyline>
+              </svg>
+            </button>
           </div>
 
-          <!-- Card 02: Venha com seu Pet -->
-          <div class="destaque-card-wrap group" onclick="openOrderModal()" role="button" tabindex="0" aria-label="Venha com seu Pet">
-            <img src="assets/Pagina/S3%20BANNERZINHOS/3-card-promo-3-4.jpg" alt="Venha com seu Pet — Diversão também para os melhores amigos" class="destaque-card-bg" loading="lazy" decoding="async">
-            <div class="destaque-card-overlay"></div>
-            <div class="destaque-card-footer">
-              <span class="btn btn-secondary" style="width: 100%;">
-                <strong class="btn-bold">Quero</strong> saber mais <span class="ds-cta-arrow">&gt;</span>
-              </span>
-            </div>
-          </div>
-
-          <!-- Card 03: Aniversário do seu pequeno -->
-          <div class="destaque-card-wrap group" onclick="openOrderModal()" role="button" tabindex="0" aria-label="Aniversário do seu pequeno merece ser inesquecível">
-            <img src="assets/Pagina/S3%20BANNERZINHOS/2-card-promo-3-4.jpg" alt="O aniversário do seu pequeno merece ser inesquecível — Faça sua festa" class="destaque-card-bg" loading="lazy" decoding="async">
-            <div class="destaque-card-overlay"></div>
-            <div class="destaque-card-footer">
-              <span class="btn btn-primary" style="width: 100%;">
-                <strong class="btn-bold">Quero</strong> saber mais <span class="ds-cta-arrow">&gt;</span>
-              </span>
-            </div>
-          </div>
-
-          <!-- Card 04: Seu pequeno vive grandes aventuras aqui -->
-          <div class="destaque-card-wrap group" onclick="openOrderModal()" role="button" tabindex="0" aria-label="Seu pequeno vive grandes aventuras aqui">
-            <img src="assets/Pagina/S3%20BANNERZINHOS/4-card-promo-3-4.jpg" alt="Seu pequeno vive grandes aventuras aqui — Conheça" class="destaque-card-bg" loading="lazy" decoding="async">
-            <div class="destaque-card-overlay"></div>
-            <div class="destaque-card-footer">
-              <span class="btn btn-primary" style="width: 100%;">
-                <strong class="btn-bold">Quero</strong> saber mais <span class="ds-cta-arrow">&gt;</span>
-              </span>
-            </div>
+          <!-- Indicadores de Pontos (Dots de Paginação) -->
+          <div class="destaques-dots flex items-center justify-center gap-2 mt-4 sm:mt-5" id="destaquesDots">
+            <button type="button" class="destaques-dot active" aria-label="Ir para card 1" onclick="destaquesGoTo(0)"></button>
+            <button type="button" class="destaques-dot" aria-label="Ir para card 2" onclick="destaquesGoTo(1)"></button>
+            <button type="button" class="destaques-dot" aria-label="Ir para card 3" onclick="destaquesGoTo(2)"></button>
+            <button type="button" class="destaques-dot" aria-label="Ir para card 4" onclick="destaquesGoTo(3)"></button>
           </div>
 
         </div>
@@ -2725,24 +2747,52 @@
          ========================================================================== -->
     <section id="filiais" class="ds-unidades-wrapper relative w-full overflow-hidden text-white scroll-mt-20" aria-label="Nossas Unidades">
 
-      <!-- TRANSIÇÃO ORGÂNICA SUPERIOR (SVG WAVE COM MORROS LARANJAS E ONDA VERDE) -->
-      <div class="ds-unidades-wave-top relative w-full leading-none pointer-events-none z-10 -mb-[2px]" aria-hidden="true">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 160" fill="none" class="w-full h-16 sm:h-24 md:h-32 lg:h-36 block select-none pointer-events-none" preserveAspectRatio="none">
-          <!-- Morro Laranja Esquerdo -->
-          <path d="M-60,160 C-20,40 100,-15 210,55 C265,90 305,135 365,160 Z" fill="#FA5A00" opacity="0.95" />
-          <!-- Morro Laranja Direito -->
-          <path d="M1150,160 C1220,75 1300,10 1395,15 C1445,20 1485,70 1540,160 Z" fill="#FA5A00" opacity="0.95" />
-          <!-- Onda Verde Principal Sobrepondo que continua perfeitamente no container -->
-          <path d="M0,90 C160,40 330,115 540,65 C760,10 960,105 1180,50 C1290,25 1380,55 1440,70 L1440,160 L0,160 Z" fill="#027C4F" />
+      <!-- FUNDO CENOGRÁFICO INTEGRADO VETORIAL FIGMA (CÉU AZUL, MORROS LARANJAS, MORROS VERDES E CURVA ORGÂNICA DO RODAPÉ) -->
+      <div class="ds-unidades-bg-landscape hidden lg:block" aria-hidden="true">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1100" fill="none" class="w-full h-full block" preserveAspectRatio="none">
+          <defs>
+            <linearGradient id="dsSkyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#EDF5FD" />
+              <stop offset="60%" stop-color="#E2F2FC" />
+              <stop offset="100%" stop-color="#E2F2FC" />
+            </linearGradient>
+          </defs>
+
+          <!-- Fundo Céu Azul Suave (continuação perfeita da ds-sky-stage) -->
+          <rect width="1920" height="1100" fill="url(#dsSkyGrad)" />
+
+          <!-- 1. Morro Orgânico Laranja Esquerdo -->
+          <path d="M 0,330 C 50,300 110,330 135,430 C 160,540 130,700 80,800 C 50,845 15,865 0,870 Z" fill="#FA5A00" />
+
+          <!-- 2. Morro Orgânico Laranja Direito -->
+          <path d="M 1920,140 C 1870,150 1815,200 1795,290 C 1765,420 1785,620 1825,780 C 1860,920 1905,1020 1920,1050 Z" fill="#FA5A00" />
+
+          <!-- 3. Morro Verde Claro Superior Direito -->
+          <path d="M 1920,240 C 1860,250 1810,310 1790,420 C 1760,570 1780,750 1830,880 C 1870,980 1905,1050 1920,1080 Z" fill="#00B359" />
+
+          <!-- 4. Morro Verde Claro Superior Esquerdo (Atrás da Estrela) -->
+          <path d="M 0,720 C 45,670 100,660 150,710 C 205,765 240,840 280,875 C 320,895 380,890 440,890 L 440,1100 L 0,1100 Z" fill="#00B359" opacity="0.95" />
+
+          <!-- 5. ONDA / DOBRA PRINCIPAL DO RODAPÉ (VERDE ESCURO FLORESTA OFICIAL #027C4F) -->
+          <!-- A curva começa no canto superior esquerdo (x=0, y=588), faz a dobra orgânica com crista em (x=95, y=475), desce sob a estrela e cards (x=420, y=886), corre horizontalmente e sobe suavemente à direita (x=1920, y=295) -->
+          <path d="M 0,588 C 30,560 60,470 95,475 C 135,480 180,780 240,860 C 290,882 340,886 420,886 C 800,886 1200,886 1650,886 C 1740,886 1790,750 1835,520 C 1870,350 1895,305 1920,295 L 1920,1100 L 0,1100 Z" fill="#027C4F" />
+
+          <!-- 6. Morro Verde Claro Inferior Esquerdo (Piso sob a nuvem esquerda) -->
+          <path d="M 0,810 C 70,815 160,850 250,920 C 350,1000 440,1060 520,1100 L 0,1100 Z" fill="#00B359" />
+
+          <!-- 7. Morro Verde Claro Inferior Direito (Piso sob o balão e nuvem direita) -->
+          <path d="M 1380,1100 C 1470,1040 1570,1015 1680,950 C 1780,895 1860,880 1920,890 L 1920,1100 Z" fill="#00B359" />
         </svg>
       </div>
 
-      <!-- FORMAS ORGÂNICAS LARANJAS LATERAIS DE PROFUNDIDADE (FIGMA PRINT) -->
-      <div class="ds-organic-orange-left" aria-hidden="true"></div>
-      <div class="ds-organic-orange-right" aria-hidden="true"></div>
+      <!-- FORMAS ORGÂNICAS LATERAIS DE PROFUNDIDADE (FIGMA PRINT) -->
+      <div class="ds-organic-orange-left lg:hidden" aria-hidden="true"></div>
+      <div class="ds-organic-orange-right lg:hidden" aria-hidden="true"></div>
+      <div class="ds-organic-green-left lg:hidden" aria-hidden="true"></div>
+      <div class="ds-organic-green-right lg:hidden" aria-hidden="true"></div>
 
       <!-- CONTAINER PRINCIPAL -->
-      <div class="bf-container relative z-20 pt-2 sm:pt-4 pb-8 sm:pb-12">
+      <div class="bf-container relative z-20 pt-6 sm:pt-10 lg:pt-14 pb-4">
 
         <!-- CARD BRANCO FLUTUANTE AMPLO COM BORDAS ARREDONDADAS -->
         <div class="w-full bg-white text-[#202124] rounded-[32px] sm:rounded-[44px] shadow-[0_25px_60px_rgba(0,0,0,0.16)] p-5 sm:p-8 lg:p-10 relative z-20">
@@ -3012,40 +3062,35 @@
         </div><!-- /ds-unidades-card -->
 
 
-        <!-- ================= ELEMENTOS CENOGRÁFICOS 3D DO RODAPÉ (MOCKUP FIGMA) ================= -->
-        <!-- Nuvem 3D Branca (canto inferior esquerdo, no piso verde) -->
-        <div class="absolute -bottom-6 left-0 sm:left-4 w-32 sm:w-44 lg:w-56 pointer-events-none z-10 ds-float-cloud opacity-95 select-none" aria-hidden="true">
-          <img src="assets/3DObjetos/nuvem-branca-3d.webp" alt="" class="w-full h-auto object-contain drop-shadow-md" loading="lazy">
-        </div>
-
-        <!-- Nuvem 3D Branca (canto inferior direito, ao lado do balão) -->
-        <div class="absolute -bottom-6 right-20 sm:right-32 lg:right-44 w-28 sm:w-36 lg:w-44 pointer-events-none z-10 ds-float-cloud opacity-90 select-none" aria-hidden="true">
-          <img src="assets/3DObjetos/nuvem-branca-3d.webp" alt="" class="w-full h-auto object-contain drop-shadow-md" loading="lazy">
-        </div>
-
-        <!-- Balão de Ar Quente 3D (canto inferior direito, flutuando no verde) -->
-        <div class="absolute bottom-4 sm:bottom-6 right-1 sm:right-4 lg:right-8 w-28 sm:w-36 lg:w-48 pointer-events-none z-30 ds-float-balloon select-none" aria-hidden="true">
-          <img src="assets/3DObjetos/balao-ar-quente-nuvens-3d.webp" alt="" class="w-full h-auto object-contain drop-shadow-2xl" loading="lazy">
-        </div>
-
-
         <!-- ================= RODAPÉ INTEGRADO (FIGMA HIGH FIDELITY) ================= -->
-        <footer class="relative z-20 flex flex-col items-center text-center mt-10 sm:mt-14 pb-4 text-white w-full max-w-4xl mx-auto px-4">
+        <!-- ONDA / DOBRA RESPONSIVA PARA MOBILE E TABLET (< 1024px) -->
+        <div class="ds-footer-wave-top lg:hidden relative w-full leading-none pointer-events-none z-10 -mb-[2px] mt-8" aria-hidden="true">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 180" fill="none" class="w-full h-14 sm:h-20 md:h-24 block select-none pointer-events-none" preserveAspectRatio="none">
+            <!-- Morro Verde Claro Esquerdo de Fundo -->
+            <path d="M 0,110 C 60,80 120,75 180,105 C 235,130 280,150 340,160 L 0,160 Z" fill="#00B359" opacity="0.9" />
+            <!-- Morro Verde Claro Direito de Fundo -->
+            <path d="M 1220,180 C 1300,140 1370,100 1440,80 L 1440,180 Z" fill="#00B359" opacity="0.9" />
+            <!-- Dobra Orgânica Principal do Rodapé (Verde Floresta #027C4F) -->
+            <path d="M 0,85 C 40,65 95,50 145,65 C 190,80 230,120 310,135 C 420,155 720,145 1000,145 C 1180,145 1320,115 1440,65 L 1440,180 L 0,180 Z" fill="#027C4F" />
+          </svg>
+        </div>
+
+        <footer class="ds-footer-integrated relative z-20 flex flex-col items-center text-center mt-4 sm:mt-8 lg:mt-14 pb-6 text-white w-full max-w-4xl mx-auto px-4">
 
           <!-- Logo Monograma Circular Branco + Tipografia Oficial (Fidelidade Mockup) -->
           <a href="#home" class="inline-flex flex-col items-center mb-1 group focus:outline-none" aria-label="Villa Plaza Park">
-            <img src="assets/Logos/monograma-vp.png" alt="Villa Plaza Park" class="w-11 h-11 sm:w-12 sm:h-12 object-contain brightness-0 invert mb-1.5 drop-shadow-sm transition-transform duration-200 group-hover:scale-105" loading="lazy">
+            <img src="assets/Logos/monograma-vp.png" alt="Villa Plaza Park" class="w-11 h-11 sm:w-12 sm:h-12 object-contain brightness-0 invert mb-1 drop-shadow-sm transition-transform duration-200 group-hover:scale-105" loading="lazy">
             <div class="font-extrabold tracking-widest text-xs sm:text-sm uppercase text-white font-sans">VILLA PLAZA</div>
             <div class="text-[9px] sm:text-[10px] tracking-[0.3em] font-semibold text-white/80 uppercase -mt-0.5">PARK</div>
           </a>
 
           <!-- Slogan Oficial -->
-          <div class="text-xs sm:text-sm text-white/95 font-medium mt-1 mb-3.5 tracking-wide" style="font-family: 'Comfortaa', cursive, sans-serif;">
+          <div class="text-xs sm:text-sm text-white/95 font-medium mt-1 mb-3 tracking-wide" style="font-family: 'Comfortaa', cursive, sans-serif;">
             Diversão que fica na memória!
           </div>
 
           <!-- Linha Divisória Fina Branca Translúcida -->
-          <div class="w-full max-w-md h-[1px] bg-white/25 mb-4"></div>
+          <div class="w-full max-w-lg sm:max-w-xl h-[1px] bg-white/25 mb-4"></div>
 
           <!-- Ícones Redondos de Redes Sociais (Fidelidade ao Print: Círculos com ícones brancos) -->
           <div class="flex items-center justify-center gap-3 sm:gap-3.5 mb-4">
@@ -3063,31 +3108,38 @@
             </a>
           </div>
 
-          <!-- Menu de Navegação Inferior -->
-          <nav class="flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-xs sm:text-sm font-semibold text-white/90 mb-4">
-            <a href="#home" class="hover:text-white hover:underline transition-colors">Início</a>
-            <a href="#sobre" class="hover:text-white hover:underline transition-colors">Sobre</a>
-            <a href="#clube" class="hover:text-white hover:underline transition-colors">Pacotes</a>
-            <a href="#filiais" class="hover:text-white hover:underline transition-colors">Nossas Unidades</a>
-            <button type="button" onclick="openOrderModal()" class="hover:text-white hover:underline transition-colors cursor-pointer bg-transparent border-0 text-inherit p-0 font-semibold">Contato</button>
-          </nav>
-
-          <!-- Linha de Copyright & Créditos -->
-          <div class="w-full pt-3 border-t border-white/15 flex flex-col sm:flex-row items-center justify-between gap-2 text-[10.5px] text-white/75">
+          <!-- Linha de Copyright & Créditos (Discreta e elegante) -->
+          <div class="w-full pt-3 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-2 text-[10px] text-white/60">
             <div>
               © 2026 Villa Plaza Park. Todos os direitos reservados.
             </div>
             <div>
-              <button type="button" onclick="openPrivacyModal()" class="hover:underline text-white/80 hover:text-white bg-transparent border-0 p-0 cursor-pointer text-[10.5px] font-normal">Termos &amp; Privacidade</button>
+              <button type="button" onclick="openPrivacyModal()" class="hover:underline text-white/70 hover:text-white bg-transparent border-0 p-0 cursor-pointer text-[10px] font-normal">Termos &amp; Privacidade</button>
             </div>
             <div>
-              Desenvolvido por: <a href="https://idedigital.com.br" target="_blank" rel="noopener noreferrer" class="font-bold text-white hover:underline">idei digital</a>
+              Desenvolvido por: <a href="https://idedigital.com.br" target="_blank" rel="noopener noreferrer" class="font-semibold text-white/80 hover:text-white hover:underline">idei digital</a>
             </div>
           </div>
 
         </footer>
 
       </div><!-- /bf-container -->
+
+      <!-- ================= ELEMENTOS CENOGRÁFICOS 3D DO RODAPÉ (LATERAIS DA TELA - MOCKUP FIGMA) ================= -->
+      <!-- Nuvem 3D Branca (canto inferior esquerdo, no piso verde) -->
+      <div class="absolute -bottom-4 sm:-bottom-6 left-1 sm:left-4 lg:left-8 w-28 sm:w-40 lg:w-56 pointer-events-none z-10 ds-float-cloud opacity-95 select-none" aria-hidden="true">
+        <img src="assets/3DObjetos/nuvem-branca-3d.webp" alt="" class="w-full h-auto object-contain drop-shadow-md" loading="lazy">
+      </div>
+
+      <!-- Nuvem 3D Branca (canto inferior direito, ao lado do balão) -->
+      <div class="absolute -bottom-4 sm:-bottom-6 right-20 sm:right-32 lg:right-48 w-24 sm:w-36 lg:w-48 pointer-events-none z-10 ds-float-cloud opacity-90 select-none" aria-hidden="true">
+        <img src="assets/3DObjetos/nuvem-branca-3d.webp" alt="" class="w-full h-auto object-contain drop-shadow-md" loading="lazy">
+      </div>
+
+      <!-- Balão de Ar Quente 3D (canto inferior direito, flutuando no verde) -->
+      <div class="absolute bottom-2 sm:bottom-4 lg:bottom-6 right-1 sm:right-3 lg:right-6 w-24 sm:w-32 lg:w-44 pointer-events-none z-30 ds-float-balloon select-none" aria-hidden="true">
+        <img src="assets/3DObjetos/balao-ar-quente-nuvens-3d.webp" alt="" class="w-full h-auto object-contain drop-shadow-2xl" loading="lazy">
+      </div>
 
     </section><!-- /filiais -->
 

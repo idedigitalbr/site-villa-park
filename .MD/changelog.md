@@ -2,19 +2,17 @@
 
 ## 2026-09-24
 
+- **Aprimoramento Pixel-a-Pixel do Rodapé e Curva Orgânica Superior (`#filiais`)**:
+  - **Dobra Orgânica Superior Recriada com Precisão**: A seção superior do rodapé verde floresta (`#027C4F`) foi reconstruída com fidelidade matemática ao mockup do Figma (`crop_unidades_footer_exact.png`). Substituída qualquer linha reta ou transição artificial por uma curva orgânica suave com crista lateral esquerda ascendente (x=95, y=475), declive suave sob a estrela e cards (y=886), e subida harmoniosa na borda direita (x=1920, y=295).
+  - **Fundo Cenográfico Integrado Vetorial**: Removida onda verde incorreta acima do card branco; a seção de Nossas Unidades agora mantém continuidade perfeita com o céu azul suave (`#EDF5FD` a `#E2F2FC`), emoldurada pelos morros orgânicos laranjas (`#FA5A00`) e verdes claros (`#00B359`) nas laterais.
+  - **Piso com Ondas Verdes Claras e Cenografia 3D nos Cantos**: Implementadas ondas inferiores em verde vibrante nos cantos inferiores esquerdo e direito, com as nuvens 3D e o balão de ar quente posicionados nas margens reais da tela.
+  - **Rodapé Fiel ao Print**: Exibição limpa e simétrica com o monograma VP circular invertido em branco, tipografia oficial "VILLA PLAZA PARK", slogan "Diversão que fica na memória!", linha divisória sutil translúcida e 4 botões sociais circulares em harmonia com o print, eliminando blocos de menu redundantes.
+  - **Suporte Total a Desktop e Mobile**: Cenário vetorial 1920x1100 de alta resolução para desktop e onda orgânica responsiva dedicada (`footer-wave-top.svg`) para telas mobile/tablet.
+
 - **Ajuste Full-Width da Seção Valores por Estadia & Horários (`#estadia`)**:
   - Eliminação de qualquer borda/espaçamento cinza ou branco ao redor da seção (`bg-[#F8FAF9]` removido do container externo).
   - Background verde gradiente floresta (`#016225` a `#01561F`) expandido para 100% de largura total de tela (edge-to-edge).
   - Ondas orgânicas nos cantos superior-esquerdo (`wave-top-left.svg`) e inferior-direito (`wave-bottom-right.svg`) posicionadas nas extremidades da tela, com textura sutil e container centralizado para os estandartes e horários em tábuas de madeira.
-
-- **Finalização de Alta Fidelidade de Nossas Unidades & Rodapé Integrado (`#filiais`)**:
-  - Reconstrução completa com fidelidade pixel-a-pixel ao mockup do Figma (`crop_unidades_footer_exact.png`).
-  - Título em mixed case com tipografia amigável `Fredoka`/`Plus Jakarta Sans` ("Sempre", curva laranja em formato sorriso e "pertinho de você!").
-  - Card branco contido com os 4 diferenciais em squircles coloridos (Fácil acesso, Localização, Ambiente seguro e Diversão em família).
-  - Estrela 3D sorridente (`estrela-sorridente-3d.webp`) sobreposta no canto inferior esquerdo com faíscas douradas.
-  - Cards Google Maps com molduras temáticas (Laranja para Plaza e Verde para Tapanã), notas 4.6 ★★★★★, abas, 5 botões de ação e horários reais.
-  - Elementos cenográficos 3D flutuantes (nuvens brancas e balão de ar quente) calibrados para desktop e mobile.
-  - Rodapé integrado 100% no verde com monograma oficial VP, slogan institucional, linha divisória, 4 botões sociais circulares, navegação e copyright/termos de privacidade.
 
 - **Atualização da Suíte de Testes Automatizados**:
   - Atualizadas asserções legadas em `tests/test_full_page_restoration.py` e `tests/test_atracoes_section.py`, com 100% dos testes aprovados com sucesso.

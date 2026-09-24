@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1100" fill="none" class="w-full h-full block" preserveAspectRatio="none">
+  <defs>
+    <linearGradient id="dsSkyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#EDF5FD" />
+      <stop offset="60%" stop-color="#E2F2FC" />
+      <stop offset="100%" stop-color="#E2F2FC" />
+    </linearGradient>
+  </defs>
+
+  <!-- Fundo Céu Azul Suave (continuação perfeita da ds-sky-stage) -->
+  <rect width="1920" height="1100" fill="url(#dsSkyGrad)" />
+
+  <!-- 1. Morro Orgânico Laranja Esquerdo -->
+  <path d="M 0,330 C 50,300 110,330 135,430 C 160,540 130,700 80,800 C 50,845 15,865 0,870 Z" fill="#FA5A00" />
+
+  <!-- 2. Morro Orgânico Laranja Direito -->
+  <path d="M 1920,140 C 1870,150 1815,200 1795,290 C 1765,420 1785,620 1825,780 C 1860,920 1905,1020 1920,1050 Z" fill="#FA5A00" />
+
+  <!-- 3. Morro Verde Claro Superior Direito -->
+  <path d="M 1920,240 C 1860,250 1810,310 1790,420 C 1760,570 1780,750 1830,880 C 1870,980 1905,1050 1920,1080 Z" fill="#00B359" />
+
+  <!-- 4. Morro Verde Claro Superior Esquerdo (Atrás da Estrela) -->
+  <path d="M 0,720 C 45,670 100,660 150,710 C 205,765 240,840 280,875 C 320,895 380,890 440,890 L 440,1100 L 0,1100 Z" fill="#00B359" opacity="0.95" />
+
+  <!-- 5. ONDA / DOBRA PRINCIPAL DO RODAPÉ (VERDE ESCURO FLORESTA OFICIAL #027C4F) -->
+  <!-- A curva começa no canto superior esquerdo (x=0, y=588), faz a dobra orgânica com crista em (x=95, y=475), desce sob a estrela e cards (x=420, y=886), corre horizontalmente e sobe suavemente à direita (x=1920, y=295) -->
+  <path d="M 0,588 C 30,560 60,470 95,475 C 135,480 180,780 240,860 C 290,882 340,886 420,886 C 800,886 1200,886 1650,886 C 1740,886 1790,750 1835,520 C 1870,350 1895,305 1920,295 L 1920,1100 L 0,1100 Z" fill="#027C4F" />
+
+  <!-- 6. Morro Verde Claro Inferior Esquerdo (Piso sob a nuvem esquerda) -->
+  <path d="M 0,810 C 70,815 160,850 250,920 C 350,1000 440,1060 520,1100 L 0,1100 Z" fill="#00B359" />
+
+  <!-- 7. Morro Verde Claro Inferior Direito (Piso sob o balão e nuvem direita) -->
+  <path d="M 1380,1100 C 1470,1040 1570,1015 1680,950 C 1780,895 1860,880 1920,890 L 1920,1100 Z" fill="#00B359" />
+</svg>
