@@ -2,12 +2,13 @@
 
 ## 2026-09-24
 
-- **Aprimoramento Pixel-a-Pixel do Rodapé e Curva Orgânica Superior (`#filiais`)**:
-  - **Dobra Orgânica Superior Recriada com Precisão**: A seção superior do rodapé verde floresta (`#027C4F`) foi reconstruída com fidelidade matemática ao mockup do Figma (`crop_unidades_footer_exact.png`). Substituída qualquer linha reta ou transição artificial por uma curva orgânica suave com crista lateral esquerda ascendente (x=95, y=475), declive suave sob a estrela e cards (y=886), e subida harmoniosa na borda direita (x=1920, y=295).
-  - **Fundo Cenográfico Integrado Vetorial**: Removida onda verde incorreta acima do card branco; a seção de Nossas Unidades agora mantém continuidade perfeita com o céu azul suave (`#EDF5FD` a `#E2F2FC`), emoldurada pelos morros orgânicos laranjas (`#FA5A00`) e verdes claros (`#00B359`) nas laterais.
-  - **Piso com Ondas Verdes Claras e Cenografia 3D nos Cantos**: Implementadas ondas inferiores em verde vibrante nos cantos inferiores esquerdo e direito, com as nuvens 3D e o balão de ar quente posicionados nas margens reais da tela.
-  - **Rodapé Fiel ao Print**: Exibição limpa e simétrica com o monograma VP circular invertido em branco, tipografia oficial "VILLA PLAZA PARK", slogan "Diversão que fica na memória!", linha divisória sutil translúcida e 4 botões sociais circulares em harmonia com o print, eliminando blocos de menu redundantes.
-  - **Suporte Total a Desktop e Mobile**: Cenário vetorial 1920x1100 de alta resolução para desktop e onda orgânica responsiva dedicada (`footer-wave-top.svg`) para telas mobile/tablet.
+- **Calibração Visual Rigorosa Pixel-a-Pixel (Anexo 1 vs Anexo 2 - Figma Mockup 1920x1100)**:
+  - **Desacoplamento do Card Branco**: Corrigido o erro estrutural em que o card branco envolvia toda a linha, criando um espaço vazio branco gigante à direita do Card 2. O card branco flutuante agora abriga estritamente a coluna esquerda (badge, título com curva, subtítulo e 4 ícones de features).
+  - **Cards Google Maps Independentes e Amplos**: Os dois cards (Card 1 Laranja e Card 2 Verde) agora operam em grid/flex independente ao lado do card branco, alcançando largura completa (~480px cada) com molduras vibrantes (`#FA5A00` e `#00B359`), cantos arredondados de `32px`, fotos oficiais com botão de fechar, tabs e botões de ação circulares. À direita do Card 2, não há mais fundo branco, revelando os morros laranja e verde do cenário.
+  - **Eliminação do Vão Vertical e Encaixe Perfeito no Rodapé**: Ajustado o deslocamento vertical dos cards (`lg:mt-14 xl:mt-20`) para que penetrem harmoniosamente na curva verde escuro (`#027C4F`), reduzindo a distância até o monograma VP de 150px para 22px, exatamente como no Anexo 2.
+  - **Restauração do Contraste e Opacidade 100% no Rodapé**: O Monograma VP, tipografia "VILLA PLAZA PARK", slogan "Diversão que fica na memória!" e os 4 botões de redes sociais agora renderizam com 100% de opacidade em branco puro (`#FFFFFF`), completamente imersos no fundo verde floresta (`#027C4F`) e sem sobreposição com o céu.
+  - **Calibração das Camadas 3D**: Estrela 3D ancorada no vértice inferior esquerdo do card branco; nuvem esquerda posicionada sobre o morro verde claro inferior; nuvem direita e balão de ar quente alinhados à margem direita da tela.
+
 
 - **Ajuste Full-Width da Seção Valores por Estadia & Horários (`#estadia`)**:
   - Eliminação de qualquer borda/espaçamento cinza ou branco ao redor da seção (`bg-[#F8FAF9]` removido do container externo).

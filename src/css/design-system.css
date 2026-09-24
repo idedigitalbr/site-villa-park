@@ -3283,6 +3283,26 @@ html {
   }
 }
 
+/* ==========================================================================
+   TRANSIÇÕES VISUAIS ORGÂNICAS ENTRE SEÇÕES (VILLA PLAZA PARK)
+   Divisórias suaves e fluidas que eliminam cortes retos horizontais
+   ========================================================================== */
+.ds-trans-divider {
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+  pointer-events: none;
+  user-select: none;
+  position: relative;
+  z-index: 10;
+  display: block;
+}
+
+.ds-trans-divider svg {
+  display: block;
+  width: 100%;
+}
+
 /* Seção Destaques Laranja (#ofertas / #destaques) */
 .destaques-stage-orange {
   background-color: #F15A24;
@@ -4707,6 +4727,42 @@ html {
   z-index: 20;
 }
 
+@media (min-width: 1024px) {
+  .ds-unidades-wrapper {
+    min-height: 1080px;
+  }
+}
+
+/* Container de alta fidelidade calibrado com o layout 1920x1100 do Figma */
+.ds-unidades-container {
+  width: 100%;
+  max-width: 1720px;
+  margin: 0 auto;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+@media (min-width: 640px) {
+  .ds-unidades-container {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .ds-unidades-container {
+    padding-left: 48px;
+    padding-right: 48px;
+  }
+}
+
+@media (min-width: 1536px) {
+  .ds-unidades-container {
+    padding-left: 72px;
+    padding-right: 72px;
+  }
+}
+
 /* Fundo cenográfico vetorial integrado (Desktop/Tablet) */
 .ds-unidades-bg-landscape {
   position: absolute;
@@ -4725,6 +4781,7 @@ html {
   z-index: 20;
   color: #FFFFFF;
 }
+
 
 .ds-footer-wave-top {
   position: relative;
@@ -4827,7 +4884,7 @@ html {
 .ds-gmaps-frame-orange {
   background: #FA5A00;
   padding: 10px;
-  border-radius: 28px;
+  border-radius: 32px;
   box-shadow: 0 16px 36px rgba(250, 90, 0, 0.35), 0 4px 12px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
 }
@@ -4840,7 +4897,7 @@ html {
 .ds-gmaps-frame-green {
   background: #00B359;
   padding: 10px;
-  border-radius: 28px;
+  border-radius: 32px;
   box-shadow: 0 16px 36px rgba(0, 179, 89, 0.35), 0 4px 12px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
 }
@@ -4853,7 +4910,7 @@ html {
 /* Google Maps Card Interno */
 .ds-gmaps-inner {
   background: #FFFFFF;
-  border-radius: 20px;
+  border-radius: 22px;
   overflow: hidden;
   color: #202124;
   display: flex;
