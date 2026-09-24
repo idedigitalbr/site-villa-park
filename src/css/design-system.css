@@ -4727,16 +4727,10 @@ html {
   z-index: 20;
 }
 
-@media (min-width: 1024px) {
-  .ds-unidades-wrapper {
-    min-height: 1080px;
-  }
-}
-
-/* Container de alta fidelidade calibrado com o layout 1920x1100 do Figma */
+/* Container de alta fidelidade calibrado com o layout do Figma */
 .ds-unidades-container {
   width: 100%;
-  max-width: 1720px;
+  max-width: 1680px;
   margin: 0 auto;
   padding-left: 16px;
   padding-right: 16px;
@@ -4751,17 +4745,18 @@ html {
 
 @media (min-width: 1024px) {
   .ds-unidades-container {
-    padding-left: 48px;
-    padding-right: 48px;
+    padding-left: 32px;
+    padding-right: 32px;
   }
 }
 
 @media (min-width: 1536px) {
   .ds-unidades-container {
-    padding-left: 72px;
-    padding-right: 72px;
+    padding-left: 48px;
+    padding-right: 48px;
   }
 }
+
 
 /* Fundo cenográfico vetorial integrado (Desktop/Tablet) */
 .ds-unidades-bg-landscape {

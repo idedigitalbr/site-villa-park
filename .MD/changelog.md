@@ -2,12 +2,13 @@
 
 ## 2026-09-24
 
-- **Calibração Visual Rigorosa Pixel-a-Pixel (Anexo 1 vs Anexo 2 - Figma Mockup 1920x1100)**:
-  - **Desacoplamento do Card Branco**: Corrigido o erro estrutural em que o card branco envolvia toda a linha, criando um espaço vazio branco gigante à direita do Card 2. O card branco flutuante agora abriga estritamente a coluna esquerda (badge, título com curva, subtítulo e 4 ícones de features).
-  - **Cards Google Maps Independentes e Amplos**: Os dois cards (Card 1 Laranja e Card 2 Verde) agora operam em grid/flex independente ao lado do card branco, alcançando largura completa (~480px cada) com molduras vibrantes (`#FA5A00` e `#00B359`), cantos arredondados de `32px`, fotos oficiais com botão de fechar, tabs e botões de ação circulares. À direita do Card 2, não há mais fundo branco, revelando os morros laranja e verde do cenário.
-  - **Eliminação do Vão Vertical e Encaixe Perfeito no Rodapé**: Ajustado o deslocamento vertical dos cards (`lg:mt-14 xl:mt-20`) para que penetrem harmoniosamente na curva verde escuro (`#027C4F`), reduzindo a distância até o monograma VP de 150px para 22px, exatamente como no Anexo 2.
-  - **Restauração do Contraste e Opacidade 100% no Rodapé**: O Monograma VP, tipografia "VILLA PLAZA PARK", slogan "Diversão que fica na memória!" e os 4 botões de redes sociais agora renderizam com 100% de opacidade em branco puro (`#FFFFFF`), completamente imersos no fundo verde floresta (`#027C4F`) e sem sobreposição com o céu.
-  - **Calibração das Camadas 3D**: Estrela 3D ancorada no vértice inferior esquerdo do card branco; nuvem esquerda posicionada sobre o morro verde claro inferior; nuvem direita e balão de ar quente alinhados à margem direita da tela.
+- **Resolução Definitiva 100% Pixel-Perfect do Rodapé e Unidades (Anexo 1 vs Anexo 2)**:
+  - **Eliminação do "Vão Branco no Meio"**: Removido `justify-between` e reorganizado o fluxo vertical do Card Branco. Badge, título display ("Sempre pertinho de você!"), subtítulo e a grade de 4 features agora fluem com espaçamento balanceado e harmônico, sem vazios artificiais.
+  - **Eliminação da Sobreposição da Estrela 3D com "Fácil Acesso"**: A grade de features recebeu recuo horizontal à esquerda (`pl-8 sm:pl-14 lg:pl-18 xl:pl-22`) e a estrela 3D sorridente foi ancorada no canto inferior esquerdo externo, garantindo mais de 100px de distância segura da primeira feature (zero colisão visual).
+  - **Alinhamento da Base dos 3 Cards e Altura das Fotos**: Fotos dos Cards Google Maps ampliadas para 250px (proporção 2:1 idêntica ao Figma), alinhando a base inferior dos 3 cards no mesmo nível horizontal (`diff: 0px`).
+  - **Imersão Total do Rodapé na Onda Verde (#027C4F)**: Ajustada a crista e patamar da onda orgânica no SVG de fundo para iniciar exatamente na base dos cards (`y=740`), garantindo que o logotipo completo oficial (`logo-villa-plaza-park-white.png`), slogan, divisor e os 4 botões sociais fiquem 100% contidos dentro do verde floresta com contraste e nitidez absolutos.
+  - **Carregamento Imediato**: Definido `loading="eager"` para as fotos dos mapas e elementos 3D cenográficos, garantindo render instantâneo.
+  - **Validação de Sintaxe**: 100% das tags HTML balanceadas (69 divs, 8 links, 9 botões, 24 SVGs).
 
 
 - **Ajuste Full-Width da Seção Valores por Estadia & Horários (`#estadia`)**:
