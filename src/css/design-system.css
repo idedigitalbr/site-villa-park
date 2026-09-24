@@ -3580,34 +3580,33 @@ html {
    ========================================================================== */
 .ds-estadia-section {
   position: relative;
-  overflow-x: clip;
-}
-
-.ds-estadia-wrapper {
+  width: 100%;
   background: linear-gradient(180deg, #016225 0%, #01561f 100%);
-  position: relative;
   overflow: hidden;
-  border-radius: 28px;
-  padding: 36px 18px 36px;
-  box-shadow: 0 16px 40px -8px rgba(1, 60, 22, 0.4), 0 4px 14px rgba(0, 0, 0, 0.1);
+  padding: 44px 0 48px;
+  color: #FFFFFF;
 }
 
 @media (min-width: 640px) {
-  .ds-estadia-wrapper {
-    border-radius: 36px;
-    padding: 44px 28px 44px;
+  .ds-estadia-section {
+    padding: 56px 0 54px;
   }
 }
 
 @media (min-width: 1024px) {
-  .ds-estadia-wrapper {
-    border-radius: 42px;
-    padding: 50px 40px 48px;
+  .ds-estadia-section {
+    padding: 68px 0 64px;
   }
 }
 
+.ds-estadia-wrapper {
+  position: relative;
+  width: 100%;
+  z-index: 10;
+}
+
 /* Fundo com textura sutil fotográfica de parque infantil */
-.ds-estadia-wrapper::before {
+.ds-estadia-section::before {
   content: "";
   position: absolute;
   inset: 0;
@@ -3687,65 +3686,244 @@ html {
   }
 }
 
-/* Bloco dos Cards com Varal */
+/* Bloco dos Cards com Varal de Corda Contínua */
 .ds-estadia-cards-container {
   position: relative;
   z-index: 2;
-  margin: 0 auto 30px;
-  max-width: 1040px;
+  margin: 0 auto 34px;
+  max-width: 980px;
 }
 
 @media (min-width: 768px) {
   .ds-estadia-cards-container {
-    margin-bottom: 38px;
+    margin-bottom: 40px;
   }
 }
 
-/* Versão Desktop Unificada (Pixel-Perfect Figma) */
-.ds-estadia-desktop-row {
-  position: relative;
-  max-width: 920px;
-  margin: 0 auto;
-}
-
-.ds-estadia-full-img {
-  width: 100%;
-  height: auto;
-  display: block;
-  margin: 0 auto;
-  filter: drop-shadow(0 10px 22px rgba(0, 0, 0, 0.38));
-  user-select: none;
-}
-
-.ds-estadia-hotspots-grid {
+/* Varal de Corda Contínua: Vetor SVG puro correndo horizontalmente atrás de todos os 5 cards */
+.ds-estadia-continuous-rope {
   position: absolute;
-  inset: 0;
+  left: -24px;
+  right: -24px;
+  top: 36px;
+  height: 24px;
+  background-image: url('../../assets/brand/estadia/rope-vector.svg');
+  background-repeat: repeat-x;
+  background-position: left center;
+  background-size: 60px 24px;
+  filter: drop-shadow(0 5px 6px rgba(0, 15, 5, 0.65));
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Versão Desktop / Tablet: Grid dos 5 Cards Puros Nativos */
+.ds-estadia-cards-grid {
+  position: relative;
+  z-index: 2;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  gap: 12px;
-  pointer-events: none;
+  gap: 16px;
+  align-items: flex-start;
 }
 
-.ds-estadia-hotspot-btn {
-  pointer-events: auto;
-  background: transparent;
-  border: none;
+/* Card Individual Puro (100% Código: Tábua de Madeira + Estandarte com Micro-interações) */
+.ds-estadia-card-pure {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
   cursor: pointer;
-  border-radius: 20px;
-  transition: background-color 0.22s ease, transform 0.22s ease;
+  position: relative;
+  z-index: 2;
   outline: none;
+  border: none;
+  background: transparent;
+  padding: 0;
+  width: 100%;
+  filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.35));
+  transition: transform 0.32s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.32s ease;
 }
 
-.ds-estadia-hotspot-btn:hover {
-  background: rgba(255, 255, 255, 0.08);
+.ds-estadia-card-pure:hover,
+.ds-estadia-card-pure:focus-visible {
+  transform: translateY(-8px) scale(1.02) rotate(-0.5deg);
+  filter: drop-shadow(0 18px 26px rgba(0, 0, 0, 0.45));
 }
 
-.ds-estadia-hotspot-btn:focus-visible {
-  outline: 2px solid #EF7A2B;
-  outline-offset: 2px;
+.ds-estadia-card-pure:active {
+  transform: translateY(-2px) scale(0.99);
 }
 
-/* Versão Mobile (Touch Scroll-Snap) */
+/* Tábua de Madeira Procedural Superior (Vetor SVG + Relevo 3D) */
+.ds-estadia-wood-plaque {
+  width: 100%;
+  height: 84px;
+  background: url('../../assets/brand/estadia/wood-plank.svg') no-repeat center center / 100% 100%;
+  position: relative;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 6px 8px 4px;
+  box-sizing: border-box;
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.22));
+}
+
+.ds-wood-title {
+  font-family: 'Marvin Round', sans-serif !important;
+  font-weight: 800;
+  font-size: 1.15rem;
+  color: #3E1A05;
+  text-transform: uppercase;
+  line-height: 0.98;
+  letter-spacing: 0.01em;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.7), 0 -1px 1px rgba(0, 0, 0, 0.25);
+}
+
+.ds-wood-subtitle {
+  font-family: 'Marvin Round', sans-serif !important;
+  font-weight: 800;
+  font-size: 1.15rem;
+  color: #3E1A05;
+  text-transform: uppercase;
+  line-height: 0.98;
+  letter-spacing: 0.01em;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.7), 0 -1px 1px rgba(0, 0, 0, 0.25);
+}
+
+.ds-wood-title-sm {
+  font-size: 1.02rem;
+  letter-spacing: -0.01em;
+}
+
+.ds-wood-aux {
+  font-family: 'Comfortaa', sans-serif;
+  font-weight: 700;
+  font-size: 0.64rem;
+  color: #421B05;
+  margin-top: 3px;
+  line-height: 1;
+  opacity: 0.92;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+/* Estandarte de Tecido Procedural (CSS Puro com Dobras de Draping e Barra Ondulada) */
+.ds-estadia-cloth-banner {
+  width: 93%;
+  height: 82px;
+  margin-top: -6px;
+  border-radius: 0 0 16px 16px;
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  box-shadow: inset 0 8px 8px -3px rgba(0, 0, 0, 0.38), 0 10px 18px rgba(0, 0, 0, 0.22);
+  border-bottom: 2.5px solid rgba(0, 0, 0, 0.14);
+  clip-path: polygon(0% 0%, 100% 0%, 100% 92%, 85% 98%, 70% 92%, 50% 98%, 30% 92%, 15% 98%, 0% 92%);
+}
+
+.ds-estadia-cloth-banner.banner-c1 {
+  background: 
+    linear-gradient(90deg, 
+      rgba(255,255,255,0.28) 0%, 
+      rgba(0,0,0,0.12) 16%, 
+      rgba(255,255,255,0.15) 34%, 
+      rgba(0,0,0,0.18) 52%, 
+      rgba(255,255,255,0.24) 72%, 
+      rgba(0,0,0,0.12) 88%, 
+      rgba(255,255,255,0.22) 100%),
+    linear-gradient(180deg, #F8B01D 0%, #D88F06 100%);
+}
+
+.ds-estadia-cloth-banner.banner-c2 {
+  background: 
+    linear-gradient(90deg, 
+      rgba(255,255,255,0.28) 0%, 
+      rgba(0,0,0,0.12) 16%, 
+      rgba(255,255,255,0.15) 34%, 
+      rgba(0,0,0,0.18) 52%, 
+      rgba(255,255,255,0.24) 72%, 
+      rgba(0,0,0,0.12) 88%, 
+      rgba(255,255,255,0.22) 100%),
+    linear-gradient(180deg, #D82B7D 0%, #AF175E 100%);
+}
+
+.ds-estadia-cloth-banner.banner-c3 {
+  background: 
+    linear-gradient(90deg, 
+      rgba(255,255,255,0.28) 0%, 
+      rgba(0,0,0,0.12) 16%, 
+      rgba(255,255,255,0.15) 34%, 
+      rgba(0,0,0,0.18) 52%, 
+      rgba(255,255,255,0.24) 72%, 
+      rgba(0,0,0,0.12) 88%, 
+      rgba(255,255,255,0.22) 100%),
+    linear-gradient(180deg, #00A2EB 0%, #0077B5 100%);
+}
+
+.ds-estadia-cloth-banner.banner-c4 {
+  background: 
+    linear-gradient(90deg, 
+      rgba(255,255,255,0.28) 0%, 
+      rgba(0,0,0,0.12) 16%, 
+      rgba(255,255,255,0.15) 34%, 
+      rgba(0,0,0,0.18) 52%, 
+      rgba(255,255,255,0.24) 72%, 
+      rgba(0,0,0,0.12) 88%, 
+      rgba(255,255,255,0.22) 100%),
+    linear-gradient(180deg, #DC1972 0%, #A40C4E 100%);
+}
+
+.ds-estadia-cloth-banner.banner-c5 {
+  background: 
+    linear-gradient(90deg, 
+      rgba(255,255,255,0.28) 0%, 
+      rgba(0,0,0,0.12) 16%, 
+      rgba(255,255,255,0.15) 34%, 
+      rgba(0,0,0,0.18) 52%, 
+      rgba(255,255,255,0.24) 72%, 
+      rgba(0,0,0,0.12) 88%, 
+      rgba(255,255,255,0.22) 100%),
+    linear-gradient(180deg, #009DE0 0%, #0066A0 100%);
+}
+
+/* Tipografia Viva dos Preços (Branco Puro com Efeito 3D) */
+.ds-cloth-price {
+  display: inline-flex;
+  align-items: flex-start;
+  font-family: 'Marvin Round', sans-serif !important;
+  font-weight: 800;
+  color: #FFFFFF;
+  line-height: 1;
+  user-select: none;
+  filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.45));
+}
+
+.ds-price-currency {
+  font-size: 0.92rem;
+  margin-top: 3px;
+  margin-right: 2px;
+  font-weight: 800;
+}
+
+.ds-price-val {
+  font-size: 2.35rem;
+  letter-spacing: -0.02em;
+  line-height: 0.9;
+}
+
+.ds-price-cents {
+  font-size: 0.92rem;
+  margin-top: 3px;
+  margin-left: -1px;
+  font-weight: 800;
+}
+
+/* Versão Mobile (Touch Scroll-Snap Fluido mantendo o Varal e Continuidade) */
 .ds-estadia-mobile-row {
   width: 100%;
 }
@@ -3756,31 +3934,22 @@ html {
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
   gap: 14px;
-  padding: 8px 12px 16px;
+  padding: 8px 12px 18px;
+  position: relative;
   scrollbar-width: thin;
   scrollbar-color: #EF7A2B rgba(255, 255, 255, 0.15);
 }
 
-.ds-estadia-card-mobile {
+.ds-estadia-cards-scroll .ds-estadia-continuous-rope {
+  width: 860px;
+  left: 0;
+  right: auto;
+}
+
+.ds-estadia-cards-scroll .ds-estadia-card-pure {
   flex: 0 0 160px;
   max-width: 160px;
   scroll-snap-align: center;
-  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.32));
-  cursor: pointer;
-  outline: none;
-  transition: transform 0.2s ease;
-}
-
-.ds-estadia-card-mobile:active {
-  transform: scale(0.97);
-}
-
-.ds-estadia-card-img {
-  width: 100%;
-  height: auto;
-  display: block;
-  user-select: none;
-  pointer-events: none;
 }
 
 .ds-estadia-scroll-hint {
@@ -3797,7 +3966,7 @@ html {
 .ds-estadia-hours-section {
   position: relative;
   z-index: 2;
-  max-width: 1040px;
+  max-width: 980px;
   margin: 0 auto;
 }
 
@@ -3853,11 +4022,11 @@ html {
   }
 }
 
-/* Grid das 4 Cápsulas de Horários */
+/* Grid das 4 Cápsulas de Horários Nativas */
 .ds-estadia-pills-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: clamp(10px, 1.8vw, 20px);
+  gap: clamp(10px, 1.8vw, 18px);
 }
 
 @media (max-width: 960px) and (min-width: 581px) {
@@ -3892,32 +4061,60 @@ html {
   text-shadow: 0 2px 5px rgba(0, 0, 0, 0.45);
 }
 
-.ds-estadia-pill-box {
+/* Cápsula de Madeira Procedural (Vetor SVG + Relevo 3D) */
+.ds-estadia-pill-capsule {
   width: 100%;
+  max-width: 235px;
+  height: 48px;
+  background: url('../../assets/brand/estadia/pill-plank.svg') no-repeat center center / 100% 100%;
+  border-radius: 9999px;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: transform 0.22s ease, filter 0.22s ease;
+  gap: 8px;
+  padding: 0 14px;
+  box-sizing: border-box;
   filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.22));
+  transition: transform 0.22s ease, filter 0.22s ease;
 }
 
-.ds-estadia-pill-box:hover {
+.ds-estadia-pill-capsule:hover {
   transform: translateY(-2px);
   filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.32));
 }
 
-.ds-estadia-pill-img {
-  width: 100%;
-  max-width: 235px;
-  height: auto;
+.ds-pill-clock-icon {
+  width: 20px;
+  height: 20px;
   display: block;
-  user-select: none;
-  pointer-events: none;
+  flex-shrink: 0;
+  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.15));
+}
+
+.ds-pill-hours-text {
+  font-family: 'Marvin Round', sans-serif !important;
+  font-weight: 800;
+  font-size: 1.12rem;
+  color: #3E1A05;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5), 0 -1px 0 rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 580px) {
+  .ds-pill-hours-text {
+    font-size: 0.95rem;
+  }
+  .ds-estadia-pill-capsule {
+    height: 44px;
+    padding: 0 10px;
+  }
 }
 
 /* Botão de Conversão */
 .ds-estadia-cta-wrap {
-  margin-top: 24px;
+  margin-top: 26px;
   text-align: center;
   position: relative;
   z-index: 2;
@@ -3956,43 +4153,41 @@ html {
   overflow-x: clip;
 }
 
-/* Camada Independente de Elementos 3D Cenográficos Laterais */
+/* Camada Independente de Elementos 3D Cenográficos Laterais (Flanqueando o FAQ) */
 .ds-stage-decor-layer {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  overflow: hidden;
+  overflow: visible;
   z-index: 5;
 }
 
 .ds-stage-decor-left {
   position: absolute;
-  top: 52%;
+  top: -20px;
   left: -80px;
   width: clamp(220px, 24vw, 360px);
-  transform: translateY(-50%);
   animation: dsDecorFloatL 6s ease-in-out infinite alternate;
   filter: drop-shadow(0 20px 30px rgba(0, 70, 35, 0.12));
 }
 
 .ds-stage-decor-right {
   position: absolute;
-  top: 48%;
+  top: -45px;
   right: -90px;
   width: clamp(250px, 27vw, 420px);
-  transform: translateY(-50%);
   animation: dsDecorFloatR 7s ease-in-out infinite alternate;
   filter: drop-shadow(0 20px 35px rgba(239, 122, 43, 0.12));
 }
 
 @keyframes dsDecorFloatL {
-  0% { transform: translateY(-50%) rotate(0deg); }
-  100% { transform: translateY(calc(-50% - 10px)) rotate(1.5deg); }
+  0% { transform: translateY(0) rotate(0deg); }
+  100% { transform: translateY(-10px) rotate(1.5deg); }
 }
 
 @keyframes dsDecorFloatR {
-  0% { transform: translateY(-50%) rotate(0deg); }
-  100% { transform: translateY(calc(-50% - 12px)) rotate(-1.5deg); }
+  0% { transform: translateY(0) rotate(0deg); }
+  100% { transform: translateY(-12px) rotate(-1.5deg); }
 }
 
 /* Responsividade dos infláveis nas bordas */
@@ -4000,13 +4195,13 @@ html {
 @media (min-width: 1280px) {
   .ds-stage-decor-left {
     left: -120px;
-    width: 400px;
-    top: 56%;
+    width: 380px;
+    top: -25px;
   }
   .ds-stage-decor-right {
     right: -130px;
-    width: 460px;
-    top: 54%;
+    width: 440px;
+    top: -55px;
   }
 }
 
@@ -4014,12 +4209,12 @@ html {
   .ds-stage-decor-left {
     left: -90px;
     width: 300px;
-    top: 55%;
+    top: -20px;
   }
   .ds-stage-decor-right {
     right: -100px;
     width: 340px;
-    top: 54%;
+    top: -45px;
   }
 }
 
@@ -4027,13 +4222,13 @@ html {
   .ds-stage-decor-left {
     left: -70px;
     width: clamp(180px, 22vw, 260px);
-    top: 53%;
+    top: -15px;
     opacity: 0.9;
   }
   .ds-stage-decor-right {
     right: -80px;
     width: clamp(210px, 26vw, 300px);
-    top: 53%;
+    top: -35px;
     opacity: 0.9;
   }
 }
@@ -4041,15 +4236,15 @@ html {
 @media (max-width: 640px) {
   .ds-stage-decor-left {
     left: -55px;
-    width: 140px;
-    top: 50%;
-    opacity: 0.8;
+    width: 125px;
+    top: 5px;
+    opacity: 0.7;
   }
   .ds-stage-decor-right {
-    right: -65px;
-    width: 170px;
-    top: 52%;
-    opacity: 0.8;
+    right: -60px;
+    width: 150px;
+    top: -10px;
+    opacity: 0.7;
   }
 }
 
@@ -4390,4 +4585,186 @@ html {
   .ds-faq-answer {
     padding: 0 24px 20px 24px;
   }
+}
+
+/* ==========================================================================
+   SEÇÃO NOSSAS UNIDADES & FOOTER (FIGMA FIDELITY PRINT 2)
+   ========================================================================== */
+
+
+/* Título de Nossas Unidades em Mixed Case e Fredoka */
+.ds-unidades-title {
+  font-family: 'Fredoka', 'Plus Jakarta Sans', sans-serif !important;
+  text-transform: none !important;
+  font-weight: 800 !important;
+  color: #056B3A !important;
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+}
+
+.ds-unidades-wrapper {
+  position: relative;
+  width: 100%;
+  background: #027C4F;
+  color: #FFFFFF;
+  overflow-x: clip;
+  z-index: 20;
+}
+
+/* Transição orgânica superior de onda */
+.ds-unidades-wave-top {
+  position: relative;
+  width: 100%;
+  line-height: 0;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.ds-unidades-wave-top svg {
+  display: block;
+  width: 100%;
+  height: clamp(60px, 8vw, 130px);
+}
+
+/* Formas orgânicas laterais laranjas (Figma Print) */
+.ds-organic-orange-left {
+  position: absolute;
+  left: -70px;
+  top: -20px;
+  width: 260px;
+  height: 520px;
+  background: #FA5A00;
+  border-radius: 50% 50% 60% 40% / 40% 60% 50% 50%;
+  z-index: 10;
+  pointer-events: none;
+  opacity: 0.95;
+}
+
+.ds-organic-orange-right {
+  position: absolute;
+  right: -70px;
+  top: 10px;
+  width: 240px;
+  height: 480px;
+  background: #FA5A00;
+  border-radius: 60% 40% 50% 50% / 50% 50% 60% 40%;
+  z-index: 10;
+  pointer-events: none;
+  opacity: 0.95;
+}
+
+@media (max-width: 768px) {
+  .ds-organic-orange-left {
+    width: 160px;
+    height: 320px;
+    left: -60px;
+  }
+  .ds-organic-orange-right {
+    width: 150px;
+    height: 300px;
+    right: -60px;
+  }
+}
+
+/* Molduras customizadas dos Cards Google Maps com cores fiéis ao Figma Print 2 */
+.ds-gmaps-frame-orange {
+  background: #FA5A00;
+  padding: 10px;
+  border-radius: 28px;
+  box-shadow: 0 16px 36px rgba(250, 90, 0, 0.35), 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+}
+
+.ds-gmaps-frame-orange:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 22px 42px rgba(250, 90, 0, 0.45), 0 8px 16px rgba(0, 0, 0, 0.12);
+}
+
+.ds-gmaps-frame-green {
+  background: #00B359;
+  padding: 10px;
+  border-radius: 28px;
+  box-shadow: 0 16px 36px rgba(0, 179, 89, 0.35), 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+}
+
+.ds-gmaps-frame-green:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 22px 42px rgba(0, 179, 89, 0.45), 0 8px 16px rgba(0, 0, 0, 0.12);
+}
+
+/* Google Maps Card Interno */
+.ds-gmaps-inner {
+  background: #FFFFFF;
+  border-radius: 20px;
+  overflow: hidden;
+  color: #202124;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.04);
+}
+
+/* Botões circulares do Google Maps */
+.ds-gmaps-circle-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 4px auto;
+  transition: all 0.2s ease;
+}
+
+.ds-gmaps-circle-btn.primary {
+  background: #1A73E8;
+  color: #FFFFFF;
+  box-shadow: 0 2px 6px rgba(26, 115, 232, 0.35);
+}
+
+.ds-gmaps-circle-btn.primary:hover {
+  background: #1557B0;
+  transform: scale(1.06);
+}
+
+.ds-gmaps-circle-btn.secondary {
+  background: #E8F0FE;
+  color: #1A73E8;
+}
+
+.ds-gmaps-circle-btn.secondary:hover {
+  background: #D2E3FC;
+  transform: scale(1.06);
+}
+
+/* Animações Flutuantes Sutis para Elementos 3D */
+@keyframes dsFloatSoft {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(1.5deg);
+  }
+}
+
+@keyframes dsFloatBalloon {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-12px) rotate(-1.5deg);
+  }
+}
+
+.ds-float-star {
+  animation: dsFloatSoft 5s ease-in-out infinite;
+}
+
+.ds-float-balloon {
+  animation: dsFloatBalloon 6s ease-in-out infinite;
+}
+
+.ds-float-cloud {
+  animation: dsFloatSoft 7s ease-in-out infinite alternate;
 }

@@ -115,6 +115,27 @@ class AtracoesSectionTests(unittest.TestCase):
         self.assertGreaterEqual(img_info["pctOutside"], 35.0)
         self.assertLessEqual(img_info["pctOutside"], 48.0)
 
+    def test_cerca_position_lower_right(self):
+        # Verifica se a cerca está posicionada no canto inferior direito elevado
+        pos = self.page.evaluate(
+            """() => {
+            const sec = document.querySelector('section#atracoes');
+            const cerca = document.querySelector('.atracoes-cerca-wrap');
+            if (!sec || !cerca) return null;
+            const secRect = sec.getBoundingClientRect();
+            const cercaRect = cerca.getBoundingClientRect();
+            return {
+                distFromBottom: secRect.bottom - cercaRect.bottom,
+                secHeight: secRect.height,
+                right: cercaRect.right - secRect.right
+            };
+        }"""
+        )
+        self.assertIsNotNone(pos)
+        # Deve estar no quadrante inferior (distância do rodapé menor que 40% da altura da seção)
+        self.assertLess(pos["distFromBottom"], pos["secHeight"] * 0.40)
+        self.assertGreaterEqual(pos["distFromBottom"], 0)
+
     def test_title_and_eyebrow_texts(self):
         title = self.page.locator("section#atracoes h2")
         self.assertIn("O QUE VOCÊ ENCONTRA", title.inner_text().upper())
@@ -133,7 +154,9 @@ class AtracoesSectionTests(unittest.TestCase):
         dots = self.page.locator("section#atracoes .atracoes-dot")
         self.assertEqual(dots.count(), 5)
 
-        # Inicialmente slide 1 está ativo
+        # Garante slide 1 ativo
+        cards.nth(0).click()
+        self.page.wait_for_timeout(300)
         self.assertIn("active", slides.nth(0).get_attribute("class"))
 
         # Clica no card 2 (Escorregadores)

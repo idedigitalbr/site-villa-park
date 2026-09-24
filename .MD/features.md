@@ -12,6 +12,7 @@
 - [x] S3 SEÇÃO DE CATEGORIAS REDONDAS (10 atrações com modal de contato)
 - [x] S4 SOBRE O VILLA PLAZA PARK (Institucional com colagem de 4 fotos e modal de vídeo)
 - [x] S5 O QUE VOCÊ ENCONTRA NO VILA PARK (Carrossel Interativo de Atrações & 5 Cards)
+- [x] S5.5 VALORES POR ESTADIA & HORÁRIOS DE FUNCIONAMENTO (100% Nativo em Código: Madeira Procedural, Tecido Draping CSS e Varal SVG)
 - [x] S6 PACOTES FAÇA SUA FESTA (3 Cards Oficiais com 3D: Villa Aventura, Villa Alegria e Villa Diversão)
 - [x] S7 FAQ COM ACCORDION E ACESSIBILIDADE
 - [x] S8 AVALIAÇÕES DO GOOGLE (Card Google Maps oficial + Marquee de depoimentos)

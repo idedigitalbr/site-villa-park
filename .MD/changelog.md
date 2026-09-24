@@ -1,5 +1,35 @@
 # Changelog — Villa Plaza Park
 
+## 2026-09-24
+
+- **Ajuste Full-Width da Seção Valores por Estadia & Horários (`#estadia`)**:
+  - Eliminação de qualquer borda/espaçamento cinza ou branco ao redor da seção (`bg-[#F8FAF9]` removido do container externo).
+  - Background verde gradiente floresta (`#016225` a `#01561F`) expandido para 100% de largura total de tela (edge-to-edge).
+  - Ondas orgânicas nos cantos superior-esquerdo (`wave-top-left.svg`) e inferior-direito (`wave-bottom-right.svg`) posicionadas nas extremidades da tela, com textura sutil e container centralizado para os estandartes e horários em tábuas de madeira.
+
+- **Finalização de Alta Fidelidade de Nossas Unidades & Rodapé Integrado (`#filiais`)**:
+  - Reconstrução completa com fidelidade pixel-a-pixel ao mockup do Figma (`crop_unidades_footer_exact.png`).
+  - Título em mixed case com tipografia amigável `Fredoka`/`Plus Jakarta Sans` ("Sempre", curva laranja em formato sorriso e "pertinho de você!").
+  - Card branco contido com os 4 diferenciais em squircles coloridos (Fácil acesso, Localização, Ambiente seguro e Diversão em família).
+  - Estrela 3D sorridente (`estrela-sorridente-3d.webp`) sobreposta no canto inferior esquerdo com faíscas douradas.
+  - Cards Google Maps com molduras temáticas (Laranja para Plaza e Verde para Tapanã), notas 4.6 ★★★★★, abas, 5 botões de ação e horários reais.
+  - Elementos cenográficos 3D flutuantes (nuvens brancas e balão de ar quente) calibrados para desktop e mobile.
+  - Rodapé integrado 100% no verde com monograma oficial VP, slogan institucional, linha divisória, 4 botões sociais circulares, navegação e copyright/termos de privacidade.
+
+- **Atualização da Suíte de Testes Automatizados**:
+  - Atualizadas asserções legadas em `tests/test_full_page_restoration.py` e `tests/test_atracoes_section.py`, com 100% dos testes aprovados com sucesso.
+
+## 2026-09-23
+
+- **Reescrita 100% Nativa em Código da Seção Valores por Estadia & Horários (`#estadia`)**:
+  - Eliminação total de qualquer imagem raster recortada (`cards-row-full.webp`, `card-*.webp`, `pill-*.webp`).
+  - **Varal Contínuo Vetorial SVG**: Criado `rope-vector.svg` com entrelaçamento helicoidal de 3 filamentos de juta e iluminação cilíndrica contínua correndo atrás de todos os cards.
+  - **Tábuas de Madeira Procedurais**: Criado `wood-plank.svg` e estilos CSS com textura orgânica de bétula/pinus, anéis de crescimento, chanfros 3D e texto entalhado em `Marvin Round` 800 (`color: #3E1A05; text-shadow: 0 1px 0 rgba(255,255,255,0.7), 0 -1px 1px rgba(0,0,0,0.25)`).
+  - **Estandartes de Tecido em CSS Puro**: Dobras e ondulações verticais realistas (*draping*) sintetizadas via shader de luz/sombra em gradientes multi-stop com barra ondulada em `clip-path` nas 5 cores canônicas. Preços vivos em `Marvin Round` 800 branco com sombra 3D.
+  - **Cápsulas de Horários em Madeira & Relógio SVG**: Pílulas procedurais em SVG/CSS (`pill-plank.svg`), ícone de relógio analógico em SVG puro (`icon-clock.svg`) e horários em texto vivo.
+  - **Micro-interações e Responsividade**: Efeito de elevação física pendular no hover (`rotate(-0.5deg)`), scroll-snap horizontal no mobile com corda contínua e ausência de overflow.
+  - Testes automatizados aprovados em `tests/test_estadia_section.py`.
+
 ## 2026-09-18
 
 - **Auditoria Pós-Apagão & Mapeamento de Próximos Passos (`.MD/proximos-passos.md`)**:
@@ -51,12 +81,13 @@
   - Suíte de testes automatizados Playwright (`tests/test_estadia_section.py`) criada e aprovada com 100% de sucesso.
 
 
-- **Deslocamento Horizontal de ~40% do Brinquedão 3D na Seção de Atrações (`#atracoes`)**:
+- **Deslocamento Horizontal de ~40% do Brinquedão 3D e Reposicionamento da Cerca no Canto Inferior Direito (`#atracoes`)**:
   - Implementação da estrutura com `.atracoes-brinquedao-wrap` e `.atracoes-brinquedao-inner` utilizando `transform: translateX(-40%)` no desktop e ajustes calibrados para tablet (`-50%`) e mobile (`-52%`).
   - Preservação rigorosa e 100% intacta da escala, altura, proporção e resolução da imagem 3D, sem qualquer distorção ou encolhimento.
   - Projeção de aproximadamente 40% do asset para fora da tela (margem esquerda cortada), mantendo 60% visível na página e ampliando substancialmente o respiro visual para o carrossel central e os 5 cards de atrações.
-  - Isolamento completo do deslocamento horizontal em relação às animações flutuantes (`anim-float-gentle`) e efeito de parallax (`data-parallax="0.03"`), evitando sobrescrita de propriedades transform.
-  - Adição de teste automatizado específico (`test_brinquedao_horizontal_displacement`) em `tests/test_atracoes_section.py`, com 5 testes aprovados (100% OK).
+  - Reposicionamento da **Cerca Colorida 3D** (`.atracoes-cerca-wrap`) para o canto inferior direito elevado (`bottom: clamp(50px, 7vw, 85px); right: -75px;`), reproduzindo com fidelidade a composição do Figma e deixando a área superior direita aberta e limpa.
+  - Isolamento completo do deslocamento horizontal em relação às animações flutuantes (`anim-float-gentle`, `anim-float-reverse`) e efeito de parallax (`data-parallax="0.03"`).
+  - Adição de testes automatizados específicos (`test_brinquedao_horizontal_displacement`, `test_cerca_position_lower_right`) em `tests/test_atracoes_section.py`, com 6 testes aprovados (100% OK).
 
 - **Reposicionamento da Nuvem 3D e Eliminação da Linha Entre Áreas Laranjas**:
   - **Nuvem 3D da Direita**: Removida da seção Hero verde (`#home`) e inserida nativamente na lateral direita da seção Destaques (`#ofertas`), utilizando o container da própria seção como referência (`position: relative`), com `top: 15px; right: -15px; z-index: 25;`, sem subir para o verde e mantendo a lógica de objetos 3D decorativos.

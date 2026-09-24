@@ -38,17 +38,10 @@ def test_html_structure():
     expected_assets = [
         "wave-top-left.svg",
         "wave-bottom-right.svg",
-        "cards-row-full.webp",
-        "cards-row-full.png",
-        "card-meia-hora.webp",
-        "card-uma-hora.webp",
-        "card-duas-horas.webp",
-        "card-cliente-mais-b.webp",
-        "card-pacote-vip.webp",
-        "pill-segunda.webp",
-        "pill-terca-quinta.webp",
-        "pill-sexta-sabado.webp",
-        "pill-domingo.webp",
+        "rope-vector.svg",
+        "wood-plank.svg",
+        "pill-plank.svg",
+        "icon-clock.svg",
     ]
     for asset in expected_assets:
         full_p = os.path.join(OUTPUT_DIR, asset)

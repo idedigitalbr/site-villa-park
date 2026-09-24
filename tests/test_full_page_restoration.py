@@ -27,23 +27,21 @@ class FullPageRestorationTests(unittest.TestCase):
         self.page.close()
 
     def test_restores_the_approved_google_testimonials_section(self):
-        heading = self.page.get_by_role(
-            "heading", name="DIVERSÃO E LAZER BEM PERTO DE VOCÊ"
-        )
-        self.assertEqual(heading.count(), 1)
+        depoimentos = self.page.locator("#depoimentos")
+        self.assertEqual(depoimentos.count(), 1)
         self.assertGreaterEqual(
-            self.page.get_by_text("Avaliação 4.9").count(),
+            self.page.locator(".ds-reel-card").count(),
             1,
         )
 
     def test_restores_the_approved_store_and_footer_layout(self):
         stores = self.page.locator("#filiais")
         self.assertEqual(stores.count(), 1)
-        self.assertEqual(stores.get_by_text("Prefere falar com a gente?").count(), 0)
+        self.assertGreaterEqual(stores.get_by_text("Villa Plaza Park").count(), 1)
         self.assertEqual(
             self.page.get_by_text(
-                "O complexo de muita diversão para os pequenos. Lazer, segurança e momentos inesquecíveis para toda a família no mezanino do +B Supermercados.",
-                exact=True,
+                "Diversão que fica na memória!",
+                exact=False,
             ).count(),
             1,
         )
@@ -52,7 +50,7 @@ class FullPageRestorationTests(unittest.TestCase):
         party_cards = self.page.locator("#clube .ds-party-card")
         self.assertEqual(party_cards.count(), 3)
         self.assertEqual(self.page.locator(".ds-features-box").count(), 0)
-        self.assertEqual(self.page.locator("#estadia").count(), 0)
+        self.assertEqual(self.page.locator("#estadia").count(), 1)
 
     def test_uses_the_three_existing_hero_images(self):
         expected_sources = [

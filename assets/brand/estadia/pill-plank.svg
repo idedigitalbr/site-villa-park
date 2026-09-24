@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 50" width="100%" height="100%" preserveAspectRatio="none">
+  <defs>
+    <linearGradient id="pillWoodGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFF8ED"/>
+      <stop offset="15%" stop-color="#F8E5CA"/>
+      <stop offset="45%" stop-color="#ECCFB0"/>
+      <stop offset="75%" stop-color="#DFBD95"/>
+      <stop offset="100%" stop-color="#CF9E68"/>
+    </linearGradient>
+    <linearGradient id="pillBevelLight" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.9"/>
+      <stop offset="60%" stop-color="#FFFFFF" stop-opacity="0.1"/>
+      <stop offset="100%" stop-color="#7A4515" stop-opacity="0.35"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Capsule Shape with Full Rounded Ends -->
+  <rect x="2" y="2" width="236" height="46" rx="23" ry="23" fill="url(#pillWoodGrad)" stroke="url(#pillBevelLight)" stroke-width="2"/>
+
+  <!-- Wood Grain Waves -->
+  <g opacity="0.16" stroke="#7A4212" stroke-linecap="round" fill="none">
+    <path d="M 24,14 Q 80,10 140,13 Q 190,16 216,13" stroke-width="1.2"/>
+    <path d="M 20,25 Q 90,28 150,23 Q 195,21 220,25" stroke-width="1.3"/>
+    <path d="M 24,36 Q 85,38 145,34 Q 190,32 216,36" stroke-width="1.2"/>
+  </g>
+
+  <!-- Top Highlight -->
+  <path d="M 30,3 L 210,3" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" opacity="0.8"/>
+
+  <!-- Bottom Shadow -->
+  <path d="M 30,47 L 210,47" stroke="#5E2F0A" stroke-width="1.8" stroke-linecap="round" opacity="0.45"/>
+</svg>
