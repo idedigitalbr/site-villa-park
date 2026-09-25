@@ -2,6 +2,13 @@
 
 ## 2026-09-25
 
+- **Remoção do Botão Ofertas no Header**:
+  - Removido o botão/link "Ofertas" (com ícone de tag) da barra de navegação direita do cabeçalho (`#nav-right`), mantendo o foco no CTA principal de contato.
+  - Atualizada a suíte de testes de navegação (`tests/test_header_navigation.py`), com 100% dos testes aprovados.
+
+- **Atualização do Link de Desenvolvedor no Rodapé**:
+  - Atualizado o link de destino da logo `idedigital` no rodapé de `https://ide.digital` para `https://digital.ideinstituto.com.br/`, abrindo em nova guia (`target="_blank" rel="noopener noreferrer"`).
+
 - **Ajustes de UI no Rodapé & Eliminação de Conflitos Cenográficos**:
   - **Remoção de Slogan**: Removido o texto "Diversão que fica na memória!" que ficava posicionado entre o logotipo principal e a linha divisória branca.
   - **Centralização e Zona de Segurança da Barra Inferior**: Redesenhada a linha de copyright, termos e créditos (`max-w-2xl mx-auto flex items-center justify-center`) com espaçamento equilibrado e separadores discretos, eliminando completamente a dispersão lateral e garantindo recuo de segurança para evitar colisão/sobreposição com as nuvens e balão 3D em notebooks e monitores (1366px, 1280px, 1920px).

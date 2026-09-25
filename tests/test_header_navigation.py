@@ -47,13 +47,7 @@ class HeaderNavigationTests(unittest.TestCase):
         nav_right = page.locator('#nav-right')
         self.assertTrue(nav_right.is_visible())
         right_links = nav_right.locator('.nav-link')
-        self.assertEqual(right_links.count(), 1)
-
-        expected_right = ['Ofertas']
-        for idx, text in enumerate(expected_right):
-            link = right_links.nth(idx)
-            self.assertIn(text, link.inner_text())
-            self.assertEqual(link.locator('svg').count(), 1)
+        self.assertEqual(right_links.count(), 0)
 
         cta_order = nav_right.locator('.nav-btn-order')
         self.assertTrue(cta_order.is_visible())
