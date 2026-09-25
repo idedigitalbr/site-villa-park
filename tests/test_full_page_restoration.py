@@ -39,10 +39,7 @@ class FullPageRestorationTests(unittest.TestCase):
         self.assertEqual(stores.count(), 1)
         self.assertGreaterEqual(stores.get_by_text("Villa Plaza Park").count(), 1)
         self.assertEqual(
-            self.page.get_by_text(
-                "Diversão que fica na memória!",
-                exact=False,
-            ).count(),
+            self.page.locator(".ds-footer-integrated").count(),
             1,
         )
 

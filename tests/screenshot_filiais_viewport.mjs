@@ -11,8 +11,8 @@ const proc = spawn(edgePath, [
   '--disable-gpu',
   '--no-first-run',
   '--no-default-browser-check',
-  '--window-size=1920,1080',
-  'file:///D:/.GITHUB/site-villa-park/index.html'
+  '--window-size=1366,768',
+  'file:///C:/.PROJETOS - Sites 2026/site-villa-park/index.html'
 ]);
 
 await new Promise(r => setTimeout(r, 2000));
@@ -38,8 +38,8 @@ try {
   }
 
   await send('Emulation.setDeviceMetricsOverride', {
-    width: 1920,
-    height: 1080,
+    width: 1366,
+    height: 768,
     deviceScaleFactor: 1,
     mobile: false
   });
@@ -56,10 +56,14 @@ try {
 
   // Scroll to absolute bottom of page
   await send('Runtime.evaluate', {
-    expression: `window.scrollTo(0, document.body.scrollHeight);`
+    expression: `
+      document.documentElement.style.scrollBehavior = 'auto';
+      document.body.style.scrollBehavior = 'auto';
+      window.scrollTo(0, Math.max(document.body.scrollHeight, document.documentElement.scrollHeight));
+    `
   });
 
-  await new Promise(r => setTimeout(r, 600));
+  await new Promise(r => setTimeout(r, 1000));
 
   // Capture full viewport
   const { data } = await send('Page.captureScreenshot', {
@@ -67,7 +71,7 @@ try {
     captureBeyondViewport: false
   });
 
-  fs.writeFileSync('d:/.GITHUB/site-villa-park/tests/filiais_viewport_bottom.png', Buffer.from(data, 'base64'));
+  fs.writeFileSync('tests/filiais_viewport_bottom.png', Buffer.from(data, 'base64'));
   console.log('Saved tests/filiais_viewport_bottom.png');
 
   ws.close();
