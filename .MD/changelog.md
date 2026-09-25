@@ -5,6 +5,7 @@
 - **Ajustes de UI no Rodapé & Eliminação de Conflitos Cenográficos**:
   - **Remoção de Slogan**: Removido o texto "Diversão que fica na memória!" que ficava posicionado entre o logotipo principal e a linha divisória branca.
   - **Centralização e Zona de Segurança da Barra Inferior**: Redesenhada a linha de copyright, termos e créditos (`max-w-2xl mx-auto flex items-center justify-center`) com espaçamento equilibrado e separadores discretos, eliminando completamente a dispersão lateral e garantindo recuo de segurança para evitar colisão/sobreposição com as nuvens e balão 3D em notebooks e monitores (1366px, 1280px, 1920px).
+  - **Logo Oficial idedigital**: Substituído o link de texto por `assets/Logos/logo-idedigital.png` com link oficial para `https://ide.digital`, transição hover sutil e alinhamento visual preciso com o texto "Desenvolvido por:".
   - **Responsividade e Testes**: Otimizado empilhamento limpo em dispositivos móveis e atualizadas as asserções da suíte de testes (`tests/test_full_page_restoration.py`), aprovada com 100% de sucesso.
 
 ## 2026-09-24
