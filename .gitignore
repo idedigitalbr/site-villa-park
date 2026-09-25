@@ -12,6 +12,7 @@ $RECYCLE.BIN/
 *.log
 *.bak
 *.dat
+tests/*.png
 .recovery/
 
 # Dependencies / Builds

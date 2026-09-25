@@ -2,6 +2,17 @@
 
 ## 2026-09-24
 
+- **Transições Visuais Orgânicas Sutis entre Seções (Layout Fluido & Não-Linear)**:
+  - **Eliminação de Divisões Retas Horizontais**: Substituídos os cortes secos entre seções por divisórias orgânicas, fluidas e naturais, eliminando o aspecto de blocos retangulares empilhados.
+  - **Variação Não-Repetitiva de Ritmo e Geometria**:
+    - **T1 (Destaques ➔ Sobre)**: Elevação suave do branco pelo canto inferior esquerdo e prolongamento curvo verde Villa Park (`#228137`) no canto direito abraçando a base do Brinquedão Modular 3D.
+    - **T2 (Sobre ➔ Atrações)**: Base plana e nivelada no lado esquerdo sob o peso do Tobogã 3D, com colina amarela suave (`#FDEA76`) e forma arredondada laranja (`#EF7A2B`) entrando pelo canto superior direito.
+    - **T3 (Atrações ➔ Estadia)**: Curva orgânica laranja integrada no canto superior esquerdo fluindo para o verde floresta (`#016225`), vale suave central dando respiro à manchete e subida suave à direita apoiando a cerca 3D.
+    - **T4 (Estadia ➔ Faça Sua Festa)**: Curva fluida integrada aos elementos verde e laranja da lateral esquerda, ondulação dupla suave pelo centro e elevação sutil no canto direito emoldurando o Bolo 3D de aniversário.
+    - **T5 (Faça Sua Festa ➔ Palco Céu / Depoimentos)**: Dupla curvatura suave em dois níveis (abertura orgânica relaxada em 'S') com filete translúcido de acabamento, integrando-se na lateral direita sob a Estrela 3D sorridente.
+  - **Preservação Estrita**: Primeira seção do topo (Hero em nuvens) e última seção (Nossas Unidades & Rodapé Figma) mantidas 100% intocadas.
+  - **Validação Responsiva**: Renderização impecável validada em Desktop (1280px) e Mobile (390px) via screenshots reais.
+
 - **Resolução Definitiva 100% Pixel-Perfect do Rodapé e Unidades (Anexo 1 vs Anexo 2)**:
   - **Eliminação do "Vão Branco no Meio"**: Removido `justify-between` e reorganizado o fluxo vertical do Card Branco. Badge, título display ("Sempre pertinho de você!"), subtítulo e a grade de 4 features agora fluem com espaçamento balanceado e harmônico, sem vazios artificiais.
   - **Eliminação da Sobreposição da Estrela 3D com "Fácil Acesso"**: A grade de features recebeu recuo horizontal à esquerda (`pl-8 sm:pl-14 lg:pl-18 xl:pl-22`) e a estrela 3D sorridente foi ancorada no canto inferior esquerdo externo, garantindo mais de 100px de distância segura da primeira feature (zero colisão visual).

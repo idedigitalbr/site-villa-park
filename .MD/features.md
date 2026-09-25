@@ -18,6 +18,7 @@
 - [x] S8 AVALIAÇÕES DO GOOGLE (Card Google Maps oficial + Marquee de depoimentos)
 - [x] S9 HORÁRIOS & UNIDADES (Cards Plaza e Tapanã)
 - [x] S10 MODAIS (Vídeo Institucional, Privacidade LGPD e Atendimento WhatsApp)
+- [x] S11 TRANSIÇÕES VISUAIS ORGÂNICAS ENTRE SEÇÕES (Divisórias fluidas personalizadas, sutis e não-repetitivas)
 
 ## 🛠️ INFRAESTRUTURA & QUALIDADE [Concluído]
 - [x] S0 Setup de Suíte de Testes Automatizados (Playwright / unittest)
