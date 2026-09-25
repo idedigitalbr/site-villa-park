@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Villa Plaza Park — Nossas Unidades &amp; Rodapé Oficial</title>
+  <meta name="description" content="Nossas unidades e rodapé oficial do Villa Plaza Park com cards de localização em alta resolução inspirados no padrão +B Farma.">
+  <link rel="icon" type="image/png" href="favicon.png">
+
+  <!-- Fontes Oficiais Google Fonts (Comfortaa, Fredoka, Plus Jakarta Sans, Roboto, Google Sans) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;500;600;700&family=Fredoka:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome 6 Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Design System CSS Oficial do Projeto (se disponível) -->
+  <link rel="stylesheet" href="src/css/design-system.css">
+
+  <!-- Tailwind CSS via CDN com tokens oficiais Villa Plaza Park -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              green: '#228137',
+              'green-dark': '#027C4F',
+              'green-hover': '#1b682c',
+              'green-light': '#eaf5ec',
+              'green-soft': '#d1ebd6',
+              orange: '#FA5A00',
+              'orange-hover': '#d9651a',
+              'orange-light': '#fff0e5',
+              'orange-soft': '#fcd6bd',
+            },
+            bf: {
+              ink: '#1C1D22',
+              body: '#4A4D59',
+              muted: '#757885',
+              'muted-light': '#9EA2B0',
+              line: '#dadce0',
+              'line-soft': '#EDF2EF',
+              card: '#FFFFFF',
+              bg: '#F8FAF9',
+              dark: '#142217',
+              star: '#F59E0B',
+              success: '#10B981'
+            }
+          },
+          fontFamily: {
+            sans: ['Comfortaa', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+            fredoka: ['Fredoka', 'Plus Jakarta Sans', 'sans-serif'],
+            gmap: ['Roboto', 'Google Sans', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* ==========================================================================
+       DESIGN TOKENS & TIPOGRAFIA CANÔNICA GOOGLE MAPS (+B FARMA STANDARD)
+       ========================================================================== */
+    :root {
+      --color-primary: #027C4F;
+      --color-orange: #FA5A00;
+      --color-green: #00B359;
+      --color-gmap-ink: #202124;
+      --color-gmap-muted: #70757a;
+      --color-gmap-body: #3c4043;
+      --color-gmap-line: #dadce0;
+      --color-gmap-blue: #1A73E8;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #EDF5FD;
+      font-family: 'Comfortaa', -apple-system, BlinkMacSystemFont, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+    }
+
+    /* Container cenográfico e wrapper */
+    .ds-unidades-wrapper {
+      position: relative;
+      width: 100%;
+      background: linear-gradient(180deg, #EDF5FD 0%, #E2F2FC 60%, #E2F2FC 100%);
+      color: #FFFFFF;
+      overflow-x: clip;
+      z-index: 20;
+    }
+
+    .ds-unidades-container {
+      width: 100%;
+      max-width: 1440px;
+      margin: 0 auto;
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+    @media (min-width: 640px) {
+      .ds-unidades-container {
+        padding-left: 24px;
+        padding-right: 24px;
+      }
+    }
+    @media (min-width: 1024px) {
+      .ds-unidades-container {
+        padding-left: 36px;
+        padding-right: 36px;
+      }
+    }
+
+    .ds-unidades-bg-landscape {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      user-select: none;
+      z-index: 0;
+    }
+
+    /* Rodapé escuro responsivo no Mobile */
+    @media (max-width: 1023px) {
+      .ds-footer-integrated {
+        background-color: #027C4F;
+      }
+    }
+
+    /* ==========================================================================
+       CARDS DE LOCALIZAÇÃO GOOGLE MAPS — PADRÃO ANEXO 2 (+B FARMA)
+       ========================================================================== */
+    .ds-loc-card-frame {
+      width: 100%;
+      max-width: 320px;
+      padding: 9px;
+      border-radius: 28px;
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      flex-shrink: 0;
+    }
+
+    @media (min-width: 640px) {
+      .ds-loc-card-frame {
+        width: 300px;
+        max-width: 300px;
+      }
+    }
+
+    @media (min-width: 1280px) {
+      .ds-loc-card-frame {
+        width: 315px;
+        max-width: 315px;
+        padding: 10px;
+        border-radius: 30px;
+      }
+    }
+
+    /* Moldura Laranja (Unidade Plaza) */
+    .ds-loc-card-frame.orange {
+      background: #FA5A00;
+      box-shadow: 0 16px 36px rgba(250, 90, 0, 0.3), 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+    .ds-loc-card-frame.orange:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 22px 44px rgba(250, 90, 0, 0.4), 0 8px 18px rgba(0, 0, 0, 0.12);
+    }
+
+    /* Moldura Verde (Unidade Tapanã) */
+    .ds-loc-card-frame.green {
+      background: #00B359;
+      box-shadow: 0 16px 36px rgba(0, 179, 89, 0.3), 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+    .ds-loc-card-frame.green:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 22px 44px rgba(0, 179, 89, 0.4), 0 8px 18px rgba(0, 0, 0, 0.12);
+    }
+
+    /* Miolo Branco do Card Google Maps */
+    .google-maps-card {
+      font-family: 'Roboto', 'Google Sans', -apple-system, BlinkMacSystemFont, Arial, sans-serif !important;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      background: #FFFFFF;
+      border-radius: 19px;
+      overflow: hidden;
+      color: #202124;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 100%;
+      border: 1px solid #dadce0;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+    }
+
+    .google-maps-card svg {
+      flex-shrink: 0;
+      display: inline-block;
+    }
+
+    /* Ícones das linhas de detalhe (14x14px rigorosamente fixos) */
+    .gmaps-icon {
+      width: 14px !important;
+      height: 14px !important;
+      min-width: 14px !important;
+      max-width: 14px !important;
+      min-height: 14px !important;
+      max-height: 14px !important;
+    }
+
+    /* Ícones dos 3 botões circulares (15x15px rigorosamente fixos) */
+    .gmaps-btn-icon {
+      width: 15px !important;
+      height: 15px !important;
+      min-width: 15px !important;
+      max-width: 15px !important;
+      min-height: 15px !important;
+      max-height: 15px !important;
+    }
+
+    /* Círculo do botão de ação (32x32px rigorosamente proporcional) */
+    .gmaps-btn-circle {
+      width: 32px !important;
+      height: 32px !important;
+      min-width: 32px !important;
+      max-width: 32px !important;
+      border-radius: 9999px !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      flex-shrink: 0 !important;
+      margin: 0 auto;
+      transition: all 0.2s ease;
+    }
+
+    /* Animações Flutuantes Suaves */
+    @keyframes dsFloatSoft {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-7px) rotate(1deg); }
+    }
+    @keyframes dsFloatBalloon {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-10px) rotate(-1.5deg); }
+    }
+    @keyframes dsFloatStar {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-6px) rotate(2deg); }
+    }
+
+    .ds-float-cloud { animation: dsFloatSoft 6s ease-in-out infinite; }
+    .ds-float-balloon { animation: dsFloatBalloon 7s ease-in-out infinite; }
+    .ds-float-star { animation: dsFloatStar 5s ease-in-out infinite; }
+
+    /* Toast Interativo */
+    #dsToast {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      opacity: 0;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 9999;
+      pointer-events: none;
+    }
+    #dsToast.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between">
+
+  <!-- ==========================================================================
+       S8 — NOSSAS UNIDADES & RODAPÉ INTEGRADO (ALTA FIDELIDADE +B FARMA STANDARD)
+       ========================================================================== -->
+  <section id="filiais" class="ds-unidades-wrapper relative w-full overflow-hidden text-white scroll-mt-20" aria-label="Nossas Unidades e Contato">
+
+    <!-- FUNDO CENOGRÁFICO VETORIAL INTEGRADO (FIGMA DESIGN SYSTEM) -->
+    <div class="ds-unidades-bg-landscape hidden lg:block" aria-hidden="true">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1100" fill="none" class="w-full h-full block" preserveAspectRatio="none">
+        <defs>
+          <linearGradient id="dsSkyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#EDF5FD" />
+            <stop offset="60%" stop-color="#E2F2FC" />
+            <stop offset="100%" stop-color="#E2F2FC" />
+          </linearGradient>
+        </defs>
+
+        <!-- Fundo Céu Azul Suave -->
+        <rect width="1920" height="1100" fill="url(#dsSkyGrad)" />
+
+        <!-- Morro Orgânico Laranja Esquerdo -->
+        <path d="M 0,330 C 50,300 110,330 135,430 C 160,540 130,700 80,800 C 50,845 15,865 0,870 Z" fill="#FA5A00" />
+
+        <!-- Morro Orgânico Laranja Direito -->
+        <path d="M 1920,140 C 1870,150 1815,200 1795,290 C 1765,420 1785,620 1825,780 C 1860,920 1905,1020 1920,1050 Z" fill="#FA5A00" />
+
+        <!-- Morro Verde Claro Superior Direito -->
+        <path d="M 1920,240 C 1860,250 1810,310 1790,420 C 1760,570 1780,750 1830,880 C 1870,980 1905,1050 1920,1080 Z" fill="#00B359" />
+
+        <!-- Morro Verde Claro Superior Esquerdo -->
+        <path d="M 0,600 C 45,560 100,550 150,600 C 205,650 240,710 280,735 C 320,750 380,745 440,745 L 440,1100 L 0,1100 Z" fill="#00B359" opacity="0.95" />
+
+        <!-- Onda Orgânica Principal do Rodapé (Verde Floresta Oficial #027C4F) -->
+        <path d="M 0,480 C 30,450 60,380 95,390 C 135,400 180,640 240,710 C 290,735 340,740 420,740 C 800,740 1200,740 1650,740 C 1740,740 1790,620 1835,430 C 1870,290 1895,250 1920,240 L 1920,1100 L 0,1100 Z" fill="#027C4F" />
+
+        <!-- Morros Verdes de Apoio Base Inferior -->
+        <path d="M 0,690 C 70,695 160,730 250,790 C 350,860 440,920 520,1100 L 0,1100 Z" fill="#00B359" />
+        <path d="M 1380,1100 C 1470,1020 1570,950 1680,890 C 1780,840 1860,825 1920,835 L 1920,1100 Z" fill="#00B359" />
+      </svg>
+    </div>
+
+    <!-- CONTAINER PRINCIPAL: ESTRUTURA BALANCEADA, ALINHADA E PROPORCIONAL -->
+    <div class="ds-unidades-container relative z-20 pt-6 sm:pt-8 lg:pt-10 pb-4">
+
+      <!-- GRID DE APRESENTAÇÃO: CARD INSTITUCIONAL + 2 CARDS GOOGLE MAPS -->
+      <div class="flex flex-col lg:flex-row items-center lg:items-stretch justify-center gap-6 sm:gap-7 lg:gap-8 xl:gap-10">
+
+        <!-- ==========================================================================
+             COLUNA ESQUERDA: CARD INSTITUCIONAL COMPACTO & HARMONIOSO
+             ========================================================================== -->
+        <div class="w-full lg:w-[42%] xl:w-[40%] bg-white text-[#202124] rounded-[32px] sm:rounded-[40px] shadow-[0_20px_50px_rgba(0,0,0,0.12)] p-6 sm:p-8 lg:p-9 xl:p-10 relative z-20 flex flex-col justify-between shrink-0">
+          
+          <!-- Estrela 3D Sorridente Decorativa -->
+          <div class="absolute -bottom-4 -left-4 sm:-bottom-7 sm:-left-8 lg:-bottom-8 lg:-left-9 w-24 sm:w-32 lg:w-36 z-30 pointer-events-none ds-float-star select-none">
+            <svg class="absolute -top-3 -left-3 w-6 h-6 sm:w-7 sm:h-7 text-[#FFD200]" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="4.5" stroke-linecap="round">
+              <line x1="8" y1="24" x2="2" y2="18" />
+              <line x1="12" y1="16" x2="4" y2="8" />
+              <line x1="20" y1="10" x2="16" y2="2" />
+            </svg>
+            <img src="assets/3DObjetos/estrela-sorridente-3d.webp" alt="Estrela Sorridente 3D" class="w-full h-auto object-contain drop-shadow-xl" loading="eager">
+          </div>
+
+          <!-- Topo do Card Institucional -->
+          <div class="flex flex-col items-start text-left mb-4 sm:mb-6">
+            <!-- Badge / Pill: NOSSAS UNIDADES -->
+            <span class="inline-flex items-center px-3.5 py-1.5 rounded-full text-xs font-black uppercase tracking-wider bg-[#FFF0E5] text-[#FA5A00] mb-3 sm:mb-4 shadow-2xs font-fredoka">
+              NOSSAS UNIDADES
+            </span>
+
+            <!-- Título Fredoka com Curva Laranja -->
+            <h2 class="text-3xl sm:text-4xl lg:text-[40px] xl:text-[44px] mb-2 leading-[1.08] font-black text-[#027C4F] font-fredoka">
+              Sempre
+              <span class="block w-20 sm:w-24 h-2.5 my-1">
+                <svg viewBox="0 0 100 12" fill="none" class="w-full h-full">
+                  <path d="M2 3.5C28 10.5 72 10.5 98 3.5" stroke="#FA5A00" stroke-width="5" stroke-linecap="round"/>
+                </svg>
+              </span>
+              pertinho de você!
+            </h2>
+
+            <!-- Subtítulo Informativo -->
+            <p class="text-xs sm:text-sm lg:text-[14.5px] text-[#4A4D59] font-medium leading-relaxed max-w-sm mt-1">
+              Escolha a unidade mais conveniente e traga os pequenos para viver momentos inesquecíveis de pura alegria no Villa Plaza Park.
+            </p>
+          </div>
+
+          <!-- Bloco Informativo de Destaques da Estrutura (Equilibra o Espaço Vertical) -->
+          <div class="my-3 sm:my-4 p-3 sm:p-3.5 rounded-2xl bg-[#F8FAF9] border border-[#E2E8E4] flex flex-col gap-2 text-xs sm:text-[13px] text-[#3c4043]">
+            <div class="flex items-center gap-2 font-medium">
+              <span class="w-5 h-5 rounded-full bg-[#E8F8EE] text-[#027C4F] flex items-center justify-center text-[10px] shrink-0 font-bold">✓</span>
+              <span>Brinquedão gigante com circuito safari &amp; tobogãs</span>
+            </div>
+            <div class="flex items-center gap-2 font-medium">
+              <span class="w-5 h-5 rounded-full bg-[#E8F8EE] text-[#027C4F] flex items-center justify-center text-[10px] shrink-0 font-bold">✓</span>
+              <span>Área Baby 100% acolchoada e segura para os pequenos</span>
+            </div>
+            <div class="flex items-center gap-2 font-medium">
+              <span class="w-5 h-5 rounded-full bg-[#E8F8EE] text-[#027C4F] flex items-center justify-center text-[10px] shrink-0 font-bold">✓</span>
+              <span>Monitores dedicados e espaço para festas inesquecíveis</span>
+            </div>
+          </div>
+
+          <!-- Grade de 4 Diferenciais em Ícones Circulares com Rótulos -->
+          <div class="grid grid-cols-4 gap-2 sm:gap-3 w-full pl-6 sm:pl-12 lg:pl-12 mt-2 sm:mt-4">
+
+            <!-- 1. Fácil acesso -->
+            <div class="flex flex-col items-center text-center group">
+              <div class="w-11 h-11 sm:w-12 sm:h-12 lg:w-13 lg:h-13 rounded-2xl bg-[#FFF3D6] flex items-center justify-center mb-1.5 shadow-2xs transition-transform duration-200 group-hover:scale-105">
+                <svg class="w-5 h-5 text-[#FA5A00]" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z"/>
+                </svg>
+              </div>
+              <span class="text-[10px] sm:text-[11px] font-bold text-[#1E293B] leading-tight font-fredoka">Fácil<br>acesso</span>
+            </div>
+
+            <!-- 2. Localização privilegiada -->
+            <div class="flex flex-col items-center text-center group">
+              <div class="w-11 h-11 sm:w-12 sm:h-12 lg:w-13 lg:h-13 rounded-2xl bg-[#E8F1FF] flex items-center justify-center mb-1.5 shadow-2xs transition-transform duration-200 group-hover:scale-105">
+                <svg class="w-5 h-5 text-[#2563EB]" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                </svg>
+              </div>
+              <span class="text-[10px] sm:text-[11px] font-bold text-[#1E293B] leading-tight font-fredoka">Localização<br>privilegiada</span>
+            </div>
+
+            <!-- 3. Ambiente seguro -->
+            <div class="flex flex-col items-center text-center group">
+              <div class="w-11 h-11 sm:w-12 sm:h-12 lg:w-13 lg:h-13 rounded-2xl bg-[#E8F8EE] flex items-center justify-center mb-1.5 shadow-2xs transition-transform duration-200 group-hover:scale-105">
+                <svg class="w-5 h-5 text-[#16A34A]" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/>
+                </svg>
+              </div>
+              <span class="text-[10px] sm:text-[11px] font-bold text-[#1E293B] leading-tight font-fredoka">Ambiente<br>seguro</span>
+            </div>
+
+            <!-- 4. Diversão garantida -->
+            <div class="flex flex-col items-center text-center group">
+              <div class="w-11 h-11 sm:w-12 sm:h-12 lg:w-13 lg:h-13 rounded-2xl bg-[#FFEAEA] flex items-center justify-center mb-1.5 shadow-2xs transition-transform duration-200 group-hover:scale-105">
+                <svg class="w-5 h-5 text-[#E11D48]" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                </svg>
+              </div>
+              <span class="text-[10px] sm:text-[11px] font-bold text-[#1E293B] leading-tight font-fredoka">Diversão<br>em família</span>
+            </div>
+
+          </div>
+
+        </div><!-- /coluna esquerda institucional -->
+
+
+        <!-- ==========================================================================
+             COLUNA DIREITA: CARDS DE LOCALIZAÇÃO (PADRÃO OFICIAL +B FARMA ANEXO 2)
+             Proporções rigorosas, 3 botões limpos, tipografia Google Sans/Roboto
+             ========================================================================== -->
+        <div class="w-full lg:w-[58%] xl:w-[60%] flex flex-col sm:flex-row gap-5 sm:gap-6 justify-center items-center sm:items-stretch relative z-20">
+
+          <!-- ==================== CARD 1: VILLA PLAZA PARK (MOLDURA LARANJA) ==================== -->
+          <div class="ds-loc-card-frame orange">
+            <div class="google-maps-card">
+
+              <div>
+                <!-- Foto Topo Real Plaza (Aspect Ratio 16:9 Canônico com Fechar Oficial embutido) -->
+                <div class="relative w-full aspect-[16/9] overflow-hidden bg-slate-100">
+                  <!-- Pill de arrastar sutil estilo Google Maps Mobile Sheet -->
+                  <div class="absolute top-1.5 left-1/2 -translate-x-1/2 w-7 h-1 rounded-full bg-white/80 z-10 shadow-xs pointer-events-none"></div>
+
+                  <img src="assets/images/unidade-plaza-maps.webp" alt="Villa Plaza Park (Plaza)" class="w-full h-full object-cover block" loading="eager">
+                </div>
+
+                <!-- Header Info (Título, Avaliação, Categoria) -->
+                <div class="pt-3 px-3.5 pb-0">
+                  <!-- Título da Unidade -->
+                  <h3 class="text-[15px] sm:text-[16px] font-bold text-[#202124] leading-tight tracking-tight mb-1 truncate">
+                    <a href="https://maps.app.goo.gl/3fN1" target="_blank" rel="noopener noreferrer" class="hover:underline text-[#202124]" title="Villa Plaza Park (Plaza)">
+                      Villa Plaza Park (Plaza)
+                    </a>
+                  </h3>
+
+                  <!-- Link de Avaliação Oficial (Fidelidade Estrita +B Farma Anexo 2) -->
+                  <a href="https://maps.app.goo.gl/3fN1" target="_blank" rel="noopener noreferrer" class="inline-flex text-[11px] text-[#FA5A00] hover:underline font-medium leading-none mb-1.5" title="Ver avaliações no Google Maps">
+                    Ver nota atual no Google ↗
+                  </a>
+
+                  <!-- Linha de Categoria e Acessibilidade: Parque infantil · ♿ -->
+                  <div class="flex items-center gap-1.5 text-[11px] text-[#70757a] leading-none mb-2">
+                    <span>Parque infantil</span>
+                    <span>·</span>
+                    <svg viewBox="0 0 24 24" fill="#1A73E8" style="width: 12px; height: 12px; min-width: 12px;" aria-label="Acessível para cadeirantes">
+                      <circle cx="12" cy="4" r="2"></circle>
+                      <path d="M19 13v-2c-1.54.02-3.09-.75-4.07-1.83l-1.29-1.43c-.17-.19-.38-.34-.61-.45-.48-.23-1.04-.26-1.55-.07-.51.19-.92.58-1.12 1.09L8.4 13.29C8.13 13.97 8.35 14.74 8.92 15.17l3.6 2.7V22h2v-5l-2.4-1.8 1.4-3.5c.78.89 1.94 1.5 3.19 1.5l2.29-.2zM12 16.5c-2.48 0-4.5-2.02-4.5-4.5s2.02-4.5 4.5-4.5c.55 0 1 .45 1 1s-.45 1-1 1c-1.38 0-2.5 1.12-2.5 2.5s1.12 2.5 2.5 2.5c.55 0 1 .45 1 1s-.45 1-1 1z"></path>
+                    </svg>
+                    <span>Acessível</span>
+                  </div>
+
+                  <!-- Abas: Visão geral | Avaliações | Sobre -->
+                  <div class="flex items-center justify-between sm:justify-start gap-4 border-b border-[#dadce0] text-[11.5px] font-medium pt-0.5">
+                    <div class="relative pb-1.5 text-[#FA5A00] font-bold">
+                      <span>Visão geral</span>
+                      <div class="absolute bottom-0 left-0 w-full h-[2.5px] bg-[#FA5A00] rounded-t-sm"></div>
+                    </div>
+                    <a href="https://maps.app.goo.gl/3fN1" target="_blank" rel="noopener noreferrer" class="pb-1.5 text-[#5f6368] hover:text-[#202124] transition-colors">
+                      Avaliações
+                    </a>
+                    <a href="https://maps.app.goo.gl/3fN1" target="_blank" rel="noopener noreferrer" class="pb-1.5 text-[#5f6368] hover:text-[#202124] transition-colors">
+                      Sobre
+                    </a>
+                  </div>
+                </div>
+
+                <!-- Botões de Ação Circulares (3 Colunas Rigorosas: Rotas, Salvar, Compartilhar) -->
+                <div class="grid grid-cols-3 gap-1 py-2 px-2 text-center border-b border-[#dadce0] items-start">
+                  
+                  <!-- 1. Rotas -->
+                  <a href="https://maps.app.goo.gl/3fN1" target="_blank" rel="noopener noreferrer" class="group flex flex-col items-center gap-1 focus:outline-none" title="Traçar rota no Google Maps">
+                    <div class="gmaps-btn-circle bg-[#FA5A00] text-white group-hover:bg-[#d9651a] group-hover:scale-105 transition-all shadow-xs">
+                      <i class="fa-solid fa-diamond-turn-right text-xs text-white"></i>
+                    </div>
+                    <span class="text-[9px] font-medium text-[#FA5A00] leading-tight">Rotas</span>
+                  </a>
+
+                  <!-- 2. Salvar -->
+                  <button type="button" onclick="saveLocation('Villa Plaza Park (Plaza)')" class="group flex flex-col items-center gap-1 focus:outline-none" title="Salvar nos favoritos">
+                    <div class="gmaps-btn-circle bg-[#FFF0E5] text-[#FA5A00] group-hover:bg-[#fcd6bd] group-hover:scale-105 transition-all">
+                      <svg class="gmaps-btn-icon fill-current" viewBox="0 0 24 24">
+                        <path d="M17 3H7c-1.1 0-2 .9-2 2v16l7-3 7 3V5c0-1.1-.9-2-2-2zm0 15l-5-2.18L7 18V5h10v13z"></path>
+                      </svg>
+                    </div>
+                    <span class="text-[9px] font-medium text-[#FA5A00] leading-tight">Salvar</span>
+                  </button>
+
+                  <!-- 3. Compartilhar -->
+                  <button type="button" onclick="shareLocation('Villa Plaza Park (Plaza)', 'https://maps.app.goo.gl/3fN1')" class="group flex flex-col items-center gap-1 focus:outline-none" title="Compartilhar localização">
+                    <div class="gmaps-btn-circle bg-[#FFF0E5] text-[#FA5A00] group-hover:bg-[#fcd6bd] group-hover:scale-105 transition-all">
+                      <svg class="gmaps-btn-icon fill-current" viewBox="0 0 24 24">
+                        <path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92c0-1.61-1.31-2.92-2.92-2.92z"></path>
+                      </svg>
+                    </div>
+                    <span class="text-[9px] font-medium text-[#FA5A00] leading-tight">Compartilhar</span>
+                  </button>
+
+                </div>
+
+                <!-- Linha de Serviços / Destaques da Unidade (+B Farma Pattern) -->
+                <a href="https://maps.app.goo.gl/3fN1" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between py-1.5 px-2.5 hover:bg-slate-50 transition-colors border-b border-[#dadce0] group">
+                  <div class="flex items-center gap-1 text-[10.5px] text-[#3c4043]">
+                    <svg style="width: 12px; height: 12px; min-width: 12px;" class="text-[#137333] flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    <span>Mezanino +B Plaza</span>
+                    <span class="text-[#70757a] px-0.5">·</span>
+                    <svg style="width: 12px; height: 12px; min-width: 12px;" class="text-[#137333] flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    <span>Espaço Climatizado</span>
+                  </div>
+                  <svg style="width: 12px; height: 12px; min-width: 12px;" class="text-[#70757a] group-hover:translate-x-0.5 transition-transform flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                  </svg>
+                </a>
+              </div>
+
+              <!-- Lista de Detalhes (Endereço, Horário, Telefone/WhatsApp) -->
+              <div class="py-2 px-2.5 flex flex-col gap-1.5 text-[10.5px] text-[#3c4043]">
+                
+                <!-- 1. Endereço e Referência -->
+                <div class="flex items-start gap-2">
+                  <svg class="gmaps-icon text-[#FA5A00] flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                    <circle cx="12" cy="10" r="3"></circle>
+                  </svg>
+                  <div class="leading-snug">
+                    <a href="https://maps.app.goo.gl/3fN1" target="_blank" rel="noopener noreferrer" class="hover:underline text-[#3c4043]">
+                      Av. Gov. José Malcher, 2388 - São Brás, Belém - PA, 66060-232
+                    </a>
+                    <div class="text-[10px] text-[#70757a] mt-0.5">
+                      Localizado em: <span class="text-[#3c4043] font-medium">+B Supermercados (Plaza)</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- 2. Horário de Funcionamento -->
+                <div class="flex items-center gap-2">
+                  <svg class="gmaps-icon text-[#FA5A00] flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12 6 12 12 16 14"></polyline>
+                  </svg>
+                  <div class="flex items-center gap-1 leading-none">
+                    <a href="https://maps.app.goo.gl/3fN1" target="_blank" rel="noopener noreferrer" class="text-[#FA5A00] font-medium hover:underline">
+                      Ver horário atual no Google ↗
+                    </a>
+                  </div>
+                </div>
+
+                <!-- 3. Telefone / WhatsApp -->
+                <div class="flex items-center justify-between gap-2">
+                  <div class="flex items-center gap-2">
+                    <svg class="gmaps-icon text-[#FA5A00] flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                    </svg>
+                    <a href="tel:5591993191582" class="text-[#1A73E8] hover:underline">
+                      (91) 99319-1582
+                    </a>
+                  </div>
+                  <a href="https://wa.me/5591993191582?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20a%20unidade%20Plaza%20do%20Villa%20Plaza%20Park" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-[9.5px] font-bold text-[#027C4F] bg-[#E8F8EE] hover:bg-[#d1ebd6] px-2 py-0.5 rounded-full transition-colors">
+                    <i class="fa-brands fa-whatsapp text-[10px]"></i> WhatsApp
+                  </a>
+                </div>
+
+              </div>
+
+            </div>
+          </div><!-- /card 1 plaza -->
+
+
+          <!-- ==================== CARD 2: VILLA PLAZA PARK (MOLDURA VERDE TAPANÃ) ==================== -->
+          <div class="ds-loc-card-frame green">
+            <div class="google-maps-card">
+
+              <div>
+                <!-- Foto Topo Real Tapanã (Aspect Ratio 16:9 Canônico com Fechar Oficial embutido) -->
+                <div class="relative w-full aspect-[16/9] overflow-hidden bg-slate-100">
+                  <!-- Pill de arrastar sutil estilo Google Maps Mobile Sheet -->
+                  <div class="absolute top-1.5 left-1/2 -translate-x-1/2 w-7 h-1 rounded-full bg-white/80 z-10 shadow-xs pointer-events-none"></div>
+
+                  <img src="assets/images/unidade-tapana-maps.webp" alt="Villa Plaza Park (Tapanã)" class="w-full h-full object-cover block" loading="eager">
+                </div>
+
+                <!-- Header Info (Título, Avaliação, Categoria) -->
+                <div class="pt-3 px-3.5 pb-0">
+                  <!-- Título da Unidade -->
+                  <h3 class="text-[15px] sm:text-[16px] font-bold text-[#202124] leading-tight tracking-tight mb-1 truncate">
+                    <a href="https://maps.app.goo.gl/3fN1" target="_blank" rel="noopener noreferrer" class="hover:underline text-[#202124]" title="Villa Plaza Park (Tapanã)">
+                      Villa Plaza Park (Tapanã)
+                    </a>
+                  </h3>
+
+                  <!-- Link de Avaliação Oficial (Fidelidade Estrita +B Farma Anexo 2) -->
+                  <a href="https://maps.app.goo.gl/3fN1" target="_blank" rel="noopener noreferrer" class="inline-flex text-[11px] text-[#027C4F] hover:underline font-medium leading-none mb-1.5" title="Ver avaliações no Google Maps">
+                    Ver nota atual no Google ↗
+                  </a>
+
+                  <!-- Linha de Categoria e Acessibilidade: Parque infantil · ♿ -->
+                  <div class="flex items-center gap-1.5 text-[11px] text-[#70757a] leading-none mb-2">
+                    <span>Parque infantil</span>
+                    <span>·</span>
+                    <svg viewBox="0 0 24 24" fill="#1A73E8" style="width: 12px; height: 12px; min-width: 12px;" aria-label="Acessível para cadeirantes">
+                      <circle cx="12" cy="4" r="2"></circle>
+                      <path d="M19 13v-2c-1.54.02-3.09-.75-4.07-1.83l-1.29-1.43c-.17-.19-.38-.34-.61-.45-.48-.23-1.04-.26-1.55-.07-.51.19-.92.58-1.12 1.09L8.4 13.29C8.13 13.97 8.35 14.74 8.92 15.17l3.6 2.7V22h2v-5l-2.4-1.8 1.4-3.5c.78.89 1.94 1.5 3.19 1.5l2.29-.2zM12 16.5c-2.48 0-4.5-2.02-4.5-4.5s2.02-4.5 4.5-4.5c.55 0 1 .45 1 1s-.45 1-1 1c-1.38 0-2.5 1.12-2.5 2.5s1.12 2.5 2.5 2.5c.55 0 1 .45 1 1s-.45 1-1 1z"></path>
+                    </svg>
+                    <span>Acessível</span>
+                  </div>
+
+                  <!-- Abas: Visão geral | Avaliações | Sobre -->
+                  <div class="flex items-center justify-between sm:justify-start gap-4 border-b border-[#dadce0] text-[11.5px] font-medium pt-0.5">
+                    <div class="relative pb-1.5 text-[#027C4F] font-bold">
+                      <span>Visão geral</span>
+                      <div class="absolute bottom-0 left-0 w-full h-[2.5px] bg-[#027C4F] rounded-t-sm"></div>
+                    </div>
+                    <a href="https://maps.app.goo.gl/3fN1" target="_blank" rel="noopener noreferrer" class="pb-1.5 text-[#5f6368] hover:text-[#202124] transition-colors">
+                      Avaliações
+                    </a>
+                    <a href="https://maps.app.goo.gl/3fN1" target="_blank" rel="noopener noreferrer" class="pb-1.5 text-[#5f6368] hover:text-[#202124] transition-colors">
+                      Sobre
+                    </a>
+                  </div>
+                </div>
+
+                <!-- Botões de Ação Circulares (3 Colunas Rigorosas: Rotas, Salvar, Compartilhar) -->
+                <div class="grid grid-cols-3 gap-1 py-2 px-2 text-center border-b border-[#dadce0] items-start">
+                  
+                  <!-- 1. Rotas -->
+                  <a href="https://maps.app.goo.gl/3fN1" target="_blank" rel="noopener noreferrer" class="group flex flex-col items-center gap-1 focus:outline-none" title="Traçar rota no Google Maps">
+                    <div class="gmaps-btn-circle bg-[#027C4F] text-white group-hover:bg-[#1b682c] group-hover:scale-105 transition-all shadow-xs">
+                      <i class="fa-solid fa-diamond-turn-right text-xs text-white"></i>
+                    </div>
+                    <span class="text-[9px] font-medium text-[#027C4F] leading-tight">Rotas</span>
+                  </a>
+
+                  <!-- 2. Salvar -->
+                  <button type="button" onclick="saveLocation('Villa Plaza Park (Tapanã)')" class="group flex flex-col items-center gap-1 focus:outline-none" title="Salvar nos favoritos">
+                    <div class="gmaps-btn-circle bg-[#E8F8EE] text-[#027C4F] group-hover:bg-[#d1ebd6] group-hover:scale-105 transition-all">
+                      <svg class="gmaps-btn-icon fill-current" viewBox="0 0 24 24">
+                        <path d="M17 3H7c-1.1 0-2 .9-2 2v16l7-3 7 3V5c0-1.1-.9-2-2-2zm0 15l-5-2.18L7 18V5h10v13z"></path>
+                      </svg>
+                    </div>
+                    <span class="text-[9px] font-medium text-[#027C4F] leading-tight">Salvar</span>
+                  </button>
+
+                  <!-- 3. Compartilhar -->
+                  <button type="button" onclick="shareLocation('Villa Plaza Park (Tapanã)', 'https://maps.app.goo.gl/3fN1')" class="group flex flex-col items-center gap-1 focus:outline-none" title="Compartilhar localização">
+                    <div class="gmaps-btn-circle bg-[#E8F8EE] text-[#027C4F] group-hover:bg-[#d1ebd6] group-hover:scale-105 transition-all">
+                      <svg class="gmaps-btn-icon fill-current" viewBox="0 0 24 24">
+                        <path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92c0-1.61-1.31-2.92-2.92-2.92z"></path>
+                      </svg>
+                    </div>
+                    <span class="text-[9px] font-medium text-[#027C4F] leading-tight">Compartilhar</span>
+                  </button>
+
+                </div>
+
+                <!-- Linha de Serviços / Destaques da Unidade (+B Farma Pattern) -->
+                <a href="https://maps.app.goo.gl/3fN1" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between py-1.5 px-2.5 hover:bg-slate-50 transition-colors border-b border-[#dadce0] group">
+                  <div class="flex items-center gap-1 text-[10.5px] text-[#3c4043]">
+                    <svg style="width: 12px; height: 12px; min-width: 12px;" class="text-[#137333] flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    <span>No +B Supermercados</span>
+                    <span class="text-[#70757a] px-0.5">·</span>
+                    <svg style="width: 12px; height: 12px; min-width: 12px;" class="text-[#137333] flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    <span>Estacionamento</span>
+                  </div>
+                  <svg style="width: 12px; height: 12px; min-width: 12px;" class="text-[#70757a] group-hover:translate-x-0.5 transition-transform flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                  </svg>
+                </a>
+              </div>
+
+              <!-- Lista de Detalhes (Endereço, Horário, Telefone/WhatsApp) -->
+              <div class="py-2 px-2.5 flex flex-col gap-1.5 text-[10.5px] text-[#3c4043]">
+                
+                <!-- 1. Endereço e Referência -->
+                <div class="flex items-start gap-2">
+                  <svg class="gmaps-icon text-[#027C4F] flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                    <circle cx="12" cy="10" r="3"></circle>
+                  </svg>
+                  <div class="leading-snug">
+                    <a href="https://maps.app.goo.gl/3fN1" target="_blank" rel="noopener noreferrer" class="hover:underline text-[#3c4043]">
+                      Rod. do Tapanã, 597 B - Tapanã, Belém - PA, 66825-010
+                    </a>
+                    <div class="text-[10px] text-[#70757a] mt-0.5">
+                      Localizado em: <span class="text-[#3c4043] font-medium">+B Supermercados (Tapanã)</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- 2. Horário de Funcionamento -->
+                <div class="flex items-center gap-2">
+                  <svg class="gmaps-icon text-[#027C4F] flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12 6 12 12 16 14"></polyline>
+                  </svg>
+                  <div class="flex items-center gap-1 leading-none">
+                    <a href="https://maps.app.goo.gl/3fN1" target="_blank" rel="noopener noreferrer" class="text-[#027C4F] font-medium hover:underline">
+                      Ver horário atual no Google ↗
+                    </a>
+                  </div>
+                </div>
+
+                <!-- 3. Telefone / WhatsApp -->
+                <div class="flex items-center justify-between gap-2">
+                  <div class="flex items-center gap-2">
+                    <svg class="gmaps-icon text-[#027C4F] flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                    </svg>
+                    <a href="tel:5591993191582" class="text-[#1A73E8] hover:underline">
+                      (91) 99319-1582
+                    </a>
+                  </div>
+                  <a href="https://wa.me/5591993191582?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20a%20unidade%20Tapanã%20do%20Villa%20Plaza%20Park" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-[9.5px] font-bold text-[#027C4F] bg-[#E8F8EE] hover:bg-[#d1ebd6] px-2 py-0.5 rounded-full transition-colors">
+                    <i class="fa-brands fa-whatsapp text-[10px]"></i> WhatsApp
+                  </a>
+                </div>
+
+              </div>
+
+            </div>
+          </div><!-- /card 2 tapanã -->
+
+        </div><!-- /coluna direita cards google maps -->
+
+      </div><!-- /grid principal -->
+
+
+      <!-- ==========================================================================
+           RODAPÉ INTEGRADO (ALTA FIDELIDADE FIGMA & ANEXO 2)
+           ========================================================================== -->
+      <!-- Curva responsiva para Mobile e Tablet (< 1024px) -->
+      <div class="lg:hidden relative w-full leading-none pointer-events-none z-10 -mb-[2px] mt-8" aria-hidden="true">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 180" fill="none" class="w-full h-14 sm:h-18 md:h-20 block select-none pointer-events-none" preserveAspectRatio="none">
+          <path d="M 0,110 C 60,80 120,75 180,105 C 235,130 280,150 340,160 L 0,160 Z" fill="#00B359" opacity="0.9" />
+          <path d="M 1220,180 C 1300,140 1370,100 1440,80 L 1440,180 Z" fill="#00B359" opacity="0.9" />
+          <path d="M 0,85 C 40,65 95,50 145,65 C 190,80 230,120 310,135 C 420,155 720,145 1000,145 C 1180,145 1320,115 1440,65 L 1440,180 L 0,180 Z" fill="#027C4F" />
+        </svg>
+      </div>
+
+      <footer class="ds-footer-integrated relative z-20 flex flex-col items-center text-center mt-7 sm:mt-9 lg:mt-12 pb-8 sm:pb-10 text-white w-full max-w-4xl mx-auto px-4">
+
+        <!-- Logo Oficial Completo Branco -->
+        <a href="#filiais" class="inline-block mb-5 sm:mb-6 group focus:outline-none" aria-label="Villa Plaza Park">
+          <img src="assets/Logos/logo-villa-plaza-park-white.png" alt="Villa Plaza Park" class="w-28 sm:w-32 lg:w-36 h-auto object-contain drop-shadow-sm transition-transform duration-200 group-hover:scale-105" loading="eager">
+        </a>
+
+        <!-- Redes Sociais Oficiais em Círculos Delicados -->
+        <div class="flex items-center justify-center gap-3 sm:gap-3.5 mb-5 sm:mb-6">
+          <a href="https://www.instagram.com/villaplazapark/" target="_blank" rel="noopener noreferrer" class="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/10 hover:bg-white/25 border border-white/20 flex items-center justify-center text-white transition-all hover:scale-110 shadow-xs focus:outline-none" aria-label="Instagram @villaplazapark">
+            <i class="fa-brands fa-instagram text-xs sm:text-sm"></i>
+          </a>
+          <a href="https://api.whatsapp.com/send?phone=559193191582" target="_blank" rel="noopener noreferrer" class="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/10 hover:bg-white/25 border border-white/20 flex items-center justify-center text-white transition-all hover:scale-110 shadow-xs focus:outline-none" aria-label="WhatsApp Villa Plaza Park">
+            <i class="fa-brands fa-whatsapp text-xs sm:text-sm"></i>
+          </a>
+          <a href="https://www.facebook.com/people/Villa-Park-Plaza/61574115326244/" target="_blank" rel="noopener noreferrer" class="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/10 hover:bg-white/25 border border-white/20 flex items-center justify-center text-white transition-all hover:scale-110 shadow-xs focus:outline-none" aria-label="Facebook Villa Park Plaza">
+            <i class="fa-brands fa-facebook-f text-xs sm:text-sm"></i>
+          </a>
+          <a href="https://www.youtube.com/@villaplazapark" target="_blank" rel="noopener noreferrer" class="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/10 hover:bg-white/25 border border-white/20 flex items-center justify-center text-white transition-all hover:scale-110 shadow-xs focus:outline-none" aria-label="YouTube @villaplazapark">
+            <i class="fa-brands fa-youtube text-xs sm:text-sm"></i>
+          </a>
+        </div>
+
+        <!-- Linha de Copyright & Créditos -->
+        <div class="w-full max-w-2xl mx-auto pt-3.5 sm:pt-4 border-t border-white/20 flex flex-wrap items-center justify-center gap-x-4 sm:gap-x-6 gap-y-1.5 text-[10px] sm:text-[11px] text-white/75 text-center">
+          <span>© 2026 Villa Plaza Park. Todos os direitos reservados.</span>
+          <span class="hidden sm:inline text-white/40">•</span>
+          <button type="button" onclick="openPrivacyModal()" class="hover:underline text-white/90 hover:text-white bg-transparent border-0 p-0 cursor-pointer font-normal transition-colors focus:outline-none">
+            Termos &amp; Privacidade
+          </button>
+          <span class="hidden sm:inline text-white/40">•</span>
+          <span class="inline-flex items-center gap-1.5">
+            <span>Desenvolvido por:</span>
+            <a href="https://digital.ideinstituto.com.br/" target="_blank" rel="noopener noreferrer" aria-label="idedigital" class="inline-flex items-center group/dev">
+              <img src="assets/Logos/logo-idedigital.png" alt="idedigital" class="h-3.5 sm:h-4 w-auto object-contain opacity-85 group-hover/dev:opacity-100 group-hover/dev:scale-105 transition-all duration-200" loading="lazy">
+            </a>
+          </span>
+        </div>
+
+      </footer>
+
+    </div><!-- /ds-unidades-container -->
+
+    <!-- ELEMENTOS CENOGRÁFICOS 3D DO RODAPÉ -->
+    <!-- Nuvem 3D Esquerda -->
+    <div class="absolute -bottom-4 sm:-bottom-6 left-1 sm:left-4 lg:left-8 w-28 sm:w-40 lg:w-52 pointer-events-none z-10 ds-float-cloud opacity-95 select-none" aria-hidden="true">
+      <img src="assets/3DObjetos/nuvem-branca-3d.webp" alt="" class="w-full h-auto object-contain drop-shadow-md" loading="eager">
+    </div>
+
+    <!-- Nuvem 3D Direita -->
+    <div class="absolute -bottom-4 sm:-bottom-6 right-20 sm:right-32 lg:right-48 w-24 sm:w-36 lg:w-44 pointer-events-none z-10 ds-float-cloud opacity-90 select-none" aria-hidden="true">
+      <img src="assets/3DObjetos/nuvem-branca-3d.webp" alt="" class="w-full h-auto object-contain drop-shadow-md" loading="eager">
+    </div>
+
+    <!-- Balão de Ar Quente 3D -->
+    <div class="absolute bottom-2 sm:bottom-4 lg:bottom-6 right-1 sm:right-3 lg:right-6 w-24 sm:w-30 lg:w-40 pointer-events-none z-30 ds-float-balloon select-none" aria-hidden="true">
+      <img src="assets/3DObjetos/balao-ar-quente-nuvens-3d.webp" alt="" class="w-full h-auto object-contain drop-shadow-2xl" loading="eager">
+    </div>
+
+  </section><!-- /filiais -->
+
+
+  <!-- ==========================================================================
+       MODAL DE TERMOS & PRIVACIDADE (ACESSÍVEL E COMPLETO)
+       ========================================================================== -->
+  <div id="privacyModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs opacity-0 pointer-events-none transition-opacity duration-300" role="dialog" aria-modal="true" aria-labelledby="privacyModalTitle">
+    <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl relative max-h-[85vh] flex flex-col text-[#202124] transform scale-95 transition-transform duration-300">
+      
+      <!-- Cabeçalho Modal -->
+      <div class="flex items-center justify-between pb-4 border-b border-[#dadce0] mb-4">
+        <h3 id="privacyModalTitle" class="text-lg font-bold text-[#027C4F] font-fredoka flex items-center gap-2">
+          <i class="fa-solid fa-shield-halved text-[#FA5A00]"></i> Termos de Uso &amp; Privacidade
+        </h3>
+        <button type="button" onclick="closePrivacyModal()" class="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 flex items-center justify-center transition-colors focus:outline-none" aria-label="Fechar modal">
+          <i class="fa-solid fa-xmark text-sm"></i>
+        </button>
+      </div>
+
+      <!-- Conteúdo com Scroll Suave -->
+      <div class="overflow-y-auto space-y-4 text-xs sm:text-sm text-[#4A4D59] pr-1 leading-relaxed">
+        <div>
+          <h4 class="font-bold text-[#1C1D22] mb-1">1. Compromisso com a Privacidade</h4>
+          <p>O Villa Plaza Park valoriza a segurança e privacidade de todos os pais, responsáveis e crianças que utilizam nossos serviços e canais digitais.</p>
+        </div>
+        <div>
+          <h4 class="font-bold text-[#1C1D22] mb-1">2. Uso de Dados Cadastrais</h4>
+          <p>As informações solicitadas para eventos, passaportes ou aniversários são utilizadas exclusivamente para fins de atendimento, segurança operacional dentro do parque e emissão de notas fiscais, em conformidade com a LGPD (Lei nº 13.709/2018).</p>
+        </div>
+        <div>
+          <h4 class="font-bold text-[#1C1D22] mb-1">3. Unidades e Contato</h4>
+          <p>Para dúvidas sobre regulamento, passaportes ou privacidade, consulte nossa equipe de atendimento via WhatsApp oficial no número <strong>(91) 99319-1582</strong> ou presencialmente em uma de nossas unidades.</p>
+        </div>
+      </div>
+
+      <!-- Rodapé Modal -->
+      <div class="pt-4 border-t border-[#dadce0] mt-4 flex justify-end">
+        <button type="button" onclick="closePrivacyModal()" class="px-5 py-2 rounded-full bg-[#027C4F] hover:bg-[#1b682c] text-white font-bold text-xs transition-colors shadow-xs">
+          Entendi
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- TOAST DE FEEDBACK INTERATIVO -->
+  <div id="dsToast" class="bg-[#1C1D22] text-white text-xs sm:text-sm px-4 py-2.5 rounded-full shadow-2xl flex items-center gap-2 border border-white/10">
+    <i class="fa-solid fa-circle-check text-[#10B981]"></i>
+    <span id="dsToastMsg">Ação concluída com sucesso!</span>
+  </div>
+
+
+  <!-- SCRIPTS DE INTERATIVIDADE -->
+  <script>
+    // Toast Helper
+    function showToast(message) {
+      const toast = document.getElementById('dsToast');
+      const msg = document.getElementById('dsToastMsg');
+      if (!toast || !msg) return;
+      msg.textContent = message;
+      toast.classList.add('show');
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 3200);
+    }
+
+    // Ação de Salvar Unidade
+    function saveLocation(unitName) {
+      showToast('⭐ ' + unitName + ' salvo nos seus favoritos!');
+    }
+
+    // Ação de Compartilhar
+    function shareLocation(unitName, url) {
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(url).then(() => {
+          showToast('🔗 Link do ' + unitName + ' copiado para a área de transferência!');
+        }).catch(() => {
+          showToast('🔗 ' + unitName + ': ' + url);
+        });
+      } else {
+        showToast('🔗 ' + unitName + ': ' + url);
+      }
+    }
+
+    // Modal de Privacidade
+    function openPrivacyModal() {
+      const modal = document.getElementById('privacyModal');
+      if (!modal) return;
+      modal.classList.remove('opacity-0', 'pointer-events-none');
+      const box = modal.querySelector('div');
+      if (box) box.classList.remove('scale-95');
+    }
+
+    function closePrivacyModal() {
+      const modal = document.getElementById('privacyModal');
+      if (!modal) return;
+      modal.classList.add('opacity-0', 'pointer-events-none');
+      const box = modal.querySelector('div');
+      if (box) box.classList.add('scale-95');
+    }
+
+    // Fechar modal ao clicar fora
+    document.getElementById('privacyModal')?.addEventListener('click', function(e) {
+      if (e.target === this) {
+        closePrivacyModal();
+      }
+    });
+
+    // Fechar ao pressionar ESC
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        closePrivacyModal();
+      }
+    });
+  </script>
+
+</body>
+</html>
