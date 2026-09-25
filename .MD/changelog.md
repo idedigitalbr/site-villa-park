@@ -7,6 +7,7 @@
   - **Centralização e Zona de Segurança da Barra Inferior**: Redesenhada a linha de copyright, termos e créditos (`max-w-2xl mx-auto flex items-center justify-center`) com espaçamento equilibrado e separadores discretos, eliminando completamente a dispersão lateral e garantindo recuo de segurança para evitar colisão/sobreposição com as nuvens e balão 3D em notebooks e monitores (1366px, 1280px, 1920px).
   - **Logo Oficial idedigital**: Substituído o link de texto por `assets/Logos/logo-idedigital.png` com link oficial para `https://ide.digital`, transição hover sutil e alinhamento visual preciso com o texto "Desenvolvido por:".
   - **Remoção de Divisória & Refinamento dos Ícones Sociais**: Removida a linha divisória branca acima dos botões de redes sociais e reduzido o diâmetro dos botões circulares (de 36px/40px para 28px/32px) para uma estética mais leve, fluida e equilibrada com o logo.
+  - **Calibração Visual Pixel-Perfect (Fidelidade Anexo 2)**: Ampliado o respiro vertical geral do rodapé (`mt-7 sm:mt-9 lg:mt-11 pb-8 sm:pb-10`), espaçamento do logotipo (`mb-6 sm:mb-7`), botões sociais mais compactos e delicados (24px/26px, `text-[10px] sm:text-[11px]`) e respiro generoso (`mb-6 sm:mb-7`) antes da linha de créditos (`pt-3.5 sm:pt-4`).
   - **Responsividade e Testes**: Otimizado empilhamento limpo em dispositivos móveis e atualizadas as asserções da suíte de testes (`tests/test_full_page_restoration.py`), aprovada com 100% de sucesso.
 
 ## 2026-09-24
