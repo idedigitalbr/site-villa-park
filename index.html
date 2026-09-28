@@ -177,45 +177,113 @@
 
   <style>
     /* ==========================================================================
-       ESTILOS EXCLUSIVOS DO CARD GOOGLE MAPS (FIDELIDADE 100% AO ORIGINAL)
+       ESTILOS DO NOVO FOOTER & CARDS GOOGLE MAPS INTEGRADOS
        ========================================================================== */
-    .google-maps-card {
-      font-family: 'Roboto', 'Google Sans', -apple-system, BlinkMacSystemFont, Arial, sans-serif !important;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      font-size: 11px;
-      line-height: 1.3;
+    .font-fredoka {
+      font-family: 'Fredoka', 'Plus Jakarta Sans', sans-serif !important;
     }
-    .google-maps-card svg {
+    .font-roboto {
+      font-family: 'Roboto', -apple-system, BlinkMacSystemFont, sans-serif !important;
+    }
+
+    /* Moldura Laranja (Card 1 - Villa Plaza Park) */
+    .ds-gmaps-frame-orange {
+      background-color: #FA5A00;
+      border-radius: 26px;
+      padding: 10px;
+      box-shadow: 0 14px 34px rgba(250, 90, 0, 0.28);
+      width: 100%;
+      max-width: 100%;
       flex-shrink: 0;
-      display: inline-block;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
     }
-    .gmaps-icon {
-      width: 14px !important;
-      height: 14px !important;
-      min-width: 14px !important;
-      max-width: 14px !important;
-      min-height: 14px !important;
-      max-height: 14px !important;
+    @media (min-width: 1024px) {
+      .ds-gmaps-frame-orange {
+        max-width: 264px;
+      }
     }
-    .gmaps-btn-icon {
-      width: 15px !important;
-      height: 15px !important;
-      min-width: 15px !important;
-      max-width: 15px !important;
-      min-height: 15px !important;
-      max-height: 15px !important;
+    .ds-gmaps-frame-orange:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 42px rgba(250, 90, 0, 0.38);
     }
-    .gmaps-btn-circle {
-      width: 30px !important;
-      height: 30px !important;
-      min-width: 30px !important;
-      max-width: 30px !important;
-      border-radius: 9999px !important;
-      display: flex !important;
-      align-items: center !important;
-      justify-content: center !important;
-      flex-shrink: 0 !important;
+
+    /* Moldura Verde (Card 2 - Villa Plaza Park Tapanã) */
+    .ds-gmaps-frame-green {
+      background-color: #00B359;
+      border-radius: 26px;
+      padding: 10px;
+      box-shadow: 0 14px 34px rgba(0, 179, 89, 0.28);
+      width: 100%;
+      max-width: 100%;
+      flex-shrink: 0;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    @media (min-width: 1024px) {
+      .ds-gmaps-frame-green {
+        max-width: 264px;
+      }
+    }
+    .ds-gmaps-frame-green:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 42px rgba(0, 179, 89, 0.38);
+    }
+
+    /* Miolo Branco do Card Google Maps */
+    .ds-gmaps-inner {
+      background: #FFFFFF;
+      border-radius: 18px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.04);
+    }
+
+    /* 5 Botões de Ação Circulares */
+    .ds-gmaps-circle-btn {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 3px auto;
+      transition: transform 0.15s ease;
+      cursor: pointer;
+    }
+    .ds-gmaps-circle-btn:hover {
+      transform: scale(1.08);
+    }
+    .ds-gmaps-circle-btn.primary {
+      background-color: #007fa3;
+      color: #FFFFFF;
+      box-shadow: 0 2px 6px rgba(0, 127, 163, 0.35);
+    }
+    .ds-gmaps-circle-btn.secondary {
+      background-color: #e0f2f7;
+      color: #007fa3;
+    }
+
+    /* Toast Flutuante */
+    #gmapsToast {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: #1e293b;
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 30px;
+      font-size: 13px;
+      opacity: 0;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 100;
+      pointer-events: none;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+    }
+    #gmapsToast.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
     }
     /* ==========================================================================
        DEFINIÇÃO DA TIPOGRAFIA MARVIN ROUND (MANCHETES / DISPLAY - PESO 800)
@@ -3290,7 +3358,7 @@
           >
         </div>
 
-        <div class="bf-container relative z-10">
+        <div class="bf-container relative z-20">
 
           <!-- Cabeçalho Centralizado do FAQ -->
           <div class="text-center mb-8 sm:mb-10 lg:mb-12 px-2">
@@ -3447,400 +3515,432 @@
 
     </div><!-- /ds-sky-stage -->
 
-    <!-- ==========================================================================
-         S8 — NOSSAS UNIDADES & RODAPÉ INTEGRADO (FIDELIDADE MOCKUP FIGMA)
+        <!-- ==========================================================================
+         S8 — NOSSAS UNIDADES & RODAPÉ INTEGRADO (NOVO DESIGN OFICIAL)
          ========================================================================== -->
-    <section id="filiais" class="ds-unidades-wrapper relative w-full overflow-hidden text-white scroll-mt-20" aria-label="Nossas Unidades">
+    <section id="filiais" class="relative w-full overflow-hidden flex flex-col justify-between pt-4 sm:pt-6 pb-4 sm:pb-5 select-none scroll-mt-20" style="min-height: 576px;" aria-label="Nossas Unidades">
 
-      <!-- FUNDO CENOGRÁFICO INTEGRADO VETORIAL FIGMA (CÉU AZUL, MORROS LARANJAS, MORROS VERDES E CURVA ORGÂNICA DO RODAPÉ) -->
-      <div class="ds-unidades-bg-landscape hidden lg:block" aria-hidden="true">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1100" fill="none" class="w-full h-full block" preserveAspectRatio="none">
-          <defs>
-            <linearGradient id="dsSkyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%" stop-color="#EDF5FD" />
-              <stop offset="60%" stop-color="#E2F2FC" />
-              <stop offset="100%" stop-color="#E2F2FC" />
-            </linearGradient>
-          </defs>
+    <!-- ================= FUNDO CENOGRÁFICO VETORIAL COMPLETO ================= -->
+    <div class="absolute inset-0 w-full h-full pointer-events-none select-none z-0">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" fill="none" class="w-full h-full block" preserveAspectRatio="none">
+        <defs>
+          <linearGradient id="skyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#EDF6FD" />
+            <stop offset="45%" stop-color="#E2F2FC" />
+            <stop offset="100%" stop-color="#E2F2FC" />
+          </linearGradient>
+        </defs>
 
-          <!-- Fundo Céu Azul Suave (continuação perfeita da ds-sky-stage) -->
-          <rect width="1920" height="1100" fill="url(#dsSkyGrad)" />
+        <!-- 1. Céu Azul Suave no Topo -->
+        <rect width="1920" height="1080" fill="url(#skyGrad)" />
 
-          <!-- 1. Morro Orgânico Laranja Esquerdo -->
-          <path d="M 0,330 C 50,300 110,330 135,430 C 160,540 130,700 80,800 C 50,845 15,865 0,870 Z" fill="#FA5A00" />
+        <!-- 2. Formas Laterais Orgânicas Superiores -->
+        <!-- Morro Orgânico Laranja Esquerdo -->
+        <path d="M 0,100 C 70,80 140,130 150,230 C 160,330 120,420 50,470 C 25,490 10,500 0,510 Z" fill="#FA5A00" />
+        <!-- Morro Orgânico Verde Claro Esquerdo -->
+        <path d="M 0,360 C 60,370 120,420 140,490 C 160,580 130,690 60,760 C 30,790 10,810 0,820 Z" fill="#00B359" />
 
-          <!-- 2. Morro Orgânico Laranja Direito -->
-          <path d="M 1920,140 C 1870,150 1815,200 1795,290 C 1765,420 1785,620 1825,780 C 1860,920 1905,1020 1920,1050 Z" fill="#FA5A00" />
+        <!-- Morro Orgânico Laranja Direito -->
+        <path d="M 1920,30 C 1850,40 1780,100 1760,190 C 1735,300 1760,420 1810,510 C 1855,590 1895,640 1920,660 Z" fill="#FA5A00" />
+        <!-- Morro Orgânico Verde Claro Superior Direito -->
+        <path d="M 1920,240 C 1850,250 1790,320 1770,430 C 1745,570 1775,730 1835,860 C 1870,940 1905,990 1920,1010 Z" fill="#00B359" />
 
-          <!-- 3. Morro Verde Claro Superior Direito -->
-          <path d="M 1920,240 C 1860,250 1810,310 1790,420 C 1760,570 1780,750 1830,880 C 1870,980 1905,1050 1920,1080 Z" fill="#00B359" />
+        <!-- 3. ONDA PRINCIPAL DO FUNDO VERDE ESCURO FLORESTA (#027C4F) QUE PASSA POR TRÁS DO CONTAINER -->
+        <!-- Começa na esquerda em torno de y=320, passa por trás do container em y=370-390 e sobe na direita até y=200 -->
+        <path d="M 0,330 C 180,270 420,330 680,375 C 960,395 1320,375 1580,300 C 1740,250 1840,210 1920,190 L 1920,1080 L 0,1080 Z" fill="#027C4F" />
 
-          <!-- 4. Morro Verde Claro Superior Esquerdo (Atrás da Estrela) -->
-          <path d="M 0,600 C 45,560 100,550 150,600 C 205,650 240,710 280,735 C 320,750 380,745 440,745 L 440,1100 L 0,1100 Z" fill="#00B359" opacity="0.95" />
+        <!-- 4. Morro Verde Claro Inferior Esquerdo (Piso sob a nuvem esquerda) -->
+        <path d="M 0,690 C 120,700 260,750 380,840 C 490,925 580,1005 630,1080 L 0,1080 Z" fill="#00B359" />
 
-          <!-- 5. ONDA / DOBRA PRINCIPAL DO RODAPÉ (VERDE ESCURO FLORESTA OFICIAL #027C4F) -->
-          <!-- A curva começa no canto superior esquerdo, faz a dobra orgânica com crista, desce sob a estrela e cards (y=740), corre horizontalmente e sobe suavemente à direita -->
-          <path d="M 0,480 C 30,450 60,380 95,390 C 135,400 180,640 240,710 C 290,735 340,740 420,740 C 800,740 1200,740 1650,740 C 1740,740 1790,620 1835,430 C 1870,290 1895,250 1920,240 L 1920,1100 L 0,1100 Z" fill="#027C4F" />
+        <!-- 5. Morro Verde Claro Inferior Direito (Piso sob o balão e nuvem direita) -->
+        <path d="M 1280,1080 C 1410,980 1560,895 1700,845 C 1810,805 1880,800 1920,810 L 1920,1080 Z" fill="#00B359" />
+      </svg>
+    </div>
 
-          <!-- 6. Morro Verde Claro Inferior Esquerdo (Piso sob a nuvem esquerda) -->
-          <path d="M 0,690 C 70,695 160,730 250,790 C 350,860 440,920 520,1100 L 0,1100 Z" fill="#00B359" />
+    <!-- ================= CONTAINER OFICIAL IDÊNTICO A NOVOFOOTER.HTML (ANEXO 3) ================= -->
+    <div class="relative z-20 w-full max-w-[960px] mx-auto px-3 sm:px-4 mt-2 sm:mt-3 mb-4 sm:mb-6">
+      
+      <!-- WRAPPER COM BORDA/FUNDO VERDE DIREITO CONFORME FIGMA -->
+      <div class="relative bg-[#00B359] rounded-[32px] sm:rounded-[44px] p-0 shadow-[0_20px_50px_rgba(0,0,0,0.08)]">
+        
+        <!-- CARD BRANCO PRINCIPAL (Deixa visível o contorno verde da direita) -->
+        <div class="relative bg-white rounded-[30px] sm:rounded-[40px] p-4 sm:pl-9 sm:pr-5 sm:pt-7 sm:pb-6 z-10 text-[#202124] mr-1.5 sm:mr-3.5">
 
-          <!-- 7. Morro Verde Claro Inferior Direito (Piso sob o balão e nuvem direita) -->
-          <path d="M 1380,1100 C 1470,1020 1570,950 1680,890 C 1780,840 1860,825 1920,835 L 1920,1100 Z" fill="#00B359" />
-        </svg>
-      </div>
+          <!-- Curva Verde no canto inferior esquerdo sob o card e a estrela -->
+          <div class="absolute -bottom-0.5 -left-0.5 w-28 sm:w-40 h-14 sm:h-20 overflow-hidden pointer-events-none z-0 rounded-bl-[30px] sm:rounded-bl-[40px]">
+            <svg viewBox="0 0 160 80" fill="none" class="w-full h-full">
+              <path d="M0,80 L160,80 C105,80 55,62 25,32 C10,16 2,6 0,0 Z" fill="#016836" />
+            </svg>
+          </div>
 
-      <!-- FORMAS ORGÂNICAS LATERAIS DE PROFUNDIDADE (FIGMA PRINT) -->
-      <div class="ds-organic-orange-left lg:hidden" aria-hidden="true"></div>
-      <div class="ds-organic-orange-right lg:hidden" aria-hidden="true"></div>
-      <div class="ds-organic-green-left lg:hidden" aria-hidden="true"></div>
-      <div class="ds-organic-green-right lg:hidden" aria-hidden="true"></div>
+          <!-- ESTRELA 3D SORRIDENTE DECORATIVA (CANTO INFERIOR ESQUERDO) -->
+          <div class="absolute -bottom-2 -left-2 sm:-bottom-4 sm:-left-5 w-16 sm:w-20 lg:w-24 z-20 pointer-events-none select-none">
+            <!-- 3 Faíscas / raios decorativos amarelos -->
+            <svg class="absolute -top-3.5 -left-1 w-5 h-5 sm:w-6 sm:h-6 text-[#FFD200]" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="4.5" stroke-linecap="round">
+              <line x1="7" y1="22" x2="2" y2="17" />
+              <line x1="12" y1="14" x2="6" y2="7" />
+              <line x1="20" y1="9" x2="17" y2="2" />
+            </svg>
+            <img src="assets/3DObjetos/estrela-sorridente-3d.webp" alt="Estrela decorativa" class="w-full h-auto object-contain drop-shadow-md" loading="eager">
+          </div>
 
-      <!-- CONTAINER PRINCIPAL: FIDELIDADE TOTAL FIGMA 1920X1100 -->
-      <div class="ds-unidades-container relative z-20 pt-4 sm:pt-6 lg:pt-8 pb-4">
+          <!-- GRID INTERNA: COLUNA ESQUERDA (TEXTO + 4 ÍCONES) E COLUNA DIREITA (2 CARDS MAPS) -->
+          <div class="flex flex-col lg:flex-row items-center lg:items-start justify-between gap-6 lg:gap-3 relative z-10">
 
-        <!-- GRID PRINCIPAL: 3 BLOCOS LADO A LADO COM ESPAÇAMENTO UNIFORME (SEM VÃO BRANCO) -->
-        <div class="flex flex-col lg:flex-row items-stretch justify-center gap-4 sm:gap-5 lg:gap-5 xl:gap-6">
+            <!-- ================= COLUNA ESQUERDA: INFOS & FEATURES ================= -->
+            <div class="w-full lg:w-[350px] xl:w-[355px] flex flex-col items-start text-left pt-0.5 shrink-0">
 
-          <!-- ================= COLUNA ESQUERDA: CARD BRANCO INSTITUCIONAL COMPACTO ================= -->
-          <div class="w-full lg:w-[41%] xl:w-[40.5%] bg-white text-[#202124] rounded-[32px] sm:rounded-[40px] shadow-[0_20px_50px_rgba(0,0,0,0.12)] p-6 sm:p-8 lg:p-10 xl:p-11 relative z-20 flex flex-col justify-start shrink-0">
-            
-            <!-- ESTRELA 3D SORRIDENTE DECORATIVA (CANTO INFERIOR ESQUERDO EXTERNO, SEM COBRIR ÍCONES) -->
-            <div class="absolute -bottom-6 -left-8 sm:-bottom-8 sm:-left-12 lg:-bottom-10 lg:-left-14 w-32 sm:w-38 lg:w-42 z-30 pointer-events-none ds-float-star select-none">
-              <!-- 3 Faíscas / raios decorativos amarelos -->
-              <svg class="absolute -top-3.5 -left-3.5 w-7 h-7 sm:w-8 sm:h-8 text-[#FFD200]" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="4.5" stroke-linecap="round">
-                <line x1="8" y1="24" x2="2" y2="18" />
-                <line x1="12" y1="16" x2="4" y2="8" />
-                <line x1="20" y1="10" x2="16" y2="2" />
-              </svg>
-              <img src="assets/3DObjetos/estrela-sorridente-3d.webp" alt="Estrela decorativa" class="w-full h-auto object-contain drop-shadow-xl" loading="eager">
-            </div>
-
-            <div class="flex flex-col items-start text-left mb-3 sm:mb-4">
               <!-- Badge / Pill: NOSSAS UNIDADES -->
-              <span class="inline-flex items-center px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-wider bg-[#FFF0E5] text-[#FA5A00] mb-3 sm:mb-4 shadow-2xs font-fredoka">
+              <span class="inline-flex items-center px-3.5 py-1 rounded-full text-[11px] font-black uppercase tracking-wider bg-[#FEF3C7] text-[#FA5A00] mb-2 font-fredoka shadow-2xs">
                 NOSSAS UNIDADES
               </span>
 
-              <!-- Título Display Verde com Curva Laranja (Fidelidade Mockup Fredoka/Plus Jakarta Sans) -->
-              <h2 class="ds-unidades-title text-3xl sm:text-4xl lg:text-[44px] xl:text-[48px] mb-2 leading-[1.08] font-black text-[#027C4F]">
-                Sempre
-                <span class="block w-22 sm:w-28 h-2.5 my-1">
-                  <svg viewBox="0 0 100 12" fill="none" class="w-full h-full">
-                    <path d="M2 3.5C28 10.5 72 10.5 98 3.5" stroke="#FA5A00" stroke-width="5" stroke-linecap="round"/>
-                  </svg>
-                </span>
-                pertinho de você!
+              <!-- Título Display Fredoka: "Tem um Vila Plaza Park" (com destaque em laranja) + "pertinho de você." -->
+              <h2 class="text-[23px] sm:text-[28px] lg:text-[30px] leading-[1.12] font-black text-[#016836] font-fredoka mb-1.5 tracking-tight" style="text-transform: none;">
+                <span class="block">Tem um <span class="text-[#FA5A00]">Vila Plaza Park</span></span>
+                <span class="block mt-0.5">pertinho de você.</span>
               </h2>
 
-              <!-- Subtítulo Informativo -->
-              <p class="text-xs sm:text-sm lg:text-base text-[#4A4D59] font-medium leading-relaxed max-w-sm">
+              <!-- Subtítulo (exatamente 2 linhas) -->
+              <p class="text-[12px] sm:text-[13px] text-[#4A4D59] font-medium leading-[1.38] max-w-[335px] mt-1.5 mb-5">
                 Escolha a unidade mais próxima e venha viver momentos inesquecíveis no Vila Plaza Park.
               </p>
-            </div>
 
-            <!-- Grade de 4 Features em Ícones Circulares com Rótulos (Aproximados do texto conforme mockup) -->
-            <div class="grid grid-cols-4 gap-2 sm:gap-3 w-full mt-3 sm:mt-4">
+              <!-- 4 Features em Ícones Arredondados com Rótulos -->
+              <div class="grid grid-cols-4 gap-2 w-full max-w-[340px] pl-0 sm:pl-1">
 
-              <!-- 1. Fácil acesso -->
-              <div class="flex flex-col items-center text-center group">
-                <div class="w-13 h-13 sm:w-14 sm:h-14 lg:w-16 lg:h-16 rounded-2xl bg-[#FFF3D6] flex items-center justify-center mb-2 shadow-2xs transition-transform duration-200 group-hover:scale-105">
-                  <svg class="w-6 h-6 sm:w-7 sm:h-7 text-[#FA5A00]" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z"/>
-                  </svg>
-                </div>
-                <span class="text-[11px] sm:text-xs font-bold text-[#1E293B] leading-tight" style="font-family: 'Fredoka', 'Plus Jakarta Sans', sans-serif;">Fácil<br>acesso</span>
-              </div>
-
-              <!-- 2. Localização privilegiada -->
-              <div class="flex flex-col items-center text-center group">
-                <div class="w-13 h-13 sm:w-14 sm:h-14 lg:w-16 lg:h-16 rounded-2xl bg-[#E8F1FF] flex items-center justify-center mb-2 shadow-2xs transition-transform duration-200 group-hover:scale-105">
-                  <svg class="w-6 h-6 sm:w-7 sm:h-7 text-[#2563EB]" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
-                  </svg>
-                </div>
-                <span class="text-[11px] sm:text-xs font-bold text-[#1E293B] leading-tight" style="font-family: 'Fredoka', 'Plus Jakarta Sans', sans-serif;">Localização<br>privilegiada</span>
-              </div>
-
-              <!-- 3. Ambiente seguro -->
-              <div class="flex flex-col items-center text-center group">
-                <div class="w-13 h-13 sm:w-14 sm:h-14 lg:w-16 lg:h-16 rounded-2xl bg-[#E8F8EE] flex items-center justify-center mb-2 shadow-2xs transition-transform duration-200 group-hover:scale-105">
-                  <svg class="w-6 h-6 sm:w-7 sm:h-7 text-[#16A34A]" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/>
-                  </svg>
-                </div>
-                <span class="text-[11px] sm:text-xs font-bold text-[#1E293B] leading-tight" style="font-family: 'Fredoka', 'Plus Jakarta Sans', sans-serif;">Ambiente<br>seguro</span>
-              </div>
-
-              <!-- 4. Diversão para toda a família -->
-              <div class="flex flex-col items-center text-center group">
-                <div class="w-13 h-13 sm:w-14 sm:h-14 lg:w-16 lg:h-16 rounded-2xl bg-[#FFEAEA] flex items-center justify-center mb-2 shadow-2xs transition-transform duration-200 group-hover:scale-105">
-                  <svg class="w-6 h-6 sm:w-7 sm:h-7 text-[#E11D48]" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-                  </svg>
-                </div>
-                <span class="text-[10px] sm:text-xs font-bold text-[#1E293B] leading-tight" style="font-family: 'Fredoka', 'Plus Jakarta Sans', sans-serif;">Diversão<br>para toda<br>a família</span>
-              </div>
-
-            </div>
-
-          </div><!-- /coluna esquerda (card branco) -->
-
-
-          <!-- ================= COLUNA DIREITA: CARDS GOOGLE MAPS (LADO A LADO, SEM VÃO BRANCO) ================= -->
-          <div class="w-full lg:w-[57%] xl:w-[57.5%] flex flex-col sm:flex-row gap-4 sm:gap-5 items-stretch relative z-20">
-
-            <!-- ==================== CARD 1: VILLA PLAZA PARK (MOLDURA LARANJA) ==================== -->
-            <div class="ds-gmaps-frame-orange flex-1 w-full sm:w-1/2 flex flex-col text-[#202124]">
-              <div class="ds-gmaps-inner flex-1 flex flex-col justify-between">
-
-                <div>
-                  <!-- Foto Topo Real Plaza (já contém botão fechar oficial) -->
-                  <div class="relative w-full h-[180px] sm:h-[200px] md:h-[220px] lg:h-[240px] xl:h-[250px] overflow-hidden bg-slate-100">
-                    <img src="assets/images/Crianca-correndo-espaco-kids-aventura.webp" alt="Villa Plaza Park (Plaza)" class="w-full h-full object-cover block" loading="eager">
+                <!-- 1. Fácil acesso -->
+                <div class="flex flex-col items-center text-center group">
+                  <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-[16px] bg-[#FFF3D6] flex items-center justify-center mb-1 shadow-2xs transition-transform duration-200 group-hover:scale-105">
+                    <svg class="w-5 h-5 sm:w-6 sm:h-6 text-[#FA5A00]" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z"/>
+                    </svg>
                   </div>
+                  <span class="text-[10px] sm:text-[10.5px] font-bold text-[#1E1B4B] font-fredoka leading-tight">Fácil<br>acesso</span>
+                </div>
 
-                  <!-- Conteúdo do Card -->
-                  <div class="p-3 sm:p-3.5 flex flex-col">
-                    <h3 class="text-[15px] sm:text-[16px] font-bold text-[#202124] leading-tight tracking-tight mb-0.5 font-comfortaa">
-                      Villa Plaza Park
-                    </h3>
+                <!-- 2. Localização privilegiada -->
+                <div class="flex flex-col items-center text-center group">
+                  <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-[16px] bg-[#E1EFFF] flex items-center justify-center mb-1 shadow-2xs transition-transform duration-200 group-hover:scale-105">
+                    <svg class="w-5 h-5 sm:w-6 sm:h-6 text-[#2563EB]" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                    </svg>
+                  </div>
+                  <span class="text-[9.5px] sm:text-[10px] font-bold text-[#1E1B4B] font-fredoka leading-tight">Localização<br>privilegiada</span>
+                </div>
 
-                    <!-- Avaliação e Categoria -->
-                    <div class="flex items-center gap-1.5 text-xs mb-0.5">
-                      <span class="font-bold text-[#202124]">4,6</span>
-                      <div class="flex text-[#F59E0B] text-xs">
-                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i>
-                      </div>
-                      <span class="text-[#70757a] font-normal">(10)</span>
-                    </div>
-                    <div class="text-[10.5px] text-[#70757a] mb-2 font-normal font-comfortaa">Parque</div>
+                <!-- 3. Ambiente seguro -->
+                <div class="flex flex-col items-center text-center group">
+                  <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-[16px] bg-[#DDF8E6] flex items-center justify-center mb-1 shadow-2xs transition-transform duration-200 group-hover:scale-105">
+                    <svg class="w-5 h-5 sm:w-6 sm:h-6 text-[#16A34A]" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/>
+                    </svg>
+                  </div>
+                  <span class="text-[10px] sm:text-[10.5px] font-bold text-[#1E1B4B] font-fredoka leading-tight">Ambiente<br>seguro</span>
+                </div>
 
-                    <!-- Abas Google Maps -->
-                    <div class="flex items-center gap-4 border-b border-[#dadce0] text-[10.5px] font-medium pb-1.5 mb-2">
-                      <span class="text-[#0077D4] font-bold relative pb-1.5 -mb-1.5 border-b-2 border-[#0077D4]">Visão geral</span>
-                      <span class="text-[#5f6368] hover:text-[#202124] cursor-pointer">Avaliações</span>
-                      <span class="text-[#5f6368] hover:text-[#202124] cursor-pointer">Sobre</span>
-                    </div>
+                <!-- 4. Diversão para toda a família -->
+                <div class="flex flex-col items-center text-center group">
+                  <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-[16px] bg-[#FEE4E9] flex items-center justify-center mb-1 shadow-2xs transition-transform duration-200 group-hover:scale-105">
+                    <svg class="w-5 h-5 sm:w-6 sm:h-6 text-[#E11D48]" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                    </svg>
+                  </div>
+                  <span class="text-[9px] sm:text-[9.5px] font-bold text-[#1E1B4B] font-fredoka leading-tight">Diversão<br>para toda<br>a família</span>
+                </div>
 
-                    <!-- Botões de Ação Circulares (Google Maps) -->
-                    <div class="flex items-start justify-between gap-1 text-center py-1 mb-2">
-                      <a href="https://maps.app.goo.gl/3fN1" target="_blank" rel="noopener noreferrer" class="flex flex-col items-center flex-1 group">
-                        <div class="ds-gmaps-circle-btn primary w-8 h-8 sm:w-8.5 sm:h-8.5">
-                          <svg class="w-3.5 h-3.5 fill-white" viewBox="0 0 24 24"><path d="M21.71 11.29l-9-9a1 1 0 0 0-1.42 0l-9 9a1 1 0 0 0 1.42l9 9a1 1 0 0 0 1.42 0l9-9a1 1 0 0 0 0-1.42zM14 14.5V12h-4v3H8v-4a1 1 0 0 1 1-1h5V7.5l3.5 3.5-3.5 3.5z"/></svg>
+              </div>
+
+            </div><!-- /coluna esquerda -->
+
+
+            <!-- ================= COLUNA DIREITA: 2 CARDS GOOGLE MAPS (NO MOBILE OCUPAM TODA A LARGURA) ================= -->
+            <div class="flex flex-col lg:flex-row gap-3 sm:gap-3.5 items-stretch lg:items-stretch justify-center lg:justify-end shrink-0 w-full lg:w-auto lg:-my-4">
+
+              <!-- ==================== CARD 1: VILLA PLAZA PARK (MOLDURA LARANJA) ==================== -->
+              <div class="ds-gmaps-frame-orange text-[#202124]">
+                <div class="ds-gmaps-inner">
+
+                  <!-- Foto Topo Real Plaza (Abre Google Maps ao clicar) -->
+                  <a href="https://maps.app.goo.gl/RcJ2S4vRKk49P6H46" target="_blank" rel="noopener noreferrer" class="relative w-full h-[140px] sm:h-[150px] lg:h-[128px] overflow-hidden bg-slate-100 shrink-0 block group/photo" title="Ver Villa Plaza Park no Google Maps">
+                    <img src="assets/images/Crianca-correndo-espaco-kids-aventura.webp" alt="Villa Plaza Park" class="w-full h-full object-cover block transition-transform duration-300 group-hover/photo:scale-105" loading="eager">
+                  </a>
+
+                  <!-- Conteúdo Google Maps -->
+                  <div class="p-3 sm:p-2.5 pb-2.5 flex flex-col flex-1 justify-between font-roboto">
+                    
+                    <div>
+                      <!-- Nome do Local (Abre Google Maps ao clicar) -->
+                      <h3 class="text-[14px] sm:text-[14px] font-bold text-[#1E1B4B] leading-tight mb-0.5 tracking-tight font-roboto">
+                        <a href="https://maps.app.goo.gl/RcJ2S4vRKk49P6H46" target="_blank" rel="noopener noreferrer" class="hover:underline hover:text-[#007fa3] transition-colors">
+                          Villa Plaza Park
+                        </a>
+                      </h3>
+
+                      <!-- Nota e Categoria (Abre Avaliações no Google Maps) -->
+                      <a href="https://maps.app.goo.gl/RcJ2S4vRKk49P6H46" target="_blank" rel="noopener noreferrer" class="flex items-center gap-1 text-[11px] mb-0.5 hover:underline group/rate" title="Ver avaliações no Google Maps">
+                        <span class="font-bold text-[#202124]">4,6</span>
+                        <div class="flex text-[#F59E0B] text-[10px] gap-0.5">
+                          <i class="fa-solid fa-star"></i>
+                          <i class="fa-solid fa-star"></i>
+                          <i class="fa-solid fa-star"></i>
+                          <i class="fa-solid fa-star"></i>
+                          <i class="fa-solid fa-star-half-stroke"></i>
                         </div>
-                        <span class="text-[8.5px] font-semibold text-[#0077D4]">Rotas</span>
+                        <span class="text-[#70757A] font-normal text-[10.5px]">(10)</span>
                       </a>
-                      <button type="button" class="flex flex-col items-center flex-1 group">
-                        <div class="ds-gmaps-circle-btn secondary w-8 h-8 sm:w-8.5 sm:h-8.5">
-                          <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M17 3H7c-1.1 0-1.99.9-1.99 2L5 21l7-3 7 3V5c0-1.1-.9-2-2-2z"/></svg>
-                        </div>
-                        <span class="text-[8.5px] font-semibold text-[#0077D4]">Salvar</span>
-                      </button>
-                      <button type="button" class="flex flex-col items-center flex-1 group">
-                        <div class="ds-gmaps-circle-btn secondary w-8 h-8 sm:w-8.5 sm:h-8.5">
-                          <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"/></svg>
-                        </div>
-                        <span class="text-[8.5px] font-semibold text-[#0077D4]">Próximo</span>
-                      </button>
-                      <button type="button" class="flex flex-col items-center flex-1 group">
-                        <div class="ds-gmaps-circle-btn secondary w-8 h-8 sm:w-8.5 sm:h-8.5">
-                          <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M17 1.01L7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 19H7V5h10v14z"/></svg>
-                        </div>
-                        <span class="text-[8px] leading-tight font-semibold text-[#0077D4] max-w-[46px]">Enviar p/ smartphone</span>
-                      </button>
-                      <button type="button" class="flex flex-col items-center flex-1 group">
-                        <div class="ds-gmaps-circle-btn secondary w-8 h-8 sm:w-8.5 sm:h-8.5">
-                          <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92c0-1.61-1.31-2.92-2.92-2.92z"/></svg>
-                        </div>
-                        <span class="text-[8.5px] font-semibold text-[#0077D4]">Compartilhar</span>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Detalhes de Endereço e Horário -->
-                <div class="p-3 sm:p-3.5 pt-0 space-y-1.5 border-t border-[#dadce0] text-[10px] text-[#3c4043] leading-snug">
-                  <div class="flex items-start gap-1.5 pt-1.5">
-                    <svg class="w-3.5 h-3.5 text-[#0077D4] flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-                    <span>Parque no Mezanino do 3B Supermercado Plaza - Av. Gov. José Malcher, 2388 - São Brás, Belém - PA, 66060-232</span>
-                  </div>
-                  <div class="flex items-center justify-between">
-                    <div class="flex items-center gap-1.5">
-                      <svg class="w-3.5 h-3.5 text-[#0077D4] flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-                      <span class="font-medium text-[#202124]">Aberto · Fecha 22:00</span>
-                    </div>
-                    <svg class="w-3 h-3 text-[#5f6368]" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
-                  </div>
-                </div>
-
-              </div>
-            </div>
-
-
-            <!-- ==================== CARD 2: VILLA PLAZA PARK (TAPANÃ - MOLDURA VERDE) ==================== -->
-            <div class="ds-gmaps-frame-green flex-1 w-full sm:w-1/2 flex flex-col text-[#202124]">
-              <div class="ds-gmaps-inner flex-1 flex flex-col justify-between">
-
-                <div>
-                  <!-- Foto Topo Real Tapanã (já contém botão fechar oficial) -->
-                  <div class="relative w-full h-[180px] sm:h-[200px] md:h-[220px] lg:h-[240px] xl:h-[250px] overflow-hidden bg-slate-100">
-                    <img src="assets/images/Espaco-baby-mini-escorregador-e-tunel.webp" alt="Villa Plaza Park (Tapanã)" class="w-full h-full object-cover block" loading="eager">
-                  </div>
-
-                  <!-- Conteúdo do Card -->
-                  <div class="p-3 sm:p-3.5 flex flex-col">
-                    <h3 class="text-[15px] sm:text-[16px] font-bold text-[#202124] leading-tight tracking-tight mb-0.5 font-comfortaa">
-                      Villa Plaza Park (Tapanã)
-                    </h3>
-
-                    <!-- Avaliação e Categoria -->
-                    <div class="flex items-center gap-1.5 text-xs mb-0.5">
-                      <span class="font-bold text-[#202124]">4,6</span>
-                      <div class="flex text-[#F59E0B] text-xs">
-                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i>
+                      <div class="text-[10px] text-[#70757A] mb-1.5 font-normal">
+                        Parque
                       </div>
-                      <span class="text-[#70757a] font-normal">(10)</span>
-                    </div>
-                    <div class="text-[10.5px] text-[#70757a] mb-2 font-normal font-comfortaa">Parque</div>
 
-                    <!-- Abas Google Maps -->
-                    <div class="flex items-center gap-4 border-b border-[#dadce0] text-[10.5px] font-medium pb-1.5 mb-2">
-                      <span class="text-[#0077D4] font-bold relative pb-1.5 -mb-1.5 border-b-2 border-[#0077D4]">Visão geral</span>
-                      <span class="text-[#5f6368] hover:text-[#202124] cursor-pointer">Avaliações</span>
-                      <span class="text-[#5f6368] hover:text-[#202124] cursor-pointer">Sobre</span>
+                      <!-- Abas Google Maps (Abrem a página oficial no Google Maps em nova guia) -->
+                      <div class="flex items-center gap-3 border-b border-[#E5E7EB] text-[10px] font-medium pb-1 mb-2">
+                        <span class="text-[#007fa3] font-bold relative pb-1 -mb-1 border-b-[2.5px] border-[#007fa3] cursor-default">Visão geral</span>
+                        <a href="https://maps.app.goo.gl/RcJ2S4vRKk49P6H46" target="_blank" rel="noopener noreferrer" class="text-[#5F6368] hover:text-[#202124] hover:underline transition-colors" title="Avaliações no Google Maps">Avaliações</a>
+                        <a href="https://maps.app.goo.gl/RcJ2S4vRKk49P6H46" target="_blank" rel="noopener noreferrer" class="text-[#5F6368] hover:text-[#202124] hover:underline transition-colors" title="Sobre o parque no Google Maps">Sobre</a>
+                      </div>
+
+                      <!-- 4 Botões de Ação Circulares 100% Funcionais -->
+                      <div class="grid grid-cols-4 gap-1.5 text-center mb-2">
+                        
+                        <!-- 1. Rotas (Abre link direto de rotas em nova guia) -->
+                        <a href="https://maps.app.goo.gl/Uof4zDfviD1XEToa7" target="_blank" rel="noopener noreferrer" class="flex flex-col items-center group" title="Como chegar no Villa Plaza Park">
+                          <div class="ds-gmaps-circle-btn primary">
+                            <svg class="w-3.5 h-3.5 fill-white" viewBox="0 0 24 24"><path d="M21.71 11.29l-9-9a1 1 0 0 0-1.42 0l-9 9a1 1 0 0 0 1.42 0l9 9a1 1 0 0 0 1.42 0l9-9a1 1 0 0 0 0-1.42zM14 14.5V12h-4v3H8v-4a1 1 0 0 1 1-1h5V7.5l3.5 3.5-3.5 3.5z"/></svg>
+                          </div>
+                          <span class="text-[8.5px] font-semibold text-[#007fa3] group-hover:underline">Rotas</span>
+                        </a>
+
+                        <!-- 2. Salvar (Abre no Google Maps para salvar) -->
+                        <a href="https://maps.app.goo.gl/RcJ2S4vRKk49P6H46" target="_blank" rel="noopener noreferrer" class="flex flex-col items-center group bg-transparent border-0 p-0 cursor-pointer" title="Salvar no Google Maps">
+                          <div class="ds-gmaps-circle-btn secondary">
+                            <svg class="w-3 h-3 fill-current" viewBox="0 0 24 24"><path d="M17 3H7c-1.1 0-1.99.9-1.99 2L5 21l7-3 7 3V5c0-1.1-.9-2-2-2z"/></svg>
+                          </div>
+                          <span class="text-[8.5px] font-semibold text-[#007fa3] group-hover:underline">Salvar</span>
+                        </a>
+
+                        <!-- 3. Próximo (Abre no Google Maps) -->
+                        <a href="https://maps.app.goo.gl/RcJ2S4vRKk49P6H46" target="_blank" rel="noopener noreferrer" class="flex flex-col items-center group" title="Ver no Google Maps">
+                          <div class="ds-gmaps-circle-btn secondary">
+                            <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><circle cx="12" cy="12" r="6.5" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+                          </div>
+                          <span class="text-[8.5px] font-semibold text-[#007fa3] group-hover:underline">Próximo</span>
+                        </a>
+
+                        <!-- 4. Compartilhar (Abre modal oficial idêntico ao Google Maps) -->
+                        <button type="button" onclick="openShareModal('plaza')" class="flex flex-col items-center group bg-transparent border-0 p-0 cursor-pointer" title="Compartilhar localização">
+                          <div class="ds-gmaps-circle-btn secondary">
+                            <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z"/></svg>
+                          </div>
+                          <span class="text-[8.5px] font-semibold text-[#007fa3] group-hover:underline">Compartilhar</span>
+                        </button>
+
+                      </div>
                     </div>
 
-                    <!-- Botões de Ação Circulares (Google Maps) -->
-                    <div class="flex items-start justify-between gap-1 text-center py-1 mb-2">
-                      <a href="https://maps.app.goo.gl/3fN1" target="_blank" rel="noopener noreferrer" class="flex flex-col items-center flex-1 group">
-                        <div class="ds-gmaps-circle-btn primary w-8 h-8 sm:w-8.5 sm:h-8.5">
-                          <svg class="w-3.5 h-3.5 fill-white" viewBox="0 0 24 24"><path d="M21.71 11.29l-9-9a1 1 0 0 0-1.42 0l-9 9a1 1 0 0 0 1.42l9 9a1 1 0 0 0 1.42 0l9-9a1 1 0 0 0 0-1.42zM14 14.5V12h-4v3H8v-4a1 1 0 0 1 1-1h5V7.5l3.5 3.5-3.5 3.5z"/></svg>
-                        </div>
-                        <span class="text-[8.5px] font-semibold text-[#0077D4]">Rotas</span>
+                    <!-- Detalhes de Endereço e Horário (Abrem Google Maps ao clicar) -->
+                    <div class="pt-1.5 border-t border-[#E5E7EB] text-[10px] sm:text-[9.5px] text-[#3C4043] leading-snug space-y-1">
+                      <!-- Linha de Endereço -->
+                      <a href="https://maps.app.goo.gl/Uof4zDfviD1XEToa7" target="_blank" rel="noopener noreferrer" class="flex items-start gap-1.5 hover:underline group/addr">
+                        <svg class="w-3.5 h-3.5 text-[#007fa3] flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3" fill="#007fa3"/></svg>
+                        <span class="group-hover/addr:text-[#007fa3] transition-colors">Parque no Mezanino do 3B Supermercado Plaza - Av. Gov. José Malcher, 2388 - São Brás, Belém - PA, 66060-232</span>
                       </a>
-                      <button type="button" class="flex flex-col items-center flex-1 group">
-                        <div class="ds-gmaps-circle-btn secondary w-8 h-8 sm:w-8.5 sm:h-8.5">
-                          <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M17 3H7c-1.1 0-1.99.9-1.99 2L5 21l7-3 7 3V5c0-1.1-.9-2-2-2z"/></svg>
-                        </div>
-                        <span class="text-[8.5px] font-semibold text-[#0077D4]">Salvar</span>
-                      </button>
-                      <button type="button" class="flex flex-col items-center flex-1 group">
-                        <div class="ds-gmaps-circle-btn secondary w-8 h-8 sm:w-8.5 sm:h-8.5">
-                          <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"/></svg>
-                        </div>
-                        <span class="text-[8.5px] font-semibold text-[#0077D4]">Próximo</span>
-                      </button>
-                      <button type="button" class="flex flex-col items-center flex-1 group">
-                        <div class="ds-gmaps-circle-btn secondary w-8 h-8 sm:w-8.5 sm:h-8.5">
-                          <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M17 1.01L7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 19H7V5h10v14z"/></svg>
-                        </div>
-                        <span class="text-[8px] leading-tight font-semibold text-[#0077D4] max-w-[46px]">Enviar p/ smartphone</span>
-                      </button>
-                      <button type="button" class="flex flex-col items-center flex-1 group">
-                        <div class="ds-gmaps-circle-btn secondary w-8 h-8 sm:w-8.5 sm:h-8.5">
-                          <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92c0-1.61-1.31-2.92-2.92-2.92z"/></svg>
-                        </div>
-                        <span class="text-[8.5px] font-semibold text-[#0077D4]">Compartilhar</span>
-                      </button>
+                      <!-- Linha de Horário -->
+                      <div class="flex items-center gap-1.5">
+                        <svg class="w-3.5 h-3.5 text-[#007fa3] flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 12"/></svg>
+                        <span class="inline-flex items-center gap-1">
+                          <strong class="text-[#15803d] font-semibold">Aberto</strong>
+                          <span>· Fecha 22:00</span>
+                          <svg class="w-2.5 h-2.5 text-[#5F6368] ml-0.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+                        </span>
+                      </div>
                     </div>
-                  </div>
-                </div>
 
-                <!-- Detalhes de Endereço e Horário -->
-                <div class="p-3 sm:p-3.5 pt-0 space-y-1.5 border-t border-[#dadce0] text-[10px] text-[#3c4043] leading-snug">
-                  <div class="flex items-start gap-1.5 pt-1.5">
-                    <svg class="w-3.5 h-3.5 text-[#0077D4] flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-                    <span>Rod. do Tapanã, 597 B<br>Tapanã, Belém - PA, 66825-535</span>
                   </div>
-                  <div class="flex items-center justify-between">
-                    <div class="flex items-center gap-1.5">
-                      <svg class="w-3.5 h-3.5 text-[#0077D4] flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-                      <span class="font-medium text-[#202124]">Aberto · Fecha 22:00</span>
+
+                </div>
+              </div><!-- /card 1 -->
+
+
+              <!-- ==================== CARD 2: VILLA PLAZA PARK TAPANÃ (MOLDURA VERDE) ==================== -->
+              <div class="ds-gmaps-frame-green text-[#202124]">
+                <div class="ds-gmaps-inner">
+
+                  <!-- Foto Topo Real Tapanã (Abre Google Maps ao clicar) -->
+                  <a href="https://maps.google.com/?q=Rod.+do+Tapana+597+B+Belem" target="_blank" rel="noopener noreferrer" class="relative w-full h-[140px] sm:h-[150px] lg:h-[128px] overflow-hidden bg-slate-100 shrink-0 block group/photo" title="Ver Villa Plaza Park Tapanã no Google Maps">
+                    <img src="assets/images/Espaco-baby-mini-escorregador-e-tunel.webp" alt="Villa Plaza Park (Tapanã)" class="w-full h-full object-cover block transition-transform duration-300 group-hover/photo:scale-105" loading="eager">
+                  </a>
+
+                  <!-- Conteúdo Google Maps -->
+                  <div class="p-3 sm:p-2.5 pb-2.5 flex flex-col flex-1 justify-between font-roboto">
+                    
+                    <div>
+                      <!-- Nome do Local (Abre Google Maps ao clicar) -->
+                      <h3 class="text-[14px] sm:text-[14px] font-bold text-[#1E1B4B] leading-tight mb-0.5 tracking-tight font-roboto">
+                        <a href="https://maps.google.com/?q=Rod.+do+Tapana+597+B+Belem" target="_blank" rel="noopener noreferrer" class="hover:underline hover:text-[#007fa3] transition-colors">
+                          Villa Plaza Park (Tapanã)
+                        </a>
+                      </h3>
+
+                      <!-- Nota e Categoria (Abre Google Maps) -->
+                      <a href="https://maps.google.com/?q=Rod.+do+Tapana+597+B+Belem" target="_blank" rel="noopener noreferrer" class="flex items-center gap-1 text-[11px] mb-0.5 hover:underline group/rate" title="Ver avaliações no Google Maps">
+                        <span class="font-bold text-[#202124]">4,6</span>
+                        <div class="flex text-[#F59E0B] text-[10px] gap-0.5">
+                          <i class="fa-solid fa-star"></i>
+                          <i class="fa-solid fa-star"></i>
+                          <i class="fa-solid fa-star"></i>
+                          <i class="fa-solid fa-star"></i>
+                          <i class="fa-solid fa-star-half-stroke"></i>
+                        </div>
+                        <span class="text-[#70757A] font-normal text-[10.5px]">(10)</span>
+                      </a>
+                      <div class="text-[10px] text-[#70757A] mb-1.5 font-normal">
+                        Parque
+                      </div>
+
+                      <!-- Abas Google Maps (Abrem no Google Maps em nova guia) -->
+                      <div class="flex items-center gap-3 border-b border-[#E5E7EB] text-[10px] font-medium pb-1 mb-2">
+                        <span class="text-[#007fa3] font-bold relative pb-1 -mb-1 border-b-[2.5px] border-[#007fa3] cursor-default">Visão geral</span>
+                        <a href="https://maps.google.com/?q=Rod.+do+Tapana+597+B+Belem" target="_blank" rel="noopener noreferrer" class="text-[#5F6368] hover:text-[#202124] hover:underline transition-colors" title="Avaliações no Google Maps">Avaliações</a>
+                        <a href="https://maps.google.com/?q=Rod.+do+Tapana+597+B+Belem" target="_blank" rel="noopener noreferrer" class="text-[#5F6368] hover:text-[#202124] hover:underline transition-colors" title="Sobre no Google Maps">Sobre</a>
+                      </div>
+
+                      <!-- 4 Botões de Ação Circulares 100% Funcionais -->
+                      <div class="grid grid-cols-4 gap-1.5 text-center mb-2">
+                        
+                        <!-- 1. Rotas -->
+                        <a href="https://maps.google.com/?q=Rod.+do+Tapana+597+B+Belem" target="_blank" rel="noopener noreferrer" class="flex flex-col items-center group" title="Como chegar no Villa Plaza Park Tapanã">
+                          <div class="ds-gmaps-circle-btn primary">
+                            <svg class="w-3.5 h-3.5 fill-white" viewBox="0 0 24 24"><path d="M21.71 11.29l-9-9a1 1 0 0 0-1.42 0l-9 9a1 1 0 0 0 1.42 0l9 9a1 1 0 0 0 1.42 0l9-9a1 1 0 0 0 0-1.42zM14 14.5V12h-4v3H8v-4a1 1 0 0 1 1-1h5V7.5l3.5 3.5-3.5 3.5z"/></svg>
+                          </div>
+                          <span class="text-[8.5px] font-semibold text-[#007fa3] group-hover:underline">Rotas</span>
+                        </a>
+
+                        <!-- 2. Salvar -->
+                        <a href="https://maps.google.com/?q=Rod.+do+Tapana+597+B+Belem" target="_blank" rel="noopener noreferrer" class="flex flex-col items-center group bg-transparent border-0 p-0 cursor-pointer" title="Salvar no Google Maps">
+                          <div class="ds-gmaps-circle-btn secondary">
+                            <svg class="w-3 h-3 fill-current" viewBox="0 0 24 24"><path d="M17 3H7c-1.1 0-1.99.9-1.99 2L5 21l7-3 7 3V5c0-1.1-.9-2-2-2z"/></svg>
+                          </div>
+                          <span class="text-[8.5px] font-semibold text-[#007fa3] group-hover:underline">Salvar</span>
+                        </a>
+
+                        <!-- 3. Próximo -->
+                        <a href="https://maps.google.com/?q=Rod.+do+Tapana+597+B+Belem" target="_blank" rel="noopener noreferrer" class="flex flex-col items-center group" title="Ver no Google Maps">
+                          <div class="ds-gmaps-circle-btn secondary">
+                            <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><circle cx="12" cy="12" r="6.5" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+                          </div>
+                          <span class="text-[8.5px] font-semibold text-[#007fa3] group-hover:underline">Próximo</span>
+                        </a>
+
+                        <!-- 4. Compartilhar (Abre modal oficial idêntico ao Google Maps) -->
+                        <button type="button" onclick="openShareModal('tapana')" class="flex flex-col items-center group bg-transparent border-0 p-0 cursor-pointer" title="Compartilhar localização">
+                          <div class="ds-gmaps-circle-btn secondary">
+                            <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z"/></svg>
+                          </div>
+                          <span class="text-[8.5px] font-semibold text-[#007fa3] group-hover:underline">Compartilhar</span>
+                        </button>
+
+                      </div>
                     </div>
-                    <svg class="w-3 h-3 text-[#5f6368]" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+
+                    <!-- Detalhes de Endereço e Horário (Abrem Google Maps ao clicar) -->
+                    <div class="pt-1.5 border-t border-[#E5E7EB] text-[10px] sm:text-[9.5px] text-[#3C4043] leading-snug space-y-1">
+                      <!-- Linha de Endereço -->
+                      <a href="https://maps.google.com/?q=Rod.+do+Tapana+597+B+Belem" target="_blank" rel="noopener noreferrer" class="flex items-start gap-1.5 hover:underline group/addr">
+                        <svg class="w-3.5 h-3.5 text-[#007fa3] flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3" fill="#007fa3"/></svg>
+                        <span class="group-hover/addr:text-[#007fa3] transition-colors">Rod. do Tapanã, 597 B<br>Tapanã, Belém - PA, 66825-535</span>
+                      </a>
+                      <!-- Linha de Horário -->
+                      <div class="flex items-center gap-1.5">
+                        <svg class="w-3.5 h-3.5 text-[#007fa3] flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 12"/></svg>
+                        <span class="inline-flex items-center gap-1">
+                          <strong class="text-[#15803d] font-semibold">Aberto</strong>
+                          <span>· Fecha 22:00</span>
+                          <svg class="w-2.5 h-2.5 text-[#5F6368] ml-0.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+                        </span>
+                      </div>
+                    </div>
+
                   </div>
+
                 </div>
+              </div><!-- /card 2 -->
 
-              </div>
-            </div>
+            </div><!-- /coluna direita -->
 
-          </div><!-- /coluna direita (cards google maps) -->
+          </div><!-- /grid interna -->
 
-        </div><!-- /flex-row principal -->
+        </div><!-- /card branco principal -->
+
+      </div><!-- /wrapper fundo verde -->
+
+    </div><!-- /container oficial novofooter.html -->
 
 
-        <!-- ================= RODAPÉ INTEGRADO (FIGMA HIGH FIDELITY) ================= -->
-        <!-- ONDA / DOBRA RESPONSIVA PARA MOBILE E TABLET (< 1024px) -->
-        <div class="ds-footer-wave-top lg:hidden relative w-full leading-none pointer-events-none z-10 -mb-[2px] mt-6" aria-hidden="true">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 180" fill="none" class="w-full h-14 sm:h-18 md:h-20 block select-none pointer-events-none" preserveAspectRatio="none">
-            <!-- Morro Verde Claro Esquerdo de Fundo -->
-            <path d="M 0,110 C 60,80 120,75 180,105 C 235,130 280,150 340,160 L 0,160 Z" fill="#00B359" opacity="0.9" />
-            <!-- Morro Verde Claro Direito de Fundo -->
-            <path d="M 1220,180 C 1300,140 1370,100 1440,80 L 1440,180 Z" fill="#00B359" opacity="0.9" />
-            <!-- Dobra Orgânica Principal do Rodapé (Verde Floresta #027C4F) -->
-            <path d="M 0,85 C 40,65 95,50 145,65 C 190,80 230,120 310,135 C 420,155 720,145 1000,145 C 1180,145 1320,115 1440,65 L 1440,180 L 0,180 Z" fill="#027C4F" />
-          </svg>
-        </div>
+    <!-- ================= CONTEÚDO INFERIOR DO RODAPÉ (LOGO, REDES SOCIAIS E CRÉDITOS) ================= -->
+    <footer class="relative z-20 flex flex-col items-center text-center pb-2 text-white w-full max-w-4xl mx-auto px-4 mt-auto">
 
-        <footer class="ds-footer-integrated relative z-20 flex flex-col items-center text-center mt-7 sm:mt-9 lg:mt-11 pb-8 sm:pb-10 text-white w-full max-w-4xl mx-auto px-4">
+      <!-- Logo Oficial Completo Branco -->
+      <div class="inline-block mb-2 sm:mb-2.5">
+        <img src="assets/Logos/logo-villa-plaza-park-white.png" alt="Villa Plaza Park" class="w-24 sm:w-28 lg:w-32 h-auto object-contain drop-shadow-sm" loading="eager">
+      </div>
 
-          <!-- Logo Oficial Completo Branco (Monograma Circular + VILLA PLAZA PARK - Fidelidade Figma) -->
-          <a href="#home" class="inline-block mb-6 sm:mb-7 group focus:outline-none" aria-label="Villa Plaza Park">
-            <img src="assets/Logos/logo-villa-plaza-park-white.png" alt="Villa Plaza Park" class="w-28 sm:w-32 lg:w-36 h-auto object-contain drop-shadow-sm transition-transform duration-200 group-hover:scale-105" loading="eager">
+      <!-- Ícones Redondos de Redes Sociais -->
+      <div class="flex items-center justify-center gap-2.5 sm:gap-3 mb-2.5 sm:mb-3">
+        <a href="https://www.instagram.com/villaplazapark/" target="_blank" rel="noopener noreferrer" class="w-7 h-7 rounded-full bg-[#015C3A] hover:bg-[#017047] border border-white/20 flex items-center justify-center text-white transition-all hover:scale-110 shadow-xs" aria-label="Instagram">
+          <i class="fa-brands fa-instagram text-[11px]"></i>
+        </a>
+        <a href="https://api.whatsapp.com/send?phone=559193191582" target="_blank" rel="noopener noreferrer" class="w-7 h-7 rounded-full bg-[#015C3A] hover:bg-[#017047] border border-white/20 flex items-center justify-center text-white transition-all hover:scale-110 shadow-xs" aria-label="WhatsApp">
+          <i class="fa-brands fa-whatsapp text-[11px]"></i>
+        </a>
+        <a href="https://www.facebook.com/people/Villa-Park-Plaza/61574115326244/" target="_blank" rel="noopener noreferrer" class="w-7 h-7 rounded-full bg-[#015C3A] hover:bg-[#017047] border border-white/20 flex items-center justify-center text-white transition-all hover:scale-110 shadow-xs" aria-label="Facebook">
+          <i class="fa-brands fa-facebook-f text-[11px]"></i>
+        </a>
+        <a href="https://www.youtube.com/@villaplazapark" target="_blank" rel="noopener noreferrer" class="w-7 h-7 rounded-full bg-[#015C3A] hover:bg-[#017047] border border-white/20 flex items-center justify-center text-white transition-all hover:scale-110 shadow-xs" aria-label="YouTube">
+          <i class="fa-brands fa-youtube text-[11px]"></i>
+        </a>
+      </div>
+
+      <!-- Linha de Copyright & Créditos -->
+      <div class="w-full max-w-2xl mx-auto pt-2.5 border-t border-white/20 flex flex-wrap items-center justify-center gap-x-3.5 sm:gap-x-5 gap-y-1 text-[9px] sm:text-[9.5px] text-white/70 text-center">
+        <span>© 2026 Villa Plaza Park. Todos os direitos reservados.</span>
+        <span class="hidden sm:inline text-white/40">•</span>
+        <button type="button" onclick="openPrivacyModal()" class="hover:underline text-white/85 hover:text-white bg-transparent border-0 p-0 cursor-pointer text-[9px] sm:text-[9.5px] font-normal transition-colors">Termos &amp; Privacidade</button>
+        <span class="hidden sm:inline text-white/40">•</span>
+        <span class="inline-flex items-center gap-1.5">
+          <span>Desenvolvido por:</span>
+          <a href="https://digital.ideinstituto.com.br/" target="_blank" rel="noopener noreferrer" aria-label="idedigital" class="inline-flex items-center group/dev">
+            <img src="assets/Logos/logo-idedigital.png" alt="idedigital" class="h-3 w-auto object-contain opacity-85 group-hover/dev:opacity-100 transition-opacity" loading="lazy">
           </a>
-
-          <!-- Ícones Redondos de Redes Sociais (Delicados e com mais espaçamento - Fidelidade Anexo 2) -->
-          <div class="flex items-center justify-center gap-3 sm:gap-3.5 mb-6 sm:mb-7">
-            <a href="https://www.instagram.com/villaplazapark/" target="_blank" rel="noopener noreferrer" class="w-6 h-6 sm:w-[26px] sm:h-[26px] rounded-full bg-white/10 hover:bg-white/25 border border-white/30 flex items-center justify-center text-white transition-all hover:scale-110 shadow-xs" aria-label="Instagram @villaplazapark">
-              <i class="fa-brands fa-instagram text-[10px] sm:text-[11px]"></i>
-            </a>
-            <a href="https://api.whatsapp.com/send?phone=559193191582" target="_blank" rel="noopener noreferrer" class="w-6 h-6 sm:w-[26px] sm:h-[26px] rounded-full bg-white/10 hover:bg-white/25 border border-white/30 flex items-center justify-center text-white transition-all hover:scale-110 shadow-xs" aria-label="WhatsApp Villa Plaza Park">
-              <i class="fa-brands fa-whatsapp text-[10px] sm:text-[11px]"></i>
-            </a>
-            <a href="https://www.facebook.com/people/Villa-Park-Plaza/61574115326244/" target="_blank" rel="noopener noreferrer" class="w-6 h-6 sm:w-[26px] sm:h-[26px] rounded-full bg-white/10 hover:bg-white/25 border border-white/30 flex items-center justify-center text-white transition-all hover:scale-110 shadow-xs" aria-label="Facebook Villa Park Plaza">
-              <i class="fa-brands fa-facebook-f text-[10px] sm:text-[11px]"></i>
-            </a>
-            <a href="https://www.youtube.com/@villaplazapark" target="_blank" rel="noopener noreferrer" class="w-6 h-6 sm:w-[26px] sm:h-[26px] rounded-full bg-white/10 hover:bg-white/25 border border-white/30 flex items-center justify-center text-white transition-all hover:scale-110 shadow-xs" aria-label="YouTube @villaplazapark">
-              <i class="fa-brands fa-youtube text-[10px] sm:text-[11px]"></i>
-            </a>
-          </div>
-
-          <!-- Linha de Copyright & Créditos (Centralizada para harmonia e livre de sobreposição das nuvens 3D) -->
-          <div class="w-full max-w-2xl mx-auto pt-3.5 sm:pt-4 border-t border-white/20 flex flex-wrap items-center justify-center gap-x-3.5 sm:gap-x-5 gap-y-1 text-[9.5px] sm:text-[10px] text-white/70 text-center">
-            <span>© 2026 Villa Plaza Park. Todos os direitos reservados.</span>
-            <span class="hidden sm:inline text-white/40">•</span>
-            <button type="button" onclick="openPrivacyModal()" class="hover:underline text-white/85 hover:text-white bg-transparent border-0 p-0 cursor-pointer text-[9.5px] sm:text-[10px] font-normal transition-colors">Termos &amp; Privacidade</button>
-            <span class="hidden sm:inline text-white/40">•</span>
-            <span class="inline-flex items-center gap-1.5">
-              <span>Desenvolvido por:</span>
-              <a href="https://digital.ideinstituto.com.br/" target="_blank" rel="noopener noreferrer" aria-label="idedigital" class="inline-flex items-center group/dev">
-                <img src="assets/Logos/logo-idedigital.png" alt="idedigital" class="h-3.5 sm:h-4 w-auto object-contain opacity-85 group-hover/dev:opacity-100 group-hover/dev:scale-105 transition-all duration-200" loading="lazy">
-              </a>
-            </span>
-          </div>
-
-        </footer>
-
-      </div><!-- /ds-unidades-container -->
-
-      <!-- ================= ELEMENTOS CENOGRÁFICOS 3D DO RODAPÉ (LATERAIS DA TELA - MOCKUP FIGMA) ================= -->
-      <!-- Nuvem 3D Branca (canto inferior esquerdo, no piso verde) -->
-      <div class="absolute -bottom-4 sm:-bottom-6 left-1 sm:left-4 lg:left-8 w-28 sm:w-40 lg:w-56 pointer-events-none z-10 ds-float-cloud opacity-95 select-none" aria-hidden="true">
-        <img src="assets/3DObjetos/nuvem-branca-3d.webp" alt="" class="w-full h-auto object-contain drop-shadow-md" loading="eager">
+        </span>
       </div>
 
-      <!-- Nuvem 3D Branca (canto inferior direito, ao lado do balão) -->
-      <div class="absolute -bottom-4 sm:-bottom-6 right-20 sm:right-32 lg:right-48 w-24 sm:w-36 lg:w-48 pointer-events-none z-10 ds-float-cloud opacity-90 select-none" aria-hidden="true">
-        <img src="assets/3DObjetos/nuvem-branca-3d.webp" alt="" class="w-full h-auto object-contain drop-shadow-md" loading="eager">
-      </div>
+    </footer>
 
-      <!-- Balão de Ar Quente 3D (canto inferior direito, flutuando no verde) -->
-      <div class="absolute bottom-2 sm:bottom-4 lg:bottom-6 right-1 sm:right-3 lg:right-6 w-24 sm:w-32 lg:w-44 pointer-events-none z-30 ds-float-balloon select-none" aria-hidden="true">
-        <img src="assets/3DObjetos/balao-ar-quente-nuvens-3d.webp" alt="" class="w-full h-auto object-contain drop-shadow-2xl" loading="eager">
-      </div>
+    <!-- ================= ELEMENTOS CENOGRÁFICOS 3D ================= -->
+    <!-- Nuvem 3D Branca (canto inferior esquerdo, no piso verde) -->
+    <div class="hidden sm:block absolute bottom-1 sm:bottom-2 left-1 sm:left-4 lg:left-6 w-24 sm:w-32 lg:w-44 pointer-events-none z-10 ds-float-cloud opacity-95 select-none" aria-hidden="true">
+      <img src="assets/3DObjetos/nuvem-branca-3d.webp" alt="" class="w-full h-auto object-contain drop-shadow-md" loading="eager">
+    </div>
 
-    </section><!-- /filiais -->
+    <!-- Nuvem 3D Branca (canto inferior direito, ao lado do balão) -->
+    <div class="hidden sm:block absolute bottom-1 sm:bottom-2 right-16 sm:right-24 lg:right-32 w-20 sm:w-28 lg:w-36 pointer-events-none z-10 ds-float-cloud opacity-90 select-none" aria-hidden="true">
+      <img src="assets/3DObjetos/nuvem-branca-3d.webp" alt="" class="w-full h-auto object-contain drop-shadow-md" loading="eager">
+    </div>
+
+    <!-- Balão de Ar Quente 3D (exibido em telas médias e desktop, oculto no mobile para não cobrir os cards) -->
+    <div class="hidden md:block absolute bottom-4 sm:bottom-6 lg:bottom-7 right-2 sm:right-4 lg:right-6 w-20 sm:w-24 lg:w-28 pointer-events-none z-10 ds-float-balloon select-none" aria-hidden="true">
+      <img src="assets/3DObjetos/balao-ar-quente-nuvens-3d.webp" alt="" class="w-full h-auto object-contain drop-shadow-2xl" loading="eager">
+    </div>
+
+    <!-- Botão Voltar ao Topo no canto inferior direito -->
+    <div class="absolute bottom-2 right-2 sm:bottom-3 sm:right-3 z-40">
+      <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" aria-label="Voltar ao Topo" class="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white text-slate-700 hover:text-[#FA5A00] shadow-md flex items-center justify-center transition-transform hover:scale-105 active:scale-95 cursor-pointer">
+        <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="m18 15-6-6-6 6"></path></svg>
+      </button>
+    </div>
+
+  </section><!-- /filiais -->
 
   </main>
 
@@ -4011,5 +4111,237 @@
        ======================================================================== -->
   <script src="https://unpkg.com/lucide@latest"></script>
   <script src="src/js/main.js"></script>
+  <!-- ========================================================================
+       MODAL OFICIAL DE COMPARTILHAMENTO DO GOOGLE MAPS (FIDELIDADE TOTAL)
+       ======================================================================== -->
+  <div id="gmapsShareModal" class="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/60 backdrop-blur-xs opacity-0 pointer-events-none transition-all duration-200" role="dialog" aria-modal="true" aria-labelledby="shareModalTitle">
+    <!-- Backdrop overlay para clique fora -->
+    <div class="absolute inset-0" onclick="closeShareModal()"></div>
+
+    <!-- Container do Modal -->
+    <div id="gmapsShareContainer" class="relative w-full max-w-[390px] bg-[#F0F4F9] rounded-[28px] p-4 sm:p-5 shadow-2xl text-[#1F1F1F] transform scale-95 transition-all duration-200 z-10 font-roboto">
+      
+      <!-- Topo: Título + Botão Fechar -->
+      <div class="flex items-center justify-between mb-3 px-1">
+        <h3 id="shareModalTitle" class="text-[19px] sm:text-[20px] font-normal text-[#1F1F1F]">Compartilhar</h3>
+        <button onclick="closeShareModal()" aria-label="Fechar" class="w-8 h-8 rounded-full flex items-center justify-center text-[#444746] hover:bg-[#E1E6ED] transition-colors cursor-pointer border-0 bg-transparent">
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Card 1: Preview do Local -->
+      <div class="bg-white rounded-[20px] p-3 flex gap-3 shadow-[0_2px_8px_rgba(0,0,0,0.04)] mb-3 items-center">
+        <img id="shareModalImg" src="assets/images/Crianca-correndo-espaco-kids-aventura.webp" alt="Preview Local" class="w-[110px] h-[80px] rounded-[14px] object-cover shrink-0 block">
+        <div class="flex-1 min-w-0 pr-1">
+          <h4 id="shareModalPlaceName" class="text-[14px] font-bold text-[#1F1F1F] leading-tight truncate mb-1">Villa Plaza Park</h4>
+          <p id="shareModalPlaceAddr" class="text-[11px] text-[#444746] leading-tight line-clamp-2 mb-1">Parque no Mezanino do +B Supermercado Plaza - Av....</p>
+          <a id="shareModalLinkText" href="https://maps.app.goo.gl/Uof4zDfviD1XEToa7" target="_blank" rel="noopener noreferrer" class="text-[11px] text-[#0B57D0] hover:underline font-medium block truncate">maps.app.goo.gl</a>
+        </div>
+      </div>
+
+      <!-- Card 2: Opções de Compartilhamento -->
+      <div class="bg-white rounded-[20px] p-3.5 sm:p-4 shadow-[0_2px_8px_rgba(0,0,0,0.04)] mb-3">
+        <div class="flex items-start justify-around text-center gap-1">
+          
+          <!-- 1. Copy Link -->
+          <button onclick="handleCopyShareLink()" class="flex flex-col items-center group cursor-pointer border-0 bg-transparent p-0">
+            <div id="copyLinkIconCircle" class="w-11 h-11 rounded-full bg-[#00639B] text-white flex items-center justify-center transition-transform group-hover:scale-105 active:scale-95 shadow-sm">
+              <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+              </svg>
+            </div>
+            <span id="copyLinkLabel" class="text-[11px] text-[#1F1F1F] font-medium mt-2">Copy Link</span>
+          </button>
+
+          <!-- 2. WhatsApp -->
+          <button onclick="handleWhatsAppShare()" class="flex flex-col items-center group cursor-pointer border-0 bg-transparent p-0">
+            <div class="w-11 h-11 rounded-full bg-[#25D366] text-white flex items-center justify-center transition-transform group-hover:scale-105 active:scale-95 shadow-sm">
+              <i class="fa-brands fa-whatsapp text-2xl leading-none"></i>
+            </div>
+            <span class="text-[11px] text-[#1F1F1F] font-medium mt-2">WhatsApp</span>
+          </button>
+
+          <!-- 3. Gmail -->
+          <button onclick="handleGmailShare()" class="flex flex-col items-center group cursor-pointer border-0 bg-transparent p-0">
+            <div class="w-11 h-11 rounded-full bg-white border border-[#E0E2EC] shadow-sm flex items-center justify-center transition-transform group-hover:scale-105 active:scale-95">
+              <svg class="w-6 h-6" viewBox="0 0 48 48">
+                <path fill="#4caf50" d="M45,16.2l-5,2.75l-5,4.75L35,40h7c1.657,0,3-1.343,3-3V16.2z"></path>
+                <path fill="#1e88e5" d="M3,16.2l3.614,1.71L13,23.7V40H6c-1.657,0-3-1.343-3-3V16.2z"></path>
+                <polygon fill="#e53935" points="35,11.2 24,19.45 13,11.2 12,17 13,23.7 24,31.95 35,23.7 36,17"></polygon>
+                <path fill="#c62828" d="M3,12.298V16.2l10,7.5V11.2L9.876,8.859C8.132,7.551,5.637,8.049,4.522,9.924L3,12.298z"></path>
+                <path fill="#fbc02d" d="M45,12.298V16.2l-10,7.5V11.2l3.124-2.341c1.744-1.308,4.239-0.81,5.354,1.065L45,12.298z"></path>
+              </svg>
+            </div>
+            <span class="text-[11px] text-[#1F1F1F] font-medium mt-2">Gmail</span>
+          </button>
+
+          <!-- 4. Incorporar um mapa -->
+          <button onclick="handleEmbedShare()" class="flex flex-col items-center group cursor-pointer border-0 bg-transparent p-0">
+            <div class="w-11 h-11 rounded-full bg-[#004A77] text-white flex items-center justify-center transition-transform group-hover:scale-105 active:scale-95 shadow-sm">
+              <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                <polyline points="16 18 22 12 16 6"></polyline>
+                <polyline points="8 6 2 12 8 18"></polyline>
+              </svg>
+            </div>
+            <span class="text-[10px] text-[#1F1F1F] font-medium mt-2 leading-tight max-w-[65px]">Incorporar um mapa</span>
+          </button>
+
+        </div>
+      </div>
+
+      <!-- Rodapé: Enviar feedback -->
+      <div class="px-1">
+        <a href="https://support.google.com/maps" target="_blank" rel="noopener noreferrer" class="text-[11px] text-[#72777A] hover:text-[#1F1F1F] transition-colors">Enviar feedback sobre o produto</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- TOAST FEEDBACK INTERATIVO DO GOOGLE MAPS -->
+  <div id="gmapsToast"></div>
+
+  <script>
+    const shareConfig = {
+      plaza: {
+        title: 'Villa Plaza Park',
+        address: 'Parque no Mezanino do 3B Supermercado Plaza - Av. Gov. José Malcher, 2388 - São Brás, Belém - PA',
+        image: 'assets/images/Crianca-correndo-espaco-kids-aventura.webp',
+        url: 'https://maps.app.goo.gl/RcJ2S4vRKk49P6H46',
+        displayUrl: 'maps.app.goo.gl',
+        embed: '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.528438186214!2d-48.4721471!3d-1.4484939!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x92a48d9c99de1ff9%3A0x67399b1b86973aed!2sVilla%20Plaza%20Park!5e0!3m2!1spt-BR!2sbr!4v1710000000000!5m2!1spt-BR!2sbr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>'
+      },
+      tapana: {
+        title: 'Villa Plaza Park (Tapanã)',
+        address: 'Rod. do Tapanã, 597 B - Tapanã, Belém - PA, 66825-535',
+        image: 'assets/images/Espaco-baby-mini-escorregador-e-tunel.webp',
+        url: 'https://maps.google.com/?q=Rod.+do+Tapana+597+B+Belem',
+        displayUrl: 'maps.app.goo.gl',
+        embed: '<iframe src="https://www.google.com/maps?q=Rod.+do+Tapana+597+B+Belem&output=embed" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>'
+      }
+    };
+
+    let activeShareUnit = 'plaza';
+
+    function openShareModal(unit) {
+      activeShareUnit = unit || 'plaza';
+      const data = shareConfig[activeShareUnit] || shareConfig.plaza;
+      
+      const nameEl = document.getElementById('shareModalPlaceName');
+      const addrEl = document.getElementById('shareModalPlaceAddr');
+      const imgEl = document.getElementById('shareModalImg');
+      const linkEl = document.getElementById('shareModalLinkText');
+
+      if (nameEl) nameEl.textContent = data.title;
+      if (addrEl) addrEl.textContent = data.address;
+      if (imgEl) imgEl.src = data.image;
+      if (linkEl) {
+        linkEl.href = data.url;
+        linkEl.textContent = data.displayUrl;
+      }
+
+      const copyLabel = document.getElementById('copyLinkLabel');
+      if (copyLabel) copyLabel.textContent = 'Copy Link';
+      
+      const modal = document.getElementById('gmapsShareModal');
+      const container = document.getElementById('gmapsShareContainer');
+      if (!modal) return;
+      modal.classList.remove('opacity-0', 'pointer-events-none');
+      modal.classList.add('opacity-100', 'pointer-events-auto');
+      if (container) {
+        container.classList.remove('scale-95');
+        container.classList.add('scale-100');
+      }
+    }
+
+    function closeShareModal() {
+      const modal = document.getElementById('gmapsShareModal');
+      const container = document.getElementById('gmapsShareContainer');
+      if (!modal) return;
+      modal.classList.remove('opacity-100', 'pointer-events-auto');
+      modal.classList.add('opacity-0', 'pointer-events-none');
+      if (container) {
+        container.classList.remove('scale-100');
+        container.classList.add('scale-95');
+      }
+    }
+
+    function handleCopyShareLink() {
+      const data = shareConfig[activeShareUnit] || shareConfig.plaza;
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(data.url).then(() => {
+          const copyLabel = document.getElementById('copyLinkLabel');
+          if (copyLabel) copyLabel.textContent = 'Copiado!';
+          showFeedback('Link copiado para a área de transferência!');
+          setTimeout(() => {
+            if (copyLabel) copyLabel.textContent = 'Copy Link';
+          }, 2500);
+        }).catch(() => {
+          showFeedback(data.url);
+        });
+      } else {
+        showFeedback(data.url);
+      }
+    }
+
+    function handleWhatsAppShare() {
+      const data = shareConfig[activeShareUnit] || shareConfig.plaza;
+      const text = encodeURIComponent('Confira ' + data.title + ' no Google Maps: ' + data.url);
+      window.open('https://api.whatsapp.com/send?text=' + text, '_blank');
+    }
+
+    function handleGmailShare() {
+      const data = shareConfig[activeShareUnit] || shareConfig.plaza;
+      const su = encodeURIComponent(data.title + ' no Google Maps');
+      const body = encodeURIComponent('Veja a localização de ' + data.title + ':\n' + data.url);
+      window.open('https://mail.google.com/mail/?view=cm&fs=1&su=' + su + '&body=' + body, '_blank');
+    }
+
+    function handleEmbedShare() {
+      const data = shareConfig[activeShareUnit] || shareConfig.plaza;
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(data.embed).then(() => {
+          showFeedback('Código de incorporação do mapa copiado!');
+        }).catch(() => {
+          showFeedback('Código copiado!');
+        });
+      } else {
+        showFeedback('Código copiado!');
+      }
+    }
+
+    function showFeedback(msg) {
+      const toast = document.getElementById('gmapsToast');
+      if (!toast) return;
+      toast.textContent = msg;
+      toast.classList.add('show');
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 3000);
+    }
+
+    function copyShareLink(url, title) {
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(url).then(() => {
+          showFeedback('Link do ' + title + ' copiado com sucesso!');
+        }).catch(() => {
+          showFeedback(url);
+        });
+      } else {
+        showFeedback(url);
+      }
+    }
+
+    // Fechar ao pressionar ESC
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeShareModal();
+      }
+    });
+  </script>
+
 </body>
 </html>

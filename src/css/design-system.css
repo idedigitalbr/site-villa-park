@@ -4275,7 +4275,7 @@ html {
   inset: 0;
   pointer-events: none;
   overflow: visible;
-  z-index: 50;
+  z-index: 1;
 }
 
 .ds-stage-decor-left {
@@ -4609,6 +4609,8 @@ html {
 
 /* Cards do Accordion (Pills Brancas Flutuantes) */
 .ds-faq-card {
+  position: relative;
+  z-index: 20;
   background-color: #FFFFFF;
   border-radius: 16px;
   border: 1px solid rgba(226, 232, 240, 0.85);
@@ -4620,11 +4622,13 @@ html {
 .ds-faq-card:hover {
   border-color: rgba(34, 129, 55, 0.35);
   box-shadow: 0 8px 24px rgba(34, 129, 55, 0.08), 0 2px 6px rgba(0, 0, 0, 0.03);
+  z-index: 25;
 }
 
 .ds-faq-card.active {
   border-color: rgba(34, 129, 55, 0.5);
   box-shadow: 0 8px 26px rgba(34, 129, 55, 0.1);
+  z-index: 25;
 }
 
 .ds-faq-btn {
