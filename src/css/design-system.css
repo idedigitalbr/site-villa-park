@@ -4266,7 +4266,7 @@ html {
   background-color: #EDF6FD;
   position: relative;
   width: 100%;
-  overflow-x: clip;
+  overflow: visible;
 }
 
 /* Camada Independente de Elementos 3D Cenográficos Laterais (Flanqueando o FAQ) */
@@ -4275,13 +4275,13 @@ html {
   inset: 0;
   pointer-events: none;
   overflow: visible;
-  z-index: 5;
+  z-index: 50;
 }
 
 .ds-stage-decor-left {
   position: absolute;
-  top: -20px;
-  left: -80px;
+  top: 195px;
+  left: -130px;
   width: clamp(220px, 24vw, 360px);
   animation: dsDecorFloatL 6s ease-in-out infinite alternate;
   filter: drop-shadow(0 20px 30px rgba(0, 70, 35, 0.12));
@@ -4310,9 +4310,9 @@ html {
 /* Desktop ≥1280px: Tamanhos máximos cenográficos como no print */
 @media (min-width: 1280px) {
   .ds-stage-decor-left {
-    left: -120px;
+    left: -165px;
     width: 380px;
-    top: -25px;
+    top: 195px;
   }
   .ds-stage-decor-right {
     right: -130px;
@@ -4323,9 +4323,9 @@ html {
 
 @media (max-width: 1279px) and (min-width: 1024px) {
   .ds-stage-decor-left {
-    left: -90px;
-    width: 300px;
-    top: -20px;
+    left: -140px;
+    width: 250px;
+    top: 175px;
   }
   .ds-stage-decor-right {
     right: -100px;
@@ -4336,9 +4336,9 @@ html {
 
 @media (max-width: 1023px) and (min-width: 641px) {
   .ds-stage-decor-left {
-    left: -70px;
-    width: clamp(180px, 22vw, 260px);
-    top: -15px;
+    left: -110px;
+    width: clamp(180px, 20vw, 240px);
+    top: 140px;
     opacity: 0.9;
   }
   .ds-stage-decor-right {
@@ -4351,9 +4351,9 @@ html {
 
 @media (max-width: 640px) {
   .ds-stage-decor-left {
-    left: -55px;
+    left: -65px;
     width: 125px;
-    top: 5px;
+    top: 60px;
     opacity: 0.7;
   }
   .ds-stage-decor-right {
@@ -4879,72 +4879,78 @@ html {
 .ds-gmaps-frame-orange {
   background: #FA5A00;
   padding: 10px;
-  border-radius: 32px;
-  box-shadow: 0 16px 36px rgba(250, 90, 0, 0.35), 0 4px 12px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+  border-radius: 28px;
+  box-shadow: 0 16px 36px rgba(250, 90, 0, 0.28);
+  width: 100%;
+  max-width: 272px;
+  flex-shrink: 0;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .ds-gmaps-frame-orange:hover {
   transform: translateY(-4px);
-  box-shadow: 0 22px 42px rgba(250, 90, 0, 0.45), 0 8px 16px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 20px 42px rgba(250, 90, 0, 0.38);
 }
 
 .ds-gmaps-frame-green {
   background: #00B359;
   padding: 10px;
-  border-radius: 32px;
-  box-shadow: 0 16px 36px rgba(0, 179, 89, 0.35), 0 4px 12px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+  border-radius: 28px;
+  box-shadow: 0 16px 36px rgba(0, 179, 89, 0.28);
+  width: 100%;
+  max-width: 268px;
+  flex-shrink: 0;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .ds-gmaps-frame-green:hover {
   transform: translateY(-4px);
-  box-shadow: 0 22px 42px rgba(0, 179, 89, 0.45), 0 8px 16px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 20px 42px rgba(0, 179, 89, 0.38);
 }
 
 /* Google Maps Card Interno */
 .ds-gmaps-inner {
   background: #FFFFFF;
-  border-radius: 22px;
+  border-radius: 19px;
   overflow: hidden;
   color: #202124;
   display: flex;
   flex-direction: column;
   width: 100%;
+  height: 100%;
   box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.04);
 }
 
 /* Botões circulares do Google Maps */
 .ds-gmaps-circle-btn {
-  width: 36px;
-  height: 36px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 auto 4px auto;
-  transition: all 0.2s ease;
+  margin: 0 auto 3px auto;
+  transition: transform 0.15s ease;
+  cursor: pointer;
 }
 
 .ds-gmaps-circle-btn.primary {
-  background: #1A73E8;
+  background: #007fa3;
   color: #FFFFFF;
-  box-shadow: 0 2px 6px rgba(26, 115, 232, 0.35);
+  box-shadow: 0 2px 6px rgba(0, 127, 163, 0.35);
 }
 
 .ds-gmaps-circle-btn.primary:hover {
-  background: #1557B0;
-  transform: scale(1.06);
+  transform: scale(1.08);
 }
 
 .ds-gmaps-circle-btn.secondary {
-  background: #E8F0FE;
-  color: #1A73E8;
+  background: #e0f2f7;
+  color: #007fa3;
 }
 
 .ds-gmaps-circle-btn.secondary:hover {
-  background: #D2E3FC;
-  transform: scale(1.06);
+  transform: scale(1.08);
 }
 
 /* Animações Flutuantes Sutis para Elementos 3D */

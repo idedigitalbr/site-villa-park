@@ -1608,54 +1608,688 @@
 
           </div>
 
-          <!-- Coluna Collage 4 Fotos (7 colunas) -->
+          <!-- Coluna Collage 4 Fotos — Mosaico Dinâmico Reorganizável (7 colunas) -->
           <div class="lg:col-span-7 w-full min-w-0">
-            <div class="grid grid-cols-12 gap-3.5 sm:gap-4 items-stretch h-[360px] sm:h-[400px] lg:h-[420px]">
+
+            <style>
+              /* ==========================================================================
+                 MOSAICO DINÂMICO TRANSFORMÁVEL (SHARED LAYOUT TRANSITIONS)
+                 - Fotos 100% LIMPAS (sem textos, badges, overlays ou botões sobre as fotos)
+                 - A cada avanço o layout muda de geometria (Esquerda -> Topo -> Direita -> Base)
+                 - Todas as 4 fotos visíveis participam simultaneamente da reorganização
+                 ========================================================================== */
+              :root {
+                --sobre-gap: 12px;
+              }
+              @media (max-width: 640px) {
+                :root {
+                  --sobre-gap: 8px;
+                }
+              }
+
+              .mosaic-stage-container {
+                position: relative;
+                width: 100%;
+                overflow: hidden;
+                border-radius: 28px;
+                background-color: #f8fafc;
+                contain: layout paint;
+              }
+              @media (max-width: 640px) {
+                .mosaic-stage-container {
+                  border-radius: 20px;
+                }
+              }
+
+              /* Card de foto individual — limpo, elegante e acelerado por GPU */
+              .mosaic-photo-card {
+                position: absolute;
+                overflow: hidden;
+                box-sizing: border-box;
+                background-color: #e2e8f0;
+                cursor: pointer;
+                user-select: none;
+                -webkit-user-select: none;
+                box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.08), 0 2px 6px -2px rgba(0, 0, 0, 0.04);
+                will-change: top, left, width, height, border-radius, opacity, transform;
+                transition: top 0.75s cubic-bezier(0.25, 1, 0.4, 1),
+                            left 0.75s cubic-bezier(0.25, 1, 0.4, 1),
+                            width 0.75s cubic-bezier(0.25, 1, 0.4, 1),
+                            height 0.75s cubic-bezier(0.25, 1, 0.4, 1),
+                            border-radius 0.75s cubic-bezier(0.25, 1, 0.4, 1),
+                            opacity 0.75s cubic-bezier(0.25, 1, 0.4, 1),
+                            transform 0.75s cubic-bezier(0.25, 1, 0.4, 1);
+              }
+
+              .mosaic-photo-card img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                object-position: center;
+                display: block;
+                pointer-events: none;
+                transition: transform 0.6s ease;
+              }
+
+              .mosaic-photo-card:hover img {
+                transform: scale(1.035);
+              }
+
+              .mosaic-photo-card.no-trans {
+                transition: none !important;
+              }
+
+              /* Dots de navegação inferior */
+              .sobre-dot-pill {
+                height: 7px;
+                border-radius: 9999px;
+                background-color: #cbd5e1;
+                transition: all 0.35s cubic-bezier(0.25, 1, 0.4, 1);
+                cursor: pointer;
+                border: none;
+                padding: 0;
+                outline: none;
+              }
+              .sobre-dot-pill:hover {
+                background-color: #ef7a2b;
+                transform: scale(1.15);
+              }
+              .sobre-dot-pill.active {
+                background-color: #136637;
+              }
+            </style>
+
+            <div class="sobre-mosaic-wrapper relative w-full" id="sobreMosaicCarousel" role="region" aria-roledescription="carousel" aria-label="Galeria de fotos do Villa Plaza Park">
               
-              <!-- Foto Esquerda Alta (Piscina de Bolinhas) -->
-              <div onclick="openVideoModal()" class="col-span-6 h-full rounded-2xl sm:rounded-3xl lg:rounded-[28px] overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 group relative cursor-pointer" role="button" tabindex="0" aria-label="Conhecer o parque em vídeo" onkeydown="if(event.key === 'Enter' || event.key === ' ') { event.preventDefault(); openVideoModal(); }">
-                <img src="assets/Pagina/S3%20SOBRE/sobre-mockup-1.webp" 
-                     alt="Crianças se divertindo na piscina de bolinhas do Villa Plaza Park" 
-                     class="w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105" 
-                     loading="lazy" decoding="async">
+              <!-- Stage do Mosaico (Altura adaptada e responsiva) -->
+              <div class="mosaic-stage-container h-[360px] sm:h-[400px] lg:h-[430px] select-none" id="sobreMosaicStage">
+                
+                <!-- Cards de fotos inseridos via JS (100% limpas de texto) -->
+
+                <!-- Seta Esquerda Flutuante -->
+                <button type="button" id="sobrePrevBtn" class="absolute left-2.5 sm:left-3.5 top-1/2 -translate-y-1/2 z-30 w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-white/90 hover:bg-[#136637] text-[#136637] hover:text-white shadow-lg backdrop-blur-md border border-white/80 flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95 cursor-pointer focus:outline-hidden" aria-label="Foto anterior" title="Foto anterior">
+                  <svg class="w-5 h-5 pointer-events-none" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
+                </button>
+
+                <!-- Seta Direita Flutuante -->
+                <button type="button" id="sobreNextBtn" class="absolute right-2.5 sm:right-3.5 top-1/2 -translate-y-1/2 z-30 w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-white/90 hover:bg-[#136637] text-[#136637] hover:text-white shadow-lg backdrop-blur-md border border-white/80 flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95 cursor-pointer focus:outline-hidden" aria-label="Próxima foto" title="Próxima foto">
+                  <svg class="w-5 h-5 pointer-events-none" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
+                </button>
+
               </div>
 
-              <!-- Coluna Direita: 2 Linhas -->
-              <div class="col-span-6 flex flex-col gap-3.5 sm:gap-4 h-full">
+              <!-- Barra Inferior de Navegação: Contador, 15 Dots e Controles -->
+              <div class="sobre-mosaic-controls flex items-center justify-between gap-2 sm:gap-3 mt-3.5 sm:mt-4 px-1 select-none">
                 
-                <!-- Linha Superior: Foto Larga (Tirolesa / Circuito Aventura) -->
-                <div onclick="openVideoModal()" class="flex-1 rounded-2xl sm:rounded-3xl lg:rounded-[28px] overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 group relative cursor-pointer" role="button" tabindex="0" aria-label="Conhecer o circuito de aventura" onkeydown="if(event.key === 'Enter' || event.key === ' ') { event.preventDefault(); openVideoModal(); }">
-                  <img src="assets/Pagina/S3%20SOBRE/sobre-mockup-2.webp" 
-                       alt="Circuito de aventura e arvorismo infantil no Villa Plaza Park" 
-                       class="w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105" 
-                       loading="lazy" decoding="async">
+                <!-- Contador de Posição -->
+                <div class="flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[#136637] flex-shrink-0">
+                  <span id="sobreCounterCurrent" class="tracking-tight text-base sm:text-lg">01</span>
+                  <span class="text-neutral-300 font-normal">/</span>
+                  <span id="sobreCounterTotal" class="text-neutral-400 font-medium text-xs sm:text-sm">15</span>
                 </div>
 
-                <!-- Linha Inferior: 2 Fotos Lado a Lado -->
-                <div class="flex-1 grid grid-cols-2 gap-3.5 sm:gap-4">
-                  
-                  <!-- Foto Inferior Esquerda: Escorregador Verde -->
-                  <div onclick="openVideoModal()" class="rounded-xl sm:rounded-2xl lg:rounded-[22px] overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 group relative cursor-pointer" role="button" tabindex="0" aria-label="Ver escorregadores do parque" onkeydown="if(event.key === 'Enter' || event.key === ' ') { event.preventDefault(); openVideoModal(); }">
-                    <img src="assets/Pagina/S3%20SOBRE/sobre-mockup-3.webp" 
-                         alt="Tobogãs e escorregadores tubulares no Villa Plaza Park" 
-                         class="w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105" 
-                         loading="lazy" decoding="async">
-                  </div>
+                <!-- Trilho com 15 Dots Clicáveis -->
+                <div class="sobre-dots-container flex items-center justify-center gap-1.5 sm:gap-2 px-2.5 py-1.5 rounded-full bg-neutral-100/90 border border-neutral-200/70 overflow-x-auto max-w-[200px] sm:max-w-none scrollbar-none flex-1 mx-1 sm:flex-initial" id="sobreDotsContainer" role="tablist" aria-label="Slides do mosaico">
+                  <!-- Gerados via JS -->
+                </div>
 
-                  <!-- Foto Inferior Direita: Arcade / Pais e Filhos -->
-                  <div onclick="openVideoModal()" class="rounded-xl sm:rounded-2xl lg:rounded-[22px] overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 group relative cursor-pointer" role="button" tabindex="0" aria-label="Ver jogos e diversão em família" onkeydown="if(event.key === 'Enter' || event.key === ' ') { event.preventDefault(); openVideoModal(); }">
-                    <img src="assets/Pagina/S3%20SOBRE/sobre-mockup-4.webp" 
-                         alt="Espaço gamer e diversão em família no Villa Plaza Park" 
-                         class="w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105" 
-                         loading="lazy" decoding="async">
-                  </div>
+                <!-- Controles de Ação (Play/Pausa + Setas Auxiliares) -->
+                <div class="flex items-center gap-1.5 sm:gap-2 flex-shrink-0">
+                  <!-- Botão Play / Pause do Autoplay -->
+                  <button type="button" id="sobreAutoplayToggle" class="w-8 h-8 rounded-full bg-white hover:bg-neutral-100 text-neutral-600 hover:text-[#136637] shadow-xs border border-neutral-200 flex items-center justify-center transition-all cursor-pointer focus:outline-hidden" aria-label="Pausar rotação automática" title="Pausar/Retomar rotação automática">
+                    <svg id="sobreAutoplayPauseIcon" class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></svg>
+                    <svg id="sobreAutoplayPlayIcon" class="w-3.5 h-3.5 hidden" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                  </button>
 
+                  <!-- Seta Anterior Auxiliar (visível a partir de sm) -->
+                  <button type="button" id="sobrePrevBtnBottom" class="hidden sm:flex w-8 h-8 rounded-full bg-white hover:bg-[#136637] text-neutral-600 hover:text-white shadow-xs border border-neutral-200 items-center justify-center transition-all cursor-pointer focus:outline-hidden" aria-label="Foto anterior" title="Foto anterior">
+                    <svg class="w-4 h-4 pointer-events-none" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
+                  </button>
+
+                  <!-- Seta Próxima Auxiliar (visível a partir de sm) -->
+                  <button type="button" id="sobreNextBtnBottom" class="hidden sm:flex w-8 h-8 rounded-full bg-white hover:bg-[#136637] text-neutral-600 hover:text-white shadow-xs border border-neutral-200 items-center justify-center transition-all cursor-pointer focus:outline-hidden" aria-label="Próxima foto" title="Próxima foto">
+                    <svg class="w-4 h-4 pointer-events-none" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
+                  </button>
                 </div>
 
               </div>
 
             </div>
+
           </div>
+
+          <!-- ── Mosaico Dinâmico com Shared Layout Transitions — Script ── -->
+          <script>
+          (function () {
+            // 15 Fotografias reais do Villa Plaza Park
+            var PHOTO_URLS = [
+              'assets/images/Criancas-brincando-na-piscina-de-bolinhas.webp',
+              'assets/images/Brinquedao-safari-circuito-aventura.webp',
+              'assets/images/Cama-elastica-trampolim-safari.webp',
+              'assets/images/Camarim-infantil-maquiagem-e-pintura.webp',
+              'assets/images/Cidadinha-cenografica-mercadinho-e-oficinas.webp',
+              'assets/images/Crianca-correndo-espaco-kids-aventura.webp',
+              'assets/images/Escorregador-duplo-amarelo-safari.webp',
+              'assets/images/Familia-sorrindo-selfie-no-parque.webp',
+              'assets/images/Meninas-sorrindo-piscina-de-bolinhas.webp',
+              'assets/images/Piscina-de-bolinhas-com-toboga.webp',
+              'assets/images/Toboga-espiral-tubular-verde.webp',
+              'assets/images/Arena-futebol-infantil-grama-sintetica.webp',
+              'assets/images/Oficina-infantil-desenho-e-pintura.webp',
+              'assets/images/Brinquedao-safari-visao-geral-escorregador.webp',
+              'assets/images/Criancas-brincando-parque-infantil-visao-ampla.webp'
+            ];
+
+            var TOTAL = PHOTO_URLS.length;
+            var currentStep = 0;
+            var isAnimating = false;
+            var autoplayTimer = null;
+            var isAutoplayPaused = false;
+            var AUTOPLAY_INTERVAL = 4800;
+            var TRANSITION_DURATION = 750;
+
+            // 4 TEMPLATES DE LAYOUT GEOMÉTRICOS DISTINTOS QUE SE TRANSFORMAM
+            var LAYOUT_TEMPLATES = [
+              // Template 0: Destaque Grande na Esquerda
+              [
+                { top: '0%', left: '0%', width: 'calc(52% - var(--sobre-gap) * 0.5)', height: '100%', radius: '26px' },
+                { top: '0%', left: 'calc(52% + var(--sobre-gap) * 0.5)', width: 'calc(48% - var(--sobre-gap) * 0.5)', height: 'calc(50% - var(--sobre-gap) * 0.5)', radius: '20px' },
+                { top: 'calc(50% + var(--sobre-gap) * 0.5)', left: 'calc(52% + var(--sobre-gap) * 0.5)', width: 'calc(24% - var(--sobre-gap) * 0.75)', height: 'calc(50% - var(--sobre-gap) * 0.5)', radius: '16px' },
+                { top: 'calc(50% + var(--sobre-gap) * 0.5)', left: 'calc(76% + var(--sobre-gap) * 0.25)', width: 'calc(24% - var(--sobre-gap) * 0.75)', height: 'calc(50% - var(--sobre-gap) * 0.5)', radius: '16px' }
+              ],
+              // Template 1: Destaque Grande no Topo (Banner Horizontal)
+              [
+                { top: '0%', left: '0%', width: '100%', height: 'calc(54% - var(--sobre-gap) * 0.5)', radius: '24px' },
+                { top: 'calc(54% + var(--sobre-gap) * 0.5)', left: '0%', width: 'calc(33.333% - var(--sobre-gap) * 0.667)', height: 'calc(46% - var(--sobre-gap) * 0.5)', radius: '16px' },
+                { top: 'calc(54% + var(--sobre-gap) * 0.5)', left: 'calc(33.333% + var(--sobre-gap) * 0.333)', width: 'calc(33.333% - var(--sobre-gap) * 0.667)', height: 'calc(46% - var(--sobre-gap) * 0.5)', radius: '16px' },
+                { top: 'calc(54% + var(--sobre-gap) * 0.5)', left: 'calc(66.666% + var(--sobre-gap) * 0.333)', width: 'calc(33.334% - var(--sobre-gap) * 0.667)', height: 'calc(46% - var(--sobre-gap) * 0.5)', radius: '16px' }
+              ],
+              // Template 2: Destaque Grande na Direita
+              [
+                { top: '0%', left: 'calc(48% + var(--sobre-gap) * 0.5)', width: 'calc(52% - var(--sobre-gap) * 0.5)', height: '100%', radius: '26px' },
+                { top: '0%', left: '0%', width: 'calc(48% - var(--sobre-gap) * 0.5)', height: 'calc(50% - var(--sobre-gap) * 0.5)', radius: '20px' },
+                { top: 'calc(50% + var(--sobre-gap) * 0.5)', left: '0%', width: 'calc(24% - var(--sobre-gap) * 0.75)', height: 'calc(50% - var(--sobre-gap) * 0.5)', radius: '16px' },
+                { top: 'calc(50% + var(--sobre-gap) * 0.5)', left: 'calc(24% + var(--sobre-gap) * 0.25)', width: 'calc(24% - var(--sobre-gap) * 0.75)', height: 'calc(50% - var(--sobre-gap) * 0.5)', radius: '16px' }
+              ],
+              // Template 3: Destaque Grande na Base (Banner Horizontal)
+              [
+                { top: 'calc(46% + var(--sobre-gap) * 0.5)', left: '0%', width: '100%', height: 'calc(54% - var(--sobre-gap) * 0.5)', radius: '24px' },
+                { top: '0%', left: '0%', width: 'calc(33.333% - var(--sobre-gap) * 0.667)', height: 'calc(46% - var(--sobre-gap) * 0.5)', radius: '16px' },
+                { top: '0%', left: 'calc(33.333% + var(--sobre-gap) * 0.333)', width: 'calc(33.333% - var(--sobre-gap) * 0.667)', height: 'calc(46% - var(--sobre-gap) * 0.5)', radius: '16px' },
+                { top: '0%', left: 'calc(66.666% + var(--sobre-gap) * 0.333)', width: 'calc(33.334% - var(--sobre-gap) * 0.667)', height: 'calc(46% - var(--sobre-gap) * 0.5)', radius: '16px' }
+              ]
+            ];
+
+            var stageEl = document.getElementById('sobreMosaicStage');
+            var dotsContainer = document.getElementById('sobreDotsContainer');
+            var counterCurrent = document.getElementById('sobreCounterCurrent');
+            var counterTotal = document.getElementById('sobreCounterTotal');
+            var autoplayToggleBtn = document.getElementById('sobreAutoplayToggle');
+            var pauseIcon = document.getElementById('sobreAutoplayPauseIcon');
+            var playIcon = document.getElementById('sobreAutoplayPlayIcon');
+
+            if (!stageEl) return;
+
+            if (counterTotal) {
+              counterTotal.textContent = (TOTAL < 10 ? '0' : '') + TOTAL;
+            }
+
+            // Cria os 15 cards de fotos puras (sem texto, sem badges, sem sobreposições)
+            var cardElements = [];
+
+            PHOTO_URLS.forEach(function (url, index) {
+              var card = document.createElement('div');
+              card.className = 'mosaic-photo-card';
+              card.setAttribute('data-photo-index', index);
+              card.setAttribute('role', 'button');
+              card.setAttribute('tabindex', '0');
+              card.setAttribute('aria-label', 'Atração Villa Plaza Park foto ' + (index + 1));
+
+              // Foto 100% limpa
+              card.innerHTML = '<img src="' + url + '" alt="Atração Villa Plaza Park" class="w-full h-full object-cover object-center pointer-events-none select-none" loading="lazy" decoding="async">';
+
+              // Estado inicial: oculto
+              card.style.top = '50%';
+              card.style.left = '50%';
+              card.style.width = '0px';
+              card.style.height = '0px';
+              card.style.opacity = '0';
+              card.style.visibility = 'hidden';
+              card.style.transform = 'translate(-50%, -50%) scale(0.6)';
+
+              // Clique no card
+              card.addEventListener('click', function () {
+                var currentSlot = card.getAttribute('data-active-slot');
+                if (currentSlot === '0') {
+                  // Já é o destaque: abre vídeo institucional
+                  if (typeof openVideoModal === 'function') {
+                    openVideoModal();
+                  }
+                } else if (currentSlot === '1') {
+                  // Foto secundária 1: avança 1 passo
+                  nextStep();
+                  resetAutoplay();
+                } else if (currentSlot === '2') {
+                  // Foto secundária 2: avança 2 passos
+                  goToStep((currentStep + 2) % TOTAL);
+                  resetAutoplay();
+                } else if (currentSlot === '3') {
+                  // Foto secundária 3: avança 3 passos
+                  goToStep((currentStep + 3) % TOTAL);
+                  resetAutoplay();
+                }
+              });
+
+              card.addEventListener('keydown', function (e) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  card.click();
+                }
+              });
+
+              stageEl.appendChild(card);
+              cardElements.push(card);
+            });
+
+            // Cria os 15 Dots na barra inferior
+            var dotElements = [];
+            if (dotsContainer) {
+              for (var i = 0; i < TOTAL; i++) {
+                (function (dotIdx) {
+                  var dot = document.createElement('button');
+                  dot.type = 'button';
+                  dot.className = 'sobre-dot-pill' + (dotIdx === 0 ? ' active' : '');
+                  dot.setAttribute('role', 'tab');
+                  dot.setAttribute('aria-label', 'Ir para slide ' + (dotIdx + 1));
+                  dot.style.width = dotIdx === 0 ? '24px' : '7px';
+                  dot.addEventListener('click', function () {
+                    goToStep(dotIdx);
+                    resetAutoplay();
+                  });
+                  dotsContainer.appendChild(dot);
+                  dotElements.push(dot);
+                })(i);
+              }
+            }
+
+            // Aplica geometria de um slot a um elemento
+            function applySlotGeometry(card, slotConfig, zIndex) {
+              card.style.visibility = 'visible';
+              card.style.opacity = '1';
+              card.style.transform = 'translate(0, 0) scale(1)';
+              card.style.top = slotConfig.top;
+              card.style.left = slotConfig.left;
+              card.style.width = slotConfig.width;
+              card.style.height = slotConfig.height;
+              card.style.borderRadius = slotConfig.radius;
+              card.style.zIndex = zIndex;
+            }
+
+            // Atualiza indicadores de UI
+            function updateUI() {
+              if (counterCurrent) {
+                var num = currentStep + 1;
+                counterCurrent.textContent = (num < 10 ? '0' : '') + num;
+              }
+              dotElements.forEach(function (dot, i) {
+                if (i === currentStep) {
+                  dot.classList.add('active');
+                  dot.style.width = '24px';
+                  dot.setAttribute('aria-selected', 'true');
+                } else {
+                  dot.classList.remove('active');
+                  dot.style.width = '7px';
+                  dot.setAttribute('aria-selected', 'false');
+                }
+              });
+            }
+
+            // Estado Inicial
+            function renderInitialLayout() {
+              var layout = LAYOUT_TEMPLATES[currentStep % 4];
+              var activeIndices = [
+                currentStep % TOTAL,
+                (currentStep + 1) % TOTAL,
+                (currentStep + 2) % TOTAL,
+                (currentStep + 3) % TOTAL
+              ];
+
+              cardElements.forEach(function (card, i) {
+                var slotIdx = activeIndices.indexOf(i);
+                card.classList.add('no-trans');
+                if (slotIdx !== -1) {
+                  card.setAttribute('data-active-slot', slotIdx);
+                  var z = slotIdx === 0 ? 10 : (8 - slotIdx);
+                  applySlotGeometry(card, layout[slotIdx], z);
+                } else {
+                  card.removeAttribute('data-active-slot');
+                  card.style.visibility = 'hidden';
+                  card.style.opacity = '0';
+                  card.style.zIndex = '0';
+                }
+              });
+
+              void stageEl.offsetWidth; // Força reflow
+
+              setTimeout(function () {
+                cardElements.forEach(function (card) {
+                  card.classList.remove('no-trans');
+                });
+              }, 60);
+
+              updateUI();
+            }
+
+            // ── TRANSIÇÃO FLIP: AVANÇAR (NEXT) ──
+            function nextStep() {
+              if (isAnimating) return;
+              isAnimating = true;
+
+              var prevStepIdx = currentStep;
+              var newStepIdx = (prevStepIdx + 1) % TOTAL;
+              var newLayout = LAYOUT_TEMPLATES[newStepIdx % 4];
+
+              // Cartões participantes
+              var cardLeaving = cardElements[prevStepIdx % TOTAL];                     // Estava no destaque -> sai suavemente
+              var cardToSlot0 = cardElements[(prevStepIdx + 1) % TOTAL];               // Estava no Slot 1 -> vira novo Destaque!
+              var cardToSlot1 = cardElements[(prevStepIdx + 2) % TOTAL];               // Estava no Slot 2 -> vai para Slot 1!
+              var cardToSlot2 = cardElements[(prevStepIdx + 3) % TOTAL];               // Estava no Slot 3 -> vai para Slot 2!
+              var cardEntering = cardElements[(prevStepIdx + 4) % TOTAL];              // Estava oculto -> entra no Slot 3!
+
+              // Prepara card de entrada na posição de surgimento sem transição
+              cardEntering.classList.add('no-trans');
+              cardEntering.style.visibility = 'visible';
+              cardEntering.style.top = newLayout[3].top;
+              cardEntering.style.left = newLayout[3].left;
+              cardEntering.style.width = newLayout[3].width;
+              cardEntering.style.height = newLayout[3].height;
+              cardEntering.style.borderRadius = newLayout[3].radius;
+              cardEntering.style.opacity = '0';
+              cardEntering.style.transform = 'scale(0.82)';
+              cardEntering.style.zIndex = '5';
+              void cardEntering.offsetWidth; // Força reflow
+              cardEntering.classList.remove('no-trans');
+
+              // Ativa transições simultâneas coordenadas para o novo layout
+              cardLeaving.removeAttribute('data-active-slot');
+              cardLeaving.style.zIndex = '2';
+              cardLeaving.style.opacity = '0';
+              cardLeaving.style.transform = 'scale(0.85) translate(-15px, 0)';
+
+              cardToSlot0.setAttribute('data-active-slot', '0');
+              applySlotGeometry(cardToSlot0, newLayout[0], 10);
+
+              cardToSlot1.setAttribute('data-active-slot', '1');
+              applySlotGeometry(cardToSlot1, newLayout[1], 8);
+
+              cardToSlot2.setAttribute('data-active-slot', '2');
+              applySlotGeometry(cardToSlot2, newLayout[2], 7);
+
+              cardEntering.setAttribute('data-active-slot', '3');
+              applySlotGeometry(cardEntering, newLayout[3], 6);
+
+              currentStep = newStepIdx;
+              updateUI();
+
+              setTimeout(function () {
+                cardLeaving.style.visibility = 'hidden';
+                isAnimating = false;
+              }, TRANSITION_DURATION);
+            }
+
+            // ── TRANSIÇÃO FLIP: VOLTAR (PREV) ──
+            function prevStep() {
+              if (isAnimating) return;
+              isAnimating = true;
+
+              var prevStepIdx = currentStep;
+              var newStepIdx = (prevStepIdx - 1 + TOTAL) % TOTAL;
+              var newLayout = LAYOUT_TEMPLATES[newStepIdx % 4];
+
+              // Cartões participantes
+              var cardLeaving = cardElements[(prevStepIdx + 3) % TOTAL];               // Slot 3 -> sai suavemente
+              var cardToSlot3 = cardElements[(prevStepIdx + 2) % TOTAL];               // Slot 2 -> vai para Slot 3!
+              var cardToSlot2 = cardElements[(prevStepIdx + 1) % TOTAL];               // Slot 1 -> vai para Slot 2!
+              var cardToSlot1 = cardElements[prevStepIdx % TOTAL];                     // Destaque anterior -> encolhe para Slot 1!
+              var cardEntering = cardElements[newStepIdx % TOTAL];                     // Estava oculto -> vira novo Destaque!
+
+              // Prepara card de entrada no Slot 0 sem transição
+              cardEntering.classList.add('no-trans');
+              cardEntering.style.visibility = 'visible';
+              cardEntering.style.top = newLayout[0].top;
+              cardEntering.style.left = newLayout[0].left;
+              cardEntering.style.width = newLayout[0].width;
+              cardEntering.style.height = newLayout[0].height;
+              cardEntering.style.borderRadius = newLayout[0].radius;
+              cardEntering.style.opacity = '0';
+              cardEntering.style.transform = 'scale(0.85) translate(15px, 0)';
+              cardEntering.style.zIndex = '10';
+              void cardEntering.offsetWidth; // Força reflow
+              cardEntering.classList.remove('no-trans');
+
+              // Ativa transições simultâneas coordenadas
+              cardLeaving.removeAttribute('data-active-slot');
+              cardLeaving.style.zIndex = '2';
+              cardLeaving.style.opacity = '0';
+              cardLeaving.style.transform = 'scale(0.82)';
+
+              cardEntering.setAttribute('data-active-slot', '0');
+              applySlotGeometry(cardEntering, newLayout[0], 10);
+
+              cardToSlot1.setAttribute('data-active-slot', '1');
+              applySlotGeometry(cardToSlot1, newLayout[1], 8);
+
+              cardToSlot2.setAttribute('data-active-slot', '2');
+              applySlotGeometry(cardToSlot2, newLayout[2], 7);
+
+              cardToSlot3.setAttribute('data-active-slot', '3');
+              applySlotGeometry(cardToSlot3, newLayout[3], 6);
+
+              currentStep = newStepIdx;
+              updateUI();
+
+              setTimeout(function () {
+                cardLeaving.style.visibility = 'hidden';
+                isAnimating = false;
+              }, TRANSITION_DURATION);
+            }
+
+            // ── SALTO DIRETO PARA QUALQUER SLIDE (VIA DOT) ──
+            function goToStep(target) {
+              if (target === currentStep || isAnimating) return;
+
+              if (target === (currentStep + 1) % TOTAL) {
+                nextStep();
+                return;
+              }
+              if (target === (currentStep - 1 + TOTAL) % TOTAL) {
+                prevStep();
+                return;
+              }
+
+              isAnimating = true;
+              var oldStep = currentStep;
+              var newLayout = LAYOUT_TEMPLATES[target % 4];
+
+              var oldIndices = [
+                oldStep % TOTAL,
+                (oldStep + 1) % TOTAL,
+                (oldStep + 2) % TOTAL,
+                (oldStep + 3) % TOTAL
+              ];
+
+              var newIndices = [
+                target % TOTAL,
+                (target + 1) % TOTAL,
+                (target + 2) % TOTAL,
+                (target + 3) % TOTAL
+              ];
+
+              // Fade out nos que saem totalmente
+              oldIndices.forEach(function (idx) {
+                if (newIndices.indexOf(idx) === -1) {
+                  var card = cardElements[idx];
+                  card.removeAttribute('data-active-slot');
+                  card.style.opacity = '0';
+                  card.style.transform = 'scale(0.9)';
+                }
+              });
+
+              // Prepara os novos que entram
+              newIndices.forEach(function (idx, slotIdx) {
+                var card = cardElements[idx];
+                card.setAttribute('data-active-slot', slotIdx);
+                var z = slotIdx === 0 ? 10 : (8 - slotIdx);
+
+                if (oldIndices.indexOf(idx) === -1) {
+                  // Entra novo
+                  card.classList.add('no-trans');
+                  card.style.visibility = 'visible';
+                  card.style.top = newLayout[slotIdx].top;
+                  card.style.left = newLayout[slotIdx].left;
+                  card.style.width = newLayout[slotIdx].width;
+                  card.style.height = newLayout[slotIdx].height;
+                  card.style.borderRadius = newLayout[slotIdx].radius;
+                  card.style.opacity = '0';
+                  card.style.transform = 'scale(0.88)';
+                  card.style.zIndex = z;
+                  void card.offsetWidth;
+                  card.classList.remove('no-trans');
+                }
+
+                // Aplica posição de destino no novo layout
+                applySlotGeometry(card, newLayout[slotIdx], z);
+              });
+
+              currentStep = target;
+              updateUI();
+
+              setTimeout(function () {
+                oldIndices.forEach(function (idx) {
+                  if (newIndices.indexOf(idx) === -1) {
+                    cardElements[idx].style.visibility = 'hidden';
+                  }
+                });
+                isAnimating = false;
+              }, TRANSITION_DURATION);
+            }
+
+            // ── BIND DOS BOTÕES DE NAVEGAÇÃO ──
+            var prevBtn = document.getElementById('sobrePrevBtn');
+            var nextBtn = document.getElementById('sobreNextBtn');
+            var prevBtnBottom = document.getElementById('sobrePrevBtnBottom');
+            var nextBtnBottom = document.getElementById('sobreNextBtnBottom');
+
+            function bindBtn(btn, fn) {
+              if (btn) {
+                btn.addEventListener('click', function (e) {
+                  e.preventDefault();
+                  fn();
+                  resetAutoplay();
+                });
+              }
+            }
+
+            bindBtn(prevBtn, prevStep);
+            bindBtn(nextBtn, nextStep);
+            bindBtn(prevBtnBottom, prevStep);
+            bindBtn(nextBtnBottom, nextStep);
+
+            // Suporte a Touch Swipe
+            var touchStartX = 0;
+            var touchStartY = 0;
+
+            stageEl.addEventListener('touchstart', function (e) {
+              if (e.touches && e.touches[0]) {
+                touchStartX = e.touches[0].clientX;
+                touchStartY = e.touches[0].clientY;
+                pauseAutoplay();
+              }
+            }, { passive: true });
+
+            stageEl.addEventListener('touchend', function (e) {
+              if (e.changedTouches && e.changedTouches[0]) {
+                var diffX = e.changedTouches[0].clientX - touchStartX;
+                var diffY = e.changedTouches[0].clientY - touchStartY;
+
+                if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 40) {
+                  if (diffX < 0) {
+                    nextStep();
+                  } else {
+                    prevStep();
+                  }
+                }
+              }
+              resumeAutoplay();
+            }, { passive: true });
+
+            // ── AUTOPLAY INTELIGENTE ──
+            function startAutoplay() {
+              if (autoplayTimer) clearInterval(autoplayTimer);
+              autoplayTimer = setInterval(function () {
+                if (!isAutoplayPaused && !document.hidden) {
+                  nextStep();
+                }
+              }, AUTOPLAY_INTERVAL);
+            }
+
+            function pauseAutoplay() {
+              isAutoplayPaused = true;
+            }
+
+            function resumeAutoplay() {
+              isAutoplayPaused = false;
+            }
+
+            function resetAutoplay() {
+              startAutoplay();
+            }
+
+            // Pausa no hover do mouse
+            var carouselWrapper = document.getElementById('sobreMosaicCarousel');
+            if (carouselWrapper) {
+              carouselWrapper.addEventListener('mouseenter', pauseAutoplay);
+              carouselWrapper.addEventListener('mouseleave', resumeAutoplay);
+            }
+
+            // Botão Play / Pause do Autoplay
+            if (autoplayToggleBtn) {
+              autoplayToggleBtn.addEventListener('click', function () {
+                if (!isAutoplayPaused) {
+                  pauseAutoplay();
+                  autoplayToggleBtn.setAttribute('title', 'Retomar rotação automática');
+                  autoplayToggleBtn.setAttribute('aria-label', 'Retomar rotação automática');
+                  if (pauseIcon) pauseIcon.classList.add('hidden');
+                  if (playIcon) playIcon.classList.remove('hidden');
+                } else {
+                  resumeAutoplay();
+                  autoplayToggleBtn.setAttribute('title', 'Pausar rotação automática');
+                  autoplayToggleBtn.setAttribute('aria-label', 'Pausar rotação automática');
+                  if (pauseIcon) pauseIcon.classList.remove('hidden');
+                  if (playIcon) playIcon.classList.add('hidden');
+                }
+              });
+            }
+
+            // Pausa quando sai da visão da tela
+            if ('IntersectionObserver' in window && carouselWrapper) {
+              var observer = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                  if (entry.isIntersecting) {
+                    resumeAutoplay();
+                  } else {
+                    pauseAutoplay();
+                  }
+                });
+              }, { threshold: 0.2 });
+              observer.observe(carouselWrapper);
+            }
+
+            // Inicializa
+            renderInitialLayout();
+            startAutoplay();
+          })();
+          </script>
 
         </div>
 
@@ -2882,7 +3516,7 @@
               <img src="assets/3DObjetos/estrela-sorridente-3d.webp" alt="Estrela decorativa" class="w-full h-auto object-contain drop-shadow-xl" loading="eager">
             </div>
 
-            <div class="flex flex-col items-start text-left mb-6 sm:mb-8 lg:mb-10">
+            <div class="flex flex-col items-start text-left mb-3 sm:mb-4">
               <!-- Badge / Pill: NOSSAS UNIDADES -->
               <span class="inline-flex items-center px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-wider bg-[#FFF0E5] text-[#FA5A00] mb-3 sm:mb-4 shadow-2xs font-fredoka">
                 NOSSAS UNIDADES
@@ -2905,8 +3539,8 @@
               </p>
             </div>
 
-            <!-- Grade de 4 Features em Ícones Circulares com Rótulos (Sem linha divisória, com padding-left seguro para a estrela) -->
-            <div class="grid grid-cols-4 gap-2 sm:gap-3 w-full pl-8 sm:pl-14 lg:pl-18 xl:pl-22 mt-6 sm:mt-10 lg:mt-12">
+            <!-- Grade de 4 Features em Ícones Circulares com Rótulos (Aproximados do texto conforme mockup) -->
+            <div class="grid grid-cols-4 gap-2 sm:gap-3 w-full mt-3 sm:mt-4">
 
               <!-- 1. Fácil acesso -->
               <div class="flex flex-col items-center text-center group">
@@ -2963,7 +3597,7 @@
                 <div>
                   <!-- Foto Topo Real Plaza (já contém botão fechar oficial) -->
                   <div class="relative w-full h-[180px] sm:h-[200px] md:h-[220px] lg:h-[240px] xl:h-[250px] overflow-hidden bg-slate-100">
-                    <img src="assets/images/unidade-plaza-maps.webp" alt="Villa Plaza Park (Plaza)" class="w-full h-full object-cover block" loading="eager">
+                    <img src="assets/images/Crianca-correndo-espaco-kids-aventura.webp" alt="Villa Plaza Park (Plaza)" class="w-full h-full object-cover block" loading="eager">
                   </div>
 
                   <!-- Conteúdo do Card -->
@@ -3051,7 +3685,7 @@
                 <div>
                   <!-- Foto Topo Real Tapanã (já contém botão fechar oficial) -->
                   <div class="relative w-full h-[180px] sm:h-[200px] md:h-[220px] lg:h-[240px] xl:h-[250px] overflow-hidden bg-slate-100">
-                    <img src="assets/images/unidade-tapana-maps.webp" alt="Villa Plaza Park (Tapanã)" class="w-full h-full object-cover block" loading="eager">
+                    <img src="assets/images/Espaco-baby-mini-escorregador-e-tunel.webp" alt="Villa Plaza Park (Tapanã)" class="w-full h-full object-cover block" loading="eager">
                   </div>
 
                   <!-- Conteúdo do Card -->
