@@ -13,26 +13,24 @@ def test_html_structure():
 
     assert '<section id="estadia"' in html_content, "A seção #estadia não foi encontrada no index.html!"
     assert "VALORES POR ESTADIA" in html_content, "Título 'VALORES POR ESTADIA' não encontrado!"
-    assert "HORÁRIOS DE FUNCIONAMENTO" in html_content, "Título 'HORÁRIOS DE FUNCIONAMENTO' não encontrado!"
 
-    # Check 5 cards in mobile and desktop
+    # Check tabs and panels
+    assert 'id="tab-tapana"' in html_content
+    assert 'id="tab-plaza"' in html_content
+    assert 'id="panel-tapana"' in html_content
+    assert 'id="panel-plaza"' in html_content
+
+    # Check cards in mobile and desktop
     assert "card-meia-hora" in html_content
     assert "card-uma-hora" in html_content
     assert "card-duas-horas" in html_content
     assert "card-cliente-mais-b" in html_content
     assert "card-pacote-vip" in html_content
-
-    # Check 4 schedule pills
-    pill_matches = re.findall(r'class="ds-estadia-pill-item"', html_content)
-    assert len(pill_matches) == 4, f"Esperado 4 pills de horários, encontrado: {len(pill_matches)}"
+    assert "card-excedente" in html_content
 
     # Check prices
-    for price in ["R$ 35", "R$ 49", "R$ 69", "R$ 59", "R$ 89"]:
+    for price in ["R$ 35", "R$ 49", "R$ 69", "R$ 59", "R$ 89", "R$ 1"]:
         assert price in html_content, f"Preço {price} não encontrado no index.html!"
-
-    # Check schedules
-    for sched in ["FECHADO", "14H - 21H", "09H - 21H", "08H - 14H"]:
-        assert sched in html_content, f"Horário {sched} não encontrado no index.html!"
 
     # Check assets in estadia folder exist
     expected_assets = [

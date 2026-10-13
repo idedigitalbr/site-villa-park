@@ -12,7 +12,7 @@ const proc = spawn(edgePath, [
   '--no-first-run',
   '--no-default-browser-check',
   '--window-size=1366,768',
-  'file:///C:/.PROJETOS - Sites 2026/site-villa-park/index.html'
+  'file:///D:/.GITHUB/site-villa-park/index.html'
 ]);
 
 await new Promise(r => setTimeout(r, 2000));

@@ -259,118 +259,227 @@ updateCarousel();
 startAutoplay();
 
 /* ----------------------------------------------------------------------------
-   5. CARROSSEL DE BANNERS (S3 BANNERZINHOS)
+   5. CARROSSEL DE DESTAQUES (S2 DESTAQUES / OFERTAS)
    ---------------------------------------------------------------------------- */
-function updateBannerDots() {
-  const track = document.getElementById('bannersTrack');
-  const bannerDots = document.querySelectorAll('.banner-dot');
-  if (!track || !bannerDots.length) return;
-  const cards = track.querySelectorAll('[data-banner-card]');
-  if (!cards.length) return;
-  const firstCard = cards[0];
-  const cardWidth = firstCard.offsetWidth;
-  const computedGap = parseFloat(window.getComputedStyle(track).gap) || 24;
-  const step = cardWidth + computedGap;
-  const maxIndex = bannerDots.length - 1;
-  const currentIndex = Math.min(Math.max(0, Math.round(track.scrollLeft / step)), maxIndex);
+let currentDestaque = 0;
 
-  bannerDots.forEach((dot, idx) => {
-    if (idx === currentIndex) {
-      dot.className = 'banner-dot w-6 sm:w-8 h-2 sm:h-2.5 rounded-full bg-brand-red transition-all duration-300 flex-shrink-0 focus:outline-none';
+function getDestaqueOffset(index) {
+  const track = document.getElementById('destaquesTrack');
+  const viewport = document.getElementById('destaquesViewport');
+  if (!track || !viewport) return 0;
+  const cards = track.querySelectorAll('.destaque-card-wrap');
+  if (!cards.length) return 0;
+
+  const validIndex = Math.max(0, Math.min(index, cards.length - 1));
+  const targetCard = cards[validIndex];
+  const firstCard = cards[0];
+  const cardOffset = targetCard.offsetLeft - firstCard.offsetLeft;
+  const maxOffset = Math.max(0, track.scrollWidth - viewport.clientWidth);
+
+  return Math.min(cardOffset, maxOffset);
+}
+
+function updateDestaquesDots(index) {
+  const dots = document.querySelectorAll('.destaques-dot');
+  if (!dots.length) return;
+  dots.forEach((dot, idx) => {
+    if (idx === index) {
+      dot.classList.add('active');
+      dot.setAttribute('aria-current', 'true');
     } else {
-      dot.className = 'banner-dot w-2 sm:w-2.5 h-2 sm:h-2.5 rounded-full bg-bf-ink/20 hover:bg-bf-ink/40 transition-all duration-300 flex-shrink-0 focus:outline-none';
+      dot.classList.remove('active');
+      dot.removeAttribute('aria-current');
     }
   });
 }
 
-function scrollBanners(direction) {
-  const track = document.getElementById('bannersTrack');
+function destaquesGoTo(index) {
+  const track = document.getElementById('destaquesTrack');
   if (!track) return;
-  const firstCard = track.querySelector('[data-banner-card]');
-  const computedGap = parseFloat(window.getComputedStyle(track).gap) || 24;
-  const cardWidth = firstCard ? firstCard.offsetWidth + computedGap : 360;
-  const maxScroll = track.scrollWidth - track.clientWidth;
+  const cards = track.querySelectorAll('.destaque-card-wrap');
+  if (!cards.length) return;
 
-  if (direction === 'left') {
-    if (track.scrollLeft <= 20) {
-      track.scrollTo({ left: maxScroll, behavior: 'smooth' });
-    } else {
-      track.scrollBy({ left: -cardWidth, behavior: 'smooth' });
-    }
-  } else {
-    if (track.scrollLeft >= maxScroll - 20) {
-      track.scrollTo({ left: 0, behavior: 'smooth' });
-    } else {
-      track.scrollBy({ left: cardWidth, behavior: 'smooth' });
-    }
-  }
-  setTimeout(updateBannerDots, 350);
+  currentDestaque = Math.max(0, Math.min(index, cards.length - 1));
+  const offset = getDestaqueOffset(currentDestaque);
+
+  track.style.transition = 'transform 0.4s cubic-bezier(0.25, 1, 0.5, 1)';
+  track.style.transform = `translateX(-${offset}px)`;
+  updateDestaquesDots(currentDestaque);
 }
 
-function scrollToBanner(index) {
-  const track = document.getElementById('bannersTrack');
+function destaquesNext() {
+  const track = document.getElementById('destaquesTrack');
   if (!track) return;
-  const cards = track.querySelectorAll('[data-banner-card]');
-  if (cards[index]) {
-    cards[index].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
-    setTimeout(updateBannerDots, 350);
-  }
+  const cards = track.querySelectorAll('.destaque-card-wrap');
+  if (!cards.length) return;
+
+  currentDestaque = (currentDestaque + 1) % cards.length;
+  destaquesGoTo(currentDestaque);
 }
 
-window.scrollBanners = scrollBanners;
-window.scrollToBanner = scrollToBanner;
+function destaquesPrev() {
+  const track = document.getElementById('destaquesTrack');
+  if (!track) return;
+  const cards = track.querySelectorAll('.destaque-card-wrap');
+  if (!cards.length) return;
 
-// Suporte a Touch Swipe & Drag com Mouse em Bannerzinhos
-const bannersTrack = document.getElementById('bannersTrack');
-if (bannersTrack) {
-  let isDragging = false;
-  let hasMoved = false;
+  currentDestaque = (currentDestaque - 1 + cards.length) % cards.length;
+  destaquesGoTo(currentDestaque);
+}
+
+window.destaquesGoTo = destaquesGoTo;
+window.destaquesNext = destaquesNext;
+window.destaquesPrev = destaquesPrev;
+// Fallbacks retrocompatíveis
+window.scrollBanners = function(dir) { if (dir === 'left') destaquesPrev(); else destaquesNext(); };
+window.scrollToBanner = function(idx) { destaquesGoTo(idx); };
+
+// Touch Swipe e Drag com Mouse em Destaques
+(function initDestaquesInteractions() {
+  const track = document.getElementById('destaquesTrack');
+  const viewport = document.getElementById('destaquesViewport') || track;
+  if (!track || !viewport) return;
+
+  let isTouchDragging = false;
+  let isMouseDragging = false;
   let startX = 0;
-  let scrollLeftPos = 0;
-  let scrollDebounce = null;
+  let startY = 0;
+  let currentX = 0;
+  let isHorizontal = null;
+  let initialTranslate = 0;
+  let dragMoved = false;
 
-  bannersTrack.addEventListener('scroll', () => {
-    if (scrollDebounce) clearTimeout(scrollDebounce);
-    scrollDebounce = setTimeout(updateBannerDots, 80);
+  // Touch handlers
+  viewport.addEventListener('touchstart', (e) => {
+    if (e.touches.length !== 1) return;
+    isTouchDragging = true;
+    startX = e.touches[0].clientX;
+    startY = e.touches[0].clientY;
+    currentX = startX;
+    isHorizontal = null;
+    dragMoved = false;
+    initialTranslate = getDestaqueOffset(currentDestaque);
+    track.style.transition = 'none';
   }, { passive: true });
 
-  bannersTrack.addEventListener('mousedown', (e) => {
-    isDragging = true;
-    hasMoved = false;
-    bannersTrack.classList.add('cursor-grabbing');
-    bannersTrack.classList.remove('cursor-grab', 'scroll-smooth');
-    startX = e.pageX - bannersTrack.offsetLeft;
-    scrollLeftPos = bannersTrack.scrollLeft;
+  viewport.addEventListener('touchmove', (e) => {
+    if (!isTouchDragging || e.touches.length !== 1) return;
+    currentX = e.touches[0].clientX;
+    const currentY = e.touches[0].clientY;
+    const deltaX = currentX - startX;
+    const deltaY = currentY - startY;
+
+    if (isHorizontal === null) {
+      if (Math.abs(deltaX) > 6 || Math.abs(deltaY) > 6) {
+        isHorizontal = Math.abs(deltaX) > Math.abs(deltaY);
+      }
+    }
+
+    if (isHorizontal) {
+      if (e.cancelable) e.preventDefault();
+      dragMoved = true;
+      const maxOffset = Math.max(0, track.scrollWidth - viewport.clientWidth);
+      let newOffset = initialTranslate - deltaX;
+      if (newOffset < 0) {
+        newOffset = newOffset * 0.3;
+      } else if (newOffset > maxOffset) {
+        newOffset = maxOffset + (newOffset - maxOffset) * 0.3;
+      }
+      track.style.transform = `translateX(-${newOffset}px)`;
+    }
+  }, { passive: false });
+
+  viewport.addEventListener('touchend', () => {
+    if (!isTouchDragging) return;
+    isTouchDragging = false;
+    const deltaX = currentX - startX;
+    const threshold = 40;
+
+    if (isHorizontal && dragMoved) {
+      if (deltaX < -threshold) {
+        destaquesNext();
+      } else if (deltaX > threshold) {
+        destaquesPrev();
+      } else {
+        destaquesGoTo(currentDestaque);
+      }
+    } else {
+      destaquesGoTo(currentDestaque);
+    }
+
+    setTimeout(() => { dragMoved = false; }, 120);
+  }, { passive: true });
+
+  // Mouse drag handlers (Desktop / Cursor)
+  viewport.addEventListener('mousedown', (e) => {
+    if (e.button !== 0) return;
+    isMouseDragging = true;
+    startX = e.clientX;
+    currentX = startX;
+    dragMoved = false;
+    initialTranslate = getDestaqueOffset(currentDestaque);
+    track.style.transition = 'none';
+    track.classList.add('cursor-grabbing');
+    track.classList.remove('cursor-grab');
+  });
+
+  window.addEventListener('mousemove', (e) => {
+    if (!isMouseDragging) return;
+    currentX = e.clientX;
+    const deltaX = currentX - startX;
+    if (Math.abs(deltaX) > 6) {
+      dragMoved = true;
+      const maxOffset = Math.max(0, track.scrollWidth - viewport.clientWidth);
+      let newOffset = initialTranslate - deltaX;
+      if (newOffset < 0) newOffset *= 0.3;
+      else if (newOffset > maxOffset) newOffset = maxOffset + (newOffset - maxOffset) * 0.3;
+      track.style.transform = `translateX(-${newOffset}px)`;
+    }
   });
 
   window.addEventListener('mouseup', () => {
-    if (isDragging) {
-      isDragging = false;
-      bannersTrack.classList.remove('cursor-grabbing');
-      bannersTrack.classList.add('cursor-grab', 'scroll-smooth');
-      updateBannerDots();
+    if (!isMouseDragging) return;
+    isMouseDragging = false;
+    track.classList.remove('cursor-grabbing');
+    track.classList.add('cursor-grab');
+    const deltaX = currentX - startX;
+    const threshold = 40;
+
+    if (dragMoved) {
+      if (deltaX < -threshold) {
+        destaquesNext();
+      } else if (deltaX > threshold) {
+        destaquesPrev();
+      } else {
+        destaquesGoTo(currentDestaque);
+      }
+    } else {
+      destaquesGoTo(currentDestaque);
     }
+
+    setTimeout(() => { dragMoved = false; }, 120);
   });
 
-  bannersTrack.addEventListener('mousemove', (e) => {
-    if (!isDragging) return;
-    const x = e.pageX - bannersTrack.offsetLeft;
-    const walk = (x - startX) * 1.5;
-    if (Math.abs(walk) > 6) {
-      hasMoved = true;
-      e.preventDefault();
-    }
-    bannersTrack.scrollLeft = scrollLeftPos - walk;
-  });
-
-  bannersTrack.addEventListener('click', (e) => {
-    if (hasMoved) {
+  // Previne clique involuntário nos cards durante swipe/drag
+  track.addEventListener('click', (e) => {
+    if (dragMoved) {
       e.preventDefault();
       e.stopPropagation();
-      hasMoved = false;
     }
   }, true);
-}
+
+  // Recalcula alinhamento ao redimensionar tela
+  let resizeTimer = null;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+      destaquesGoTo(currentDestaque);
+    }, 100);
+  }, { passive: true });
+
+  // Inicializa estado dos dots
+  updateDestaquesDots(0);
+})();
 
 /* ----------------------------------------------------------------------------
    6. CARROSSEL DE BANNERS HORIZONTAIS (S4)
@@ -846,6 +955,14 @@ document.addEventListener('DOMContentLoaded', () => {
         card.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.05)';
       }
     });
+
+    // Centraliza suavemente o card ativo no container quando em rolagem horizontal (mobile)
+    if (cards[currentIdx]) {
+      const rail = cards[currentIdx].parentElement;
+      if (rail && rail.scrollWidth > rail.clientWidth) {
+        cards[currentIdx].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+      }
+    }
   }
 
   function nextAtracao() {
@@ -944,6 +1061,42 @@ document.addEventListener('DOMContentLoaded', () => {
     startAuto();
   });
 })();
+
+/* ----------------------------------------------------------------------------
+   11. SELETOR DE UNIDADES (TABS) - VALORES POR ESTADIA (TAPANÃ & PLAZA)
+   ---------------------------------------------------------------------------- */
+function switchEstadiaTab(unit) {
+  const tabTapana = document.getElementById('tab-tapana');
+  const tabPlaza = document.getElementById('tab-plaza');
+  const panelTapana = document.getElementById('panel-tapana');
+  const panelPlaza = document.getElementById('panel-plaza');
+
+  if (unit === 'tapana') {
+    if (tabTapana) {
+      tabTapana.classList.add('is-active');
+      tabTapana.setAttribute('aria-selected', 'true');
+    }
+    if (tabPlaza) {
+      tabPlaza.classList.remove('is-active');
+      tabPlaza.setAttribute('aria-selected', 'false');
+    }
+    if (panelTapana) panelTapana.classList.remove('hidden');
+    if (panelPlaza) panelPlaza.classList.add('hidden');
+  } else {
+    if (tabPlaza) {
+      tabPlaza.classList.add('is-active');
+      tabPlaza.setAttribute('aria-selected', 'true');
+    }
+    if (tabTapana) {
+      tabTapana.classList.remove('is-active');
+      tabTapana.setAttribute('aria-selected', 'false');
+    }
+    if (panelPlaza) panelPlaza.classList.remove('hidden');
+    if (panelTapana) panelTapana.classList.add('hidden');
+  }
+}
+window.switchEstadiaTab = switchEstadiaTab;
+
 
 
 

@@ -52,7 +52,7 @@ A implementação teve como base o print de referência oficial:
    - Monograma oficial VP branco (`assets/Logos/monograma-vp.png`) com tipografia `VILLA PLAZA PARK`.
    - Slogan oficial: *"Diversão que fica na memória!"* em fonte Comfortaa.
    - Linha divisória fina branca translúcida.
-   - 4 botões sociais circulares (Instagram, TikTok, Facebook, YouTube) com fundo translúcido e ícones brancos.
+   - 3 botões sociais circulares (Instagram, TikTok, Facebook) com fundo translúcido e ícones brancos.
    - Menu de navegação inferior (Início, Sobre, Pacotes, Nossas Unidades, Contato).
    - Copyright © 2026, gatilho do modal LGPD (`openPrivacyModal()`) e créditos da agência `idei digital`.
 

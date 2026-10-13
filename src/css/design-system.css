@@ -521,15 +521,9 @@ html {
   margin: 0;
 }
 
-/* Ondas Orgânicas Fluidas Topo-Esquerdo (Verde e Laranja) */
+/* Ondas Orgânicas Fluidas Topo-Esquerdo (Transição T4 unificada no divisor SVG) */
 .ds-party-wave-tl-fluid {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: clamp(240px, 32vw, 440px);
-  height: auto;
-  pointer-events: none;
-  z-index: 1;
+  display: none !important;
 }
 
 /* Grande Bolo 3D com Velas no Canto Superior Direito */
@@ -595,6 +589,11 @@ html {
   background: #FEF9EB;
   z-index: 3;
   transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.35s ease;
+}
+
+.ds-party-banner-container picture {
+  display: block;
+  width: 100%;
 }
 
 @media (min-width: 768px) {
@@ -685,10 +684,15 @@ html {
   .ds-party-full-section {
     padding-top: 48px;
   }
+  .ds-party-wave-tl-fluid {
+    display: none !important;
+  }
+  .ds-party-cake-wrapper {
+    top: -20px !important;
+    right: -10px !important;
+  }
   .ds-party-decor-cake {
-    width: clamp(140px, 35vw, 190px);
-    top: -15px;
-    right: -15px;
+    width: clamp(95px, 24vw, 125px) !important;
   }
   .ds-party-decor-balls {
     width: clamp(120px, 28vw, 160px);
@@ -697,7 +701,14 @@ html {
   }
   .ds-party-banner-container {
     margin-top: 36px;
-    border-radius: 20px;
+    border-radius: 22px;
+    max-width: 480px;
+  }
+  .ds-party-banner-cta-link {
+    top: 85.5%;
+    left: 27%;
+    width: 49%;
+    height: 6.5%;
   }
 }
 
@@ -3233,6 +3244,12 @@ html {
   will-change: transform;
 }
 
+@media (max-width: 767px) {
+  .hero-stage-green .decor-3d-item {
+    display: none !important;
+  }
+}
+
 .anim-float-gentle {
   animation: floatGentle 6s ease-in-out infinite;
 }
@@ -3344,12 +3361,29 @@ html {
   width: 100%;
 }
 
+@media (max-width: 639px) {
+  .destaques-carousel-container {
+    /* Faz o carrossel sangrar até a parede direita no mobile (cancela os 16px do bf-container) */
+    margin-right: -16px;
+    width: calc(100% + 16px);
+  }
+}
+
 .destaques-carousel-viewport {
   overflow: hidden;
   width: 100%;
   position: relative;
   border-radius: 26px;
   padding: 8px 2px;
+}
+
+@media (max-width: 639px) {
+  .destaques-carousel-viewport {
+    /* No mobile, corta na parede direita sem margem nem arredondamento na lateral direita */
+    border-top-right-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+    padding-right: 0 !important;
+  }
 }
 
 .destaques-carousel-track {
@@ -3359,6 +3393,13 @@ html {
   user-select: none;
   -webkit-user-select: none;
   touch-action: pan-y;
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+@media (max-width: 639px) {
+  .destaques-carousel-track {
+    gap: 16px;
+  }
 }
 
 /* Cards de Destaque no Carrossel Infinito (Proporção Exata 4:5 dos Flyers Promocionais) */
@@ -3378,7 +3419,7 @@ html {
   border: 2px solid rgba(255, 255, 255, 0.2);
   flex-shrink: 0;
   /* Largura responsiva fluida: 1 card + peek no mobile, 2 no tablet, 3 em md, 4 em lg */
-  width: calc(84% - 10px);
+  width: calc(78% - 8px);
 }
 
 @media (min-width: 640px) {
@@ -3458,6 +3499,7 @@ html {
   z-index: 30;
   border: 2px solid rgba(255, 255, 255, 0.95);
   cursor: pointer;
+  touch-action: manipulation;
   transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.2s ease, box-shadow 0.2s ease, color 0.2s ease;
 }
 
@@ -3466,7 +3508,22 @@ html {
 }
 
 .destaques-nav-btn.next {
-  right: 4px;
+  right: 12px;
+}
+
+@media (hover: hover) {
+  .destaques-nav-btn:hover {
+    transform: translateY(-50%) scale(1.12);
+    background-color: #1C1D22;
+    color: #FFFFFF;
+    box-shadow: 0 14px 34px rgba(0, 0, 0, 0.35);
+  }
+}
+
+.destaques-nav-btn:active {
+  transform: translateY(-50%) scale(0.94);
+  background-color: #1C1D22;
+  color: #FFFFFF;
 }
 
 @media (min-width: 640px) {
@@ -3491,15 +3548,17 @@ html {
   }
 }
 
-.destaques-nav-btn:hover {
-  transform: translateY(-50%) scale(1.12);
-  background-color: #1C1D22;
-  color: #FFFFFF;
-  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.35);
-}
-
-.destaques-nav-btn:active {
-  transform: translateY(-50%) scale(0.94);
+@media (max-width: 639px) {
+  .destaques-nav-btn {
+    width: 40px;
+    height: 40px;
+  }
+  .destaques-nav-btn.prev {
+    left: 4px;
+  }
+  .destaques-nav-btn.next {
+    right: 12px;
+  }
 }
 
 .destaques-nav-btn:focus-visible {
@@ -3558,9 +3617,14 @@ html {
     border-radius: 24px;
     flex-direction: column;
     text-align: center;
-    padding: 20px;
-    gap: 16px;
+    padding: 16px 14px;
+    gap: 14px;
   }
+}
+
+.destaques-bottom-cta-title {
+  white-space: nowrap;
+  font-size: clamp(13px, 3.8vw, 18px);
 }
 
 /* ==========================================================================
@@ -3648,16 +3712,50 @@ html {
   .atracoes-brinquedao-wrap {
     top: -10px;
     left: 0;
-    width: clamp(240px, 48vw, 320px);
+    width: clamp(180px, 38vw, 240px);
     z-index: 5;
     opacity: 0.85;
   }
   .atracoes-brinquedao-inner {
-    transform: translateX(-52%);
+    transform: translateX(-68%);
   }
   #atracoes .decor-3d-item.anim-float-reverse,
   .atracoes-cerca-wrap {
     display: none !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .atracoes-brinquedao-wrap {
+    top: -10px;
+    width: clamp(160px, 35vw, 200px);
+  }
+  .atracoes-brinquedao-inner {
+    transform: translateX(-72%);
+  }
+}
+
+/* Detalhe Laranja da Transição T3 (oculto no mobile para evitar sobreposição estranha) */
+@media (max-width: 639px) {
+  .atracoes-orange-detail {
+    display: none !important;
+  }
+}
+
+/* Trilho de Cards de Atrações no Mobile: Sangra até a borda direita (parede da direita) */
+@media (max-width: 639px) {
+  .atracoes-cards-container {
+    margin-left: 0 !important;
+    margin-right: -16px !important;
+    width: calc(100% + 16px) !important;
+    max-width: none !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+  }
+  .atracoes-cards-container .atracoes-card:last-child {
+    margin-right: 16px !important;
   }
 }
 
@@ -3699,7 +3797,7 @@ html {
   width: 100%;
   background: linear-gradient(180deg, #016225 0%, #01561f 100%);
   overflow: hidden;
-  padding: 44px 0 48px;
+  padding: 44px 0 84px;
   color: #FFFFFF;
 }
 
@@ -4007,6 +4105,19 @@ html {
     linear-gradient(180deg, #009DE0 0%, #0066A0 100%);
 }
 
+.ds-estadia-cloth-banner.banner-purple {
+  background: 
+    linear-gradient(90deg, 
+      rgba(255,255,255,0.28) 0%, 
+      rgba(0,0,0,0.12) 16%, 
+      rgba(255,255,255,0.15) 34%, 
+      rgba(0,0,0,0.18) 52%, 
+      rgba(255,255,255,0.24) 72%, 
+      rgba(0,0,0,0.12) 88%, 
+      rgba(255,255,255,0.22) 100%),
+    linear-gradient(180deg, #9453A7 0%, #733486 100%);
+}
+
 /* Tipografia Viva dos Preços (Branco Puro com Efeito 3D) */
 .ds-cloth-price {
   display: inline-flex;
@@ -4076,6 +4187,105 @@ html {
   font-weight: 700;
   color: rgba(255, 255, 255, 0.75);
   letter-spacing: 0.03em;
+}
+
+@media (min-width: 640px) {
+  .ds-estadia-scroll-hint {
+    display: none !important;
+  }
+}
+
+/* Seletor de Unidades (Tabs: Tapanã e Plaza) */
+.ds-estadia-tabs-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  position: relative;
+  z-index: 5;
+}
+
+.ds-estadia-tabs-list {
+  display: inline-flex;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.28);
+  padding: 5px;
+  border-radius: 9999px;
+  border: 1.5px solid rgba(255, 255, 255, 0.22);
+  gap: 6px;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.3), inset 0 2px 4px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(6px);
+}
+
+.ds-estadia-tab-pill {
+  font-family: 'Marvin Round', 'Comfortaa', cursive, sans-serif !important;
+  font-weight: 800;
+  font-size: clamp(0.92rem, 1.35vw, 1.15rem);
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  padding: 9px 26px;
+  border-radius: 9999px;
+  border: none;
+  cursor: pointer;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.85);
+  transition: all 0.24s cubic-bezier(0.34, 1.56, 0.64, 1);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+  line-height: 1.2;
+}
+
+.ds-estadia-tab-pill:hover:not(.is-active) {
+  color: #FFFFFF;
+  background: rgba(255, 255, 255, 0.14);
+  transform: translateY(-1px);
+}
+
+.ds-estadia-tab-pill.is-active {
+  background: linear-gradient(135deg, #FF6F26 0%, #EF5A24 100%);
+  color: #FFFFFF;
+  box-shadow: 0 4px 14px rgba(239, 90, 36, 0.55), inset 0 1px 1px rgba(255, 255, 255, 0.45);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  transform: scale(1.02);
+}
+
+@media (max-width: 640px) {
+  .ds-estadia-tabs-wrap {
+    margin-top: 14px;
+  }
+  .ds-estadia-tab-pill {
+    padding: 7px 18px;
+    font-size: 0.9rem;
+  }
+}
+
+.ds-estadia-tab-panel {
+  display: block;
+  animation: fadeInEstadia 0.28s ease-out;
+}
+
+.ds-estadia-tab-panel.hidden {
+  display: none !important;
+}
+
+@keyframes fadeInEstadia {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.ds-estadia-desktop-row.ds-row-4 {
+  max-width: 820px;
+  margin: 0 auto;
+}
+
+.ds-estadia-cards-grid.ds-cols-4 {
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
 }
 
 /* Bloco Inferior: Horários de Funcionamento */
@@ -4231,9 +4441,10 @@ html {
 /* Botão de Conversão */
 .ds-estadia-cta-wrap {
   margin-top: 26px;
+  margin-bottom: 24px;
   text-align: center;
   position: relative;
-  z-index: 2;
+  z-index: 25;
 }
 
 .ds-estadia-cta-btn {

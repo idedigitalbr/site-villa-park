@@ -1,5 +1,62 @@
 # Changelog — Villa Plaza Park
 
+## 2026-10-10
+
+- **Sangramento do Trilho de Cards de Atrações até a Borda Direita no Mobile (`#atracoes`)**:
+  - Ajustado o container `.atracoes-cards-container` para sangrar perfeitamente até a parede da direita (`margin-right: -16px; width: calc(100% + 16px); padding-right: 0`), cancelando o padding lateral do container pai e eliminando a faixa amarela vazia após o card cortado.
+  - O card cortado agora encosta 100% na borda da tela ("parede da direita"), oferecendo affordance intuitiva de carrossel contínuo, com margem de 16px garantida no último card (`:last-child`) ao final da rolagem.
+
+- **Remoção de Botão Duplicado "Voltar ao Topo" no Rodapé**:
+  - Removido o botão estático com seta para cima que estava posicionado no canto inferior direito da seção `#filiais` (`absolute bottom-2 right-2`).
+  - Mantido exclusivamente o botão oficial flutuante dinâmico (`#backToTopBtn`), eliminando a sobreposição visual de dois botões no final da página.
+
+- **Banner Responsivo Mobile para a Seção "Tudo Que a Festa Oferece" (`#clube`)**:
+  - **Asset Dedicado para Mobile**: Copiado e integrado o arquivo `secao-mobile-tudo-que-festa-oferece.webp` (`assets/Pagina/SECAO FACA SUA FESTA/secao-mobile-tudo-que-festa-oferece.webp`), projetado na vertical (941x1672) exclusivamente para dispositivos móveis.
+  - **Uso do Elemento `<picture>`**: Implementada alternância responsiva transparente via `<picture>` com `<source media="(max-width: 768px)">` servindo a versão vertical no mobile e mantendo o banner horizontal (`BANNER-SUA-FESTA-VILLA-PARK.png`, 1672x941) no desktop.
+  - **Calibragem do Hotspot CTA**: Ajustada a área de clique transparente sobre o botão verde *"QUERO SABER MAIS >"* no mobile (`top: 85.5%; left: 27%; width: 49%; height: 6.5%`), garantindo clique/toque de alta precisão direto para o WhatsApp.
+
+
+- **Correção da Transição Mobile: Valores por Estadia (`#estadia`) -> Pacotes Faça Sua Festa (`#clube`)**:
+  - **Desobstrução do Botão CTA**: Eliminada a sobreposição da curva divisória sobre o botão *"Quero saber mais >"*, aumentando o espaçamento inferior no mobile (`padding-bottom: 84px` em `.ds-estadia-section` e `margin-bottom: 24px` em `.ds-estadia-cta-wrap` com `z-index: 25`), garantindo respiro confortável e área de toque 100% visível e clicável.
+  - **Eliminação da Barra Verde e Conflito de Divisórias (Dobra)**: Identificado e corrigido o conflito entre a onda divisória procedural inferior de Estadia e o gráfico decorativo `.ds-party-wave-tl-fluid`, que injetava um bloco verde de 240px no topo da seção amarela no mobile. Ocultado o elemento conflitante no mobile (`hidden md:block` e `display: none !important`), mantendo uma única transição fluida, contínua e orgânica do verde floresta (`#016225`) para o amarelo festivo (`#FDE976`) com filete curvo laranja de acabamento.
+  - **Calibragem do Bolo 3D no Mobile**: Ajustado o posicionamento do Bolo de Aniversário 3D (`top: -20px; right: -10px; width: clamp(95px, 24vw, 125px)`), emoldurando harmonicamente o canto superior direito sem invadir ou colidir com o título principal "PACOTES FAÇA SUA FESTA".
+
+- **Seletor de Abas de Valores por Unidade (Tapanã & Plaza/Belém) na Seção Estadia (`#estadia`)**:
+  - **Botões em Estilo Aba (Pill Tabs)**: Implementado seletor interativo com botões cápsula procedurais idênticos à referência visual do cliente (Anexo 2) — aba ativa em degradê laranja vibrante (`#FF6F26` a `#EF5A24`) e aba inativa translúcida com respiro, alternando instantaneamente entre **Tapanã** e **Plaza (Belém)**.
+  - **Aba Tapanã (Ativa por padrão conforme Anexo 2)**: Exibe os 4 cards da unidade: *Meia Hora* (R$ 35,00), *Uma Hora* (R$ 49,00), *Duas Horas* (R$ 69,00) e o novo card *Excedente (por minuto)* (R$ 1,00) com estandarte drapeado em tecido roxo/violeta procedural (`.banner-purple`).
+  - **Aba Plaza (Belém)**: Ao clicar, exibe os 5 cards completos da unidade Plaza: *Meia Hora* (R$ 35,00), *Uma Hora* (R$ 49,00), *Duas Horas* (R$ 69,00), *Cliente +B* (R$ 59,00) e *Pacote VIP* (R$ 89,00).
+  - **JavaScript & Acessibilidade**: Implementada a função nativa `switchEstadiaTab(unit)` com controle completo de ARIA (`role="tab"`, `role="tabpanel"`, `aria-selected`, `aria-controls`), transição suave de fade (`fadeInEstadia`), e suporte responsivo tanto para desktop quanto para carrossel horizontal touch no mobile.
+  - **Suíte de Testes Automatizados**: Atualizado `tests/test_estadia_section.py` validando tabs, ambos os painéis, todos os cards e preços.
+
+- **Ajustes de UI e Interatividade Mobile (S1 Topo e S2 Destaques)**:
+  - **Ocultação do Solzinho e Nuvem 3D no Mobile (S1 Topo)**: Ocultados no mobile (`hidden md:block` e regra CSS específica) os elementos decorativos do Sol 3D Sorridente e da Nuvem 3D Sorridente sobre o banner da Hero, eliminando obstrução visual e melhorando a legibilidade.
+  - **Carrossel Interativo de Destaques (S2 Destaques)**: Implementada a lógica interativa completa em JavaScript (`destaquesNext`, `destaquesPrev`, `destaquesGoTo`) com suporte nativo a swipe touch suave, drag com mouse, navegação por setas e atualização dinâmica dos dots.
+  - **Sangria do Segundo Card na Borda Direita**: Configurado o carrossel no mobile para sangrar até a parede direita (`margin-right: -16px; width: calc(100% + 16px)` com remoção de raio e padding na extremidade direita), garantindo que o segundo card fique visível cortado rente à borda da tela ("encostado na parede da direita").
+  - **Título do Card CTA em Linha Única**: Ajustado o título "Garanta agora sua diversão!" com `white-space: nowrap`, tipografia responsiva calibrada e botão full-width no mobile, garantindo que o texto caiba perfeitamente em apenas uma linha.
+
+- **Ajustes de UI Mobile na Seção de Atrações (`#atracoes`)**:
+  - **Recuo do Brinquedão 3D**: Ajustado o posicionamento mobile (`transform: translateX(-68%)` a `-72%` e largura calibrada) para afastar o elemento do centro, garantindo que o tubo 3D permaneça apenas como detalhe decorativo na borda lateral esquerda sem sobrepor o headline "O QUE VOCÊ ENCONTRA NO VILA PARK".
+  - **Separação Vertical Headline e Dots**: Elevado o container de texto dos slides principais (`bottom-8 sm:bottom-5 md:bottom-6`) em relação aos dots de navegação (`bottom-2 sm:bottom-3`), criando respiro limpo e eliminando a colisão entre o título e os dots.
+  - **Novo Trilho Horizontal dos Cards no Mobile**: Substituído o layout comprimido de 5 colunas por um carrossel horizontal de rolagem suave com snap (`overflow-x-auto snap-x snap-mandatory no-scrollbar`), cards com largura adequada (`w-[138px]`), fotos nítidas e ampliadas (proporção 16:10), títulos completos sem truncamento e sincronização automática via JavaScript para centralizar o card ativo no trilho ao mudar de slide. No desktop (`sm:`), mantido o grid alinhado de 5 colunas.
+  - **Ocultação do Detalhe Laranja no Mobile**: Ocultada a ponta/curva laranja da transição T3 no mobile (`.atracoes-orange-detail hidden sm:inline`), preservando a transição suave e limpa diretamente para o relevo verde de Estadia.
+
+- **Redes Sociais Oficiais no Rodapé e Cabeçalho**:
+  - Restringidos os links de redes sociais exclusivamente aos 3 canais oficiais solicitados pelo cliente: **Instagram** (`@villaplazapark`), **TikTok** (`@villaplazapark`) e **Facebook** (`Villa Park Plaza`).
+  - Removidos os ícones/links não citados (WhatsApp e YouTube) da seção de redes sociais no rodapé, cabeçalho superior e gaveta mobile.
+  - Atualizados os metadados de dados estruturados Schema.org (`sameAs`).
+
+- **Remoção do Bloco de Horários na Seção Valores por Estadia (`#estadia`)**:
+  - Removido o bloco inferior com o título "HORÁRIOS DE FUNCIONAMENTO" e as 4 cápsulas de madeira (Segunda, Terça à Quinta, Sexta à Sábado, Domingo), mantendo a seção focada exclusivamente nos valores dos passaportes e no botão de ação "Quero saber mais".
+  - Atualizado o rótulo da seção (`aria-label="Valores por Estadia"`) e o link no menu lateral drawer mobile para "Passaportes".
+  - Atualizada a suíte de testes estruturais (`tests/test_estadia_section.py`).
+
+- **Atualização do Conteúdo do FAQ (Dúvidas Frequentes)**:
+  - **Unidades & Endereços**: Atualizada a resposta de localização contemplando as duas unidades em Belém (PA) — +B Plaza (Av. Gov. José Malcher, 2388, São Brás) e +B Tapanã (Rod. do Tapanã, 597).
+  - **Horários de Funcionamento**: Atualizados os cronogramas de operação de ambas as unidades (Plaza e Tapanã, incluindo fechamento às segundas na unidade Tapanã).
+  - **Faixa Etária Permitida**: Especificadas as diretrizes por filial (Tapanã até 1,35m de altura; Plaza até 14 anos).
+  - **Compras e Restaurante Villa Plaza**: Atualizada a pergunta e resposta para contemplar compras no supermercado e a experiência gastronômica no Villa Plaza.
+  - **Festas e Cobrança de Passaporte**: Unificada a comunicação de orçamentos e passaportes com direcionamento para as recepções e WhatsApp de atendimento.
+
 ## 2026-09-25
 
 - **Remoção do Botão Ofertas no Header**:
