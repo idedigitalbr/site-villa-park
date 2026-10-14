@@ -1,17 +1,24 @@
-version: '3.8'
+name: villaplaza-site
 
 services:
-  site-villa-park:
+  web:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: site-villa-park
-    restart: unless-stopped
-    ports:
-      - "${PORT:-8085}:80"
-    healthcheck:
-      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost/"]
-      interval: 30s
-      timeout: 5s
-      retries: 3
-      start_period: 5s
+    container_name: villaplaza-web
+    restart: always
+    networks:
+      - default
+      - proxy
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.villaplaza-router.rule=Host(`villaplaza.suporteide.digital`) || Host(`villaplaza.com.br`) || Host(`www.villaplaza.com.br`)"
+      - "traefik.http.routers.villaplaza-router.entrypoints=websecure"
+      - "traefik.http.routers.villaplaza-router.tls=true"
+      - "traefik.http.routers.villaplaza-router.tls.certresolver=letsencrypt"
+      - "traefik.http.services.villaplaza-service.loadbalancer.server.port=80"
+
+networks:
+  default:
+  proxy:
+    external: true
