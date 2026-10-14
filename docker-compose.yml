@@ -1,22 +1,22 @@
-name: villaplaza-site
+name: villapark-site
 
 services:
   web:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: villaplaza-web
+    container_name: villapark-web
     restart: always
     networks:
       - default
       - proxy
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.villaplaza-router.rule=Host(`villaplaza.suporteide.digital`) || Host(`villaplaza.com.br`) || Host(`www.villaplaza.com.br`)"
-      - "traefik.http.routers.villaplaza-router.entrypoints=websecure"
-      - "traefik.http.routers.villaplaza-router.tls=true"
-      - "traefik.http.routers.villaplaza-router.tls.certresolver=letsencrypt"
-      - "traefik.http.services.villaplaza-service.loadbalancer.server.port=80"
+      - "traefik.http.routers.villapark-router.rule=Host(`villapark.suporteide.digital`) || Host(`villaplazapark.suporteide.digital`) || Host(`villaplazapark.com.br`) || Host(`www.villaplazapark.com.br`) || Host(`villapark.com.br`) || Host(`www.villapark.com.br`)"
+      - "traefik.http.routers.villapark-router.entrypoints=websecure"
+      - "traefik.http.routers.villapark-router.tls=true"
+      - "traefik.http.routers.villapark-router.tls.certresolver=letsencrypt"
+      - "traefik.http.services.villapark-service.loadbalancer.server.port=80"
 
 networks:
   default:
