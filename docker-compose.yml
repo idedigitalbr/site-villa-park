@@ -7,6 +7,8 @@ services:
       dockerfile: Dockerfile
     container_name: villapark-web
     restart: always
+    ports:
+      - "8085:80"
     networks:
       - default
       - proxy
