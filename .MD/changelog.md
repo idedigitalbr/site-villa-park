@@ -9,6 +9,12 @@
   - **Sincronização Bidirecional dos Dots & Suporte a Drag**: Os dots de paginação atualizam dinamicamente com o card ativo em primeiro plano (1 a 4), e a interação via drag de mouse e swipe touch responde com precisão milimétrica.
   - **Autoplay Inteligente**: Adicionado ciclo de autoplay a cada 5 segundos com pausa automática ao passar o mouse (`mouseenter`), durante o drag ou ao trocar de aba no navegador.
 
+- **Containerização Oficial Docker & CI com GitHub Actions**:
+  - **Dockerfile Otimizado (Nginx Alpine)**: Criada a imagem oficial com compressão Gzip, cabeçalhos de segurança (X-Frame-Options, X-Content-Type-Options) e cache agressivo para fontes, imagens WebP e scripts.
+  - **Docker Compose com Isolamento Total**: Arquivo `docker-compose.yml` configurado com porta parametrizada (`PORT:-8085`) e healthcheck automático, garantindo isolamento completo de outros containers existentes no servidor.
+  - **Configuração de CI (`.github/workflows/docker-ci.yml`)**: Workflow automatizado para validação de build a cada push na branch `main`.
+  - **Proteção de Arquivos (`.dockerignore`)**: Exclusão de pastas de testes, documentação e metadados para gerar uma imagem ultraleve (~25MB).
+
 ## 2026-10-10
 
 - **Sangramento do Trilho de Cards de Atrações até a Borda Direita no Mobile (`#atracoes`)**:
