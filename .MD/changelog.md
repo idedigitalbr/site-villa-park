@@ -1,5 +1,14 @@
 # Changelog — Villa Plaza Park
 
+## 2026-10-14
+
+- **Correção da Navegação e Passagem de Slides no Desktop (Carrossel de Destaques / S2)**:
+  - **Resolução do Travamento no Desktop**: Identificado que no desktop (>= 1024px) o cálculo de offset travava o deslocamento em `0px` (`maxOffset = track.scrollWidth - viewport.clientWidth = 0`), impedindo os banners de passar ao clicar nas setas (`<` / `>`), nos dots ou ao arrastar.
+  - **Carrossel Infinito com Clones Procedurais**: Implementada arquitetura de carrossel infinito contínuo utilizando a classe `.destaque-clone-wrap` canônica. O carrossel agora desliza 1 card por passo com rotação circular contínua em qualquer resolução (desktop, tablet e mobile), sem nunca travar ou exibir áreas vazias.
+  - **Transição Suave & Reset Imperceptível**: O trilho desloca com transição CSS acelerada por GPU (`cubic-bezier(0.25, 1, 0.5, 1)`) e executa reset instantâneo e invisível ao alcançar os clones das extremidades.
+  - **Sincronização Bidirecional dos Dots & Suporte a Drag**: Os dots de paginação atualizam dinamicamente com o card ativo em primeiro plano (1 a 4), e a interação via drag de mouse e swipe touch responde com precisão milimétrica.
+  - **Autoplay Inteligente**: Adicionado ciclo de autoplay a cada 5 segundos com pausa automática ao passar o mouse (`mouseenter`), durante o drag ou ao trocar de aba no navegador.
+
 ## 2026-10-10
 
 - **Sangramento do Trilho de Cards de Atrações até a Borda Direita no Mobile (`#atracoes`)**:

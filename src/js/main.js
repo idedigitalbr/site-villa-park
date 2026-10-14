@@ -259,87 +259,150 @@ updateCarousel();
 startAutoplay();
 
 /* ----------------------------------------------------------------------------
-   5. CARROSSEL DE DESTAQUES (S2 DESTAQUES / OFERTAS)
+   5. CARROSSEL DE DESTAQUES INFINITO (S2 DESTAQUES / OFERTAS)
    ---------------------------------------------------------------------------- */
-let currentDestaque = 0;
-
-function getDestaqueOffset(index) {
-  const track = document.getElementById('destaquesTrack');
-  const viewport = document.getElementById('destaquesViewport');
-  if (!track || !viewport) return 0;
-  const cards = track.querySelectorAll('.destaque-card-wrap');
-  if (!cards.length) return 0;
-
-  const validIndex = Math.max(0, Math.min(index, cards.length - 1));
-  const targetCard = cards[validIndex];
-  const firstCard = cards[0];
-  const cardOffset = targetCard.offsetLeft - firstCard.offsetLeft;
-  const maxOffset = Math.max(0, track.scrollWidth - viewport.clientWidth);
-
-  return Math.min(cardOffset, maxOffset);
-}
-
-function updateDestaquesDots(index) {
-  const dots = document.querySelectorAll('.destaques-dot');
-  if (!dots.length) return;
-  dots.forEach((dot, idx) => {
-    if (idx === index) {
-      dot.classList.add('active');
-      dot.setAttribute('aria-current', 'true');
-    } else {
-      dot.classList.remove('active');
-      dot.removeAttribute('aria-current');
-    }
-  });
-}
-
-function destaquesGoTo(index) {
-  const track = document.getElementById('destaquesTrack');
-  if (!track) return;
-  const cards = track.querySelectorAll('.destaque-card-wrap');
-  if (!cards.length) return;
-
-  currentDestaque = Math.max(0, Math.min(index, cards.length - 1));
-  const offset = getDestaqueOffset(currentDestaque);
-
-  track.style.transition = 'transform 0.4s cubic-bezier(0.25, 1, 0.5, 1)';
-  track.style.transform = `translateX(-${offset}px)`;
-  updateDestaquesDots(currentDestaque);
-}
-
-function destaquesNext() {
-  const track = document.getElementById('destaquesTrack');
-  if (!track) return;
-  const cards = track.querySelectorAll('.destaque-card-wrap');
-  if (!cards.length) return;
-
-  currentDestaque = (currentDestaque + 1) % cards.length;
-  destaquesGoTo(currentDestaque);
-}
-
-function destaquesPrev() {
-  const track = document.getElementById('destaquesTrack');
-  if (!track) return;
-  const cards = track.querySelectorAll('.destaque-card-wrap');
-  if (!cards.length) return;
-
-  currentDestaque = (currentDestaque - 1 + cards.length) % cards.length;
-  destaquesGoTo(currentDestaque);
-}
-
-window.destaquesGoTo = destaquesGoTo;
-window.destaquesNext = destaquesNext;
-window.destaquesPrev = destaquesPrev;
-// Fallbacks retrocompatíveis
-window.scrollBanners = function(dir) { if (dir === 'left') destaquesPrev(); else destaquesNext(); };
-window.scrollToBanner = function(idx) { destaquesGoTo(idx); };
-
-// Touch Swipe e Drag com Mouse em Destaques
-(function initDestaquesInteractions() {
+(function initDestaquesCarousel() {
   const track = document.getElementById('destaquesTrack');
   const viewport = document.getElementById('destaquesViewport') || track;
+  const carouselContainer = document.getElementById('destaquesCarousel') || viewport;
   if (!track || !viewport) return;
 
+  const origCards = Array.from(track.querySelectorAll('.destaque-card-wrap'));
+  const N = origCards.length;
+  if (N < 2) return;
+
+  // Limpa clones pré-existentes se houver
+  track.querySelectorAll('.destaque-clone-wrap').forEach(el => el.remove());
+
+  // Cria clones antes e depois para navegação infinita e contínua sem quebras
+  const clonesBefore = origCards.map((c, i) => {
+    const clone = c.cloneNode(true);
+    clone.className = clone.className.replace('destaque-card-wrap', 'destaque-clone-wrap');
+    clone.setAttribute('data-clone', 'before');
+    clone.setAttribute('data-card-idx', i);
+    return clone;
+  });
+
+  const clonesAfter = origCards.map((c, i) => {
+    const clone = c.cloneNode(true);
+    clone.className = clone.className.replace('destaque-card-wrap', 'destaque-clone-wrap');
+    clone.setAttribute('data-clone', 'after');
+    clone.setAttribute('data-card-idx', i);
+    return clone;
+  });
+
+  clonesBefore.reverse().forEach(cl => track.insertBefore(cl, track.firstChild));
+  clonesAfter.forEach(cl => track.appendChild(cl));
+
+  // Índice no trilho (começa no primeiro card original, que é N)
+  let currentTrackIdx = N;
+  let isAnimating = false;
+  let autoplayTimer = null;
+
+  function getCardOffset(idx) {
+    const children = track.children;
+    if (!children.length) return 0;
+    const clamped = Math.max(0, Math.min(idx, children.length - 1));
+    return children[clamped].offsetLeft - children[0].offsetLeft;
+  }
+
+  function updateDestaquesDots(cardIdx) {
+    const dots = document.querySelectorAll('.destaques-dot');
+    if (!dots.length) return;
+    dots.forEach((dot, idx) => {
+      if (idx === cardIdx) {
+        dot.classList.add('active');
+        dot.setAttribute('aria-current', 'true');
+      } else {
+        dot.classList.remove('active');
+        dot.removeAttribute('aria-current');
+      }
+    });
+  }
+
+  function setTrackPosition(idx, animated = true) {
+    if (animated) {
+      isAnimating = true;
+      track.style.transition = 'transform 0.45s cubic-bezier(0.25, 1, 0.5, 1)';
+    } else {
+      track.style.transition = 'none';
+    }
+    currentTrackIdx = idx;
+    const offset = getCardOffset(currentTrackIdx);
+    track.style.transform = `translateX(-${offset}px)`;
+
+    const cardIdx = ((currentTrackIdx - N) % N + N) % N;
+    updateDestaquesDots(cardIdx);
+  }
+
+  // Normalização invisível ao alcançar clones nos extremos
+  track.addEventListener('transitionend', (e) => {
+    if (e.target !== track) return;
+    isAnimating = false;
+    if (currentTrackIdx >= 2 * N) {
+      currentTrackIdx -= N;
+      track.style.transition = 'none';
+      const offset = getCardOffset(currentTrackIdx);
+      track.style.transform = `translateX(-${offset}px)`;
+      void track.offsetHeight;
+    } else if (currentTrackIdx < N) {
+      currentTrackIdx += N;
+      track.style.transition = 'none';
+      const offset = getCardOffset(currentTrackIdx);
+      track.style.transform = `translateX(-${offset}px)`;
+      void track.offsetHeight;
+    }
+  });
+
+  function destaquesNext() {
+    if (isAnimating) return;
+    setTrackPosition(currentTrackIdx + 1, true);
+    resetDestaquesAutoplay();
+  }
+
+  function destaquesPrev() {
+    if (isAnimating) return;
+    setTrackPosition(currentTrackIdx - 1, true);
+    resetDestaquesAutoplay();
+  }
+
+  function destaquesGoTo(targetCardIdx) {
+    if (isAnimating) return;
+    const currentCardIdx = ((currentTrackIdx - N) % N + N) % N;
+    let diff = targetCardIdx - currentCardIdx;
+    if (diff > N / 2) diff -= N;
+    if (diff < -N / 2) diff += N;
+    setTrackPosition(currentTrackIdx + diff, true);
+    resetDestaquesAutoplay();
+  }
+
+  // Autoplay suave e respeitoso
+  function startDestaquesAutoplay() {
+    if (autoplayTimer) clearInterval(autoplayTimer);
+    const prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) return;
+    autoplayTimer = setInterval(() => {
+      if (!document.hidden && !isMouseDragging && !isTouchDragging) {
+        destaquesNext();
+      }
+    }, 5000);
+  }
+
+  function resetDestaquesAutoplay() {
+    if (autoplayTimer) clearInterval(autoplayTimer);
+    startDestaquesAutoplay();
+  }
+
+  if (carouselContainer) {
+    carouselContainer.addEventListener('mouseenter', () => {
+      if (autoplayTimer) clearInterval(autoplayTimer);
+    });
+    carouselContainer.addEventListener('mouseleave', () => {
+      startDestaquesAutoplay();
+    });
+  }
+
+  // Touch & Mouse Drag Interativo
   let isTouchDragging = false;
   let isMouseDragging = false;
   let startX = 0;
@@ -349,16 +412,16 @@ window.scrollToBanner = function(idx) { destaquesGoTo(idx); };
   let initialTranslate = 0;
   let dragMoved = false;
 
-  // Touch handlers
   viewport.addEventListener('touchstart', (e) => {
     if (e.touches.length !== 1) return;
+    if (autoplayTimer) clearInterval(autoplayTimer);
     isTouchDragging = true;
     startX = e.touches[0].clientX;
     startY = e.touches[0].clientY;
     currentX = startX;
     isHorizontal = null;
     dragMoved = false;
-    initialTranslate = getDestaqueOffset(currentDestaque);
+    initialTranslate = getCardOffset(currentTrackIdx);
     track.style.transition = 'none';
   }, { passive: true });
 
@@ -378,14 +441,7 @@ window.scrollToBanner = function(idx) { destaquesGoTo(idx); };
     if (isHorizontal) {
       if (e.cancelable) e.preventDefault();
       dragMoved = true;
-      const maxOffset = Math.max(0, track.scrollWidth - viewport.clientWidth);
-      let newOffset = initialTranslate - deltaX;
-      if (newOffset < 0) {
-        newOffset = newOffset * 0.3;
-      } else if (newOffset > maxOffset) {
-        newOffset = maxOffset + (newOffset - maxOffset) * 0.3;
-      }
-      track.style.transform = `translateX(-${newOffset}px)`;
+      track.style.transform = `translateX(-${initialTranslate - deltaX}px)`;
     }
   }, { passive: false });
 
@@ -401,23 +457,23 @@ window.scrollToBanner = function(idx) { destaquesGoTo(idx); };
       } else if (deltaX > threshold) {
         destaquesPrev();
       } else {
-        destaquesGoTo(currentDestaque);
+        setTrackPosition(currentTrackIdx, true);
       }
     } else {
-      destaquesGoTo(currentDestaque);
+      setTrackPosition(currentTrackIdx, true);
     }
-
     setTimeout(() => { dragMoved = false; }, 120);
+    startDestaquesAutoplay();
   }, { passive: true });
 
-  // Mouse drag handlers (Desktop / Cursor)
   viewport.addEventListener('mousedown', (e) => {
     if (e.button !== 0) return;
+    if (autoplayTimer) clearInterval(autoplayTimer);
     isMouseDragging = true;
     startX = e.clientX;
     currentX = startX;
     dragMoved = false;
-    initialTranslate = getDestaqueOffset(currentDestaque);
+    initialTranslate = getCardOffset(currentTrackIdx);
     track.style.transition = 'none';
     track.classList.add('cursor-grabbing');
     track.classList.remove('cursor-grab');
@@ -429,11 +485,7 @@ window.scrollToBanner = function(idx) { destaquesGoTo(idx); };
     const deltaX = currentX - startX;
     if (Math.abs(deltaX) > 6) {
       dragMoved = true;
-      const maxOffset = Math.max(0, track.scrollWidth - viewport.clientWidth);
-      let newOffset = initialTranslate - deltaX;
-      if (newOffset < 0) newOffset *= 0.3;
-      else if (newOffset > maxOffset) newOffset = maxOffset + (newOffset - maxOffset) * 0.3;
-      track.style.transform = `translateX(-${newOffset}px)`;
+      track.style.transform = `translateX(-${initialTranslate - deltaX}px)`;
     }
   });
 
@@ -451,13 +503,13 @@ window.scrollToBanner = function(idx) { destaquesGoTo(idx); };
       } else if (deltaX > threshold) {
         destaquesPrev();
       } else {
-        destaquesGoTo(currentDestaque);
+        setTrackPosition(currentTrackIdx, true);
       }
     } else {
-      destaquesGoTo(currentDestaque);
+      setTrackPosition(currentTrackIdx, true);
     }
-
     setTimeout(() => { dragMoved = false; }, 120);
+    startDestaquesAutoplay();
   });
 
   // Previne clique involuntário nos cards durante swipe/drag
@@ -473,12 +525,26 @@ window.scrollToBanner = function(idx) { destaquesGoTo(idx); };
   window.addEventListener('resize', () => {
     clearTimeout(resizeTimer);
     resizeTimer = setTimeout(() => {
-      destaquesGoTo(currentDestaque);
+      setTrackPosition(currentTrackIdx, false);
     }, 100);
   }, { passive: true });
 
-  // Inicializa estado dos dots
-  updateDestaquesDots(0);
+  // Inicializa na posição do primeiro card original
+  setTrackPosition(N, false);
+  startDestaquesAutoplay();
+
+  // Exposição global para botões HTML inline (onclick="destaquesNext()", etc.)
+  window.destaquesGoTo = destaquesGoTo;
+  window.destaquesNext = destaquesNext;
+  window.destaquesPrev = destaquesPrev;
+  window.scrollBanners = function(dir) { if (dir === 'left') destaquesPrev(); else destaquesNext(); };
+  window.scrollToBanner = function(idx) { destaquesGoTo(idx); };
+
+  Object.defineProperty(window, 'currentDestaque', {
+    get() { return ((currentTrackIdx - N) % N + N) % N; },
+    set(val) { destaquesGoTo(val); },
+    configurable: true
+  });
 })();
 
 /* ----------------------------------------------------------------------------
