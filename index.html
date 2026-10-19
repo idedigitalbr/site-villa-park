@@ -108,7 +108,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Comfortaa:wght@400;500;600;700;800&family=Fredoka:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500;600&amp;family=Roboto:wght@400;500;700&amp;display=swap" rel="stylesheet">
   
   <!-- Design System CSS Canônico & Centralizado -->
-  <link rel="stylesheet" href="src/css/design-system.css">
+  <link rel="stylesheet" href="src/css/design-system.css?v=20261019-2">
 
   <!-- Font Awesome 6 Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -1209,7 +1209,7 @@
           </a>
           <a href="#filiais" class="nav-link">
             <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-            <span>Nossas Lojas</span>
+            <span>Nossas Unidades</span>
           </a>
         </nav>
 
@@ -1266,7 +1266,7 @@
           </a>
           <a href="#filiais" onclick="toggleMobileMenu()" class="drawer-link">
             <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-            <span>Nossas Lojas</span>
+            <span>Nossas Unidades</span>
           </a>
           <a href="#ofertas" onclick="toggleMobileMenu()" class="drawer-link">
             <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M12 2H2v10l9.29 9.29c.94.94 2.48.94 3.42 0l6.58-6.58c.94-.94.94-2.48 0-3.42L12 2Z"></path><path d="M7 7h.01"></path></svg>
@@ -2381,7 +2381,7 @@
 
 
     <!-- ==========================================================================
-         S5.2 — O QUE VOCÊ ENCONTRA NO VILA PARK (CARROSSEL DE ATRAÇÕES)
+         S5.2 — O QUE VOCÊ ENCONTRA NO VILLA PARK (CARROSSEL DE ATRAÇÕES)
          ========================================================================== -->
     <section id="atracoes" class="atracoes-section relative pt-6 sm:pt-8 md:pt-10 pb-12 sm:pb-16 md:pb-20 bg-[#FDEA76] overflow-hidden scroll-mt-24 md:scroll-mt-28 select-none">
       
@@ -2402,7 +2402,7 @@
 
       <div class="bf-container relative z-20">
         
-        <!-- Header Centralizado: Badge + CONFIRA + O QUE VOCÊ ENCONTRA NO VILA PARK -->
+        <!-- Header Centralizado: Badge + CONFIRA + O QUE VOCÊ ENCONTRA NO VILLA PARK -->
         <div class="text-center mb-4 sm:mb-5 max-w-xl mx-auto">
           
           <!-- Badge Superior Laranja com Ícone de Paleta/Criatividade -->
@@ -2420,7 +2420,7 @@
           <!-- Título Duotone -->
           <h2 class="text-center font-display font-extrabold uppercase leading-tight text-2xl sm:text-3xl md:text-4xl m-0">
             <span class="text-[#0D6E2A] block">O QUE VOCÊ ENCONTRA</span>
-            <span class="text-[#EF7A2B] block mt-0.5">NO VILA PARK</span>
+            <span class="text-[#EF7A2B] block mt-0.5">NO VILLA PARK</span>
           </h2>
         </div>
 
@@ -2614,31 +2614,31 @@
                 <button 
                   type="button" 
                   role="tab" 
-                  id="tab-tapana" 
+                  id="tab-plaza" 
                   aria-selected="true" 
-                  aria-controls="panel-tapana" 
+                  aria-controls="panel-plaza" 
                   class="ds-estadia-tab-pill is-active" 
-                  onclick="switchEstadiaTab('tapana')"
+                  onclick="switchEstadiaTab('plaza')"
                 >
-                  TAPANÃ
+                  PLAZA (BELÉM)
                 </button>
                 <button 
                   type="button" 
                   role="tab" 
-                  id="tab-plaza" 
+                  id="tab-tapana" 
                   aria-selected="false" 
-                  aria-controls="panel-plaza" 
+                  aria-controls="panel-tapana" 
                   class="ds-estadia-tab-pill" 
-                  onclick="switchEstadiaTab('plaza')"
+                  onclick="switchEstadiaTab('tapana')"
                 >
-                  PLAZA (BELÉM)
+                  TAPANÃ
                 </button>
               </div>
             </div>
           </div>
 
           <!-- ==================== PAINEL 1: UNIDADE TAPANÃ (4 CARDS) ==================== -->
-          <div id="panel-tapana" role="tabpanel" aria-labelledby="tab-tapana" class="ds-estadia-tab-panel">
+          <div id="panel-tapana" role="tabpanel" aria-labelledby="tab-tapana" class="ds-estadia-tab-panel hidden">
             <div class="ds-estadia-cards-container">
               
               <!-- Versão Desktop e Tablet: Fileira com Varal de Corda Contínua (4 Cards) -->
@@ -2788,7 +2788,7 @@
           </div>
 
           <!-- ==================== PAINEL 2: UNIDADE PLAZA / BELÉM (5 CARDS) ==================== -->
-          <div id="panel-plaza" role="tabpanel" aria-labelledby="tab-plaza" class="ds-estadia-tab-panel hidden">
+          <div id="panel-plaza" role="tabpanel" aria-labelledby="tab-plaza" class="ds-estadia-tab-panel">
             <!-- 2. BLOCO DOS 5 CARDS COM VARAL DE CORDA CONTÍNUA -->
             <div class="ds-estadia-cards-container">
             
@@ -3109,10 +3109,8 @@
                   </div>
                 </li>
               </ul>
-              <div class="ds-dual-badge badge-green">
-                <span class="ds-badge-cap">ATÉ 30 PESSOAS</span>
-                <span class="ds-badge-divider">|</span>
-                <span class="ds-badge-price">R$ 4.900</span>
+              <div class="ds-dual-badge badge-green flex items-center justify-center text-center" style="justify-content: center; text-align: center;">
+                <span class="ds-badge-cap text-center w-full block" style="text-align: center; width: 100%; display: block;">ATÉ 30 PESSOAS</span>
               </div>
               <a href="https://wa.me/5591993191582?text=Ol%C3%A1%2C%20gostaria%20de%20saber%20mais%20sobre%20o%20pacote%20Villa%20Aventura" target="_blank" class="ds-party-cta cta-green" aria-label="Quero saber mais sobre o pacote Villa Aventura">
                 <strong class="font-extrabold">Quero</strong> saber mais <span class="ds-cta-arrow">&gt;</span>
@@ -3174,10 +3172,8 @@
                   </div>
                 </li>
               </ul>
-              <div class="ds-dual-badge badge-orange">
-                <span class="ds-badge-cap">ATÉ 30 PESSOAS</span>
-                <span class="ds-badge-divider">|</span>
-                <span class="ds-badge-price">R$ 6.000</span>
+              <div class="ds-dual-badge badge-orange flex items-center justify-center text-center" style="justify-content: center; text-align: center;">
+                <span class="ds-badge-cap text-center w-full block" style="text-align: center; width: 100%; display: block;">ATÉ 30 PESSOAS</span>
               </div>
               <a href="https://wa.me/5591993191582?text=Ol%C3%A1%2C%20gostaria%20de%20saber%20mais%20sobre%20o%20pacote%20Villa%20Alegria" target="_blank" class="ds-party-cta cta-orange" aria-label="Quero saber mais sobre o pacote Villa Alegria">
                 <strong class="font-extrabold">Quero</strong> saber mais <span class="ds-cta-arrow">&gt;</span>
@@ -3239,10 +3235,8 @@
                   </div>
                 </li>
               </ul>
-              <div class="ds-dual-badge badge-green">
-                <span class="ds-badge-cap">ATÉ 60 PESSOAS</span>
-                <span class="ds-badge-divider">|</span>
-                <span class="ds-badge-price">R$ 13.200</span>
+              <div class="ds-dual-badge badge-green flex items-center justify-center text-center" style="justify-content: center; text-align: center;">
+                <span class="ds-badge-cap text-center w-full block" style="text-align: center; width: 100%; display: block;">ATÉ 60 PESSOAS</span>
               </div>
               <a href="https://wa.me/5591993191582?text=Ol%C3%A1%2C%20gostaria%20de%20saber%20mais%20sobre%20o%20pacote%20Villa%20Divers%C3%A3o" target="_blank" class="ds-party-cta cta-green" aria-label="Quero saber mais sobre o pacote Villa Diversão">
                 <strong class="font-extrabold">Quero</strong> saber mais <span class="ds-cta-arrow">&gt;</span>
@@ -3724,15 +3718,15 @@
                 NOSSAS UNIDADES
               </span>
 
-              <!-- Título Display Fredoka: "Tem um Vila Plaza Park" (com destaque em laranja) + "pertinho de você." -->
+              <!-- Título Display Fredoka: "Tem um Villa Plaza Park" (com destaque em laranja) + "pertinho de você." -->
               <h2 class="text-[23px] sm:text-[28px] lg:text-[30px] leading-[1.12] font-black text-[#016836] font-fredoka mb-1.5 tracking-tight" style="text-transform: none;">
-                <span class="block">Tem um <span class="text-[#FA5A00]">Vila Plaza Park</span></span>
+                <span class="block">Tem um <span class="text-[#FA5A00]">Villa Plaza Park</span></span>
                 <span class="block mt-0.5">pertinho de você.</span>
               </h2>
 
               <!-- Subtítulo (exatamente 2 linhas) -->
               <p class="text-[12px] sm:text-[13px] text-[#4A4D59] font-medium leading-[1.38] max-w-[335px] mt-1.5 mb-5">
-                Escolha a unidade mais próxima e venha viver momentos inesquecíveis no Vila Plaza Park.
+                Escolha a unidade mais próxima e venha viver momentos inesquecíveis no Villa Plaza Park.
               </p>
 
               <!-- 4 Features em Ícones Arredondados com Rótulos -->

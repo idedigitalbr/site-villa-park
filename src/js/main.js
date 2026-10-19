@@ -956,7 +956,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /* ----------------------------------------------------------------------------
-   14. CARROSSEL DE ATRAÇÕES (O QUE VOCÊ ENCONTRA NO VILA PARK)
+   14. CARROSSEL DE ATRAÇÕES (O QUE VOCÊ ENCONTRA NO VILLA PARK)
    ---------------------------------------------------------------------------- */
 (function initAtracoesSlider() {
   let currentIdx = 0;

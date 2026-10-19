@@ -1055,28 +1055,40 @@ html {
   gap: 10px;
 }
 
-/* COMPOUND DUAL PRICING BADGE */
+/* COMPOUND DUAL PRICING / CAPACITY BADGE */
 .ds-dual-badge {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-radius: 16px;
-  padding: 3px 3px 3px 14px;
-  box-sizing: border-box;
-  font-family: var(--font-sans);
+  width: 100% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border-radius: 9999px !important;
+  padding: 8px 16px !important;
+  box-sizing: border-box !important;
+  font-family: var(--font-sans) !important;
+  text-align: center !important;
+}
+
+.ds-dual-badge:has(.ds-badge-price) {
+  justify-content: space-between !important;
+  border-radius: 16px !important;
+  padding: 3px 3px 3px 14px !important;
+  text-align: initial !important;
 }
 
 .ds-dual-badge.badge-green {
-  background-color: #d7efe1;
+  background-color: #d7efe1 !important;
 }
 
 .ds-dual-badge.badge-green .ds-badge-cap {
-  font-family: var(--font-sans);
-  font-size: 12px;
-  font-weight: 800;
-  letter-spacing: 0.03em;
-  color: #0f5e2b;
+  font-family: var(--font-sans) !important;
+  font-size: 13px !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.04em !important;
+  color: #0f5e2b !important;
+  text-align: center !important;
+  width: 100% !important;
+  display: block !important;
+  margin: 0 auto !important;
 }
 
 .ds-dual-badge.badge-green .ds-badge-divider {
@@ -1097,15 +1109,19 @@ html {
 }
 
 .ds-dual-badge.badge-orange {
-  background-color: #fee8d6;
+  background-color: #fee8d6 !important;
 }
 
 .ds-dual-badge.badge-orange .ds-badge-cap {
-  font-family: var(--font-sans);
-  font-size: 12px;
-  font-weight: 800;
-  letter-spacing: 0.03em;
-  color: #d85e13;
+  font-family: var(--font-sans) !important;
+  font-size: 13px !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.04em !important;
+  color: #d85e13 !important;
+  text-align: center !important;
+  width: 100% !important;
+  display: block !important;
+  margin: 0 auto !important;
 }
 
 .ds-dual-badge.badge-orange .ds-badge-divider {
@@ -3628,7 +3644,7 @@ html {
 }
 
 /* ==========================================================================
-   SEÇÃO S5.2 — O QUE VOCÊ ENCONTRA NO VILA PARK (CARROSSEL DE ATRAÇÕES)
+   SEÇÃO S5.2 — O QUE VOCÊ ENCONTRA NO VILLA PARK (CARROSSEL DE ATRAÇÕES)
    ========================================================================== */
 .atracoes-section {
   background-color: #FDEA76;
