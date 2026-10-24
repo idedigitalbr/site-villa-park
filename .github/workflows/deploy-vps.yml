@@ -1,0 +1,76 @@
+name: Deploy VPS
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-villapark
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Configure SSH and Deploy to VPS
+        env:
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+          VPS_PORT: ${{ secrets.VPS_SSH_PORT }}
+          VPS_FINGERPRINT: ${{ secrets.VPS_SSH_FINGERPRINT }}
+        run: |
+          set -euo pipefail
+          
+          mkdir -p ~/.ssh
+          chmod 700 ~/.ssh
+          
+          PORT="${VPS_PORT:-22}"
+          ssh-keyscan -p "$PORT" -t rsa,ecdsa,ed25519 "$VPS_HOST" >> ~/.ssh/known_hosts
+          chmod 600 ~/.ssh/known_hosts
+          
+          eval "$(ssh-agent -s)"
+          trap 'ssh-agent -k >/dev/null' EXIT
+          printf '%s\n' "$VPS_SSH_KEY" | tr -d '\r' | ssh-add -
+          
+          ssh -p "$PORT" -o BatchMode=yes -o StrictHostKeyChecking=yes "$VPS_USER"@"$VPS_HOST" <<'REMOTE'
+          set -e
+          
+          PROJECT_DIR=""
+          if [ -d "/opt/villapark-site/app" ]; then
+            PROJECT_DIR="/opt/villapark-site/app"
+          elif [ -d "/opt/site-villa-park/app" ]; then
+            PROJECT_DIR="/opt/site-villa-park/app"
+          elif [ -d "/opt/villaplazapark-site/app" ]; then
+            PROJECT_DIR="/opt/villaplazapark-site/app"
+          elif [ -d "/opt/villapark-site" ]; then
+            PROJECT_DIR="/opt/villapark-site"
+          elif [ -d "/opt/site-villa-park" ]; then
+            PROJECT_DIR="/opt/site-villa-park"
+          else
+            PROJECT_DIR="/opt/villapark-site/app"
+            mkdir -p "/opt/villapark-site"
+            git clone https://github.com/idedigitalbr/site-villa-park.git "$PROJECT_DIR"
+          fi
+          
+          RESOLVED_DIR=$(realpath "$PROJECT_DIR")
+          if [ "$RESOLVED_DIR" = "/" ] || [ "$RESOLVED_DIR" = "/opt" ] || [ "$RESOLVED_DIR" = "/var" ] || [ "$RESOLVED_DIR" = "/home" ] || [ "$RESOLVED_DIR" = "/root" ] || [ -z "$RESOLVED_DIR" ]; then
+            echo "ABORTAR: Diretório do projeto é inválido ou perigoso: $RESOLVED_DIR" >&2
+            exit 99
+          fi
+          
+          cd "$RESOLVED_DIR"
+          
+          git fetch origin main
+          git reset --hard origin/main
+          git clean -fd
+          
+          docker compose -p villapark-site up -d --build --remove-orphans
+          
+          REMOTE

@@ -1,12 +1,20 @@
-# Deploy
+# Deploy — Villa Plaza Park
 
-atualizado: 2026-09-16
+Atualizado: 2026-10-24
 
-## Ambiente de Produção / Preview
-- **GitHub Pages (Ativo)**: [https://idedigitalbr.github.io/site-villa-park/](https://idedigitalbr.github.io/site-villa-park/)
+## Ambientes de Produção
+
+### 1. Produção Oficial (VPS Docker + Traefik)
+- **Domínios Oficiais**:
+  - [https://www.villaplazapark.com.br/](https://www.villaplazapark.com.br/)
+  - [https://villaplazapark.com.br/](https://villaplazapark.com.br/)
+  - [https://villapark.suporteide.digital/](https://villapark.suporteide.digital/)
+- **Infraestrutura**: VPS Docker com Traefik Reverse Proxy (`proxy` network externa) e certificado Let's Encrypt / Cloudflare.
+- **Container**: `villapark-web` (porta interna 80, porta externa 8085 mapeada no host).
+- **Projeto Compose**: `villapark-site`.
+- **Workflow CI/CD**: `.github/workflows/deploy-vps.yml` — dispara automaticamente a cada `push` na branch `main`.
+
+### 2. Preview / Fallback
+- **GitHub Pages**: [https://idedigitalbr.github.io/site-villa-park/](https://idedigitalbr.github.io/site-villa-park/)
 - **Repositório GitHub**: [https://github.com/idedigitalbr/site-villa-park](https://github.com/idedigitalbr/site-villa-park)
-- **Branch de Deploy**: `main` (path: `/`)
-- **Status**: Ativo com HTTPS automático
-
-## Processo de Deploy
-- Qualquer push na branch `main` dispara o build automático do GitHub Pages.
+- **Branch de Deploy**: `main`
