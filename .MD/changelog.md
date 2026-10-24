@@ -1,5 +1,26 @@
 # Changelog — Villa Plaza Park
 
+## 2026-10-24
+
+- **Carrossel Infinito e Limpeza Visual da Seção de Depoimentos / Reels (`#depoimentos`)**:
+  - **Carrossel 100% Infinito sem Vão**: Implementada arquitetura de carrossel contínuo com conjuntos de clones automáticos (`clonesBefore` + `baseCards` + `clonesAfter`). Ao avançar até o último card (Lucas), o primeiro card (Camila) surge imediatamente ao lado no viewport sem frestas ou áreas vazias ("vão"). Ao término da animação, o trilho executa reset invisível via `transition: none`, permitindo rolagem infinita contínua em ambas as direções.
+  - **Sincronização de Texto e Active Card**: O bloco editorial à direita (`#depoimentosTextBox`) atualiza suavemente com fade/translate sincronizado com o depoimento ativo em primeiro plano.
+  - **Remoção dos Botões Play e Badges Superiores**: Removidos os botões de reprodução central (`.ds-reel-play-overlay`) e as tags de identificação no topo dos cards (`.ds-reel-badge`), destacando as fotos reais de alta resolução com carregamento prioritário (`loading="eager"`).
+  - **Navegação Completa**: Suporte contínuo a setas laterais (`<` / `>`), clique no card adjacente para avançar e gestos touch/swipe em dispositivos móveis.
+
+- **Integração das Novas Imagens no Carrossel do Topo (Hero / S1)**:
+  - Configurada a ordem exata das artes no carrossel do topo:
+    1. BANNER_BRUXAS_PAK_TAPANA_1920x720.webp (1º - Banner Noite das Bruxas no Park Tapanã)
+    2. 1-banner-topo.webp (2º - Banner original clássico - O complexo de muita diversão)
+    3. BANNER_VILLA_PLAZA_PARK_INSTITUCIONAL_1920x720.webp (3º - Banner Institucional Villa Plaza Park)
+  - Reconfigurado o contêiner de slides e os 3 indicadores de pontos (#heroDotsNav) com navegação contínua, setas e autoplay sincronizados.
+  - Teste unitário automatizado 	est_uses_the_three_existing_hero_images atualizado e validado com sucesso via Playwright.
+
+- **Remoção do Slide da Piscina de Bolinhas do Carrossel do Topo (Hero)**:
+  - Removido o Slide 02 (ssets/Pagina/S1 TOPO HERO/2-banner-topo.webp - Foto da piscina de bolinhas com estrutura verde) exclusivamente do carrossel do topo da página (#home .hero-carousel), mantendo as demais seções e atrações da página intactas.
+  - Reindexado o slide seguinte para índice 1 e ajustada a barra de navegação de dots (#heroDotsNav) de 3 para 2 indicadores com ciclo contínuo e transição automáticos.
+  - Atualizado teste unitário automatizado em 	ests/test_full_page_restoration.py.
+
 ## 2026-10-14
 
 - **Correção da Navegação e Passagem de Slides no Desktop (Carrossel de Destaques / S2)**:

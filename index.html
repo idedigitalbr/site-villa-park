@@ -1322,12 +1322,12 @@
       
       <!-- Elementos Decorativos 3D da Hero com Parallax Sutil e Animação Ambiente (Fiel ao Mockup) -->
       <!-- 1. Sol 3D Sorridente (canto superior direito com escala reduzida ~10%) -->
-      <div class="decor-3d-item anim-sun-glow hidden md:block" data-parallax="0.07" style="top: -12px; right: -12px; width: clamp(170px, 20vw, 290px); z-index: 15; transform: rotate(7deg);">
+      <div class="decor-3d-item anim-sun-glow hidden md:block" data-parallax="0.07" style="top: 0; right: calc(clamp(150px, 16vw, 240px) * -0.45); width: clamp(150px, 16vw, 240px); z-index: 5; transform: rotate(7deg);">
         <img src="assets/3DObjetos/sol-sorridente-3d.webp" alt="Sol 3D Sorridente Villa Plaza Park" class="w-full h-auto drop-shadow-2xl select-none pointer-events-none" loading="eager" decoding="async">
       </div>
 
       <!-- 2. Nuvem 3D Sorridente (lateral esquerda com escala ampliada ~10%) -->
-      <div class="decor-3d-item anim-float-gentle hidden md:block" data-parallax="0.04" style="bottom: calc(8px + clamp(80px, 12vw, 176px)); left: -25px; width: clamp(155px, 20vw, 265px); z-index: 25;">
+      <div class="decor-3d-item anim-float-gentle hidden md:block" data-parallax="0.04" style="bottom: calc(8px + clamp(60px, 8vw, 120px)); left: calc(clamp(140px, 16vw, 230px) * -0.5); width: clamp(140px, 16vw, 230px); z-index: 5;">
         <img src="assets/3DObjetos/nuvem-sorridente-3d.webp" alt="Nuvem 3D Sorridente" class="w-full h-auto drop-shadow-xl select-none pointer-events-none" loading="lazy" decoding="async">
       </div>
 
@@ -1338,18 +1338,45 @@
           <!-- Contêiner de Slides -->
           <div class="relative w-full h-full">
 
-            <!-- Slide 01 — O complexo de muita diversão para os pequenos -->
+            <!-- Slide 01 — Noite das Bruxas no Park Tapanã -->
             <div class="hero-slide active" data-index="0">
-              <img src="assets/Pagina/S1%20TOPO%20HERO/1-banner-topo.webp" alt="Villa Plaza Park — O complexo de muita diversão para os pequenos" loading="eager" decoding="async">
+              <img src="assets/Pagina/S1%20TOPO%20HERO/BANNER_BRUXAS_PAK_TAPANA_1920x720.webp" alt="Villa Park Tapanã — Noite das Bruxas" loading="eager" decoding="async">
+              <div class="absolute inset-0 z-10 flex flex-col justify-end pb-12 sm:pb-16 md:pb-20 px-5 sm:px-8 md:px-12 lg:px-16 bg-gradient-to-t from-black/80 via-black/35 to-transparent">
+                <div class="max-w-2xl">
+                  <span class="inline-flex items-center gap-1.5 bg-brand-orange/90 backdrop-blur-sm text-white text-[10px] sm:text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full mb-3 shadow">
+                    <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    Evento Especial Tapanã
+                  </span>
+                  <h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-white leading-tight tracking-tight drop-shadow mb-2 sm:mb-3">
+                    Noite das Bruxas no Park Tapanã
+                  </h1>
+                  <p class="text-sm sm:text-base text-white/90 leading-relaxed mb-4 sm:mb-5 max-w-md drop-shadow hidden sm:block">
+                    Venha curtir uma programação assustadoramente divertida na nossa unidade Tapanã!
+                  </p>
+                  <div class="flex flex-wrap gap-2.5 sm:gap-3">
+                     <button type="button" onclick="openOrderModal()" class="btn btn-secondary">
+                       <strong class="btn-bold">Quero</strong> saber mais <span class="ds-cta-arrow">&gt;</span>
+                     </button>
+                     <a href="#filiais" class="btn btn-outline-white">
+                       <strong class="btn-bold">Quero</strong> saber mais <span class="ds-cta-arrow">&gt;</span>
+                     </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Slide 02 — O complexo de muita diversão para os pequenos -->
+            <div class="hero-slide" data-index="1">
+              <img src="assets/Pagina/S1%20TOPO%20HERO/1-banner-topo.webp" alt="Villa Plaza Park — O complexo de muita diversão para os pequenos" loading="lazy" decoding="async">
               <div class="absolute inset-0 z-10 flex flex-col justify-end pb-12 sm:pb-16 md:pb-20 px-5 sm:px-8 md:px-12 lg:px-16 bg-gradient-to-t from-black/80 via-black/35 to-transparent">
                 <div class="max-w-2xl">
                   <span class="inline-flex items-center gap-1.5 bg-brand-green/90 backdrop-blur-sm text-white text-[10px] sm:text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full mb-3 shadow">
                     <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
                     No Mezanino do +B Supermercados (Plaza)
                   </span>
-                  <h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-white leading-tight tracking-tight drop-shadow mb-2 sm:mb-3">
+                  <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-white leading-tight tracking-tight drop-shadow mb-2 sm:mb-3">
                     O complexo de muita<br>diversão para os pequenos.
-                  </h1>
+                  </h2>
                   <p class="text-sm sm:text-base text-white/90 leading-relaxed mb-4 sm:mb-5 max-w-md drop-shadow hidden sm:block">
                     Espaço 100% climatizado, seguro e cheio de aventuras. Brinquedão safari, piscina de bolinhas e monitores dedicados em Belém/PA.
                   </p>
@@ -1365,47 +1392,20 @@
               </div>
             </div>
 
-            <!-- Slide 02 — FESTAS & ANIVERSÁRIOS -->
-            <div class="hero-slide" data-index="1">
-              <img src="assets/Pagina/S1%20TOPO%20HERO/2-banner-topo.webp" alt="Festas e Aniversários Inesquecíveis no Villa Plaza Park" loading="lazy" decoding="async">
-              <div class="absolute inset-0 z-10 flex flex-col justify-end pb-12 sm:pb-16 md:pb-20 px-5 sm:px-8 md:px-12 lg:px-16 bg-gradient-to-t from-black/80 via-black/35 to-transparent">
-                <div class="max-w-2xl">
-                  <span class="inline-flex items-center gap-1.5 bg-brand-orange/90 backdrop-blur-sm text-white text-[10px] sm:text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full mb-3 shadow">
-                    <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                    Festas &amp; Comemorações
-                  </span>
-                  <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-white leading-tight tracking-tight drop-shadow mb-2 sm:mb-3">
-                    Comemore o aniversário<br>com pura alegria.
-                  </h2>
-                  <p class="text-sm sm:text-base text-white/90 leading-relaxed mb-4 sm:mb-5 max-w-md drop-shadow hidden sm:block">
-                    Pacotes completos de festas infantis com estrutura exclusiva, monitores, convites e toda a magia que seu filho merece.
-                  </p>
-                  <div class="flex flex-wrap gap-2.5 sm:gap-3">
-                     <button type="button" onclick="openOrderModal()" class="btn btn-secondary">
-                       <strong class="btn-bold">Quero</strong> saber mais <span class="ds-cta-arrow">&gt;</span>
-                     </button>
-                     <a href="#ofertas" class="btn btn-outline-white">
-                       <strong class="btn-bold">Quero</strong> saber mais <span class="ds-cta-arrow">&gt;</span>
-                     </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Slide 03 — TRANQUILIDADE PARA OS PAIS -->
+            <!-- Slide 03 — Institucional Villa Plaza Park -->
             <div class="hero-slide" data-index="2">
-              <img src="assets/Pagina/S1%20TOPO%20HERO/3-banner-topo.webp" alt="Tranquilidade para os pais enquanto os filhos brincam" loading="lazy" decoding="async">
+              <img src="assets/Pagina/S1%20TOPO%20HERO/BANNER_VILLA_PLAZA_PARK_INSTITUCIONAL_1920x720.webp" alt="Villa Plaza Park — Institucional" loading="lazy" decoding="async">
               <div class="absolute inset-0 z-10 flex flex-col justify-end pb-12 sm:pb-16 md:pb-20 px-5 sm:px-8 md:px-12 lg:px-16 bg-gradient-to-t from-black/80 via-black/35 to-transparent">
                 <div class="max-w-2xl">
                   <span class="inline-flex items-center gap-1.5 bg-brand-green/90 backdrop-blur-sm text-white text-[10px] sm:text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full mb-3 shadow">
                     <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                    Segurança &amp; Comodidade
+                    Institucional
                   </span>
                   <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-white leading-tight tracking-tight drop-shadow mb-2 sm:mb-3">
-                    Faça suas compras com<br>total tranquilidade.
+                    Villa Plaza Park
                   </h2>
                   <p class="text-sm sm:text-base text-white/90 leading-relaxed mb-4 sm:mb-5 max-w-md drop-shadow hidden sm:block">
-                    Enquanto você aproveita as compras no +B Supermercados, seus pequenos se divertem com segurança e supervisão atenta no mezanino.
+                    O complexo de muita diversão para toda a família no mezanino do +B Supermercados.
                   </p>
                   <div class="flex flex-wrap gap-2.5 sm:gap-3">
                      <a href="#filiais" class="btn btn-primary">
@@ -3300,24 +3300,15 @@
                 <div class="ds-reels-viewport">
                   <div class="ds-reels-track" id="reelsTrack">
 
-                    <!-- CARD 1: Vídeo Real do Parque -->
-                    <div class="ds-reel-card" onclick="openVideoModal()" role="button" tabindex="0" aria-label="Assistir vídeo do Villa Plaza Park — Camila Ferreira">
-                      <video
+                    <!-- CARD 1: Foto Real do Parque — diversão kids -->
+                    <div class="ds-reel-card" onclick="depoimentosGoTo(0)" role="button" tabindex="0" aria-label="Depoimento — Camila Ferreira">
+                      <img
+                        src="assets/images/Crianca-correndo-espaco-kids-aventura.webp"
+                        alt="Criança correndo e se divertindo no espaço kids do Villa Plaza Park"
                         class="ds-reel-media"
-                        preload="metadata"
-                        playsinline
-                        muted
-                        loop
-                        poster="assets/Pagina/S3 SOBRE/sobre-park.webp"
+                        loading="eager"
+                        decoding="async"
                       >
-                        <source src="assets/Pagina/S3 SOBRE/SaveClip.App_AQOBxZ6vqAFYmuKYax3Ofv6Su8_6Vjfg9IfhVDBfNWo1jCnioMHUVwoo9pT2iWt39q1fSsgSMK7VCB9A-6Wm526rI5ueSD_QGVDcqhE.mp4" type="video/mp4">
-                      </video>
-                      <div class="ds-reel-play-overlay">
-                        <div class="ds-reel-play-btn">
-                          <svg class="ds-reel-play-icon" viewBox="0 0 24 24"><path d="M5 3l14 9-14 9V3z"/></svg>
-                        </div>
-                      </div>
-                      <span class="ds-reel-badge">Villa Plaza Park</span>
                     </div>
 
                     <!-- CARD 2: Foto Real do Parque — crianças na piscina -->
@@ -3326,15 +3317,9 @@
                         src="assets/images/Meninas-sorrindo-piscina-de-bolinhas.webp"
                         alt="Meninas sorrindo na piscina de bolinhas do Villa Plaza Park"
                         class="ds-reel-media"
-                        loading="lazy"
+                        loading="eager"
                         decoding="async"
                       >
-                      <div class="ds-reel-play-overlay">
-                        <div class="ds-reel-play-btn">
-                          <svg class="ds-reel-play-icon" viewBox="0 0 24 24"><path d="M5 3l14 9-14 9V3z"/></svg>
-                        </div>
-                      </div>
-                      <span class="ds-reel-badge">Piscina de Bolinhas</span>
                     </div>
 
                     <!-- CARD 3: Foto Real do Parque — família sorrindo -->
@@ -3343,15 +3328,9 @@
                         src="assets/images/Familia-sorrindo-selfie-no-parque.webp"
                         alt="Família feliz tirando selfie no Villa Plaza Park"
                         class="ds-reel-media"
-                        loading="lazy"
+                        loading="eager"
                         decoding="async"
                       >
-                      <div class="ds-reel-play-overlay">
-                        <div class="ds-reel-play-btn">
-                          <svg class="ds-reel-play-icon" viewBox="0 0 24 24"><path d="M5 3l14 9-14 9V3z"/></svg>
-                        </div>
-                      </div>
-                      <span class="ds-reel-badge">Família no Parque</span>
                     </div>
 
                     <!-- CARD 4: Foto Real do Parque — crianças brincando -->
@@ -3360,15 +3339,9 @@
                         src="assets/images/Criancas-brincando-na-piscina-de-bolinhas.webp"
                         alt="Crianças brincando felizes na piscina de bolinhas do Villa Plaza Park"
                         class="ds-reel-media"
-                        loading="lazy"
+                        loading="eager"
                         decoding="async"
                       >
-                      <div class="ds-reel-play-overlay">
-                        <div class="ds-reel-play-btn">
-                          <svg class="ds-reel-play-icon" viewBox="0 0 24 24"><path d="M5 3l14 9-14 9V3z"/></svg>
-                        </div>
-                      </div>
-                      <span class="ds-reel-badge">Diversão em Família</span>
                     </div>
 
                   </div><!-- /ds-reels-track -->

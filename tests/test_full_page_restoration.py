@@ -51,9 +51,9 @@ class FullPageRestorationTests(unittest.TestCase):
 
     def test_uses_the_three_existing_hero_images(self):
         expected_sources = [
+            "assets/Pagina/S1%20TOPO%20HERO/BANNER_BRUXAS_PAK_TAPANA_1920x720.webp",
             "assets/Pagina/S1%20TOPO%20HERO/1-banner-topo.webp",
-            "assets/Pagina/S1%20TOPO%20HERO/2-banner-topo.webp",
-            "assets/Pagina/S1%20TOPO%20HERO/3-banner-topo.webp",
+            "assets/Pagina/S1%20TOPO%20HERO/BANNER_VILLA_PLAZA_PARK_INSTITUCIONAL_1920x720.webp",
         ]
         images = self.page.locator("#home .hero-slide > img")
         self.assertEqual(images.count(), 3)

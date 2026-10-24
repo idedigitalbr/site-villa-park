@@ -4644,12 +4644,13 @@ html {
   width: 100%;
   max-width: 530px;
   border-radius: 28px;
+  padding: 6px 0;
 }
 
 .ds-reels-track {
   display: flex;
   gap: 16px;
-  transition: transform 0.45s cubic-bezier(0.25, 1, 0.5, 1);
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
   will-change: transform;
 }
 
@@ -4665,7 +4666,7 @@ html {
   background-color: #1C2D21;
   box-shadow: 0 10px 30px -4px rgba(0, 0, 0, 0.12), 0 2px 6px rgba(0, 0, 0, 0.04);
   cursor: pointer;
-  transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.25s ease;
+  transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.25s ease, opacity 0.25s ease;
   user-select: none;
 }
 
@@ -4690,65 +4691,16 @@ html {
   height: 100%;
   object-fit: cover;
   display: block;
-}
-
-/* Overlay do Botão Play Circular Central */
-.ds-reel-play-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.35) 100%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
   pointer-events: none;
-  transition: background 0.2s ease;
 }
 
-.ds-reel-card:hover .ds-reel-play-overlay {
-  background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.45) 100%);
-}
-
-.ds-reel-play-btn {
-  width: 58px;
-  height: 58px;
-  border-radius: 9999px;
-  background: rgba(255, 255, 255, 0.25);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border: 2px solid rgba(255, 255, 255, 0.85);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
-  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.2s ease;
-}
-
-.ds-reel-card:hover .ds-reel-play-btn {
-  transform: scale(1.12);
-  background: rgba(255, 255, 255, 0.35);
-}
-
-.ds-reel-play-icon {
-  width: 22px;
-  height: 22px;
-  margin-left: 3px;
-  fill: #FFFFFF;
-  color: #FFFFFF;
+/* Play e Badges desativados conforme solicitado */
+.ds-reel-play-overlay {
+  display: none !important;
 }
 
 .ds-reel-badge {
-  position: absolute;
-  top: 14px;
-  left: 14px;
-  background: rgba(20, 34, 23, 0.7);
-  backdrop-filter: blur(6px);
-  color: #FFFFFF;
-  font-size: 10.5px;
-  font-weight: 700;
-  padding: 4px 10px;
-  border-radius: 9999px;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
+  display: none !important;
 }
 
 /* Bloco Editorial à Direita */

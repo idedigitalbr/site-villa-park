@@ -776,7 +776,7 @@ document.addEventListener('keydown', function(e) {
 });
 
 /* ----------------------------------------------------------------------------
-   9. CARROSSEL DE DEPOIMENTOS (REELS / VÍDEOS & AVALIAÇÕES EDITORIAIS)
+   9. CARROSSEL DE DEPOIMENTOS INFINITO (SEM VÃO, LOOP SUAVE E TEXTO SINCRONIZADO)
    ---------------------------------------------------------------------------- */
 (function initDepoimentosSlider() {
   const testimonials = [
@@ -814,26 +814,42 @@ document.addEventListener('keydown', function(e) {
     }
   ];
 
-  let currentIdx = 0;
+  let track = null;
+  let allCards = [];
+  let numOriginals = 4;
+  let currentPos = 4; // Começa no primeiro item original (offset de 1 conjunto de clones)
+  let isTransitioning = false;
+  let safetyTimer = null;
 
-  function updateSlide(idx) {
-    const track = document.getElementById('reelsTrack');
-    const textBox = document.getElementById('depoimentosTextBox');
-    const cards = document.querySelectorAll('.ds-reel-card');
-    if (!track || !cards.length) return;
+  function getCardStep() {
+    if (!track || !allCards.length) return 0;
+    const first = allCards[0];
+    const width = first.offsetWidth;
+    const gap = parseFloat(window.getComputedStyle(track).gap) || 16;
+    return width + gap;
+  }
 
-    currentIdx = (idx + testimonials.length) % testimonials.length;
-
-    // Calcular offset de deslizamento
-    const cardWidth = cards[0].offsetWidth;
-    const gap = 16;
-    const shift = currentIdx * (cardWidth + gap);
-
+  function setTrackPosition(pos, animate) {
+    if (!track) return;
+    const step = getCardStep();
+    const shift = pos * step;
+    if (animate) {
+      track.style.transition = 'transform 0.4s cubic-bezier(0.25, 1, 0.5, 1)';
+    } else {
+      track.style.transition = 'none';
+    }
     track.style.transform = `translateX(-${shift}px)`;
+    if (!animate) {
+      void track.offsetWidth; // Força reflow síncrono para o navegador registrar a nova posição sem animação
+    }
+  }
 
-    // Atualizar classe ativa nos cards
-    cards.forEach((card, i) => {
-      if (i === currentIdx) {
+  function updateActiveCardAndText() {
+    if (!allCards.length) return;
+    const realIdx = ((currentPos % numOriginals) + numOriginals) % numOriginals;
+
+    allCards.forEach((card, idx) => {
+      if (idx === currentPos) {
         card.classList.add('is-active');
         card.style.opacity = '1';
         card.style.transform = 'translateY(-4px)';
@@ -844,9 +860,9 @@ document.addEventListener('keydown', function(e) {
       }
     });
 
-    // Atualizar texto editorial suavemente
-    if (textBox && testimonials[currentIdx]) {
-      const data = testimonials[currentIdx];
+    const textBox = document.getElementById('depoimentosTextBox');
+    if (textBox && testimonials[realIdx]) {
+      const data = testimonials[realIdx];
       textBox.style.opacity = '0';
       textBox.style.transform = 'translateY(6px)';
 
@@ -874,47 +890,138 @@ document.addEventListener('keydown', function(e) {
         `;
         textBox.style.opacity = '1';
         textBox.style.transform = 'translateY(0)';
-      }, 180);
+      }, 160);
     }
   }
 
+  function checkLoopBounds() {
+    clearTimeout(safetyTimer);
+    isTransitioning = false;
+
+    // Se avançou além do conjunto original (pos >= 2 * N)
+    if (currentPos >= 2 * numOriginals) {
+      currentPos = currentPos - numOriginals;
+      setTrackPosition(currentPos, false);
+      updateActiveCardAndText();
+    }
+    // Se recuou antes do conjunto original (pos < N)
+    else if (currentPos < numOriginals) {
+      currentPos = currentPos + numOriginals;
+      setTrackPosition(currentPos, false);
+      updateActiveCardAndText();
+    }
+  }
+
+  function moveTo(targetPos) {
+    if (isTransitioning) return;
+    isTransitioning = true;
+    currentPos = targetPos;
+    setTrackPosition(currentPos, true);
+    updateActiveCardAndText();
+
+    clearTimeout(safetyTimer);
+    safetyTimer = setTimeout(checkLoopBounds, 450);
+  }
+
   window.depoimentosPrev = function() {
-    updateSlide(currentIdx - 1);
+    if (isTransitioning) return;
+    moveTo(currentPos - 1);
   };
 
   window.depoimentosNext = function() {
-    updateSlide(currentIdx + 1);
+    if (isTransitioning) return;
+    moveTo(currentPos + 1);
   };
 
-  window.depoimentosGoTo = function(idx) {
-    updateSlide(idx);
+  window.depoimentosGoTo = function(targetRealIdx) {
+    if (isTransitioning) return;
+    const currentRealIdx = ((currentPos % numOriginals) + numOriginals) % numOriginals;
+    if (targetRealIdx === currentRealIdx) return;
+    let diff = targetRealIdx - currentRealIdx;
+    if (diff > numOriginals / 2) diff -= numOriginals;
+    if (diff < -numOriginals / 2) diff += numOriginals;
+    moveTo(currentPos + diff);
   };
 
-  document.addEventListener('DOMContentLoaded', () => {
-    const track = document.getElementById('reelsTrack');
+  function setupSlider() {
+    track = document.getElementById('reelsTrack');
     if (!track) return;
 
-    updateSlide(0);
+    const baseCards = Array.from(track.querySelectorAll('.ds-reel-card'));
+    numOriginals = baseCards.length;
+    if (numOriginals === 0) return;
 
-    // Suporte a Touch Swipe Mobile
+    // Clones para carrossel 100% infinito sem vão/fresta
+    const clonesBefore = baseCards.map(c => {
+      const clone = c.cloneNode(true);
+      clone.setAttribute('data-clone', 'before');
+      return clone;
+    });
+    const clonesAfter = baseCards.map(c => {
+      const clone = c.cloneNode(true);
+      clone.setAttribute('data-clone', 'after');
+      return clone;
+    });
+
+    track.innerHTML = '';
+    clonesBefore.forEach(c => track.appendChild(c));
+    baseCards.forEach(c => track.appendChild(c));
+    clonesAfter.forEach(c => track.appendChild(c));
+
+    allCards = Array.from(track.querySelectorAll('.ds-reel-card'));
+
+    allCards.forEach((card, idx) => {
+      card.addEventListener('click', () => {
+        if (isTransitioning) return;
+        if (idx === currentPos) return;
+        moveTo(idx);
+      });
+    });
+
+    currentPos = numOriginals;
+    setTrackPosition(currentPos, false);
+    updateActiveCardAndText();
+
+    track.addEventListener('transitionend', (e) => {
+      if (e.target !== track) return;
+      checkLoopBounds();
+    });
+
+    // Touch Swipe Mobile
     let startX = 0;
+    let moveDiff = 0;
     track.addEventListener('touchstart', (e) => {
+      if (isTransitioning) return;
       startX = e.touches[0].clientX;
+      moveDiff = 0;
     }, { passive: true });
 
-    track.addEventListener('touchend', (e) => {
-      const endX = e.changedTouches[0].clientX;
-      const diff = startX - endX;
-      if (Math.abs(diff) > 40) {
-        if (diff > 0) window.depoimentosNext();
+    track.addEventListener('touchmove', (e) => {
+      moveDiff = startX - e.touches[0].clientX;
+    }, { passive: true });
+
+    track.addEventListener('touchend', () => {
+      if (Math.abs(moveDiff) > 40) {
+        if (moveDiff > 0) window.depoimentosNext();
         else window.depoimentosPrev();
       }
     }, { passive: true });
 
+    // Redimensionamento
+    let resizeTimer;
     window.addEventListener('resize', () => {
-      updateSlide(currentIdx);
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => {
+        setTrackPosition(currentPos, false);
+      }, 80);
     });
-  });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupSlider);
+  } else {
+    setupSlider();
+  }
 })();
 
 document.addEventListener('DOMContentLoaded', () => {
