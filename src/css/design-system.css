@@ -4304,15 +4304,6 @@ html {
   gap: 16px;
 }
 
-.ds-estadia-desktop-row.ds-row-3 {
-  max-width: 640px;
-  margin: 0 auto;
-}
-
-.ds-estadia-cards-grid.ds-cols-3 {
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-}
 
 /* Bloco Inferior: Horários de Funcionamento */
 .ds-estadia-hours-section {
