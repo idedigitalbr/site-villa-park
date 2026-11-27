@@ -110,7 +110,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Comfortaa:wght@400;500;600;700;800&family=Fredoka:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500;600&amp;family=Roboto:wght@400;500;700&amp;display=swap" rel="stylesheet">
   
   <!-- Design System CSS Canônico & Centralizado -->
-  <link rel="stylesheet" href="src/css/design-system.css?v=20261019-2">
+  <link rel="stylesheet" href="src/css/design-system.css?v=20261127-1">
 
   <!-- Font Awesome 6 Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -2757,16 +2757,16 @@
 
           <!-- ==================== PAINEL 2: UNIDADE PLAZA / BELÉM (5 CARDS) ==================== -->
           <div id="panel-plaza" role="tabpanel" aria-labelledby="tab-plaza" class="ds-estadia-tab-panel">
-            <!-- 2. BLOCO DOS 5 CARDS COM VARAL DE CORDA CONTÍNUA -->
+            <!-- 2. BLOCO DOS 3 CARDS COM VARAL DE CORDA CONTÍNUA -->
             <div class="ds-estadia-cards-container">
             
             <!-- Versão Desktop e Tablet: Fileira Canônica com Varal de Corda Contínua e Cards Vivos -->
-            <div class="ds-estadia-desktop-row hidden sm:block relative">
+            <div class="ds-estadia-desktop-row ds-row-3 hidden sm:block relative">
               <!-- Corda Contínua passando realisticamente atrás dos cartazes -->
               <div class="ds-estadia-continuous-rope" aria-hidden="true"></div>
 
-              <!-- Grid dos 5 Cards Puros Nativos -->
-              <div class="ds-estadia-cards-grid">
+              <!-- Grid dos 3 Cards Puros Nativos -->
+              <div class="ds-estadia-cards-grid ds-cols-3">
                 
                 <!-- Card 1: Meia Hora -->
                 <button type="button" class="ds-estadia-card-pure card-meia-hora" onclick="openOrderModal()" aria-label="Garantir Meia Hora R$ 35,00" title="Meia Hora - R$ 35,00">
@@ -2783,37 +2783,9 @@
                   </div>
                 </button>
 
-                <!-- Card 2: Uma Hora -->
-                <button type="button" class="ds-estadia-card-pure card-uma-hora" onclick="openOrderModal()" aria-label="Garantir Uma Hora R$ 49,00" title="Uma Hora - R$ 49,00">
-                  <div class="ds-estadia-wood-plaque">
-                    <span class="ds-wood-title">UMA</span>
-                    <span class="ds-wood-subtitle">HORA</span>
-                  </div>
-                  <div class="ds-estadia-cloth-banner banner-c2">
-                    <div class="ds-cloth-price">
-                      <span class="ds-price-currency">R$</span>
-                      <span class="ds-price-val">49</span>
-                      <span class="ds-price-cents">,00</span>
-                    </div>
-                  </div>
-                </button>
 
-                <!-- Card 3: Duas Horas -->
-                <button type="button" class="ds-estadia-card-pure card-duas-horas" onclick="openOrderModal()" aria-label="Garantir Duas Horas R$ 69,00" title="Duas Horas - R$ 69,00">
-                  <div class="ds-estadia-wood-plaque">
-                    <span class="ds-wood-title">DUAS</span>
-                    <span class="ds-wood-subtitle">HORAS</span>
-                  </div>
-                  <div class="ds-estadia-cloth-banner banner-c3">
-                    <div class="ds-cloth-price">
-                      <span class="ds-price-currency">R$</span>
-                      <span class="ds-price-val">69</span>
-                      <span class="ds-price-cents">,00</span>
-                    </div>
-                  </div>
-                </button>
 
-                <!-- Card 4: Cliente +B -->
+                <!-- Card 2: Cliente +B -->
                 <button type="button" class="ds-estadia-card-pure card-cliente-mais-b" onclick="openOrderModal()" aria-label="Garantir Cliente +B até 1h30 R$ 59,00" title="Cliente +B (até 1h30) - R$ 59,00">
                   <div class="ds-estadia-wood-plaque">
                     <span class="ds-wood-title ds-wood-title-sm">CLIENTE +B</span>
@@ -2828,7 +2800,7 @@
                   </div>
                 </button>
 
-                <!-- Card 5: Pacote VIP -->
+                <!-- Card 3: Pacote VIP -->
                 <button type="button" class="ds-estadia-card-pure card-pacote-vip" onclick="openOrderModal()" aria-label="Garantir Pacote VIP até 4 horas R$ 89,00" title="Pacote VIP (até 4 horas) - R$ 89,00">
                   <div class="ds-estadia-wood-plaque">
                     <span class="ds-wood-title ds-wood-title-sm">PACOTE VIP</span>
@@ -2867,37 +2839,9 @@
                   </div>
                 </button>
 
-                <!-- Card 2: Uma Hora -->
-                <button type="button" class="ds-estadia-card-pure card-uma-hora" onclick="openOrderModal()" aria-label="Garantir Uma Hora R$ 49,00">
-                  <div class="ds-estadia-wood-plaque">
-                    <span class="ds-wood-title">UMA</span>
-                    <span class="ds-wood-subtitle">HORA</span>
-                  </div>
-                  <div class="ds-estadia-cloth-banner banner-c2">
-                    <div class="ds-cloth-price">
-                      <span class="ds-price-currency">R$</span>
-                      <span class="ds-price-val">49</span>
-                      <span class="ds-price-cents">,00</span>
-                    </div>
-                  </div>
-                </button>
 
-                <!-- Card 3: Duas Horas -->
-                <button type="button" class="ds-estadia-card-pure card-duas-horas" onclick="openOrderModal()" aria-label="Garantir Duas Horas R$ 69,00">
-                  <div class="ds-estadia-wood-plaque">
-                    <span class="ds-wood-title">DUAS</span>
-                    <span class="ds-wood-subtitle">HORAS</span>
-                  </div>
-                  <div class="ds-estadia-cloth-banner banner-c3">
-                    <div class="ds-cloth-price">
-                      <span class="ds-price-currency">R$</span>
-                      <span class="ds-price-val">69</span>
-                      <span class="ds-price-cents">,00</span>
-                    </div>
-                  </div>
-                </button>
 
-                <!-- Card 4: Cliente +B -->
+                <!-- Card 2: Cliente +B -->
                 <button type="button" class="ds-estadia-card-pure card-cliente-mais-b" onclick="openOrderModal()" aria-label="Garantir Cliente +B até 1h30 R$ 59,00">
                   <div class="ds-estadia-wood-plaque">
                     <span class="ds-wood-title ds-wood-title-sm">CLIENTE +B</span>
@@ -2912,7 +2856,7 @@
                   </div>
                 </button>
 
-                <!-- Card 5: Pacote VIP -->
+                <!-- Card 3: Pacote VIP -->
                 <button type="button" class="ds-estadia-card-pure card-pacote-vip" onclick="openOrderModal()" aria-label="Garantir Pacote VIP até 4 horas R$ 89,00">
                   <div class="ds-estadia-wood-plaque">
                     <span class="ds-wood-title ds-wood-title-sm">PACOTE VIP</span>
